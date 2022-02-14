@@ -1,5 +1,3 @@
-<?php include('includes/scripts.php'); ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -14,13 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#cpf').on('input', function() {
-                $('#prosseguir').prop('disabled', $(this).val().length < 8);
-            });
-        });
-    </script>
+
+    <?php include('includes/scripts.php'); ?>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -37,10 +31,10 @@
                                     </div>
                                     <form class="user" action="senha" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" name="email" onChange="this.value=this.value.toLowerCase()" placeholder="INFORME SEU E-MAIL" required>
+                                            <input type="email" class="form-control" id="email" name="email" onChange="this.value=this.value.toLowerCase()" placeholder="INFORME SEU E-MAIL" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="cpf" name="cpf" placeholder="INFORME SEU CPF" required>
+                                            <input type="text" class="form-control cpfOuCnpj" id="cpf" name="cpf" placeholder="INFORME SEU CPF" required>
                                         </div>
                                         <!--
                                         <div class="form-group">
