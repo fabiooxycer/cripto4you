@@ -67,7 +67,7 @@ include('../../includes/header.php');
 
                         foreach ($pdo->query($sql) as $row) {
                             if ($row['imagem']) {
-                                $imagem = '<img src="https://cripto4you.net/assets/images/blog/grid/' . $row['imagem'] . '" width="250">';
+                                $imagem = '<img src="https://cripto4you.net/assets/images/blog/grid/' . $row['imagem'] . '" width="25%">';
                             }
                             if ($row['dt_postagem']) {
                                 $data_postagem = '' . $row['dt_postagem'] . '';
