@@ -273,7 +273,7 @@ switch (get_post_action('excluir', 'adicionar')) {
         $data = [
             "chat_id" => "-1001662279487",
             'parse_mode' => 'HTML',
-            'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n ",
+            'text' => "\n<b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
