@@ -175,7 +175,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                           <div class="col-md-12">
                             <fieldset class="form-group">
                               <label for="basicTextarea">Descrição</label>
-                              <textarea class="form-control" name="descricao" id="descricao" rows="3" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
+                              <textarea class="form-control" name="descricao" id="descricao" rows="6" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
                             </fieldset>
                           </div>
                         </div>
