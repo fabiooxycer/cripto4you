@@ -3,8 +3,9 @@ if (!isset($_SESSION)) session_start();
 
 $nivel = 1;
 
-if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] > $nivel)) {
-    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
+    session_destroy();
+    header("Location: index.php");
     exit;
 }
 
