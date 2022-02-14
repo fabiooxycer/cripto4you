@@ -1,27 +1,16 @@
 <?php
-// ----------------------------------------------------------------------
-// Developer by: CREEATOR SOFTWARE DESIGN
-// Site: https://www.creeator.com.br | Email: contato@creeator.com.br
-// Phone and WhatsApp: +55 41 9 9282-3979
-// Developer: Fábio Vieira
-// Email: fabio.vieira@creeator.com.br
-// ----------------------------------------------------------------------
-
-// A sessão precisa ser iniciada em cada página diferente
 if (!isset($_SESSION)) session_start();
 
-$nivel_necessario = 1;
+$nivel_necessario = 99;
 
-// Verifica se não há a variável da sessão que identifica o usuário
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
-  // Redireciona o visitante de volta pro login
   echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
   exit;
 }
 ?>
 
 <?php
-include("includes/header.php");
+include("../../includes/header.php");
 
 $id = null;
 if (!empty($_GET['id'])) {
@@ -41,84 +30,52 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('atualizar', 'adicionar_adicional', 'excluir_adicional')) {
-
-
+switch (get_post_action('atualizar')) {
 
   case 'atualizar':
 
     if (!empty($_POST)) {
 
-      // Dados sobre o produto
-      $produto             = $_POST['produto'];
-      $descricao           = $_POST['descricao'];
-      $categoria           = $_POST['categoria'];
-      $tipo                = $_POST['tipo'];
-      $preco_unit          = $_POST['preco_unit'];
-      $preco_caixa         = $_POST['preco_caixa'];
-      $promocao            = $_POST['promocao'];
-      $percentual_promocao = $_POST['percentual_promocao'];
-      $valor_promocao      = $_POST['valor_promocao'];
+      $titulo             = $_POST['produto'];
+      $descricao          = $_POST['descricao'];
 
-      if ($preco_unit == '') {
-        $preco_unit = '';
-      }
-      if ($preco_caixa == '') {
-        $preco_caixa = '';
-      }
-      if ($percentual_promocao == '') {
-        $percentual_promocao = '';
-      }
-      if ($valor_promocao == '') {
-        $valor_promocao = '';
-      }
-
-      //Validaçao dos campos:
       $validacao = true;
 
-      // update data
       if ($validacao) {
 
-        /* ATUALIZA INFORMAÇÕES NO BANCO DE DADOS */
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE tbl_produtos set produto = ?, descricao = ?, categoria = ?, tipo = ?, preco_unit = ?, preco_caixa = ?, promocao = ?, percentual_promocao = ?, valor_promocao = ? WHERE id = ?";
+        $sql = "UPDATE tbl_noticias set titulo = ?, descricao = ? WHERE id = ?";
         $q = $pdo->prepare($sql);
-        $q->execute(array($produto, $descricao, $categoria, $tipo, $preco_unit, $preco_caixa, $promocao, $percentual_promocao, $valor_promocao, $id));
+        $q->execute(array($titulo, $descricao, $id));
 
-        $img = $_FILES['img'];
+        $img = $_FILES['imagem'];
 
-        /* Verifica se a logo foi aterada na loja */
-        if ($img != '' || $img != $_FILES['img']) {
+        if ($img != '' || $img != $_FILES['imagem']) {
 
           $sql2 = 'SELECT * FROM tbl_produtos WHERE id="' . $id . '"';
           foreach ($pdo->query($sql2) as $row) {
 
             $_SESSION['id'] = $row['id'];
 
-            /* INICIA INSERÇÃO DAS IMAGENS NA PASTA */
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $img = $_FILES['img'];
 
-            //aqui eu verifico se o array de fotos é maior que zero e começo a fazer o loop
             if (count($img) > 0) {
               for ($q = 0; $q < count($img['tmp_name']); $q++) {
                 $tipo = $img['type'][$q];
                 if (in_array($tipo, array('image/jpeg', 'image/png'))) {
 
-                  //nome gerado para a imagem a cada loop
                   $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
 
-                  //aqui a imagem ja é movida (upload) para a pasta (assets/img/anuncios/) com seu novo name ($tmpname)
-                  move_uploaded_file($img['tmp_name'][$q], '../images/produtos/' . $tmpname);
+                  move_uploaded_file($img['tmp_name'][$q], '../../assets/img/noticias/' . $tmpname);
 
-                  //daqui pra baixo é um brinde kkk, apenas para criarmos uma nova imagem com largura, altura desejados
-                  list($larg_orig, $alt_orig) = getimagesize('../images/produtos/' . $tmpname);
+                  list($larg_orig, $alt_orig) = getimagesize('../../assets/img/noticias/' . $tmpname);
                   $tamanho = $larg_orig / $alt_orig;
 
-                  $largura = 350;
-                  $altura = 350;
+                  $largura = 839;
+                  $altura = 630;
 
                   if ($largura / $altura > $tamanho) {
                     $largura = $altura * $tamanho;
@@ -127,30 +84,28 @@ switch (get_post_action('atualizar', 'adicionar_adicional', 'excluir_adicional')
                   }
                   $img = imagecreatetruecolor($largura, $altura);
                   if ($tipo == 'image/jpeg') {
-                    $original = imagecreatefromjpeg('../images/produtos/' . $tmpname);
+                    $original = imagecreatefromjpeg('../../assets/img/noticias/' . $tmpname);
                   } elseif ($tipo == 'image/png') {
-                    $original = imagecreatefrompng('../images/produtos/' . $tmpname);
+                    $original = imagecreatefrompng('../../assets/img/noticias/' . $tmpname);
                   }
                   imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
 
-                  imagejpeg($img, '../images/produtos/' . $tmpname, 80);
+                  imagejpeg($img, '../../assets/img/noticias/' . $tmpname, 80);
 
-                  // aqui ja faço a inserção de cada novo name da imagem no banco de dados
                   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql3 = "UPDATE tbl_produtos set img = ? WHERE id = ?";
+                  $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
                   $q = $pdo->prepare($sql3);
                   $q->execute(array($tmpname, $_SESSION['id']));
-                  //echo "<script>alert('Cadastro realizado com sucesso!');location.href='produtos';</script>";
                   echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
-                      text: "Produto atualizado com sucesso!",
+                      text: "Notícia atualizada com sucesso!",
                       type: "success",
                       confirmButtonText: "OK"
                     },
                     function(isConfirm){
                       if (isConfirm) {
-                        window.location.href = "produtos";
+                        window.location.href = "noticias";
                       }
                     }); }, 1000);</script>';
                 }
@@ -158,18 +113,18 @@ switch (get_post_action('atualizar', 'adicionar_adicional', 'excluir_adicional')
             }
           }
         }
-        if ($img == $_FILES['img']) {
+        if ($img == $_FILES['imagem']) {
           //echo "<script>alert('Cadastro realizado com sucesso!');location.href='produtos';</script>";
           echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
-              text: "Produto atualizado com sucesso!",
+              text: "Notícia atualizada com sucesso!",
               type: "success",
               confirmButtonText: "OK"
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "produtos";
+                window.location.href = "noticias";
               }
             }); }, 1000);</script>';
         }
@@ -177,233 +132,16 @@ switch (get_post_action('atualizar', 'adicionar_adicional', 'excluir_adicional')
     }
     break;
 
-
-  case 'adicionar_adicional':
-
-    if (!empty($_POST)) {
-
-      // Dados do adicional
-      $id_produto      = $_POST['id_produto'];
-      $valor_adicional = $_POST['valor_adicional'];
-      $adicional       = $_POST['adicional'];
-
-      //Validaçao dos campos:
-      $validacao = true;
-
-      //Insere adicional no banco:
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql_adicional = "INSERT INTO tbl_adicionais (id_produto, valor_adicional, adicional) VALUES (?,?,?)";
-      $q = $pdo->prepare($sql_adicional);
-      $q->execute(array($id_produto, $valor_adicional, $adicional));
-      //echo "<script>alert('Adicional inserido com sucesso!');location.href='produtos';</script>";
-      echo '<script>setTimeout(function () { 
-        swal({
-          title: "Parabéns!",
-          text: "Adicional inserido com sucesso!",
-          type: "success",
-          confirmButtonText: "OK"
-        },
-        function(isConfirm){
-          if (isConfirm) {
-            window.location.href = "produtos";
-          }
-        }); }, 1000);</script>';
-      Banco::desconectar();
-    }
-    break;
-
-  case 'excluir_adicional':
-
-    if (!empty($_POST)) {
-
-      $id_adicional = $_POST['id_adicional'];
-
-      //Validaçao dos campos:
-      $validacao = true;
-
-      //Delete do banco:
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "DELETE FROM tbl_adicionais where id = ?";
-      $q = $pdo->prepare($sql);
-      $q->execute(array($id_adicional));
-      //echo "<script>alert('Exclusão realizada com sucesso!');location.href='produtos';</script>";
-      echo '<script>setTimeout(function () { 
-        swal({
-          title: "Parabéns!",
-          text: "Adicional excluído com sucesso!",
-          type: "success",
-          confirmButtonText: "OK"
-        },
-        function(isConfirm){
-          if (isConfirm) {
-            window.location.href = "produtos";
-          }
-        }); }, 1000);</script>';
-      Banco::desconectar();
-    }
-    break;
-
   default:
 }
 
-$pdo = Banco::conectar();
+$pdo = BancoCadastros::conectar();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "SELECT * FROM tbl_produtos where id = ?";
+$sql = "SELECT * FROM tbl_noticias where id = ?";
 $q = $pdo->prepare($sql);
 $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
-
-<!-- Máscara para Moeda -->
-<script language="javascript">
-  function moeda(a, e, r, t) {
-    let n = "",
-      h = j = 0,
-      u = tamanho2 = 0,
-      l = ajd2 = "",
-      o = window.Event ? t.which : t.keyCode;
-    if (13 == o || 8 == o)
-      return !0;
-    if (n = String.fromCharCode(o),
-      -1 == "0123456789".indexOf(n))
-      return !1;
-    for (u = a.value.length,
-      h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
-    ;
-    for (l = ""; h < u; h++)
-      -
-      1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
-    if (l += n,
-      0 == (u = l.length) && (a.value = ""),
-      1 == u && (a.value = "0" + r + "0" + l),
-      2 == u && (a.value = "0" + r + l),
-      u > 2) {
-      for (ajd2 = "",
-        j = 0,
-        h = u - 3; h >= 0; h--)
-        3 == j && (ajd2 += e,
-          j = 0),
-        ajd2 += l.charAt(h),
-        j++;
-      for (a.value = "",
-        tamanho2 = ajd2.length,
-        h = tamanho2 - 1; h >= 0; h--)
-        a.value += ajd2.charAt(h);
-      a.value += r + l.substr(u - 2, u)
-    }
-    return !1
-  }
-</script>
-
-<!-- Define percentual para promoções -->
-<script>
-  $('#percentual_promocao').mask('P', {
-    translation: {
-      'P': {
-        pattern: /[\d\.,]/,
-        recursive: true
-      }
-    },
-    onKeyPress: function(val, e, field, options) {
-      var old_value = $(field).data('oldValue') || '';
-
-      val = val.trim();
-      val = val.replace(',', '.');
-      val = val.length > 0 ? val : '0';
-
-      // Transformando múltiplos pontos em um único ponto
-      val = val.replace(/[\.]+/, '.');
-
-      // Verificando se o valor contém mais de uma ocorrência de ponto
-      var dot_occurrences = (val.match(/\./g) || []).length > 1;
-
-      // Verificando se o valor está de acordo com a sintaxe do float
-      var is_float = /[-+]?[\d]*\.?[\d]+/.test(val);
-
-      if (dot_occurrences || !is_float) {
-        val = old_value;
-      }
-
-      // Força o valor a ficar no intervalo de 0 à 100
-      val = parseFloat(val) >= 100 ? '100' : val;
-      val = parseFloat(val) < 0 ? '0' : val;
-
-      $(field)
-        .val(val)
-        .data('oldValue', val);
-    }
-  });
-</script>
-
-<!-- Habilita ou desabilita Inputs e Selects -->
-<script>
-  function validaTipo() {
-    var optionSelect = document.getElementById("tipo").value;
-
-    if (optionSelect == "CAIXA") {
-      document.getElementById("preco_caixa").disabled = false;
-      document.getElementById("preco_unit").disabled = true;
-    } else {
-      if (optionSelect == "UNIDADE") {
-        document.getElementById("preco_unit").disabled = false;
-        document.getElementById("preco_caixa").disabled = true;
-      }
-      if (optionSelect == "CAIXA-UNIDADE") {
-        document.getElementById("preco_caixa").disabled = false;
-        document.getElementById("preco_unit").disabled = false;
-      }
-      if (optionSelect == "") {
-        document.getElementById("preco_caixa").disabled = true;
-        document.getElementById("preco_unit").disabled = true;
-      }
-    }
-  }
-</script>
-<script>
-  function validaPromocao() {
-    var optionSelect = document.getElementById("promocao").value;
-
-    if (optionSelect == "PERCENTUAL") {
-      document.getElementById("percentual_promocao").disabled = false;
-      document.getElementById("valor_promocao").disabled = true;
-    } else {
-      if (optionSelect == "VALOR") {
-        document.getElementById("valor_promocao").disabled = false;
-        document.getElementById("percentual_promocao").disabled = true;
-      }
-      if (optionSelect == "NÃO") {
-        document.getElementById("valor_promocao").disabled = true;
-        document.getElementById("percentual_promocao").disabled = true;
-      }
-      if (optionSelect == "") {
-        document.getElementById("valor_promocao").disabled = true;
-        document.getElementById("percentual_promocao").disabled = true;
-      }
-    }
-  }
-</script>
-
-<!-- Adição de linhas dinamicamente -->
-<script type="text/javascript">
-  $(function() {
-    function removeCampo() {
-      $(".removerCampo").unbind("click");
-      $(".removerCampo").bind("click", function() {
-        if ($("tr.linhas").length > 1) {
-          $(this).parent().parent().remove();
-        }
-      });
-    }
-
-    $(".adicionarCampo").click(function() {
-      novoCampo = $("tr.linhas:first").clone();
-      novoCampo.find("input").val("");
-      novoCampo.insertAfter("tr.linhas:last");
-      removeCampo();
-    });
-  });
-</script>
-
 
 <div class="main-panel">
   <div class="main-content">
