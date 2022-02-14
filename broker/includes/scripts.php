@@ -56,53 +56,30 @@
 </script>
 
 <script>
-    function is_cpf(c) {
+    $("#cpf").keydown(function(){
+    try {
+        $("#cpf").unmask();
+    } catch (e) {}
 
-        if ((c = c.replace(/[^\d]/g, "")).length != 11)
-            return false
-        if (c == "00000000000")
-            return false;
-        var r;
-        var s = 0;
-        for (i = 1; i <= 9; i++)
-            s = s + parseInt(c[i - 1]) * (11 - i);
-        r = (s * 10) % 11;
-        if ((r == 10) || (r == 11))
-            r = 0;
-        if (r != parseInt(c[9]))
-            return false;
-        s = 0;
-        for (i = 1; i <= 10; i++)
-            s = s + parseInt(c[i - 1]) * (12 - i);
-        r = (s * 10) % 11;
-        if ((r == 10) || (r == 11))
-            r = 0;
-        if (r != parseInt(c[10]))
-            return false;
-        return true;
+    var tamanho = $("#cpf").val().length;
+
+    if(tamanho < 11){
+        $("#cpf").mask("999.999.999-99");
+    } else {
+        $("#cpf").mask("99.999.999/9999-99");
     }
 
-    function fMasc(objeto, mascara) {
-        obj = objeto
-        masc = mascara
-        setTimeout("fMascEx()", 1)
-    }
-
-    function fMascEx() {
-        obj.value = masc(obj.value)
-    }
-
-    function mCPF(cpf) {
-        cpf = cpf.replace(/\D/g, "")
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-        return cpf
-    }
-    cpfCheck = function(el) {
-        document.getElementById('cpfResponse').innerHTML = is_cpf(el.value) ? '<span style="color:green">válido</span>' : '<span style="color:red">inválido</span>';
-        if (el.value == '') document.getElementById('cpfResponse').innerHTML = '';
-    }
+    // ajustando foco
+    var elem = this;
+    setTimeout(function(){
+        // mudo a posição do seletor
+        elem.selectionStart = elem.selectionEnd = 10000;
+    }, 0);
+    // reaplico o valor para mudar o foco
+    var currentValue = $(this).val();
+    $(this).val('');
+    $(this).val(currentValue);
+});
 </script>
 
 <script>
