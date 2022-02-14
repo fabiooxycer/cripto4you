@@ -1,102 +1,102 @@
 <?php
 if (!isset($_SESSION)) session_start();
 
-$nivel_necessario = 99;
+$nivel = 1;
 
-if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel_necessario)) {
-  echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-  exit;
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
+    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+    exit;
 }
-?>
 
-<?php
-include("../../includes/header.php");
+include('../../includes/header.php');
+require_once("../../includes/database.php");
+$pdo = BancoCadastros::conectar();
 
 $id = null;
 if (!empty($_GET['id'])) {
-  $id = $_REQUEST['id'];
+    $id = $_REQUEST['id'];
 }
 
 // Chama função para pegar o POST de cada FORM
 function get_post_action($name)
 {
-  $params = func_get_args();
+    $params = func_get_args();
 
-  foreach ($params as $name) {
-    if (isset($_POST[$name])) {
-      return $name;
+    foreach ($params as $name) {
+        if (isset($_POST[$name])) {
+            return $name;
+        }
     }
-  }
 }
 
 // Verifica qual botao foi clicado
 switch (get_post_action('atualizar')) {
 
-  case 'atualizar':
+    case 'atualizar':
 
-    if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-      $titulo             = $_POST['produto'];
-      $descricao          = $_POST['descricao'];
+            $titulo             = $_POST['produto'];
+            $descricao          = $_POST['descricao'];
 
-      $validacao = true;
+            $validacao = true;
 
-      if ($validacao) {
+            if ($validacao) {
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE tbl_noticias set titulo = ?, descricao = ? WHERE id = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($titulo, $descricao, $id));
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "UPDATE tbl_noticias set titulo = ?, descricao = ? WHERE id = ?";
+                $q = $pdo->prepare($sql);
+                $q->execute(array($titulo, $descricao, $id));
 
-        $img = $_FILES['imagem'];
+                $img = $_FILES['imagem'];
 
-        if ($img != '' || $img != $_FILES['imagem']) {
+                if ($img != '' || $img != $_FILES['imagem']) {
 
-          $sql2 = 'SELECT * FROM tbl_produtos WHERE id="' . $id . '"';
-          foreach ($pdo->query($sql2) as $row) {
+                    $sql2 = 'SELECT * FROM tbl_produtos WHERE id="' . $id . '"';
+                    foreach ($pdo->query($sql2) as $row) {
 
-            $_SESSION['id'] = $row['id'];
+                        $_SESSION['id'] = $row['id'];
 
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $img = $_FILES['img'];
+                        $img = $_FILES['img'];
 
-            if (count($img) > 0) {
-              for ($q = 0; $q < count($img['tmp_name']); $q++) {
-                $tipo = $img['type'][$q];
-                if (in_array($tipo, array('image/jpeg', 'image/png'))) {
+                        if (count($img) > 0) {
+                            for ($q = 0; $q < count($img['tmp_name']); $q++) {
+                                $tipo = $img['type'][$q];
+                                if (in_array($tipo, array('image/jpeg', 'image/png'))) {
 
-                  $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
+                                    $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
 
-                  move_uploaded_file($img['tmp_name'][$q], '../../assets/img/noticias/' . $tmpname);
+                                    move_uploaded_file($img['tmp_name'][$q], '../../assets/img/noticias/' . $tmpname);
 
-                  list($larg_orig, $alt_orig) = getimagesize('../../assets/img/noticias/' . $tmpname);
-                  $tamanho = $larg_orig / $alt_orig;
+                                    list($larg_orig, $alt_orig) = getimagesize('../../assets/img/noticias/' . $tmpname);
+                                    $tamanho = $larg_orig / $alt_orig;
 
-                  $largura = 839;
-                  $altura = 630;
+                                    $largura = 839;
+                                    $altura = 630;
 
-                  if ($largura / $altura > $tamanho) {
-                    $largura = $altura * $tamanho;
-                  } else {
-                    $altura = $largura / $tamanho;
-                  }
-                  $img = imagecreatetruecolor($largura, $altura);
-                  if ($tipo == 'image/jpeg') {
-                    $original = imagecreatefromjpeg('../../assets/img/noticias/' . $tmpname);
-                  } elseif ($tipo == 'image/png') {
-                    $original = imagecreatefrompng('../../assets/img/noticias/' . $tmpname);
-                  }
-                  imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
+                                    if ($largura / $altura > $tamanho) {
+                                        $largura = $altura * $tamanho;
+                                    } else {
+                                        $altura = $largura / $tamanho;
+                                    }
+                                    $img = imagecreatetruecolor($largura, $altura);
+                                    if ($tipo == 'image/jpeg') {
+                                        $original = imagecreatefromjpeg('../../assets/img/noticias/' . $tmpname);
+                                    } elseif ($tipo == 'image/png') {
+                                        $original = imagecreatefrompng('../../assets/img/noticias/' . $tmpname);
+                                    }
+                                    imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
 
-                  imagejpeg($img, '../../assets/img/noticias/' . $tmpname, 80);
+                                    imagejpeg($img, '../../assets/img/noticias/' . $tmpname, 80);
 
-                  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
-                  $q = $pdo->prepare($sql3);
-                  $q->execute(array($tmpname, $_SESSION['id']));
-                  echo '<script>setTimeout(function () { 
+                                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                    $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
+                                    $q = $pdo->prepare($sql3);
+                                    $q->execute(array($tmpname, $_SESSION['id']));
+                                    echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
                       text: "Notícia atualizada com sucesso!",
@@ -108,14 +108,14 @@ switch (get_post_action('atualizar')) {
                         window.location.href = "noticias";
                       }
                     }); }, 1000);</script>';
+                                }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          }
-        }
-        if ($img == $_FILES['imagem']) {
-          //echo "<script>alert('Cadastro realizado com sucesso!');location.href='produtos';</script>";
-          echo '<script>setTimeout(function () { 
+                if ($img == $_FILES['imagem']) {
+                    //echo "<script>alert('Cadastro realizado com sucesso!');location.href='produtos';</script>";
+                    echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Notícia atualizada com sucesso!",
@@ -127,12 +127,12 @@ switch (get_post_action('atualizar')) {
                 window.location.href = "noticias";
               }
             }); }, 1000);</script>';
+                }
+            }
         }
-      }
-    }
-    break;
+        break;
 
-  default:
+    default:
 }
 
 $pdo = BancoCadastros::conectar();
@@ -143,90 +143,72 @@ $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
 
-<div class="main-panel">
-  <div class="main-content">
-    <div class="content-wrapper">
-      <div class="container-fluid">
 
-        <section class="basic-elements">
-          <div class="row">
-            <div class="col-sm-6">
-              <h2 class="content-header">EDITAR NOTÍCIA</h2>
-            </div>
-          </div>
-          <form action="noticia-editar?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-danger">
-                      <h4 class="card-title mb-0">Preencha a notícia se atentando a gramática.</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="px-3">
-                      <div class="form-body">
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">EDITAR NOTÍCIA</h6>
+            <p class="mb-4">Preencha a notícia se atentando a gramática.</p>
+        </div>
+        <div class="card-body">
+            <form action="noticia-editar?id=<?php echo $id ?>" method="post">
+                <div class="px-3">
+                    <div class="form-body">
                         <div class="row">
-                          <div class="col-md-12">
-                            <fieldset class="form-group">
-                              <label for="basicInput">Título</label>
-                              <input type="text" class="form-control" name="titulo" id="titulo" value="<?php echo $data['titulo']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
-                            </fieldset>
-                          </div>
-                          <div class="col-md-12">
-                            <fieldset class="form-group">
-                              <label for="basicTextarea">Descrição</label>
-                              <textarea class="form-control" name="descricao" id="descricao" rows="6" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
-                            </fieldset>
-                          </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label for="basicInput">
+                                        <font size="1">Título</font>
+                                    </label>
+                                    <input type="text" class="form-control" id="nome" name="nome" onChange="this.value=this.value.toUpperCase()" value="<?php echo $data['nome']; ?>" autocomplete="off" required>
+                                </div>
+                            </div>
+                            |<div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="basicInput">
+                                        <font size="1">Descrição</font>
+                                    </label>
+                                    <textarea type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="card-title-wrap bar-danger">
-                      <h4 class="card-title mb-0">Imagem da Notícia</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <div class="card-block">
-                      <div class="form-body">
+                        <br />
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <li>Imagem</li>
+                        </h6><br />
                         <div class="row">
-                          <div class="col-lg-12 col-md-12">
-                            <fieldset class="form-group">
-                              <input type="file" class="form-control-file" name="imagem[]" id="imagem">
-                              <p>
-                                <font size="1">Enviar a imagem da notícia.</font>
-                              </p>
-                            </fieldset>
-                          </div>
-                          <figure class="col-xl-12 col-lg-4 col-sm-6 col-12" align="center">
-                            <p>
-                              <font size="1"><strong>Sua notícia está utilizando a seguinte imagem:</strong></font>
-                            </p>
-                            <img class="img-thumbnail img-fluid" src="assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['imagem']; ?>" width="310px" />
-                          </figure>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="basicInput">
+                                        <font size="1">Imagem da Notícia</font>
+                                    </label>
+                                    <input type="file" class="form-control-file" id="imagem" name="imagem[]" value="<?php echo $data['imagem']; ?>" autocomplete="off">
+                                    <p>
+                                        <font size="1">Enviar a imagem da notícia.</font>
+                                    </p>
+                                </div>
+                            </div>
+                            <figure class="col-xl-12 col-lg-4 col-sm-6 col-12" align="center">
+                                <p>
+                                    <font size="1"><strong>Sua notícia está utilizando a seguinte imagem:</strong></font>
+                                </p>
+                                <img class="img-thumbnail img-fluid" src="assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['imagem']; ?>" width="310px" />
+                            </figure>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="form-actions" align="center">
-              <button type="submit" class="btn btn-success" name="atualizar">
-                <i class="icon-note"></i> Atualizar Produto
-              </button>
-            </div>
-          </form>
-        </section>
-      </div>
+                <br /><br />
+                <div class="form-actions" align="center">
+                    <button type="button" class="btn btn-dark mr-1" onClick="history.go(-1)">
+                        <i class="icon-action-undo"></i> VOLTAR
+                    </button>
+                    <button type="submit" class="btn btn-info">
+                        <i class="icon-note"></i> ATUALIZAR
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
+</div>
 
-  <?php include("../../includes/footer.php"); ?>
+<?php include('../../includes/footer.php'); ?>
