@@ -32,7 +32,7 @@ include('includes/slideshow.php');
                         <i class="fa fa-signal"></i>
                     </div>
                     <div class="feature-card-content">
-                        <h3 class="feature-card-title">Operações</h3>
+                        <h3 class="feature-card-title">Operações </h3>
                         <p class="feature-card-desc">Executamos operações com diversas criptomoedas do mercado, trazendo assim uma carteira de ativos com maior rentabilidade para nossos clientes.</p>
                     </div>
                 </div>
