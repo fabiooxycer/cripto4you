@@ -1,8 +1,8 @@
 <?php
 include("converte.php");
 include("database.php");
-//$pdo = Banco::conectar();
-//include("selects-db.php");
+$pdo = BancoCadastros::conectar();
+include("selects-db.php");
 require('phpmailer/hdw-phpmailer.php');
   
 ?>
