@@ -166,7 +166,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <div class="px-3">
                       <div class="form-body">
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-12">
                             <fieldset class="form-group">
                               <label for="basicInput">Título</label>
                               <input type="text" class="form-control" name="titulo" id="titulo" value="<?php echo $data['titulo']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
