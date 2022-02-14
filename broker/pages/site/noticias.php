@@ -11,19 +11,14 @@ if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
 include('../../includes/header.php');
 ?>
 
-<script>
-    function mask($val, $mask) {
-        $maskared = '';
-        $k = 0;
-        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
-            if ($mask[$i] == '#') {
-                if (isset($val[$k])) $maskared. = $val[$k++];
-            } else {
-                if (isset($mask[$i])) $maskared. = $mask[$i];
-            }
-        }
-        return $maskared;
-    }
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+<script type="text/javascript">
+    bkLib.onDomLoaded(function() {
+        new nicEditor({
+            fullPanel: true,
+            maxHeight: 200
+        }).panelInstance('descricao');
+    });
 </script>
 
 <script>
@@ -278,7 +273,7 @@ switch (get_post_action('excluir', 'adicionar')) {
         $data = [
             "chat_id" => "-1001662279487",
             'parse_mode' => 'HTML',
-            'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=". $_SESSION['id'] ."\n ",
+            'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 

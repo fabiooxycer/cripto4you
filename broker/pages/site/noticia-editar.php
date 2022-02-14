@@ -142,15 +142,6 @@ $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
 
-<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-<script type="text/javascript">
-    bkLib.onDomLoaded(function() {
-        new nicEditor({
-            maxHeight: 200
-        }).panelInstance('descricao');
-    });
-</script>
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
