@@ -12,6 +12,7 @@
 
 # SITE
   RewriteRule ^noticias/?$ pages/site/noticias.php [NC,L]
+  RewriteRule ^noticia-editar/?$ pages/site/noticia-editar.php [NC,L]
 
 # SUPORTE
   RewriteRule ^fila-atendimento/?$ pages/suporte/suporte.php [NC,L]
