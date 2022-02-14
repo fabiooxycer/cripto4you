@@ -13,10 +13,14 @@
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
-
-
-
     <?php include('includes/scripts.php'); ?>
+    <script>
+        $(document).ready(function() {
+            $('#cpf').on('input', function() {
+                $('#prosseguir').prop('disabled', $(this).val().length < 8);
+            });
+        });
+    </script>
 </head>
 
 <body class="bg-gradient-primary">
