@@ -16,18 +16,18 @@
     </a>
     <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="meu-investimento">Meu Investimento</a>
+            <a class="collapse-item" href="meu-investimento">Visualizar</a>
         </div>
     </div>
 </li>
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAppsUser" aria-expanded="true" aria-controls="collapseAppsUser">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio" aria-expanded="true" aria-controls="collapseRelatorio">
         <i class="fas fa-fw fa-users"></i>
         <span>Relatório</span>
     </a>
-    <div id="collapseAppsUser" class="collapse" aria-labelledby="headingAppsUser" data-parent="#accordionSidebar">
+    <div id="collapseRelatorio" class="collapse" aria-labelledby="headingRelatorio" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="usuarios-cadastros">Cadastros</a>
+            <a class="collapse-item" href="historico">Histórico</a>
         </div>
     </div>
 </li>
