@@ -13,6 +13,17 @@
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <?php include('includes/scripts.php'); ?>
+
+    <script>
+        var options = {
+            onKeyPress: function(cpf, ev, el, op) {
+                var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+            }
+        }
+
+        $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
+    </script>
 </head>
 
 <body class="bg-gradient-primary">
