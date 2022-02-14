@@ -3,7 +3,7 @@ if (!isset($_SESSION)) session_start();
 
 $nivel = 98;
 
-if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] > $nivel)) {
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
     echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
     exit;
 }
@@ -118,7 +118,7 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" rows="8" required></textarea>
+                                    <textarea type="text" class="form-control " id="descricao" name="descricao" placeholder="Descrição sobre a notícia" rows="8" required></textarea>
                                 </div>
                             </div>
                         </div>
