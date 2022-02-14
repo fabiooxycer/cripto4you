@@ -166,7 +166,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <label for="basicInput">
                                         <font size="1">Descrição</font>
                                     </label>
-                                    <textarea type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
+                                    <textarea type="text" class="form-control" id="descricao" name="descricao" rows="10" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
                                 </div>
                             </div>
                         </div>
