@@ -36,7 +36,7 @@ switch (get_post_action('atualizar')) {
 
         if (!empty($_POST)) {
 
-            $titulo             = $_POST['produto'];
+            $titulo             = $_POST['titulo'];
             $descricao          = $_POST['descricao'];
 
             $validacao = true;
@@ -52,7 +52,7 @@ switch (get_post_action('atualizar')) {
 
                 if ($img != '' || $img != $_FILES['imagem']) {
 
-                    $sql2 = 'SELECT * FROM tbl_produtos WHERE id="' . $id . '"';
+                    $sql2 = 'SELECT * FROM tbl_noticia WHERE id="' . $id . '"';
                     foreach ($pdo->query($sql2) as $row) {
 
                         $_SESSION['id'] = $row['id'];
@@ -114,7 +114,6 @@ switch (get_post_action('atualizar')) {
                     }
                 }
                 if ($img == $_FILES['imagem']) {
-                    //echo "<script>alert('Cadastro realizado com sucesso!');location.href='produtos';</script>";
                     echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
