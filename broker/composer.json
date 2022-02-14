@@ -1,7 +1,0 @@
-{
-    "require": {
-        "pagseguro/pagseguro-php-sdk": "^6.0",
-        "mpdf/mpdf": "^8.0",
-        "dompdf/dompdf": "^1.0"
-    }
-}

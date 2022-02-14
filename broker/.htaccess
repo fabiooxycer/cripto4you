@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{HTTP_HOST} ^digitalintelligentia.com [NC]
-  RewriteRule ^(.*)$ https://digitalintelligentia.com/$1 [L,R=301]
+  RewriteCond %{HTTP_HOST} ^cripto4you.com [NC]
+  RewriteRule ^(.*)$ https://cripto4you.com/$1 [L,R=301]
 
 # PÁGINAS
   RewriteRule ^entrar/?$ index.php [NC,L]
@@ -10,113 +10,12 @@
   RewriteRule ^dashboard/?$ dashboard.php [NC,L]
   RewriteRule ^recupera-codigo/?$ recupera-codigo.php [NC,L]
 
-# PERÍCIAS - FINANCEIRO
-  RewriteRule ^pericias-aguardando-pagamento/?$ pages/pericias/pericias-aguardando-pagamento.php [NC,L]
-  RewriteRule ^financeiro-entradas/?$ pages/financeiro/entradas.php [NC,L]
-  RewriteRule ^financeiro-saidas/?$ pages/financeiro/saidas.php [NC,L]
-  RewriteRule ^financeiro-pericias/?$ pages/financeiro/pericias.php [NC,L]
-  RewriteRule ^reprocessar-pericia/?$ api/processar_pericia.php [NC,L]
-  RewriteRule ^liberacaoPericia/?$ pages/financeiro/pericia-liberar.php [NC,L]
-  RewriteRule ^salvar-comprovante/?$ pages/financeiro/pericia-liberar-comprovante.php [NC,L]
-  RewriteRule ^pericia-reprocessar/?$ pages/financeiro/pericia-reprocessar.php [NC,L]
-  RewriteRule ^pericia-reenviarboleto/?$ pages/financeiro/pericia-reenviarboleto.php [NC,L]
-  RewriteRule ^pericia-visualizar/?$ pages/financeiro/pericia-visualizar.php [NC,L]
-  RewriteRule ^agentes-sem-app/?$ pages/financeiro/agentes-sem-app.php [NC,L]
-  RewriteRule ^agentes-vinculos/?$ pages/financeiro/agentes-vinculos.php [NC,L]
-  RewriteRule ^agentes-vinculos2/?$ pages/financeiro/agentes-vinculos2.php [NC,L]
-
-# APPS
-  RewriteRule ^apps-pericias/?$ pages/apps/apps-pericias.php [NC,L]
-  RewriteRule ^apps-pericias-editar/?$ pages/apps/apps-pericias-editar.php [NC,L]
-  RewriteRule ^usuarios-cadastros/?$ pages/apps/usuarios-cadastros.php [NC,L]
-  RewriteRule ^usuarios-cadastros-editar/?$ pages/apps/usuarios-cadastros-editar.php [NC,L]
-
-  RewriteRule ^assinaturas-planos/?$ pages/apps/assinaturas-planos.php [NC,L]
-  RewriteRule ^assinaturas-ativar/?$ pages/apps/assinaturas-ativar.php [NC,L]
-  RewriteRule ^assinaturas-ativas/?$ pages/apps/assinaturas-ativas.php [NC,L]
+# SITE
+  RewriteRule ^noticias/?$ pages/site/noticias.php [NC,L]
 
 # SUPORTE
   RewriteRule ^fila-atendimento/?$ pages/suporte/suporte.php [NC,L]
   RewriteRule ^ver-chamado/?$ pages/suporte/ver-chamado.php [NC,L]
-
-# BANCOS
-  RewriteRule ^cadastros-banco-lavvor/?$ pages/banco-lavvor/cadastros-banco-lavvor.php [NC,L]
-  RewriteRule ^cadastros-banco-lavvor-editar/?$ pages/banco-lavvor/cadastros-banco-lavvor-editar.php [NC,L]
-
-  RewriteRule ^cadastros-banco-intelligenz/?$ pages/banco-intelligenz/cadastros-banco-intelligenz.php [NC,L]
-  RewriteRule ^cadastros-banco-intelligenz-editar/?$ pages/banco-intelligenz/cadastros-banco-intelligenz-editar.php [NC,L]
-
-  RewriteRule ^cadastros-banco-constellater/?$ pages/banco-constellater/cadastros-banco-constellater.php [NC,L]
-  RewriteRule ^cadastros-banco-constellater-editar/?$ pages/banco-constellater/cadastros-banco-constellater-editar.php [NC,L]
-
-  RewriteRule ^cadastros-bancos-desativados/?$ pages/all/cadastros-bancos-desativados.php [NC,L]
-
-# BANCO LAVVOR
-  RewriteRule ^estatistica-lavvor/?$ pages/banco-lavvor/estatistica-lavvor.php [NC,L]
-  RewriteRule ^lista-aen-lavvor/?$ pages/banco-lavvor/lista-aen-lavvor.php [NC,L]
-  RewriteRule ^lista-aem-lavvor/?$ pages/banco-lavvor/lista-aem-lavvor.php [NC,L]
-  RewriteRule ^lista-aoio-lavvor/?$ pages/banco-lavvor/lista-aoio-lavvor.php [NC,L]
-  RewriteRule ^lista-aoi-lavvor/?$ pages/banco-lavvor/lista-aoi-lavvor.php [NC,L]
-  RewriteRule ^lista-aee-lavvor/?$ pages/banco-lavvor/lista-aee-lavvor.php [NC,L]
-  RewriteRule ^lista-aeem-lavvor/?$ pages/banco-lavvor/lista-aeem-lavvor.php [NC,L]
-
-# BANCO INTELLIGENZ
-  RewriteRule ^estatistica-intelligenz/?$ pages/banco-intelligenz/estatistica-intelligenz.php [NC,L]
-  RewriteRule ^lista-aen-intelligenz/?$ pages/banco-intelligenz/lista-aen-intelligenz.php [NC,L]
-  RewriteRule ^lista-aem-intelligenz/?$ pages/banco-intelligenz/lista-aem-intelligenz.php [NC,L]
-  RewriteRule ^lista-aoio-intelligenz/?$ pages/banco-intelligenz/lista-aoio-intelligenz.php [NC,L]
-  RewriteRule ^lista-aoi-intelligenz/?$ pages/banco-intelligenz/lista-aoi-intelligenz.php [NC,L]
-  RewriteRule ^lista-aee-intelligenz/?$ pages/banco-intelligenz/lista-aee-intelligenz.php [NC,L]
-  RewriteRule ^lista-aeem-intelligenz/?$ pages/banco-intelligenz/lista-aeem-intelligenz.php [NC,L]
-
-# BANCO CONSTELLATER
-  RewriteRule ^estatistica-constellater/?$ pages/banco-constellater/estatistica-constellater.php [NC,L]
-  RewriteRule ^lista-aen-constellater/?$ pages/banco-constellater/lista-aen-constellater.php [NC,L]
-  RewriteRule ^lista-aem-constellater/?$ pages/banco-constellater/lista-aem-constellater.php [NC,L]
-  RewriteRule ^lista-aoio-constellater/?$ pages/banco-constellater/lista-aoio-constellater.php [NC,L]
-  RewriteRule ^lista-aoi-constellater/?$ pages/banco-constellater/lista-aoi-constellater.php [NC,L]
-  RewriteRule ^lista-aee-constellater/?$ pages/banco-constellater/lista-aee-constellater.php [NC,L]
-  RewriteRule ^lista-aeem-constellater/?$ pages/banco-constellater/lista-aeem-constellater.php [NC,L]
-
-# DIGITAL INTELLIGENTIA
-  RewriteRule ^estatisticas-digital-intelligentia/?$ pages/digital-intelligentia/estatisticas-digital-intelligentia.php [NC,L]
-  RewriteRule ^lista-aen-intelligentia/?$ pages/digital-intelligentia/lista-aen-intelligentia.php [NC,L]
-  RewriteRule ^lista-aem-intelligentia/?$ pages/digital-intelligentia/lista-aem-intelligentia.php [NC,L]
-  RewriteRule ^lista-aoio-intelligentia/?$ pages/digital-intelligentia/lista-aoio-intelligentia.php [NC,L]
-  RewriteRule ^lista-aoi-intelligentia/?$ pages/digital-intelligentia/lista-aoi-intelligentia.php [NC,L]
-  RewriteRule ^lista-aee-intelligentia/?$ pages/digital-intelligentia/lista-aee-intelligentia.php [NC,L]
-  RewriteRule ^lista-aeem-intelligentia/?$ pages/digital-intelligentia/lista-aeem-intelligentia.php [NC,L]
-  RewriteRule ^cadastros-digital-intelligentia-editar/?$ pages/digital-intelligentia/cadastros-digital-intelligentia-editar.php [NC,L]
-  RewriteRule ^cadastros-digital-intelligentia-desativados/?$ pages/digital-intelligentia/cadastros-digital-intelligentia-desativados.php [NC,L]
-
-# DIGITAL ALLOCATE
-  RewriteRule ^estatisticas-digital-allocate/?$ pages/digital-allocate/estatisticas-digital-allocate.php [NC,L]
-  RewriteRule ^lista-cadastros-allocate/?$ pages/digital-allocate/lista-cadastros-allocate.php [NC,L]
-  RewriteRule ^lista-aen-allocate/?$ pages/digital-allocate/lista-aen-allocate.php [NC,L]
-  RewriteRule ^lista-aem-allocate/?$ pages/digital-allocate/lista-aem-allocate.php [NC,L]
-  RewriteRule ^lista-aoio-allocate/?$ pages/digital-allocate/lista-aoio-allocate.php [NC,L]
-  RewriteRule ^lista-aoi-allocate/?$ pages/digital-allocate/lista-aoi-allocate.php [NC,L]
-  RewriteRule ^lista-aee-allocate/?$ pages/digital-allocate/lista-aee-allocate.php [NC,L]
-  RewriteRule ^lista-aeem-allocate/?$ pages/digital-allocate/lista-aeem-allocate.php [NC,L]
-  RewriteRule ^cadastros-digital-allocate-editar/?$ pages/digital-allocate/cadastros-digital-allocate-editar.php [NC,L]
-  RewriteRule ^cadastros-digital-allocate-desativados/?$ pages/digital-allocate/cadastros-digital-allocate-desativados.php [NC,L]
-
-# IUSTA LEGIS ADVOCATUS
-  RewriteRule ^estatisticas-iusta-legis/?$ pages/iusta-legis-advocatus/estatisticas-iusta-legis.php [NC,L]
-  RewriteRule ^cadastros-iusta-legis/?$ pages/iusta-legis-advocatus/cadastros-iusta-legis.php [NC,L]
-  RewriteRule ^cadastros-iusta-legis-editar/?$ pages/iusta-legis-advocatus/cadastros-iusta-legis-editar.php [NC,L]
-  RewriteRule ^cadastros-iusta-legis-desativados/?$ pages/iusta-legis-advocatus/cadastros-iusta-legis-desativados.php [NC,L]
-
-# L & L ADVOCATUS
-  RewriteRule ^estatisticas-lybor-landgraf/?$ pages/lybor-landgraf-advocatus/estatisticas-lybor-landgraf.php [NC,L]
-  RewriteRule ^cadastros-lybor-landgraf/?$ pages/lybor-landgraf-advocatus/cadastros-lybor-landgraf.php [NC,L]
-  RewriteRule ^cadastros-lybor-landgraf-editar/?$ pages/lybor-landgraf-advocatus/cadastros-lybor-landgraf-editar.php [NC,L]
-  RewriteRule ^cadastros-lybor-landgraf-desativados/?$ pages/lybor-landgraf-advocatus/cadastros-lybor-landgraf-desativados.php [NC,L]
-
-# FRANQUIAS
-  RewriteRule ^cadastros-franquias?$ pages/franquia-lojas/cadastros-franquias.php [NC,L]
-  RewriteRule ^cadastros-franquias-editar?$ pages/franquia-lojas/cadastros-franquias-editar.php [NC,L]
-  RewriteRule ^estatistica-franquias?$ pages/franquia-lojas/estatistica-franquias.php [NC,L]
 
 # INCLUDES
   RewriteRule ^sair/?$ includes/logout.php [NC,L]
@@ -139,11 +38,6 @@
   RewriteRule ^reativa-contratos/?$ pages/rescisao/reativa-contratos.php [NC,L]
   RewriteRule ^template-reativa-contrato?$ pages/rescisao/template_reativa_contrato.php [NC,L]
 
-
- # CONFIGURAÇÕES
-  RewriteRule ^vincular-agentes/?$ pages/configuracoes/vinculo_cidades/lista-agentes.php [NC,L]  
-  RewriteRule ^vincular-agentes-cidades\/([0-9A-z_-]+)$ pages/configuracoes/vinculo_cidades/cidades.php?id_agente=$1 [QSA,L,NC]
-  
 
 </IfModule>
 
