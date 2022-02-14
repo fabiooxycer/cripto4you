@@ -95,7 +95,7 @@ include('../../includes/header.php');
                             echo '<form action="noticias" method="POST">';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                             echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="noticia-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
-                            echo '&nbsp;<button type="submit" class="btn btn-sm btn-danger" name="excluir"><i  class="fa fa-trash"></i></button>';
+                            echo '&nbsp;<button type="submit" title="EXCLUIR" class="btn btn-sm btn-danger" name="excluir"><i  class="fa fa-trash"></i></button>';
                             echo "</form>";
                             echo "</td>";
                         }
