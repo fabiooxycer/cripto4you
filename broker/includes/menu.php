@@ -82,7 +82,7 @@
         </div>
     </div>
 </li>
-<?php} ?>
+<?php } ?>
 
 <hr class="sidebar-divider d-none d-md-block">
 <div class="text-center d-none d-md-inline">
