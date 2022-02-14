@@ -188,7 +188,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <p>
                                     <font size="1"><strong>Sua notícia está utilizando a seguinte imagem:</strong></font>
                                 </p>
-                                <img class="img-thumbnail img-fluid" src="assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['imagem']; ?>" width="310px" />
+                                <img class="img-thumbnail img-fluid" src="assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['imagem']; ?>" width="839" />
                             </figure>
                         </div>
                     </div>
