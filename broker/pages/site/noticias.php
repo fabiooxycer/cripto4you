@@ -53,7 +53,7 @@ include('../../includes/header.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style='text-align: center; vertical-align:middle !important' width="15%">IMAGEM</th>
+                            <th style='text-align: center; vertical-align:middle !important' width="10%">IMAGEM</th>
                             <th style='text-align: center; vertical-align:middle !important' width="15%">DATA</th>
                             <th style='text-align: center; vertical-align:middle !important'>TÍTULO</th>
                             <th style='text-align: center; vertical-align:middle !important' width="15%">AÇÃO</th>
@@ -67,7 +67,7 @@ include('../../includes/header.php');
 
                         foreach ($pdo->query($sql) as $row) {
                             if ($row['imagem']) {
-                                $imagem = '<img src="https://cripto4you.net/assets/images/blog/grid/' . $row['imagem'] . '" width="25%">';
+                                $imagem = '<img src="https://cripto4you.net/assets/images/blog/grid/' . $row['imagem'] . '" width="100%">';
                             }
                             if ($row['dt_postagem']) {
                                 $data_postagem = '' . $row['dt_postagem'] . '';
