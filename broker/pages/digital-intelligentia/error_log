@@ -1,0 +1,3 @@
+[20-Jul-2021 14:44:03 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/digital-intelligentia/cadastros-digital-intelligentia.php on line 6
+[20-Jul-2021 14:44:17 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/digital-intelligentia/cadastros-digital-intelligentia.php on line 6
+[20-Jul-2021 14:44:21 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/digital-intelligentia/cadastros-digital-intelligentia.php on line 6

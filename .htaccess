@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^cripto4you.net [NC]
+  #RewriteRule ^(.*)$ https://cripto4you.net/$1 [L,R=301]
+
+# PÁGINAS
+  RewriteRule ^inicio/?$ index.php [NC,L]
+  RewriteRule ^sobre/?$ sobre.php [NC,L]
+  RewriteRule ^noticias/?$ noticias.php [NC,L]
+  RewriteRule ^ver-noticia/?$ ver-noticia.php [NC,L]  
+
+</IfModule>

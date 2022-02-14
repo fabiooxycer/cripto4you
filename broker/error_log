@@ -1,0 +1,204 @@
+[01-Jul-2021 17:31:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on null in /home/digitalinteluser/public_html/teste/dashboard.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 112
+[27-Jul-2021 01:38:46 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in /home/digitalinteluser/public_html/teste/dashboard.php:43
+Stack trace:
+#0 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 43
+[29-Sep-2021 14:21:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch() on bool in /home/digitalinteluser/public_html/teste/dashboard.php:43
+Stack trace:
+#0 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 43
+[29-Sep-2021 14:22:25 UTC] PHP Warning:  require_once(../../includes/databaseApps.php): failed to open stream: No such file or directory in /home/digitalinteluser/public_html/teste/dashboard.php on line 12
+[29-Sep-2021 14:22:25 UTC] PHP Fatal error:  require_once(): Failed opening required '../../includes/databaseApps.php' (include_path='.:/opt/cpanel/ea-php74/root/usr/share/pear') in /home/digitalinteluser/public_html/teste/dashboard.php on line 12
+[29-Sep-2021 14:23:02 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:24:11 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:25:01 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:25:55 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:25:57 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:26:33 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:42:59 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:107
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(107): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 107
+[29-Sep-2021 14:43:34 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:143
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(143): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 143
+[29-Sep-2021 14:45:34 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:46:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:149
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(149): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 149
+[29-Sep-2021 14:46:44 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:147
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(147): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 147
+[29-Sep-2021 14:47:23 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:147
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(147): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 147
+[29-Sep-2021 14:48:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:143
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(143): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 143
+[29-Sep-2021 14:49:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:49:42 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:50:18 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:50:52 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:58:56 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 14:59:26 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 15:00:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:06:34 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:07:02 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:08:55 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:11:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:12:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:19:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:30:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 16:30:53 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:05:52 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:06:43 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:07:03 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:08:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:11:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:12:02 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:14:03 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 17:15:34 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pericias.tbl_cadastros' doesn't exist in /home/digitalinteluser/public_html/teste/dashboard.php:148
+Stack trace:
+#0 /home/digitalinteluser/public_html/teste/dashboard.php(148): PDO->query('SELECT count(*)...')
+#1 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 148
+[29-Sep-2021 18:00:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/digitalinteluser/public_html/teste/dashboard.php:112
+Stack trace:
+#0 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 112
+[29-Sep-2021 18:01:15 UTC] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/digitalinteluser/public_html/teste/dashboard.php:118
+Stack trace:
+#0 {main}
+  thrown in /home/digitalinteluser/public_html/teste/dashboard.php on line 118
+[29-Sep-2021 18:05:24 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, string given in /home/digitalinteluser/public_html/teste/dashboard.php on line 117
+[29-Sep-2021 18:05:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, string given in /home/digitalinteluser/public_html/teste/dashboard.php on line 118

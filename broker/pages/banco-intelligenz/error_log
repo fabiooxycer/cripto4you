@@ -1,0 +1,2 @@
+[20-Jul-2021 14:44:38 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-intelligenz/cadastros-banco-intelligenz.php on line 6
+[20-Jul-2021 14:45:40 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-intelligenz/cadastros-banco-intelligenz.php on line 6
