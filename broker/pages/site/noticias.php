@@ -51,7 +51,6 @@ include('../../includes/header.php');
                         <tr>
                             <th style='text-align: center; vertical-align:middle !important'>DATA</th>
                             <th style='text-align: center; vertical-align:middle !important'>TÍTULO</th>
-                            <th style='text-align: center; vertical-align:middle !important'>PERÍCIA</th>
                             <th style='text-align: center; vertical-align:middle !important' width="15%">AÇÃO</th>
                         </tr>
                     </thead>
