@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION)) session_start();
 
-$nivel = 1;
+$nivel = 99;
 
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
     echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
