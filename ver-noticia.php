@@ -28,8 +28,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
           <div class="clearfix"></div>
           <ol class="breadcrumb">
             <li><a href="./inicio">Início</a></li>
-            <li><a href="./noticias">Notícias</a></li>
-            <li class="active"><?php echo $data['titulo']; ?></li>
+            <li class="active"><Notícias</li>
           </ol>
         </div>
       </div>
