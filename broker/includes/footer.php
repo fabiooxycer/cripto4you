@@ -1,10 +1,3 @@
-<?php
-if ($_SERVER['HTTP_HOST'] == 'localhost') {
-  $siteurl = 'http://localhost/prestes/painel';
-} else {
-  $siteurl = 'https://gestao-hml.digitalintelligentia.com';
-} ?>
-
 </div>
 <footer class="sticky-footer bg-white">
   <div class="container my-auto">
@@ -54,16 +47,6 @@ if ($_SERVER['HTTP_HOST'] == 'localhost') {
 <script src="<?= $siteurl ?>/assets/js/demo/datatables-demo.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('.botao-faturamento').on('click', function() {
-      $('.botao-faturamento .far').toggleClass('fa-eye-slash');
-      $('.botao-faturamento .far').toggleClass('fa-eye');
-      $('span.faturamento').toggleClass('hide');
-    });
-  });
-</script>
 
 </body>
 
