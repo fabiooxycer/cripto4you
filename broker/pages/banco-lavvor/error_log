@@ -1,6 +1,0 @@
-[20-Jul-2021 14:06:48 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
-[20-Jul-2021 14:41:53 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
-[20-Jul-2021 14:43:06 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
-[20-Jul-2021 14:43:43 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
-[20-Jul-2021 14:43:47 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
-[20-Jul-2021 17:33:09 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/digitalinteluser/public_html/teste/pages/banco-lavvor/cadastros-banco-lavvor.php on line 6
