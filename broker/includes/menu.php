@@ -1,3 +1,11 @@
+<!--
+    NÍVEL DE PERFIS:
+
+    1   = Usuário;
+    99  = Colaborador;
+    100 = Administrador;
+-->
+
 <hr class="sidebar-divider my-0">
 <li class="nav-item">
     <a class="nav-link" href="dashboard">
@@ -6,47 +14,50 @@
 </li>
 <hr class="sidebar-divider">
 
-<div class="sidebar-heading">
-    Broker
-</div>
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
-        <i class="fas fa-fw fa-coins"></i>
-        <span>Meu Investimento</span>
-    </a>
-    <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="meu-investimento">Visualizar</a>
-        </div>
+<?php if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+    <div class="sidebar-heading">
+        Broker
     </div>
-</li>
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio" aria-expanded="true" aria-controls="collapseRelatorio">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Relatório</span>
-    </a>
-    <div id="collapseRelatorio" class="collapse" aria-labelledby="headingRelatorio" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="historico">Histórico</a>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
+            <i class="fas fa-fw fa-coins"></i>
+            <span>Meu Investimento</span>
+        </a>
+        <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="meu-investimento">Visualizar</a>
+            </div>
         </div>
-    </div>
-</li>
-<hr class="sidebar-divider">
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio" aria-expanded="true" aria-controls="collapseRelatorio">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Relatório</span>
+        </a>
+        <div id="collapseRelatorio" class="collapse" aria-labelledby="headingRelatorio" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="historico">Histórico</a>
+            </div>
+        </div>
+    </li>
+    <hr class="sidebar-divider">
 
-<div class="sidebar-heading">
-    Atendimento
-</div>
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuporte" aria-expanded="true" aria-controls="collapseSuporte">
-        <i class="fas fa-fw fa-life-ring"></i>
-        <span>Suporte</span>
-    </a>
-    <div id="collapseSuporte" class="collapse" aria-labelledby="headingSuporte" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="fila-atendimento">Fila de Atendimento</a>
-        </div>
+    <div class="sidebar-heading">
+        Atendimento
     </div>
-</li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuporte" aria-expanded="true" aria-controls="collapseSuporte">
+            <i class="fas fa-fw fa-life-ring"></i>
+            <span>Suporte</span>
+        </a>
+        <div id="collapseSuporte" class="collapse" aria-labelledby="headingSuporte" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="fila-atendimento">Fila de Atendimento</a>
+            </div>
+        </div>
+    </li>
+<?php } ?>
+
 
 <hr class="sidebar-divider d-none d-md-block">
 <li class="nav-item">
@@ -56,10 +67,16 @@
     </a>
     <div id="collapseConfigSite" class="collapse" aria-labelledby="headingConfigSite" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="contato">Contato</a>
+            <?php if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+                <a class="collapse-item" href="contato">Contato</a>
+            <?php } ?>
             <a class="collapse-item" href="noticias">Notícias</a>
-            <a class="collapse-item" href="notificacoes">Notificações</a>
-            <a class="collapse-item" href="seo">SEO</a>
+            <?php if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+                <a class="collapse-item" href="notificacoes">Notificações</a>
+            <?php }
+            if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+                <a class="collapse-item" href="seo">SEO</a>
+            <?php } ?>
         </div>
     </div>
 </li>
