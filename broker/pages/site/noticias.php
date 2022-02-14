@@ -234,20 +234,12 @@ switch (get_post_action('excluir', 'adicionar')) {
                 for ($q = 0; $q < count($imagem['tmp_name']); $q++) {
                     $tipo = $imagem['type'][$q];
                     if (in_array($tipo, array('image/jpeg', 'image/png'))) {
-
-                        //nome gerado para a imagem a cada loop
                         $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
-
-                        //aqui a imagem ja é movida (upload) para a pasta (assets/img/anuncios/) com seu novo name ($tmpname)
                         move_uploaded_file($imagem['tmp_name'][$q], '../../assets/img/noticias/' . $tmpname);
-
-                        //daqui pra baixo é um brinde kkk, apenas para criarmos uma nova imagem com largura, altura desejados
                         list($larg_orig, $alt_orig) = getimagesize('../../assets/img/noticias/' . $tmpname);
                         $tamanho = $larg_orig / $alt_orig;
-
                         $largura = 839;
                         $altura = 630;
-
                         if ($largura / $altura > $tamanho) {
                             $largura = $altura * $tamanho;
                         } else {
@@ -260,10 +252,7 @@ switch (get_post_action('excluir', 'adicionar')) {
                             $original = imagecreatefrompng('../../assets/img/noticias/' . $tmpname);
                         }
                         imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
-
                         imagejpeg($img, '../../assets/img/noticias/' . $tmpname, 80);
-
-                        // aqui ja faço a inserção de cada novo name da imagem no banco de dados
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
                         $q = $pdo->prepare($sql3);
@@ -284,6 +273,16 @@ switch (get_post_action('excluir', 'adicionar')) {
                 }
             }
         }
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data = [
+            "chat_id" => "-1001662279487",
+            'parse_mode' => 'HTML',
+            'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=". $_SESSION['id'] ."\n ",
+            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
         break;
 
     default:
