@@ -147,13 +147,14 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
   <div class="main-content">
     <div class="content-wrapper">
       <div class="container-fluid">
-        <form action="noticia-editar?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
-          <section class="basic-elements">
-            <div class="row">
-              <div class="col-sm-6">
-                <h2 class="content-header">EDITAR NOTÍCIA</h2>
-              </div>
+
+        <section class="basic-elements">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2 class="content-header">EDITAR NOTÍCIA</h2>
             </div>
+          </div>
+          <form action="noticia-editar?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6">
                 <div class="card">
@@ -217,13 +218,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 </div>
               </div>
             </div>
-          </section>
-          <div class="form-actions" align="center">
-            <button type="submit" class="btn btn-success" name="atualizar">
-              <i class="icon-note"></i> Atualizar Produto
-            </button>
-          </div>
-        </form>
+            <div class="form-actions" align="center">
+              <button type="submit" class="btn btn-success" name="atualizar">
+                <i class="icon-note"></i> Atualizar Produto
+              </button>
+            </div>
+          </form>
+        </section>
       </div>
     </div>
   </div>
