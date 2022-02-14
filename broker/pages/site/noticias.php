@@ -21,6 +21,9 @@ include('../../includes/header.php');
     });
 </script>
 
+<link rel="stylesheet" href="../../assets/css/editorwys.css" type="text/css" media="all" />
+<script type="text/javascript" src="../../assets/js/script.js"></script>
+
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -119,7 +122,8 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" required></textarea>
+                                <iframe id="Editor" name="Editor" ></iframe>
+                                    <textarea type="text" class="form-control" id="txtEditor" name="descricao" placeholder="Descrição sobre a notícia" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +267,7 @@ switch (get_post_action('excluir', 'adicionar')) {
         $data = [
             "chat_id" => "-1001662279487",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n\n<img src='https://cripto4you.net/broker/assets/img/noticias/". $img ."'>\n\n ",
+            'text' => "\n<b>$titulo</b> \n\nhttps://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n\n<img src='https://cripto4you.net/broker/assets/img/noticias/" . $img . "'>\n\n ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
@@ -275,12 +279,3 @@ switch (get_post_action('excluir', 'adicionar')) {
 ?>
 
 <?php include('../../includes/footer.php'); ?>
-<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-<script type="text/javascript">
-    bkLib.onDomLoaded(function() {
-        new nicEditor({
-            fullPanel: true,
-            maxHeight: 200
-        }).panelInstance('descricao');
-    });
-</script>
