@@ -14,7 +14,7 @@
 </li>
 <hr class="sidebar-divider">
 
-<?php if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+<?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
     <div class="sidebar-heading">
         Broker
     </div>
@@ -59,7 +59,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
-<?php if ($_SESSION['UsuarioNivel'] >= 98) { ?>
+<?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfigSite" aria-expanded="true" aria-controls="collapseConfigSite">
         <i class="fas fa-fw fa-cog"></i>
@@ -67,16 +67,16 @@
     </a>
     <div id="collapseConfigSite" class="collapse" aria-labelledby="headingConfigSite" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <?php if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+            <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
                 <a class="collapse-item" href="contato">Contato</a>
             <?php }
-            if ($_SESSION['UsuarioNivel'] >= 98) { ?>
+            if ($_SESSION['UsuarioNivel'] >= '98') { ?>
                 <a class="collapse-item" href="noticias">Notícias</a>
             <?php }
-            if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+            if ($_SESSION['UsuarioNivel'] >= '100') { ?>
                 <a class="collapse-item" href="notificacoes">Notificações</a>
             <?php }
-            if ($_SESSION['UsuarioNivel'] >= 100) { ?>
+            if ($_SESSION['UsuarioNivel'] >= '100') { ?>
                 <a class="collapse-item" href="seo">SEO</a>
             <?php } ?>
         </div>
