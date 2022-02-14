@@ -118,7 +118,7 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" rows="8" required></textarea>
+                                    <textarea type="text" class="form-control content" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" rows="8" required></textarea>
                                 </div>
                             </div>
                         </div>
