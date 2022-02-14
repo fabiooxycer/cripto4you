@@ -108,7 +108,7 @@ include("selects-db.php");
                                 <a href="./#quero-investir" class="btn btn--primary btn--bordered btn--rounded">Quero
                                     Investir</a>
                             </div>
-                            <li><a href="https://broker.cripto4you.net/" class="menu-item">Restrito</a></li>
+                            <li><a href="https://broker.cripto4you.net/" class="menu-item"><i class="fa fa-lock"></i> Restrito</a></li>
                             <!-- <div class="module module-signup pull-left">
                                 <a class="btn-popup" data-toggle="modal" data-target="#signupModule"><i class="fa fa-lock"></i></a>
                                 <div class="modal fade signup-popup" tabindex="-1" role="dialog" id="signupModule">
