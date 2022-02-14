@@ -159,7 +159,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <label for="basicInput">
                                         <font size="1">Título</font>
                                     </label>
-                                    <input type="text" class="form-control" id="nome" name="nome" onChange="this.value=this.value.toUpperCase()" value="<?php echo $data['nome']; ?>" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="titulo" name="titulo" onChange="this.value=this.value.toUpperCase()" value="<?php echo $data['titulo']; ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             |<div class="col-md-12">
@@ -198,7 +198,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button type="button" class="btn btn-dark mr-1" onClick="history.go(-1)">
                         <i class="icon-action-undo"></i> VOLTAR
                     </button>
-                    <button type="submit" class="btn btn-info">
+                    <button type="submit" class="btn btn-primary" name="atualizar">
                         <i class="icon-note"></i> ATUALIZAR
                     </button>
                 </div>
