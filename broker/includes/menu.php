@@ -22,7 +22,7 @@
 </li>
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio" aria-expanded="true" aria-controls="collapseRelatorio">
-        <i class="fas fa-fw fa-users"></i>
+        <i class="fas fa-fw fa-list"></i>
         <span>Relatório</span>
     </a>
     <div id="collapseRelatorio" class="collapse" aria-labelledby="headingRelatorio" data-parent="#accordionSidebar">
