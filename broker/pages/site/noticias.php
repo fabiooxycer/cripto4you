@@ -82,8 +82,8 @@ include('../../includes/header.php');
 
                             echo "<tr>";
 
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'><strong>" . $titulo . "</strong></font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $titulo . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             //echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
                             //echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
@@ -159,5 +159,5 @@ include('../../includes/header.php');
       </div>
     </div>
   </div>
-  
+
 <?php include('../../includes/footer.php'); ?>
