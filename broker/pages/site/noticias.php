@@ -95,7 +95,7 @@ include('../../includes/header.php');
 
 <!-- Exibe o Modal para inserção dos Cliente -->
 <div class="modal" id="modalNovaNoticia" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg " role="document">
+    <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">ADICIONAR NOVA NOTÍCIA</h4>
