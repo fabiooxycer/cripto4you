@@ -40,7 +40,7 @@
                                             <input type="email" class="form-control form-control-user" id="email" name="email" onChange="this.value=this.value.toLowerCase()" placeholder="INFORME SEU E-MAIL" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="cpf" name="cpf" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" placeholder="INFORME SEU CPF" required>
+                                            <input type="text" class="form-control form-control-user" id="cpf" name="cpf" placeholder="INFORME SEU CPF" required>
                                         </div>
                                         <!--
                                         <div class="form-group">
