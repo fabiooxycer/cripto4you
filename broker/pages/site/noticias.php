@@ -38,13 +38,13 @@ include('../../includes/header.php');
 
 
 <div class="container-fluid">
-    <div class="ml-auto" align="right">
-        <div>
-            <button class="btn btn-blue mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
-        </div>
-    </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
+            <div class="ml-auto" align="right">
+                <div>
+                    <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
+                </div>
+            </div>
             <h4 class="m-0 font-weight-bold text-primary">NOTÍCIAS</h4>
             <p class="mb-4">Abaixo serão listadas todas as noticias exbidas no site.</p>
         </div>
@@ -102,62 +102,62 @@ include('../../includes/header.php');
 </div>
 
 <!-- Exibe o Modal para inserção dos Cliente -->
-<div class="modal" id="modalCadastro" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="modalNovaNoticia" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">ADICIONAR NOVO CLIENTE</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-        </div>
-        <div class="modal-body">
-          <form action="clientes" method="post" enctype="multipart/form-data">
-            <div class="form-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="basicInput">NOME</label>
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="NOME COMPLETO DO CLIENTE" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="basicInput">CPF</label>
-                    <input type="text" class="form-control auto3" id="cpf" name="cpf" placeholder="CPF DO CLIENTE" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" required> <span id="cpfResponse"></span></p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="basicInput">E-MAIL</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-MAIL DO CLIENTE" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="basicInput">TELEFONE</label>
-                    <input type="text" class="form-control phone" id="telefone" name="telefone" placeholder="TELEFONE DO CLIENTE" autocomplete="off" required>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="basicInput">STATUS</label>
-                    <select type="text" class="form-control" id="status" name="status" autocomplete="off" required>
-                      <option>Selecione...</option>
-                      <option value="1">ATIVO</option>
-                      <option value="2">INATIVO</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ADICIONAR NOVO CLIENTE</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
-            <div class="form-actions">
-              <button type="submit" name="adicionar" class="btn btn-blue"><i class="fa fa-check"></i> CADASTRAR</button>
-              <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+            <div class="modal-body">
+                <form action="clientes" method="post" enctype="multipart/form-data">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">NOME</label>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="NOME COMPLETO DO CLIENTE" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">CPF</label>
+                                    <input type="text" class="form-control auto3" id="cpf" name="cpf" placeholder="CPF DO CLIENTE" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" required> <span id="cpfResponse"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">E-MAIL</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="E-MAIL DO CLIENTE" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">TELEFONE</label>
+                                    <input type="text" class="form-control phone" id="telefone" name="telefone" placeholder="TELEFONE DO CLIENTE" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">STATUS</label>
+                                    <select type="text" class="form-control" id="status" name="status" autocomplete="off" required>
+                                        <option>Selecione...</option>
+                                        <option value="1">ATIVO</option>
+                                        <option value="2">INATIVO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" name="adicionar" class="btn btn-primary"><i class="fa fa-check"></i> CADASTRAR</button>
+                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                    </div>
+                </form>
             </div>
-          </form>
+            <div class="modal-footer"></div>
         </div>
-        <div class="modal-footer"></div>
-      </div>
     </div>
-  </div>
+</div>
 
 <?php include('../../includes/footer.php'); ?>
