@@ -108,7 +108,8 @@ include("selects-db.php");
                                 <a href="./#quero-investir" class="btn btn--primary btn--bordered btn--rounded">Quero
                                     Investir</a>
                             </div>
-                            <div class="module module-signup pull-left">
+                            <li><a href="https://broker.cripto4you.net/" class="menu-item">Restrito</a></li>
+                            <!-- <div class="module module-signup pull-left">
                                 <a class="btn-popup" data-toggle="modal" data-target="#signupModule"><i class="fa fa-lock"></i></a>
                                 <div class="modal fade signup-popup" tabindex="-1" role="dialog" id="signupModule">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -124,16 +125,8 @@ include("selects-db.php");
                                                             <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail" required>
                                                             <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Seu CPF" required>
                                                             <input type="password" class="form-control" name="senha" id="senha" placeholder="Sua Senha" required>
-                                                            <!-- <div class="input-checkbox">
-                                                            <label class="label-checkbox">
-                                                                <input type="checkbox" name="agree" />
-                                                                <span class="check-indicator"></span>
-                                                            </label>
-                                                            <p>I agree to the terms & conditions</p>
-                                                        </div> -->
                                                             <input type="submit" value="Acessar" name="submit" class="btn btn--primary btn--block">
                                                         </form>
-
                                                         <div class="signin">
                                                             Ainda não é nosso cliente?<br>
                                                             <a href="#">Quero Investir</a>
@@ -144,7 +137,7 @@ include("selects-db.php");
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                     </div>
                 </div>
             </nav>
