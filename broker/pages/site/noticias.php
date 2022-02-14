@@ -21,10 +21,6 @@ include('../../includes/header.php');
     });
 </script>
 
-<link rel="stylesheet" href="../../assets/css/editorwys.css" type="text/css" media="all" />
-<script type="text/javascript" src="../../assets/js/script.js"></script>
-
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -122,8 +118,7 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                <iframe id="Editor" name="Editor" ></iframe>
-                                    <textarea type="text" class="form-control" id="txtEditor" name="descricao" placeholder="Descrição sobre a notícia" required></textarea>
+                                    <textarea type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" required></textarea>
                                 </div>
                             </div>
                         </div>
