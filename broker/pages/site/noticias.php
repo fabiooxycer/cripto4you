@@ -94,7 +94,7 @@ include('../../includes/header.php');
                             echo "</td>";
                         }
                         echo "</tr>";
-                        BancoApps::desconectar()
+                        BancoCadastros::desconectar()
                         ?>
                     </tbody>
                 </table>
