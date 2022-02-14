@@ -14,17 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <?php include('includes/scripts.php'); ?>
-
-    <script>
-        var options = {
-            onKeyPress: function(cpf, ev, el, op) {
-                var masks = ['000.000.000-000', '00.000.000/0000-00'];
-                $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
-            }
-        }
-
-        $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
-    </script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -76,6 +65,16 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="assets/js/sb-admin-2.min.js"></script>
+    <script>
+        var options = {
+            onKeyPress: function(cpf, ev, el, op) {
+                var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+            }
+        }
+
+        $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
+    </script>
 </body>
 
 </html>
