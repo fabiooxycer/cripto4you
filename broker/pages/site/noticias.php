@@ -124,7 +124,7 @@ include('../../includes/header.php');
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">Título</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="NOME COMPLETO DO CLIENTE" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da notícia" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -134,7 +134,7 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea type="text" class="content" id="descricao" name="descricao" placeholder="Descreva a descrição do post" required></textarea>
+                                    <textarea type="text" class="content" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" required></textarea>
                                 </div>
                             </div>
                         </div>
