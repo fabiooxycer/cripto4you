@@ -53,8 +53,8 @@ include('../../includes/header.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style='text-align: center; vertical-align:middle !important' width="7%">IMAGEM</th>
-                            <th style='text-align: center; vertical-align:middle !important' width="10%">DATA</th>
+                            <th style='text-align: center; vertical-align:middle !important' width="5%">IMAGEM</th>
+                            <th style='text-align: center; vertical-align:middle !important' width="12%">DATA</th>
                             <th style='text-align: center; vertical-align:middle !important'>TÍTULO</th>
                             <th style='text-align: center; vertical-align:middle !important' width="5%">AÇÃO</th>
                         </tr>
