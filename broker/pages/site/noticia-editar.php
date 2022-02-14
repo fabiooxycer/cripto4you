@@ -143,7 +143,6 @@ $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
 
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -155,7 +154,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 <div class="px-3">
                     <div class="form-body">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">
                                         <font size="1">Título</font>
@@ -163,7 +162,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <input type="text" class="form-control" id="nome" name="nome" onChange="this.value=this.value.toUpperCase()" value="<?php echo $data['nome']; ?>" autocomplete="off" required>
                                 </div>
                             </div>
-                            |<div class="col-md-2">
+                            |<div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">
                                         <font size="1">Descrição</font>
@@ -173,9 +172,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                         <br />
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            <li>Imagem</li>
-                        </h6><br />
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
