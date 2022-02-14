@@ -45,7 +45,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="blog-entry">
           <div class="entry--img">
             <a href="#">
-              <img src="assets/images/blog/grid/<?php echo $data['imagem']; ?>" alt="<?php echo $data['titulo']; ?>" />
+              <img src="broker/assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['titulo']; ?>" />
             </a>
           </div>
           <div class="entry--content clearfix">
@@ -95,7 +95,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             ?>
               <div class="entry">
                 <div class="entry--img">
-                  <a href="ver-noticia?id=<?php echo $noticias['id']; ?>"> <img src="assets/images/blog/grid/<?php echo $noticias['imagem']; ?>" width="100%" alt="<?php echo $noticias['titulo']; ?>">
+                  <a href="ver-noticia?id=<?php echo $noticias['id']; ?>"> <img src="broker/assets/img/noticias/<?php echo $noticias['imagem']; ?>" width="100%" alt="<?php echo $noticias['titulo']; ?>">
                     <div class="entry--overlay"></div>
                   </a>
                 </div>

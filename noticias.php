@@ -43,7 +43,7 @@ $pdo = BancoCadastros::conectar();
           <div class="blog-entry">
             <div class="entry--img">
               <a href="ver-noticia?id=<?php echo $noticias['id']; ?>">
-                <img src="assets/images/blog/grid/<?php echo $noticias['imagem']; ?>" alt="<?php echo $noticias['titulo']; ?>" />
+                <img src="broker/assets/img/noticias/<?php echo $noticias['imagem']; ?>" alt="<?php echo $noticias['titulo']; ?>" />
                 <div class="entry--overlay"></div>
               </a>
             </div>

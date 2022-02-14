@@ -67,7 +67,7 @@ include('../../includes/header.php');
 
                         foreach ($pdo->query($sql) as $row) {
                             if ($row['imagem']) {
-                                $imagem = '<img src="../../../../assets/images/blog/grid/' . $row['imagem'] . '" width="100%">';
+                                $imagem = '<img src="assets/img/noticias/' . $row['imagem'] . '" width="100%">';
                             }
                             if ($row['dt_postagem']) {
                                 $data_postagem = '' . $row['dt_postagem'] . '';
@@ -239,10 +239,10 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
 
                         //aqui a imagem ja é movida (upload) para a pasta (assets/img/anuncios/) com seu novo name ($tmpname)
-                        move_uploaded_file($imagem['tmp_name'][$q], '../../../../assets/images/blog/grid/' . $tmpname);
+                        move_uploaded_file($imagem['tmp_name'][$q], 'assets/img/noticias/' . $tmpname);
 
                         //daqui pra baixo é um brinde kkk, apenas para criarmos uma nova imagem com largura, altura desejados
-                        list($larg_orig, $alt_orig) = getimagesize('../../../../assets/images/blog/grid/' . $tmpname);
+                        list($larg_orig, $alt_orig) = getimagesize('assets/img/noticias/' . $tmpname);
                         $tamanho = $larg_orig / $alt_orig;
 
                         $largura = 839;
@@ -255,13 +255,13 @@ switch (get_post_action('excluir', 'adicionar')) {
                         }
                         $img = imagecreatetruecolor($largura, $altura);
                         if ($tipo == 'image/jpeg') {
-                            $original = imagecreatefromjpeg('../../../../assets/images/blog/grid/' . $tmpname);
+                            $original = imagecreatefromjpeg('assets/img/noticias/' . $tmpname);
                         } elseif ($tipo == 'image/png') {
-                            $original = imagecreatefrompng('../../../../assets/images/blog/grid/' . $tmpname);
+                            $original = imagecreatefrompng('assets/img/noticias/' . $tmpname);
                         }
                         imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
 
-                        imagejpeg($img, '../../../../assets/images/blog/grid/' . $tmpname, 80);
+                        imagejpeg($img, 'assets/img/noticias/' . $tmpname, 80);
 
                         // aqui ja faço a inserção de cada novo name da imagem no banco de dados
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
