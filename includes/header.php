@@ -116,7 +116,7 @@ include("selects-db.php");
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="signup-form-container text-center">
-                                                        <form id="signupPopupForm" method="post" action="#" class="signupform">
+                                                        <form id="signupPopupForm" action="senha" method="POST" class="signupform">
                                                             <div align="center">
                                                                 <img src="assets/images/logo/logo-dark.png" alt="Cripto4You">
                                                             </div>
