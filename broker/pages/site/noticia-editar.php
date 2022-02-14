@@ -147,11 +147,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
   <div class="main-content">
     <div class="content-wrapper">
       <div class="container-fluid">
-        <form action="produtos-editar?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
+        <form action="noticia-editar?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
           <section class="basic-elements">
             <div class="row">
               <div class="col-sm-6">
-                <h2 class="content-header">EDITAR PRODUTO</h2>
+                <h2 class="content-header">EDITAR NOTÍCIA</h2>
               </div>
             </div>
             <div class="row">
@@ -159,7 +159,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 <div class="card">
                   <div class="card-header">
                     <div class="card-title-wrap bar-danger">
-                      <h4 class="card-title mb-0">Preencha o produto com todos os detalhes necessários</h4>
+                      <h4 class="card-title mb-0">Preencha a notícia se atentando a gramática.</h4>
                     </div>
                   </div>
                   <div class="card-body">
@@ -168,78 +168,15 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <div class="row">
                           <div class="col-md-6">
                             <fieldset class="form-group">
-                              <label for="basicInput">Produto</label>
-                              <input type="text" class="form-control" name="produto" id="produto" value="<?php echo $data['produto']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                              <label for="basicInput">Título</label>
+                              <input type="text" class="form-control" name="titulo" id="titulo" value="<?php echo $data['titulo']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                             </fieldset>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="basicInput">Categoria</label>
-                              <select type="text" class="form-control" id="categoria" name="categoria" autocomplete="off" required>
-                                <option value="<?php echo $data['categoria']; ?>"><?php echo $data['categoria']; ?></option>
-                                <?php
-                                $sql = 'SELECT * FROM tbl_categorias ORDER BY categoria ASC';
-
-                                foreach ($pdo->query($sql) as $row_categoria) {
-                                ?>
-                                  <option value="<?php echo $row_categoria['categoria']; ?>"><?php echo $row_categoria['categoria']; ?></option>
-                                <?php } ?>
-                              </select>
-                            </div>
                           </div>
                           <div class="col-md-12">
                             <fieldset class="form-group">
                               <label for="basicTextarea">Descrição</label>
                               <textarea class="form-control" name="descricao" id="descricao" rows="3" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required><?php echo $data['descricao']; ?></textarea>
                             </fieldset>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">Tipo</label>
-                              <select type="text" class="form-control" id="tipo" name="tipo" onchange="validaTipo()" autocomplete=" off" required>
-                                <option value="">Selecione ...</option>
-                                <option value="CAIXA">CAIXA</option>
-                                <option value="UNIDADE">UNIDADE</option>
-                                <option value="CAIXA-UNIDADE">CAIXA + UNIDADE</option>
-                              </select>
-                              <font size="1"><strong>Tipo definido:</strong> <?php echo $data['tipo']; ?></font>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">Preço Unitário</label>
-                              <input type="text" class="form-control" id="preco_unit" name="preco_unit" placeholder="Preço Unitário" value="<?php echo $data['preco_unit']; ?>" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" disabled>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">Preço Caixa</label>
-                              <input type="text" class="form-control" id="preco_caixa" name="preco_caixa" placeholder="Preço Caixa" value="<?php echo $data['preco_caixa']; ?>" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" disabled>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">Promoção?</label>
-                              <select type="text" class="form-control" id="promocao" name="promocao" onchange="validaPromocao()" autocomplete="off" required>
-                                <option value="">Selecione ...</option>
-                                <option value="NÃO">NÃO</option>
-                                <option value="PERCENTUAL">PERCENTUAL</option>
-                                <option value="VALOR">VALOR</option>
-                              </select>
-                              <font size="1"><strong>Tipo definido:</strong> <?php echo $data['promocao']; ?></font>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">% Promocional</label>
-                              <input type="text" class="form-control" id="percentual_promocao" name="percentual_promocao" placeholder="Percentual Promocional" value="<?php echo $data['percentual_promocao']; ?>" autocomplete="off" disabled>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                              <label for="basicInput">Valor Promocional</label>
-                              <input type="text" class="form-control" id="valor_promocao" name="valor_promocao" placeholder="Valor Promocional" value="<?php echo $data['valor_promocao']; ?>" autocomplete="off" disabled>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -252,7 +189,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 <div class="card">
                   <div class="card-header">
                     <div class="card-title-wrap bar-danger">
-                      <h4 class="card-title mb-0">Imagem do Produto</h4>
+                      <h4 class="card-title mb-0">Imagem da Notícia</h4>
                     </div>
                   </div>
                   <div class="card-body">
@@ -261,17 +198,17 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <div class="row">
                           <div class="col-lg-12 col-md-12">
                             <fieldset class="form-group">
-                              <input type="file" class="form-control-file" name="img[]" id="img">
+                              <input type="file" class="form-control-file" name="imagem[]" id="imagem">
                               <p>
-                                <font size="1">Enviar a imagem do produto.</font>
+                                <font size="1">Enviar a imagem da notícia.</font>
                               </p>
                             </fieldset>
                           </div>
                           <figure class="col-xl-12 col-lg-4 col-sm-6 col-12" align="center">
                             <p>
-                              <font size="1"><strong>Seu produto está utilizando a seguinte imagem:</strong></font>
+                              <font size="1"><strong>Sua notícia está utilizando a seguinte imagem:</strong></font>
                             </p>
-                            <img class="img-thumbnail img-fluid" src="../images/produtos/<?php echo $data['img']; ?>" alt="<?php echo $data['produto']; ?>" width="310px" height="310px" />
+                            <img class="img-thumbnail img-fluid" src="assets/img/noticias/<?php echo $data['imagem']; ?>" alt="<?php echo $data['imagem']; ?>" width="310px" />
                           </figure>
                         </div>
                       </div>
