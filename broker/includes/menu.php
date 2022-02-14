@@ -12,9 +12,9 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
+<hr class="sidebar-divider">
 
 <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
-    <hr class="sidebar-divider">
     <div class="sidebar-heading">
         Broker
     </div>
