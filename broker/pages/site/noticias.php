@@ -85,7 +85,7 @@ include('../../includes/header.php');
                             }
 
                             echo "<tr>";
-                            echo "<td width=250>" . $imagem . "</td>";
+                            echo "<td width=150>" . $imagem . "</td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
                             echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $titulo . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
