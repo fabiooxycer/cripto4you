@@ -56,10 +56,9 @@
             </div>
         </div>
     </li>
+<hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
-
-<hr class="sidebar-divider d-none d-md-block">
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfigSite" aria-expanded="true" aria-controls="collapseConfigSite">
         <i class="fas fa-fw fa-cog"></i>
