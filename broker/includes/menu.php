@@ -59,7 +59,7 @@
     <hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
-<?php if ($_SESSION['UsuarioNivel'] <= '98') { ?>
+<?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfigSite" aria-expanded="true" aria-controls="collapseConfigSite">
             <i class="fas fa-fw fa-cog"></i>
@@ -70,7 +70,7 @@
                 <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
                     <a class="collapse-item" href="contato">Contato</a>
                 <?php }
-                if ($_SESSION['UsuarioNivel'] <= '98') { ?>
+                if ($_SESSION['UsuarioNivel'] >= '98') { ?>
                     <a class="collapse-item" href="noticias">Notícias</a>
                 <?php }
                 if ($_SESSION['UsuarioNivel'] >= '100') { ?>
