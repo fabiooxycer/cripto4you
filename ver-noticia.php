@@ -23,12 +23,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
       <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="title title-6 text-center">
           <div class="title--heading">
-            <h1><?php echo $data['titulo']; ?></h1>
+            <h1>Notícias do Mundo Cripto</h1>
           </div>
           <div class="clearfix"></div>
           <ol class="breadcrumb">
             <li><a href="./inicio">Início</a></li>
-            <li class="active"><Notícias</li>
+            <li class="active">Notícias</li>
           </ol>
         </div>
       </div>
