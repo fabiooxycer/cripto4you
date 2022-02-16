@@ -202,7 +202,7 @@ include('includes/header.php');
           <div class="consultation--desc">
             Solicite nossa Consultoria
           </div>
-          <form class="mb-0">
+          <form class="mb-0" action="includes/email-contato.php" method="post">
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-4">
                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
@@ -211,13 +211,13 @@ include('includes/header.php');
                 <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail">
               </div>
               <div class="col-xs-12 col-sm-12 col-md-4">
-                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone">
+                <input type="text" class="form-control phone" name="telefone" id="telefone" placeholder="Seu Telefone">
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <textarea class="form-control" name="mensagem" id="mensagem" rows="2" placeholder="Sua mensagem..."></textarea>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12">
-                <input type="submit" value="ENVIAR" name="submit" class="btn btn--primary btn--block">
+                <button type="submit" name="contato" class="btn btn--primary btn--block">ENVIAR</button>
               </div>
             </div>
           </form>
