@@ -55,30 +55,6 @@
     $('.phone').mask(behavior, options);
 </script>
 
-<script>
-    function verifica(value) {
-        var input = document.getElementById("chave_pix");
-
-        if (value == 'Chave Aleatória') {
-            input.disabled = false;
-        }
-        if (value == 'E-mail') {
-            input.disabled = false;
-        }
-        if (value == 'CNPJ') {
-            input.disabled = false;
-        }
-        if (value == 'CPF') {
-            input.disabled = false;
-        }
-        if (value == 'Telefone') {
-            input.disabled = false;
-        } else if (value == 'Não Possuo') {
-            input.disabled = true;
-        }
-    };
-</script>
-
 <script language="javascript">
     function moeda(a, e, r, t) {
         let n = "",

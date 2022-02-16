@@ -21,6 +21,30 @@ include('../../includes/header.php');
     });
 </script>
 
+<script>
+    function verifica(value) {
+        var input = document.getElementById("chave");
+
+        if (value == 'Chave Aleatória') {
+            input.disabled = false;
+        }
+        if (value == 'E-mail') {
+            input.disabled = false;
+        }
+        if (value == 'CNPJ') {
+            input.disabled = false;
+        }
+        if (value == 'CPF') {
+            input.disabled = false;
+        }
+        if (value == 'Telefone') {
+            input.disabled = false;
+        } else if (value == 'Não Possuo') {
+            input.disabled = true;
+        }
+    };
+</script>
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
