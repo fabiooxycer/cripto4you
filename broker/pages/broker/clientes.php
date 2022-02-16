@@ -289,11 +289,12 @@ function get_post_action($name)
 // Verifica qual botao foi clicado
 switch (get_post_action('desativar', 'ativar', 'adicionar')) {
 
-    case 'excluir':
+    case 'desativar':
 
         if (!empty($_POST)) {
 
-            $id = $_POST['id'];
+            $id          = $_POST['id'];
+            $status_down = '2';
 
             //Validaçao dos campos:
             $validacao = true;
@@ -301,106 +302,117 @@ switch (get_post_action('desativar', 'ativar', 'adicionar')) {
 
         //Delete do banco:
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM tbl_noticias where id = ?";
+        $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
         $q = $pdo->prepare($sql);
-        $q->execute(array($id));
+        $q->execute(array($status_down, $id));
         echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
-              text: "Notícia excuída com sucesso!",
+              text: "Cliente/Usuário desativado com sucesso!",
               type: "success",
               confirmButtonText: "OK" 
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "noticias";
+                window.location.href = "clientes";
               }
             }); }, 1000);</script>';
+        break;
+
+    case 'ativar':
+
+        if (!empty($_POST)) {
+
+            $id          = $_POST['id'];
+            $status_up = '1';
+
+            //Validaçao dos campos:
+            $validacao = true;
+        }
+
+        //Delete do banco:
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($status_up, $id));
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Cliente/Usuário ativado com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes";
+                  }
+                }); }, 1000);</script>';
         break;
 
     case 'adicionar':
 
         if (!empty($_POST)) {
 
-            $titulo      = $_POST['titulo'];
-            $descricao   = $_POST['descricao'];
-            $dt_postagem = date("Y-m-d");
-            $hr_postagem = date("H:i:s");;
+            $nome        = $_POST['nome'];
+            $rg          = $_POST['rg'];
+            $cpf         = $_POST['cpf'];
+            $telefone    = $_POST['telefone'];
+            $email       = $_POST['email'];
+            $cep         = $_POST['cep'];
+            $endereco    = $_POST['endereco'];
+            $numero      = $_POST['numero'];
+            $complemento = $_POST['complemento'];
+            $bairro      = $_POST['bairro'];
+            $cidade      = $_POST['cidade'];
+            $estado      = $_POST['estado'];
+            $tipo_pix    = $_POST['tipo_pix'];
+            $chave       = $_POST['chave'];
+            $status      = '1';
+            $nivel       = $_POST['nivel'];
+            $dt_cadastro = date("Y-m-d");
 
             //Validaçao dos campos:
             $validacao = true;
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_noticias (titulo, descricao, dt_postagem, hr_postagem) VALUES(?,?,?,?)";
+        $sql = 'SELECT cpf FROM tbl_usuarios WHERE cpf = "' . $cpf . '"';
         $q = $pdo->prepare($sql);
-        $q->execute(array($titulo, $descricao, $dt_postagem, $hr_postagem));
+        $q->execute(array($cpf));
+        $data = $q->fetch(PDO::FETCH_ASSOC);
 
-        $sql2 = 'SELECT id FROM tbl_noticias ORDER BY id DESC limit 1';
-        foreach ($pdo->query($sql2) as $row) {
+        if ($data['cpf'] != $cpf) {
 
-            $_SESSION['id'] = $row['id'];
-
-            /* INICIA INSERÇÃO DAS IMAGENS NA PASTA */
-            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $imagem = $_FILES['imagem'];
-
-            //aqui eu verifico se o array de fotos é maior que zero e começo a fazer o loop
-            if (count($imagem) > 0) {
-                for ($q = 0; $q < count($imagem['tmp_name']); $q++) {
-                    $tipo = $imagem['type'][$q];
-                    if (in_array($tipo, array('image/jpeg', 'image/png'))) {
-                        $tmpname = md5(time() . rand(0, 999)) . '.jpeg';
-                        move_uploaded_file($imagem['tmp_name'][$q], '../../assets/img/noticias/' . $tmpname);
-                        list($larg_orig, $alt_orig) = getimagesize('../../assets/img/noticias/' . $tmpname);
-                        $tamanho = $larg_orig / $alt_orig;
-                        $largura = 839;
-                        $altura = 630;
-                        if ($largura / $altura > $tamanho) {
-                            $largura = $altura * $tamanho;
-                        } else {
-                            $altura = $largura / $tamanho;
-                        }
-                        $img = imagecreatetruecolor($largura, $altura);
-                        if ($tipo == 'image/jpeg') {
-                            $original = imagecreatefromjpeg('../../assets/img/noticias/' . $tmpname);
-                        } elseif ($tipo == 'image/png') {
-                            $original = imagecreatefrompng('../../assets/img/noticias/' . $tmpname);
-                        }
-                        imagecopyresampled($img, $original, 0, 0, 0, 0, $largura, $altura, $larg_orig, $alt_orig);
-                        imagejpeg($img, '../../assets/img/noticias/' . $tmpname, 80);
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
-                        $q = $pdo->prepare($sql3);
-                        $q->execute(array($tmpname, $_SESSION['id']));
-                        echo '<script>setTimeout(function () { 
-                            swal({
-                              title: "Parabéns!",
-                              text: "Notícia cadastrada com sucesso!",
-                              type: "success",
-                              confirmButtonText: "OK" 
-                            },
-                            function(isConfirm){
-                              if (isConfirm) {
-                                window.location.href = "noticias";
-                              }
-                            }); }, 1000);</script>';
-                    }
-                }
-            }
+            $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $status, $nivel, $dt_cadastro));
+            echo '<script>setTimeout(function () { 
+            swal({
+              title: "Parabéns!",
+              text: "Cliente/Usuário cadastrado com sucesso!",
+              type: "success",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "clientes";
+              }
+            }); }, 1000);</script>';
+        } else {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Opsss!",
+                  text: "Cliente/Usuário já cadastrado!",
+                  type: "danger",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes";
+                  }
+                }); }, 1000);</script>';
         }
-        // ENVIA TELEGRAM    
-        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data = [
-            "chat_id" => "-1001662279487",
-            'parse_mode' => 'HTML',
-            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . " \n ",
-            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
-        ];
-
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
         break;
 
     default:
