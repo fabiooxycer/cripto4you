@@ -59,6 +59,21 @@
     <hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
+
+<?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastroClientes" aria-expanded="true" aria-controls="collapseCadastroClientes">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Configurações Site</span>
+        </a>
+        <div id="collapseCadastroClientes" class="collapse" aria-labelledby="headingCadastroClientes" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="clientes">Clientes</a>
+            </div>
+        </div>
+    </li>
+<?php } ?>
+
 <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConfigSite" aria-expanded="true" aria-controls="collapseConfigSite">

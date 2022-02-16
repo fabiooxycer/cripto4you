@@ -14,6 +14,11 @@
   RewriteRule ^noticias/?$ pages/site/noticias.php [NC,L]
   RewriteRule ^noticia-editar/?$ pages/site/noticia-editar.php [NC,L]
 
+  # BROKER
+  RewriteRule ^clientes/?$ pages/broker/clientes.php [NC,L]
+  RewriteRule ^clientes-visulizar/?$ pages/broker/visualizar-editar.php [NC,L]
+  RewriteRule ^clientes-editar/?$ pages/broker/clientes-editar.php [NC,L]
+
 # SUPORTE
   RewriteRule ^fila-atendimento/?$ pages/suporte/suporte.php [NC,L]
   RewriteRule ^ver-chamado/?$ pages/suporte/ver-chamado.php [NC,L]
