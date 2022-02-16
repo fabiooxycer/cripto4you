@@ -39,7 +39,7 @@ $pdo = BancoCadastros::conectar();
         $timestamp = strtotime($hr_postagem);
         $timestamp2 = strtotime($hr_postagem);
       ?>
-        <div class="col-xs-6 col-sm-6 col-md-4">
+        <div class="col-xs-6 col-sm-6 col-md-6">
           <div class="blog-entry">
             <div class="entry--img">
               <a href="ver-noticia?id=<?php echo $noticias['id']; ?>">
