@@ -64,14 +64,15 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastroClientes" aria-expanded="true" aria-controls="collapseCadastroClientes">
             <i class="fas fa-fw fa-users"></i>
-            <span>Configurações Site</span>
+            <span>Clientes</span>
         </a>
         <div id="collapseCadastroClientes" class="collapse" aria-labelledby="headingCadastroClientes" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="clientes">Clientes</a>
+                <a class="collapse-item" href="clientes">Cadastros</a>
             </div>
         </div>
     </li>
+    <hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
 <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
