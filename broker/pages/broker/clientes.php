@@ -119,7 +119,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $email . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $dt_cadastro . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $status . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $id . "</strong></font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $nivel . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             //echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
                             //echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
@@ -255,7 +255,7 @@ include('../../includes/header.php');
                                     <select type="text" class="form-control" id="nivel" name="nivel" autocomplete="off" required>
                                         <option value="">Selecione...</option>
                                         <option value="1">Cliente</option>
-                                        <option value="98">Operador</option>
+                                        <option value="99">Operador</option>
                                         <option value="100">Administrador</option>
                                     </select>
                                 </div>
