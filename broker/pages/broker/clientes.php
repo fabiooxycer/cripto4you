@@ -375,7 +375,6 @@ switch (get_post_action('desativar', 'ativar', 'adicionar')) {
             $validacao = true;
         }
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = 'SELECT cpf FROM tbl_usuarios WHERE cpf = "' . $cpf . '"';
         $q = $pdo->prepare($sql);
         $q->execute(array($cpf));
