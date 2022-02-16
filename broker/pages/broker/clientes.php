@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION)) session_start();
 
-$nivel = 1;
+$nivel = 98;
 
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
     echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
@@ -26,20 +26,24 @@ include('../../includes/header.php');
         <div class="card-header py-3">
             <div class="ml-auto" align="right">
                 <div>
-                    <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
+                    <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovoUsuario"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
                 </div>
             </div>
-            <h4 class="m-0 font-weight-bold text-primary">NOTÍCIAS</h4>
-            <p class="mb-4">Abaixo serão listadas todas as noticias exbidas no site.</p>
+            <h4 class="m-0 font-weight-bold text-primary">CLIENTES/USUÁRIOS</h4>
+            <p class="mb-4">Abaixo serão listadas todos os clientes/usuários cadastrados em nossa plataforma.</p>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style='text-align: center; vertical-align:middle !important' width="5%">IMAGEM</th>
-                            <th style='text-align: center; vertical-align:middle !important' width="12%">DATA</th>
-                            <th style='text-align: center; vertical-align:middle !important'>TÍTULO</th>
+                            <th style='text-align: center; vertical-align:middle !important'>NOME</th>
+                            <th style='text-align: center; vertical-align:middle !important'>CPF</th>
+                            <th style='text-align: center; vertical-align:middle !important'>TELEFONE</th>
+                            <th style='text-align: center; vertical-align:middle !important'>E-MAIL</th>
+                            <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
+                            <th style='text-align: center; vertical-align:middle !important'>STATUS</th>
+                            <th style='text-align: center; vertical-align:middle !important'>NÍVEL</th>
                             <th style='text-align: center; vertical-align:middle !important' width="5%">AÇÃO</th>
                         </tr>
                     </thead>
@@ -47,39 +51,63 @@ include('../../includes/header.php');
                         <?php
                         $pdo = BancoCadastros::conectar();
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $sql = "SELECT * FROM tbl_noticias ORDER BY dt_postagem DESC, hr_postagem DESC";
+                        $sql = "SELECT * FROM tbl_usuarios ORDER BY nome ASC, status ASC";
 
                         foreach ($pdo->query($sql) as $row) {
-                            if ($row['imagem']) {
-                                $imagem = '<img src="assets/img/noticias/' . $row['imagem'] . '" width="100%">';
-                            }
-                            if ($row['dt_postagem']) {
-                                $data_postagem = '' . $row['dt_postagem'] . '';
-                                $timestamp = strtotime($data_postagem);
-                                $dt_postagem = '<font size="2">' . date('d/m/Y', $timestamp) . ' </font>';
-                            }
-                            if ($row['hr_postagem']) {
-                                $hora_postagem = '' . $row['hr_postagem'] . '';
-                                $timestamp2 = strtotime($hora_postagem);
-                                $hr_postagem = '<font size="2">' . date('H:i:s', $timestamp2) . ' </font>';
-                            }
 
-                            if ($row['titulo']) {
-                                $titulo = '' . $row['titulo'] . '';
+                            if ($row['nome']) {
+                                $nome = '' . $row['nome'] . '';
+                            }
+                            if ($row['cpf']) {
+                                $cpf = '' . $row['cpf'] . '';
+                            }
+                            if ($row['telefone']) {
+                                $telefone = '' . $row['telefone'] . '';
+                            }
+                            if ($row['email']) {
+                                $email = '' . $row['email'] . '';
+                            }
+                            if ($row['dt_cadastro']) {
+                                $data_cadastro = '' . $row['dt_cadastro'] . '';
+                                $timestamp = strtotime($data_cadastro);
+                                $dt_cadastro = '<font size="2">' . date('d/m/Y', $timestamp) . ' </font>';
+                            }
+                            if ($row['status'] == 1) {
+                                $status = '<font size="3" color="green" ><strong> ATIVO </strong></font>';
+                            }
+                            if ($row['status'] == 2) {
+                                $status = '<font size="3" color="red" ><strong> INATIVO </strong></font>';
+                            }
+                            if ($row['nivel'] == 1) {
+                                $nivel = '<font size="3" color="blue" ><strong> CLIENTE </strong></font>';
+                            }
+                            if ($row['nivel'] == 99) {
+                                $nivel = '<font size="3" color="orange" ><strong> OPERADOR </strong></font>';
+                            }
+                            if ($row['nivel'] == 100) {
+                                $nivel = '<font size="3" color="orange" ><strong> green </strong></font>';
                             }
 
                             echo "<tr>";
-                            echo "<td width=150>" . $imagem . "</td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
-                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $titulo . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $nome . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $cpf . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $telefone . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $email . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $dt_cadastro . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $status . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $id . "</strong></font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             //echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
                             //echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
                             //echo ' <a type="button" class="reprocessar btn btn-sm btn-primary" data-id="' . $row['id'] . '" title="REPROCESSAR"><i  class="fa fa-share"></i></a>';
                             echo '<form action="noticias" method="POST">';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
-                            echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="noticia-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
-                            echo '&nbsp;<button type="submit" title="EXCLUIR" class="btn btn-sm btn-danger" name="excluir"><i  class="fa fa-trash"></i></button>';
+                            echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
+                            if ($row['status'] == 1) {
+                                echo '&nbsp;<button type="submit" title="DESATIVAR" class="btn btn-sm btn-danger" name="desativar"><i  class="fa fa-thumbs-down"></i></button>';
+                            } else {
+                                echo '&nbsp;<button type="submit" title="ATIVAR" class="btn btn-sm btn-success" name="ativar"><i  class="fa fa-thumbs-up"></i></button>';
+                            }
                             echo "</form>";
                             echo "</td>";
                         }
@@ -94,39 +122,121 @@ include('../../includes/header.php');
 </div>
 
 <!-- Exibe o Modal para inserção dos Cliente -->
-<div class="modal" id="modalNovaNoticia" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="modalNovoUsuario" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">ADICIONAR NOVA NOTÍCIA</h4>
+                <h4 class="modal-title">ADICIONAR NOVO CLIENTE/USUÁRIO</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
             <div class="modal-body">
-                <form action="noticias" method="post" enctype="multipart/form-data">
+                <form action="clientes" method="post" enctype="multipart/form-data">
                     <div class="form-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="basicInput">Título</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título da notícia" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                    <label for="basicInput">Nome</label>
+                                    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="imagem" name="imagem[]" multiple="multiple" required>
+                                    <label for="basicInput">RG</label>
+                                    <input type="text" class="form-control" id="rg" name="rg" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea type="text" class="form-control content" id="descricao" name="descricao" placeholder="Descrição sobre a notícia" rows="8" required></textarea>
+                                    <label for="basicInput">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" name="cpf" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" autocomplete="off" required><span id="cpfResponse"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Telefone</label>
+                                    <input type="text" class="form-control phone" id="telefone" name="telefone" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">CEP</label>
+                                    <input type="text" class="form-control" id="cep" name="cep" onchange="pesquisacep(this.value);" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Endereço</label>
+                                    <input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Número</label>
+                                    <input type="text" class="form-control" id="numero" name="numero" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Complemento</label>
+                                    <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Bairro</label>
+                                    <input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Cidade</label>
+                                    <input type="text" class="form-control" id="cidade" name="cidade" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Estado</label>
+                                    <input type="text" class="form-control" id="estado" name="estado" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">PIX</label>
+                                    <select type="text" class="form-control" id="tipo_pix" name="tipo_pix" autocomplete="off" onchange="verifica(this.value)" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Chave Aleatória">Chave Aleatória</option>
+                                        <option value="E-mail">E-mail</option>
+                                        <option value="CNPJ">CNPJ</option>
+                                        <option value="CPF">CPF</option>
+                                        <option value="Telefone">Telefone</option>
+                                        <option value="Não Possuo">Não Possuo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="basicInput">Chave PIX</label>
+                                    <input type="text" class="form-control" id="chave" name="chave" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="basicInput">Nível Acesso</label>
+                                    <select type="text" class="form-control" id="nivel" name="nivel" autocomplete="off" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">Cliente</option>
+                                        <option value="98">Operador</option>
+                                        <option value="100">Administrador</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <strong>
-                            <font size="2" color="#2CABE3">Sua imagem será redefinida para:</font>
-                        </strong>
-                        <font size="2"> 839 x 630 px </font>
-                        <br><br>
                     </div>
                     <div class="form-actions">
                         <button type="submit" name="adicionar" class="btn btn-primary"><i class="fa fa-check"></i> CADASTRAR</button>
@@ -262,7 +372,7 @@ switch (get_post_action('excluir', 'adicionar')) {
         $data = [
             "chat_id" => "-1001662279487",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=". $_SESSION['id'] . " \n ",
+            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . " \n ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
