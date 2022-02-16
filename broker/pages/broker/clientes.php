@@ -160,7 +160,7 @@ include('../../includes/header.php');
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="nome" name="nome" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -196,7 +196,7 @@ include('../../includes/header.php');
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="basicInput">Endereço</label>
-                                    <input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="endereco" name="endereco" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -208,28 +208,28 @@ include('../../includes/header.php');
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Complemento</label>
-                                    <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="complemento" name="complemento" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Bairro</label>
-                                    <input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="bairro" name="bairro" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" name="cidade" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="cidade" name="cidade" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Estado</label>
-                                    <input type="text" class="form-control" id="estado" name="estado" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="estado" name="estado" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">PIX</label>
                                     <select type="text" class="form-control" id="tipo_pix" name="tipo_pix" autocomplete="off" onchange="verifica(this.value)" required>
@@ -243,13 +243,13 @@ include('../../includes/header.php');
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="basicInput">Chave PIX</label>
                                     <input type="text" class="form-control" id="chave" name="chave" autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Nível Acesso</label>
                                     <select type="text" class="form-control" id="nivel" name="nivel" autocomplete="off" required>
