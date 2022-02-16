@@ -109,7 +109,7 @@ include('../../includes/header.php');
                                 $nivel = '<font size="3" color="orange" ><strong> OPERADOR </strong></font>';
                             }
                             if ($row['nivel'] == 100) {
-                                $nivel = '<font size="3" color="orange" ><strong> green </strong></font>';
+                                $nivel = '<font size="3" color="green" ><strong> ADMINISTRADOR </strong></font>';
                             }
 
                             echo "<tr>";
