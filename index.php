@@ -224,7 +224,7 @@ include('includes/slideshow.php');
                     <div class="consultation--desc">
                         Solicite nossa Consultoria
                     </div>
-                    <form class="mb-0" action="inicio" method="post">
+                    <form class="mb-0" action="includes/email-contato.php method="post">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
@@ -250,40 +250,3 @@ include('includes/slideshow.php');
 </section>
 
 <?php include('includes/footer.php'); ?>
-
-<?php
-// Chama função para pegar o POST de cada FORM
-function get_post_action($name)
-{
-    $params = func_get_args();
-
-    foreach ($params as $name) {
-        if (isset($_POST[$name])) {
-            return $name;
-        }
-    }
-}
-
-// Verifica qual botao foi clicado
-switch (get_post_action('contato')) {
-
-    case 'contato':
-
-        if (!empty($_POST)) {
-
-            $nome     = $_POST['nome'];
-            $email    = $_POST['email'];
-            $telefone = $_POST['telefone'];
-            $mensagem = $_POST['mensagem'];
-            $contato  = $contato['whatsapp'];
-
-            //Validaçao dos campos:
-            $validacao = true;
-        }
-
-        $response = file_get_contents("https://api.whatsapp.com/send?phone=$contato?text=*CONTATO%20PELO%20SITE*\n\nNOME:%20$nome\nE-MAIL:%20$email\nTELEFONE:%20$telefone\MENSAGEM:\n$mensagem\n");
-        break;
-
-    default:
-}
-?>
