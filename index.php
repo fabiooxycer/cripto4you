@@ -80,7 +80,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 8% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="#">INVESTIR</a>
+                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%205.000,00%20a%20R$%2050.000,00.">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
@@ -103,7 +103,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 12% ao mês.
                         </div>
-                        <a class="btn btn--white btn--bordered btn--rounded" href="#">INVESTIR</a>
+                        <a class="btn btn--white btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%2050.000,00%20a%20R$%20200.000,00.">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
@@ -126,7 +126,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 15% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="#">INVESTIR</a>
+                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20acima%20de%20R$%20200.000,00.">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
