@@ -80,7 +80,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 8% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%205.000,00%20a%20R$%2050.000,00." target="_blank">INVESTIR</a>
+                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%205.000,00%20a%20R$%2050.000,00." target="_blank">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
@@ -103,7 +103,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 12% ao mês.
                         </div>
-                        <a class="btn btn--white btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%2050.000,00%20a%20R$%20200.000,00." target="_blank">INVESTIR</a>
+                        <a class="btn btn--white btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%2050.000,00%20a%20R$%20200.000,00." target="_blank">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
@@ -126,7 +126,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 15% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp'];?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20acima%20de%20R$%20200.000,00." target="_blank">INVESTIR</a>
+                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20acima%20de%20R$%20200.000,00." target="_blank">INVESTIR</a>
                     </div>
 
                     <div class="pricing--footer">
@@ -194,59 +194,95 @@ include('includes/slideshow.php');
 </section> -->
 
 <section id="contato" class="consultation consultation-1 pb-0">
-  <div class="bg-section">
-    <img src="assets/images/background/8.jpg" alt="Background" />
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="heading heading-2 mb-50">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-7">
-              <h2 class="heading--title text-white"><span class="text-theme">Descobrir</span><span class="text-white"> Milhares de Oportunidades de Negociação e Investimento.</span></h2>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-              <p class="heading--desc">Operamos de forma rápida, fácil e segura. Com grande alavancagem de negociação e margem. Comece a negociar conosco em segundos.</p>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-              <p class="heading--desc">As criptomoedas tornaram-se commodities de investimento estabelecidas entre as principais instituições financeiras e até foram adotadas por alguns países. Como em qualquer investimento, existem riscos ligados aos movimentos do mercado, mas trabalhamos com Proteção & Segurança!</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="bg-section">
+        <img src="assets/images/background/8.jpg" alt="Background" />
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="heading heading-2 mb-50">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <h2 class="heading--title text-white"><span class="text-theme">Descobrir</span><span class="text-white"> Milhares de Oportunidades de Negociação e Investimento.</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <p class="heading--desc">Operamos de forma rápida, fácil e segura. Com grande alavancagem de negociação e margem. Comece a negociar conosco em segundos.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <p class="heading--desc">As criptomoedas tornaram-se commodities de investimento estabelecidas entre as principais instituições financeiras e até foram adotadas por alguns países. Como em qualquer investimento, existem riscos ligados aos movimentos do mercado, mas trabalhamos com Proteção & Segurança!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="consultation-form mb-30 bg-white text-center">
-          <div class="consultation--desc">
-            Solicite nossa Consultoria
-          </div>
-          <form class="mb-0">
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-4">
-                <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-4">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail">
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-4">
-                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone">
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <textarea class="form-control" name="mensagem" id="mensagem" rows="2" placeholder="Sua mensagem..."></textarea>
-              </div>
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <input type="submit" value="ENVIAR" name="submit" class="btn btn--primary btn--block">
-              </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="consultation-form mb-30 bg-white text-center">
+                    <div class="consultation--desc">
+                        Solicite nossa Consultoria
+                    </div>
+                    <form class="mb-0" action="inicio" method="post>
+            <div class=" row">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <textarea class="form-control" name="mensagem" id="mensagem" rows="2" placeholder="Sua mensagem..."></textarea>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <button type="submit" name="contato" class="btn btn--primary btn--block">ENVIAR</button>
+                        </div>
+                </div>
+                </form>
             </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
+    </div>
 </section>
 
 <?php include('includes/footer.php'); ?>
+
+<?php
+// Chama função para pegar o POST de cada FORM
+function get_post_action($name)
+{
+    $params = func_get_args();
+
+    foreach ($params as $name) {
+        if (isset($_POST[$name])) {
+            return $name;
+        }
+    }
+}
+
+// Verifica qual botao foi clicado
+switch (get_post_action('contato')) {
+
+    case 'contato':
+
+        if (!empty($_POST)) {
+
+            $nome     = $_POST['nome'];
+            $email    = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            $mensagem = $_POST['mensagem'];
+
+            //Validaçao dos campos:
+            $validacao = true;
+        }
+
+        echo '<a href="https://api.whatsapp.com/send?phone="' . $contato['whatsapp'] . '"?text=*CONTATO%20PELO%20SITE*\n\nNOME:%20"' . $nome . '"\nE-MAIL:%20"' . $email . '"\nTELEFONE:%20"' . $telefone . '"\MENSAGEM:\n"' . $mensagem . '"\n" target="_blank">INVESTIR</a>';
+        break;
+
+    default:
+}
+?>
