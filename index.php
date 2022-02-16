@@ -224,7 +224,7 @@ include('includes/slideshow.php');
                     <div class="consultation--desc">
                         Solicite nossa Consultoria
                     </div>
-                    <form class="mb-0" action="includes/email-contato.php method="post">
+                    <form class="mb-0" action="includes/email-contato.php" method="post">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
