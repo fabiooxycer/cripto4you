@@ -163,67 +163,67 @@ include('../../includes/header.php');
                                     <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="basicInput">RG</label>
                                     <input type="text" class="form-control" id="rg" name="rg" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="basicInput">CPF</label>
                                     <input type="text" class="form-control" id="cpf" name="cpf" onkeyup="cpfCheck(this)" maxlength="18" onkeydown="javascript: fMasc( this, mCPF );" autocomplete="off" required><span id="cpfResponse"></span></p>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="basicInput">Telefone</label>
                                     <input type="text" class="form-control phone" id="telefone" name="telefone" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="basicInput">E-mail</label>
                                     <input type="email" class="form-control" id="email" name="email" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">CEP</label>
                                     <input type="text" class="form-control" id="cep" name="cep" onchange="pesquisacep(this.value);" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="basicInput">Endereço</label>
                                     <input type="text" class="form-control" id="endereco" name="endereco" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Número</label>
                                     <input type="text" class="form-control" id="numero" name="numero" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Complemento</label>
                                     <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Bairro</label>
                                     <input type="text" class="form-control" id="bairro" name="bairro" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Cidade</label>
                                     <input type="text" class="form-control" id="cidade" name="cidade" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Estado</label>
                                     <input type="text" class="form-control" id="estado" name="estado" autocomplete="off" required>
@@ -243,7 +243,7 @@ include('../../includes/header.php');
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="basicInput">Chave PIX</label>
                                     <input type="text" class="form-control" id="chave" name="chave" autocomplete="off">
