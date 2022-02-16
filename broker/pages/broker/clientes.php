@@ -136,7 +136,7 @@ include('../../includes/header.php');
                             echo "</td>";
                         }
                         echo "</tr>";
-                        BancoCadastros::desconectar()
+                        //BancoCadastros::desconectar()
                         ?>
                     </tbody>
                 </table>
