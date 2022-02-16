@@ -275,12 +275,13 @@ switch (get_post_action('contato')) {
             $email    = $_POST['email'];
             $telefone = $_POST['telefone'];
             $mensagem = $_POST['mensagem'];
+            $contato  = $contato['whatsapp'];
 
             //Validaçao dos campos:
             $validacao = true;
         }
 
-        echo '<a href="https://api.whatsapp.com/send?phone="' . $contato['whatsapp'] . '"?text=*CONTATO%20PELO%20SITE*\n\nNOME:%20"' . $nome . '"\nE-MAIL:%20"' . $email . '"\nTELEFONE:%20"' . $telefone . '"\MENSAGEM:\n"' . $mensagem . '"\n" target="_blank">INVESTIR</a>';
+        $response = file_get_contents("https://api.whatsapp.com/send?phone=$contato?text=*CONTATO%20PELO%20SITE*\n\nNOME:%20$nome\nE-MAIL:%20$email\nTELEFONE:%20$telefone\MENSAGEM:\n$mensagem\n");
         break;
 
     default:
