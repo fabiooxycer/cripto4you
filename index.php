@@ -233,7 +233,7 @@ include('includes/slideshow.php');
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Seu E-mail">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
-                                <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Seu Telefone">
+                                <input type="text" class="form-control phone" name="telefone" id="telefone" placeholder="Seu Telefone">
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <textarea class="form-control" name="mensagem" id="mensagem" rows="2" placeholder="Sua mensagem..."></textarea>
