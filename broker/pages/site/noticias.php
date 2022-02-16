@@ -47,7 +47,7 @@ include('../../includes/header.php');
                         <?php
                         $pdo = BancoCadastros::conectar();
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $sql = "SELECT * FROM tbl_noticias ORDER BY dt_postagem,hr_postagem DESC";
+                        $sql = "SELECT * FROM tbl_noticias ORDER BY dt_postagem DESC, hr_postagem DESC";
 
                         foreach ($pdo->query($sql) as $row) {
                             if ($row['imagem']) {
