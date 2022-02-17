@@ -96,7 +96,7 @@ include('../../includes/header.php');
 
                                 echo "<tr>";
                                 echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $descricao . "</strong></font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $tipo . "</strong></font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $valor . "</strong></font></td>";
                             }
