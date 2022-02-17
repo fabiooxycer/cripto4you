@@ -61,7 +61,6 @@ include('../../includes/header.php');
                                 <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>VALOR</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="5%">AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,20 +99,6 @@ include('../../includes/header.php');
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $tipo . "</strong></font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $valor . "</strong></font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                // echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
-                                // echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
-                                // echo ' <a type="button" class="reprocessar btn btn-sm btn-primary" data-id="' . $row['id'] . '" title="REPROCESSAR"><i  class="fa fa-share"></i></a>';
-                                echo '<form action="meu-investimento" method="POST">';
-                                echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
-                                echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
-                                if ($row['status'] == 1) {
-                                    echo '&nbsp;<button type="submit" title="DESATIVAR" class="btn btn-sm btn-danger" name="desativar"><i  class="fa fa-thumbs-down"></i></button>';
-                                } else {
-                                    echo '&nbsp;<button type="submit" title="ATIVAR" class="btn btn-sm btn-success" name="ativar"><i  class="fa fa-thumbs-up"></i></button>';
-                                }
-                                echo "</form>";
-                                echo "</td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
