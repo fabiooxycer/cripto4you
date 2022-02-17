@@ -56,6 +56,16 @@
 <script src="assets/summernote/summernote-bs4.js"></script>
 <script src="assets/summernote2.js"></script>
 
+<script>
+  $(document).ready(function() {
+    $('.botao-faturamento').on('click', function() {
+      $('.botao-faturamento .far').toggleClass('fa-eye-slash');
+      $('.botao-faturamento .far').toggleClass('fa-eye');
+      $('span.faturamento').toggleClass('hide');
+    });
+  });
+</script>
+
 </body>
 
 </html>
