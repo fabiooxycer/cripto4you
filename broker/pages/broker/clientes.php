@@ -1,11 +1,14 @@
 <?php
-if (!isset($_SESSION)) session_start();
 
-$nivel = 98;
+if ($_SERVER['HTTP_HOST'] != 'localhost') {
+    if (!isset($_SESSION)) session_start();
 
-if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-    exit;
+    $nivel = 98;
+
+    if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
+        echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+        exit;
+    }
 }
 
 include('../../includes/header.php');
@@ -208,7 +211,7 @@ include('../../includes/header.php');
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Complemento</label>
-                                    <input type="text" class="form-control" id="complemento" name="complemento" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="complemento" name="complemento" onChange="this.value=this.value.toUpperCase()" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -371,16 +374,20 @@ switch (get_post_action('desativar', 'ativar', 'adicionar')) {
             $nivel       = $_POST['nivel'];
             $dt_cadastro = date("Y-m-d");
 
-            //Validaçao dos campos:
-            $validacao = true;
+            if ($complemento == '') {
+                $complemento = '-';
+            }
+            if ($chave == '') {
+                $chave = '-';
+            }
         }
-
-        $sql = 'SELECT cpf FROM tbl_usuarios WHERE cpf = "' . $cpf . '"';
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM tbl_usuarios WHERE cpf = "' . $_POST['cpf'] . '"';
         $q = $pdo->prepare($sql);
-        $q->execute(array($cpf));
+        $q->execute(array($_POST['cpf']));
         $data = $q->fetch(PDO::FETCH_ASSOC);
 
-        if ($data['cpf'] != $cpf) {
+        if ($data['cpf'] != $_POST['cpf']) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -398,12 +405,13 @@ switch (get_post_action('desativar', 'ativar', 'adicionar')) {
                 window.location.href = "clientes";
               }
             }); }, 1000);</script>';
-        } else {
+        }
+        if ($data['cpf'] == $_POST['cpf']) {
             echo '<script>setTimeout(function () { 
                 swal({
-                  title: "Opsss!",
-                  text: "Cliente/Usuário já cadastrado!",
-                  type: "danger",
+                  title: "Atenção!",
+                  text: "Cliente/Usuário já possui cadastro!",
+                  type: "warning",
                   confirmButtonText: "OK" 
                 },
                 function(isConfirm){

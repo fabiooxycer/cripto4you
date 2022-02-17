@@ -129,7 +129,7 @@ if (empty($email) || empty($cpf)) {
                                             <input type="hidden" class="form-control form-control-user" id="email" name="email" value="<?php echo $email; ?>" readonly>
                                             <input type="hidden" class="form-control form-control-user" id="cpf" name="cpf" value="<?php echo $cpf; ?>" readonly>
                                             <div class="form-group">
-                                                <input type="password" class="form-control form-control-user" id="senha" name="senha" onkeyup='check();' placeholder="CADASTRE SUA SENHA" required>
+                                                <input type="password" class="form-control form-control-user" id="senha" name="senha" onkeyup='check();' placeholder="CADASTRE SUA SENHA" required><br>
                                                 <div class="form-group">
                                                     <input type="password" class="form-control form-control-user" id="senha2" name="senha2" onkeyup='check();' placeholder="CONFIRME SUA SENHA" required> <br>
                                                     <div align="right">
