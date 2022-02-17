@@ -75,7 +75,7 @@ include('includes/header.php');
                                     <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span>
                                 </div>
                                 <p>
-                                    <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'],2); ?></font>
+                                    <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'], 2); ?></font>
                                 </p>
                                 <?php //} 
                                 ?>
@@ -120,7 +120,7 @@ include('includes/header.php');
                                     <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span>
                                 </div>
                                 <p>
-                                    <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'],2); ?></font>
+                                    <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'], 2); ?></font>
                                 </p>
                                 <?php //} 
                                 ?>
@@ -142,33 +142,23 @@ include('includes/header.php');
                                     Saldo Atual
                                 </div>
                                 <?php
-                                // $sql = $pdo->query("SELECT  sum(valor_liquido) FROM tbl_historico_pagamentos as historico
-                                // left join tbl_cadastro_pericias as cadastro
-                                // on historico.id_pericia = cadastro.id
-                                // WHERE cadastro.dt_criacao > '2021-08-06 17:00:00'
-                                //  AND cadastro.pericia_status = 'pericia_enviada'
-                                //  AND cadastro.liberacao_interna = '0' ORDER BY historico.id_pericia DESC");
+                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1');
 
-                                // $result = $sql->fetchAll();
+                                $result = $sql->fetchAll();
 
-                                // foreach ($result as $row) {
-                                //     $valor_diferenca = '23442.00999999999';
-                                //     $faturamento = $row['sum(valor_liquido)'] - $valor_diferenca;
+                                foreach ($result as $row) {
+                                    $saldo = $row['sum(valor)'] - $valor_diferenca;
 
-                                //     $valorFaturamentoPagSeguro = '100765.22000000000';
                                 ?>
-                                <!-- Total com exibir/esconder valor -->
-                                <div class="h3 mb-0 font-weight-bold text-green-800">
-                                    <!-- <span class="faturamento hide">R$ <?php //echo number_format($valorFaturamentoPagSeguro, 2, ',', '.'); 
-                                                                            ?></span> -->
-                                    <span class="faturamento hide">00.000,00</span>
-                                    <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span>
-                                </div>
-                                <p>
-                                    <font size="1">Valor atualizado a cada 24h</font>
-                                </p>
-                                <?php //} 
-                                ?>
+                                    <!-- Total com exibir/esconder valor -->
+                                    <div class="h3 mb-0 font-weight-bold text-green-800">
+                                        <span class="faturamento hide">R$ <?php echo number_format($saldo, 2, ',', '.'); ?></span>
+                                        <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span>
+                                    </div>
+                                    <p>
+                                        <font size="1">Valor atualizado a cada 24h</font>
+                                    </p>
+                                <?php } ?>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-3x text-green-300"></i>
