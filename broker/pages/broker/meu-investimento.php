@@ -237,40 +237,41 @@ include('../../includes/header.php');
             </div>
         </div>
     </div>
+</div>
 
-    <?php
-    // Chama função para pegar o POST de cada FORM
-    function get_post_action($name)
-    {
-        $params = func_get_args();
+<?php
+// Chama função para pegar o POST de cada FORM
+function get_post_action($name)
+{
+    $params = func_get_args();
 
-        foreach ($params as $name) {
-            if (isset($_POST[$name])) {
-                return $name;
-            }
+    foreach ($params as $name) {
+        if (isset($_POST[$name])) {
+            return $name;
         }
     }
+}
 
-    // Verifica qual botao foi clicado
-    switch (get_post_action('desativar', 'ativar', 'adicionar')) {
+// Verifica qual botao foi clicado
+switch (get_post_action('desativar', 'ativar', 'adicionar')) {
 
-        case 'desativar':
+    case 'desativar':
 
-            if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-                $id          = $_POST['id'];
-                $status_down = '2';
+            $id          = $_POST['id'];
+            $status_down = '2';
 
-                //Validaçao dos campos:
-                $validacao = true;
-            }
+            //Validaçao dos campos:
+            $validacao = true;
+        }
 
-            //Delete do banco:
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
-            $q = $pdo->prepare($sql);
-            $q->execute(array($status_down, $id));
-            echo '<script>setTimeout(function () { 
+        //Delete do banco:
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($status_down, $id));
+        echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Cliente/Usuário desativado com sucesso!",
@@ -282,25 +283,25 @@ include('../../includes/header.php');
                 window.location.href = "clientes";
               }
             }); }, 1000);</script>';
-            break;
+        break;
 
-        case 'ativar':
+    case 'ativar':
 
-            if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-                $id          = $_POST['id'];
-                $status_up = '1';
+            $id          = $_POST['id'];
+            $status_up = '1';
 
-                //Validaçao dos campos:
-                $validacao = true;
-            }
+            //Validaçao dos campos:
+            $validacao = true;
+        }
 
-            //Delete do banco:
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
-            $q = $pdo->prepare($sql);
-            $q->execute(array($status_up, $id));
-            echo '<script>setTimeout(function () { 
+        //Delete do banco:
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_usuarios SET status = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($status_up, $id));
+        echo '<script>setTimeout(function () { 
                 swal({
                   title: "Parabéns!",
                   text: "Cliente/Usuário ativado com sucesso!",
@@ -312,50 +313,50 @@ include('../../includes/header.php');
                     window.location.href = "clientes";
                   }
                 }); }, 1000);</script>';
-            break;
+        break;
 
-        case 'adicionar':
+    case 'adicionar':
 
-            if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-                $nome        = $_POST['nome'];
-                $rg          = $_POST['rg'];
-                $cpf         = $_POST['cpf'];
-                $telefone    = $_POST['telefone'];
-                $email       = $_POST['email'];
-                $cep         = $_POST['cep'];
-                $endereco    = $_POST['endereco'];
-                $numero      = $_POST['numero'];
-                $complemento = $_POST['complemento'];
-                $bairro      = $_POST['bairro'];
-                $cidade      = $_POST['cidade'];
-                $estado      = $_POST['estado'];
-                $tipo_pix    = $_POST['tipo_pix'];
-                $chave       = $_POST['chave'];
-                $status      = '1';
-                $nivel       = $_POST['nivel'];
-                $dt_cadastro = date("Y-m-d");
+            $nome        = $_POST['nome'];
+            $rg          = $_POST['rg'];
+            $cpf         = $_POST['cpf'];
+            $telefone    = $_POST['telefone'];
+            $email       = $_POST['email'];
+            $cep         = $_POST['cep'];
+            $endereco    = $_POST['endereco'];
+            $numero      = $_POST['numero'];
+            $complemento = $_POST['complemento'];
+            $bairro      = $_POST['bairro'];
+            $cidade      = $_POST['cidade'];
+            $estado      = $_POST['estado'];
+            $tipo_pix    = $_POST['tipo_pix'];
+            $chave       = $_POST['chave'];
+            $status      = '1';
+            $nivel       = $_POST['nivel'];
+            $dt_cadastro = date("Y-m-d");
 
-                if ($complemento == '') {
-                    $complemento = '-';
-                }
-                if ($chave == '') {
-                    $chave = '-';
-                }
+            if ($complemento == '') {
+                $complemento = '-';
             }
+            if ($chave == '') {
+                $chave = '-';
+            }
+        }
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM tbl_usuarios WHERE cpf = "' . $_POST['cpf'] . '"';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($_POST['cpf']));
+        $data = $q->fetch(PDO::FETCH_ASSOC);
+
+        if ($data['cpf'] != $_POST['cpf']) {
+
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'SELECT * FROM tbl_usuarios WHERE cpf = "' . $_POST['cpf'] . '"';
+            $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($_POST['cpf']));
-            $data = $q->fetch(PDO::FETCH_ASSOC);
-
-            if ($data['cpf'] != $_POST['cpf']) {
-
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                $q = $pdo->prepare($sql);
-                $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $status, $nivel, $dt_cadastro));
-                echo '<script>setTimeout(function () { 
+            $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $status, $nivel, $dt_cadastro));
+            echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Cliente/Usuário cadastrado com sucesso!",
@@ -367,9 +368,9 @@ include('../../includes/header.php');
                 window.location.href = "clientes";
               }
             }); }, 1000);</script>';
-            }
-            if ($data['cpf'] == $_POST['cpf']) {
-                echo '<script>setTimeout(function () { 
+        }
+        if ($data['cpf'] == $_POST['cpf']) {
+            echo '<script>setTimeout(function () { 
                 swal({
                   title: "Atenção!",
                   text: "Cliente/Usuário já possui cadastro!",
@@ -381,11 +382,11 @@ include('../../includes/header.php');
                     window.location.href = "clientes";
                   }
                 }); }, 1000);</script>';
-            }
-            break;
+        }
+        break;
 
-        default:
-    }
-    ?>
+    default:
+}
+?>
 
-    <?php include('../../includes/footer.php'); ?>
+<?php include('../../includes/footer.php'); ?>
