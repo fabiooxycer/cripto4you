@@ -14,7 +14,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 include('../../includes/header.php');
 ?>
 <style>
-    .try-modal:before {
+    .modal:before {
         content: '';
         position: fixed;
         top: 0;
