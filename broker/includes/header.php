@@ -3,7 +3,6 @@ include("converte.php");
 include("database.php");
 $pdo = BancoCadastros::conectar();
 include("selects-db.php");
-require('phpmailer/hdw-phpmailer.php');
 
 ?>
 
