@@ -116,7 +116,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<form action='clientes-movimentacao' method='POST'>";
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 if ($row['confirmado'] == 2) {
-                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar"><i  class="fa fa-thumbs-up"></i></button>';
+                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button>';
                                 } else {
                                     echo '-';
                                 }
@@ -134,7 +134,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     </div>
 
     <!-- Exibe o Modal para solicitação de saque -->
-    <div class="modal" id="modalSaque" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -169,7 +169,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     </div>
 
     <!-- Exibe o Modal para solicitação de depósito -->
-    <div class="modal" id="modalDeposito" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -148,7 +148,7 @@ include('../../includes/header.php');
 </div>
 
 <!-- Exibe o Modal para inserção dos Cliente -->
-<div class="modal" id="modalNovoUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalNovoUsuario" tabindex="-1" role="dialog" aria-labelledby="modalNovoUsuario" aria-hidden="true" >
     <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content">
             <div class="modal-header">

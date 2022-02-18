@@ -107,7 +107,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de saque -->
-    <div class="modal" id="modalSaque" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,7 +142,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de depósito -->
-    <div class="modal" id="modalDeposito" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
