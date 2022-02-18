@@ -108,7 +108,7 @@ include('../../includes/header.php');
 
     <!-- Exibe o Modal para solicitação de saque -->
     <div class="modal" id="modalSaque" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">SOLICITAR SAQUE</h4>
@@ -118,9 +118,9 @@ include('../../includes/header.php');
                     <form action="meu-investimento" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Preencha o valor que deseja sacar:</label>
+                                        <label for="basicInput">Valor:</label>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="3.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ include('../../includes/header.php');
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font>
-                            <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis.</font>
+                            <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-primary"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
@@ -143,7 +143,7 @@ include('../../includes/header.php');
 
     <!-- Exibe o Modal para solicitação de depósito -->
     <div class="modal" id="modalDeposito" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">DEPÓSITO DE APORTE</h4>
@@ -153,9 +153,9 @@ include('../../includes/header.php');
                     <form action="meu-investimento" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Preencha o valor que deseja realizar o aporte:</label>
+                                        <label for="basicInput">Valor:</label>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="20.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -163,7 +163,10 @@ include('../../includes/header.php');
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font>
-                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font>
+                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+                            <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
+                            <font size="2"><strong>Rede:</strong> BEP20</font><br><br>
+                            <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="deposito" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR APORTE</button>
