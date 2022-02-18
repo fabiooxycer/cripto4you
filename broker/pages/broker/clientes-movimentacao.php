@@ -13,7 +13,6 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 
 include('../../includes/header.php');
 require_once("../../includes/database.php");
-require_once("../../includes/PHPMailer/class.phpmailer.php");
 $pdo = BancoCadastros::conectar();
 
 $id = null;
@@ -335,6 +334,8 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q = $pdo->prepare($sql);
         $q->execute(array($confirmado, $id_transacao));
 
+        require_once("../../includes/PHPMailer/class.phpmailer.php");
+
         $msg =  '
 
 <style type="text/css">
@@ -385,13 +386,11 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $mail->AddAddress($cct, $ass);
         $mail->IsHTML(true);
         $mail->CharSet = 'utf-8';
-        $mail->Subject  = $assunto; // Assunto da mensagem
+        $mail->Subject  = $assunto;
         $mail->Body = utf8_decode($msg);
 
-        // Envia o e-mail
         $enviado = $mail->Send();
 
-        // Limpa os destinat�rios e os anexos
         $mail->ClearAllRecipients();
         $mail->ClearAttachments();
 
