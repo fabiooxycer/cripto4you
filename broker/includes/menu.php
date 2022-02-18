@@ -21,22 +21,11 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
             <i class="fas fa-fw fa-coins"></i>
-            <span>Meu Investimento</span>
+            <span>Investimento</span>
         </a>
         <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="meu-investimento">Visualizar</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio" aria-expanded="true" aria-controls="collapseRelatorio">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Relatório</span>
-        </a>
-        <div id="collapseRelatorio" class="collapse" aria-labelledby="headingRelatorio" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="historico">Histórico</a>
+                <a class="collapse-item" href="meu-investimento">Extrato</a>
             </div>
         </div>
     </li>
