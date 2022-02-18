@@ -366,7 +366,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $retorn  = 'broker@cripto4you.net';
         $porta   = '587';
         $nome    = 'Broker | Cripto4You';
-        $cct     = 'fabio.vieira@redemassa.com.br';
+        $cct     = $data['email'];
         $assunto = 'LIBERAÇÃO DE APORTE';
         //$cct2	 = '';
 
@@ -395,7 +395,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $mail->ClearAllRecipients();
         $mail->ClearAttachments();
 
-        echo "<script>alert('OCORRÊNCIAS FINALIZADAS COM SUCESSO E ENVIADAS POR E-MAIL!');location.href='../ocorrenciasMaster.php';</script>";
         echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
