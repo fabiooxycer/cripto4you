@@ -13,6 +13,18 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 
 include('../../includes/header.php');
 ?>
+<style>
+    .try-modal:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(#000, .4);
+        z-index: 2;
+    }
+</style>
 
 <script>
     function mask($val, $mask) {
