@@ -265,10 +265,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "meu-investimento";
+                window.location.href = "clientes";
               }
             }); }, 1000);</script>';
-            
+
         break;
 
     case 'deposito':
@@ -297,7 +297,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                 },
                 function(isConfirm){
                   if (isConfirm) {
-                    window.location.href = "meu-investimento";
+                    window.location.href = "clientes";
                   }
                 }); }, 1000);</script>';
 
@@ -405,7 +405,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                     },
                     function(isConfirm){
                       if (isConfirm) {
-                        window.location.href = "clientes-movimentacao?id=' . $id . '";
+                        window.location.href = "clientes";
                       }
                     }); }, 1000);</script>';
 
