@@ -45,6 +45,7 @@ include('../../includes/header.php');
                                 <th style='text-align: center; vertical-align:middle !important'>DESCRIÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
+                                <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>VALOR</th>
                             </tr>
                         </thead>
@@ -81,12 +82,19 @@ include('../../includes/header.php');
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
                                 }
+                                if ($row['confirmado'] == 1) {
+                                    $confirmado = '<font size="3"><strong> AUTORIZADO </strong></font>';
+                                }
+                                if ($row['confirmado'] == 2) {
+                                    $confirmado = '<font size="3"><strong> AGUARDANDO LIBERAÇÃO </strong></font>';
+                                }
 
                                 echo "<tr>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $descricao . "</strong></font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $valor . "</strong></font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $confirmado . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . number_format($valor, 2, ',', '.') . "</strong></font></td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
