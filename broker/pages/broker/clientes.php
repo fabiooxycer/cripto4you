@@ -51,11 +51,11 @@ include('../../includes/header.php');
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="ml-auto" align="right">
+            <div class="ml-auto" align="left">
                 <div>
                     <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovoUsuario"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
                 </div>
-            </div>
+            </div><br>
             <h4 class="m-0 font-weight-bold text-primary">CLIENTES/USUÁRIOS</h4>
             <p class="mb-4">Abaixo serão listadas todos os clientes/usuários cadastrados em nossa plataforma.</p>
         </div>

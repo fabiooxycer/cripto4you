@@ -26,11 +26,11 @@ include('../../includes/header.php');
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="ml-auto" align="right">
+            <div class="ml-auto" align="left">
                 <div>
                     <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
                 </div>
-            </div>
+            </div><br>
             <h4 class="m-0 font-weight-bold text-primary">NOTÍCIAS</h4>
             <p class="mb-4">Abaixo serão listadas todas as noticias exbidas no site.</p>
         </div>
@@ -58,12 +58,12 @@ include('../../includes/header.php');
                             if ($row['dt_postagem']) {
                                 $data_postagem = '' . $row['dt_postagem'] . '';
                                 $timestamp = strtotime($data_postagem);
-                                $dt_postagem = '<font size="2">' . date('d/m/Y', $timestamp) . ' </font>';
+                                $dt_postagem = date('d/m/Y', $timestamp);
                             }
                             if ($row['hr_postagem']) {
                                 $hora_postagem = '' . $row['hr_postagem'] . '';
                                 $timestamp2 = strtotime($hora_postagem);
-                                $hr_postagem = '<font size="2">' . date('H:i:s', $timestamp2) . ' </font>';
+                                $hr_postagem = date('H:i:s', $timestamp2);
                             }
 
                             if ($row['titulo']) {
@@ -72,8 +72,8 @@ include('../../includes/header.php');
 
                             echo "<tr>";
                             echo "<td width=150>" . $imagem . "</td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
-                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $titulo . "</strong></font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_postagem . " às " . $hr_postagem . "</font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='2'>" . $titulo . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             //echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
                             //echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
