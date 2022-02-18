@@ -14,7 +14,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 include('../../includes/header.php');
 ?>
 <style>
-    .try-modal-overlay {
+    .modal-overlay {
         position: fixed;
         top: 0;
         right: 0;
@@ -24,7 +24,7 @@ include('../../includes/header.php');
         z-index: 2;
     }
 
-    .try-modal {
+    .modal {
         position: absolute;
         top: 35%;
         left: 25%;
