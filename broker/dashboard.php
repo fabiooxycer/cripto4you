@@ -52,7 +52,7 @@ include('includes/header.php');
                                     Lucro Total
                                 </div>
                                 <?php
-                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3');
+                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1');
 
                                 $result = $sql->fetchAll();
                                 
@@ -86,7 +86,7 @@ include('includes/header.php');
                                     Total de Retiradas
                                 </div>
                                 <?php
-                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 2');
+                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 2 AND confirmado = 1');
 
                                 $result = $sql->fetchAll();
                                 
@@ -120,7 +120,7 @@ include('includes/header.php');
                                     Saldo Atual
                                 </div>
                                 <?php
-                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1');
+                                $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1 AND confirmado = 1');
 
                                 $result = $sql->fetchAll();
 
