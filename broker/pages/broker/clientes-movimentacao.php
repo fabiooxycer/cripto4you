@@ -115,7 +115,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                                 echo "<form action='clientes-movimentacao' method='POST'>";
                                 echo '<input type="hidden" name="id" id="id" value="' . $id_movimentacao . '" >';
-                                echo '<input type="hidden" name="tipo" id="tipo" value="' . $tipo . '" >';
+                                echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                 if ($row['confirmado'] == 2) {
                                     echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button>';
