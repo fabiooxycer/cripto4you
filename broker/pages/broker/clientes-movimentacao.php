@@ -96,7 +96,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
                                 if ($row['valor']) {
-                                    $valor = '' . $row['valor'] . '';
+                                    $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
                                 if ($row['confirmado'] == 1) {
                                     $confirmado = 'Autorizado';
@@ -110,13 +110,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                                 echo "<form action='clientes-movimentacao' method='POST'>";
-                                echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
-                                echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
-                                echo '<input type="hidden" name="valor" id="valor" value="' . number_format($row['valor'], 2, ',', '.') . '" >';
+                                echo '<input type="hidden" name="id" id="id" value="' . $id_movimentacao . '" >';
+                                echo '<input type="hidden" name="tipo" id="tipo" value="' . $tipo . '" >';
+                                echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                 if ($row['confirmado'] == 2) {
                                     echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button>';
                                 } else {
@@ -247,14 +247,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data = [
+        $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
             'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
 
         echo '<script>setTimeout(function () { 
             swal({
