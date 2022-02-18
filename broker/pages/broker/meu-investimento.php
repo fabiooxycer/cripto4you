@@ -94,7 +94,7 @@ include('../../includes/header.php');
                                 echo "<td style='text-align: center; vertical-align:middle !important'>>" . $tipo . "</td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'>" . $dt_criacao . " às " . $hr_criacao . "</td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>" . number_format($valor, 2, ',', '.') . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>R$ " . number_format($valor, 2, ',', '.') . "</td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
