@@ -61,40 +61,40 @@ include('../../includes/header.php');
                                     $descricao = '' . $row['descricao'] . '';
                                 }
                                 if ($row['tipo'] == 1) {
-                                    $tipo = '<font size="3" color="green" ><strong> DEPÓSITO APORTE </strong></font>';
+                                    $tipo = '<font color="green" > Debito </font>';
                                 }
                                 if ($row['tipo'] == 2) {
-                                    $tipo = '<font size="3" color="red" ><strong> SAQUE APORTE/LUCRO </strong></font>';
+                                    $tipo = '<font color="red" > Crédito </font>';
                                 }
                                 if ($row['tipo'] == 3) {
-                                    $tipo = '<font size="3" color="blue" ><strong> LUCRO OPERAÇÕES </strong></font>';
+                                    $tipo = '<font color="blue" > Lucro</font>';
                                 }
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
                                     $timestamp = strtotime($data_criacao);
-                                    $dt_criacao = '<font size="3">' . date('d/m/Y', $timestamp) . ' </font>';
+                                    $dt_criacao = date('d/m/Y', $timestamp);
                                 }
                                 if ($row['hr_criacao']) {
                                     $hora_criacao = '' . $row['hr_criacao'] . '';
                                     $timestamp2 = strtotime($hora_criacao);
-                                    $hr_criacao = '<font size="3">' . date('H:i:s', $timestamp2) . ' </font>';
+                                    $hr_criacao = date('H:i:s', $timestamp2);
                                 }
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
                                 }
                                 if ($row['confirmado'] == 1) {
-                                    $confirmado = '<font size="3"><strong> AUTORIZADO </strong></font>';
+                                    $confirmado = 'Autorizado';
                                 }
                                 if ($row['confirmado'] == 2) {
-                                    $confirmado = '<font size="3"><strong> AGUARDANDO LIBERAÇÃO </strong></font>';
+                                    $confirmado = 'Aguardando Liberação';
                                 }
 
                                 echo "<tr>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $descricao . "</strong></font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $tipo . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'>" . $confirmado . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . number_format($valor, 2, ',', '.') . "</strong></font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $descricao . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>>" . $tipo . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $dt_criacao . " às " . $hr_criacao . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $confirmado . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'>" . number_format($valor, 2, ',', '.') . "</td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
