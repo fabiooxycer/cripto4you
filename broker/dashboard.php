@@ -112,8 +112,7 @@ include('includes/header.php');
                                 <p>
                                     <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'], 2); ?></font>
                                 </p>
-                                <?php //} 
-                                ?>
+                                <?php } ?>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-3x text-green-300"></i>
