@@ -71,7 +71,7 @@ include('../../includes/header.php');
                             <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
                             <th style='text-align: center; vertical-align:middle !important'>STATUS</th>
                             <th style='text-align: center; vertical-align:middle !important'>NÍVEL</th>
-                            <th style='text-align: center; vertical-align:middle !important' width="5%">AÇÃO</th>
+                            <th style='text-align: center; vertical-align:middle !important' width="11%">AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,17 +124,16 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $status . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $nivel . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                            // echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
-                            // echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
-                            // echo ' <a type="button" class="reprocessar btn btn-sm btn-primary" data-id="' . $row['id'] . '" title="REPROCESSAR"><i  class="fa fa-share"></i></a>';
                             echo '<form action="clientes" method="POST">';
-                            echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
+                            echo '<a class="btn btn-sm btn-info" title="MOVIMENTAÇÕES" href="clientes-movimentacao?id=' . $row['id'] . '"><i class="fa fa-eye"></i></a>';
+                            echo '&nbsp;<a class="btn btn-sm btn-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                             if ($row['status'] == 1) {
                                 echo '&nbsp;<button type="submit" title="DESATIVAR" class="btn btn-sm btn-danger" name="desativar"><i  class="fa fa-thumbs-down"></i></button>';
                             } else {
                                 echo '&nbsp;<button type="submit" title="ATIVAR" class="btn btn-sm btn-success" name="ativar"><i  class="fa fa-thumbs-up"></i></button>';
                             }
+                            echo '&nbsp;<button type="submit" title="REDEFINIR SENHA" class="btn btn-sm btn-secondary" name="redefinir"><i  class="fa fa-key"></i></button>';
                             echo "</form>";
                             echo "</td>";
                         }
@@ -290,7 +289,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('desativar', 'ativar', 'adicionar')) {
+switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
 
     case 'desativar':
 
@@ -420,6 +419,35 @@ switch (get_post_action('desativar', 'ativar', 'adicionar')) {
                   }
                 }); }, 1000);</script>';
         }
+        break;
+
+    case 'redefinir':
+
+        if (!empty($_POST)) {
+
+            $id    = $_POST['id'];
+            $senha = '';
+
+            //Validaçao dos campos:
+            $validacao = true;
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_usuarios SET senha = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($senha, $id));
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Redefinição de senha realizada com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes";
+                  }
+                }); }, 1000);</script>';
         break;
 
     default:

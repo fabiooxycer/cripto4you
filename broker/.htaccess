@@ -18,6 +18,7 @@
   RewriteRule ^clientes/?$ pages/broker/clientes.php [NC,L]
   RewriteRule ^clientes-visulizar/?$ pages/broker/visualizar-editar.php [NC,L]
   RewriteRule ^clientes-editar/?$ pages/broker/clientes-editar.php [NC,L]
+  RewriteRule ^clientes-movimentacao/?$ pages/broker/clientes-movimentacao.php [NC,L]
   RewriteRule ^meu-investimento/?$ pages/broker/meu-investimento.php [NC,L]
 
 # SUPORTE
