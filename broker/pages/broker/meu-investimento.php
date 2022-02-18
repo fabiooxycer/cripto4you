@@ -13,29 +13,6 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 
 include('../../includes/header.php');
 ?>
-<style>
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(#000, .4);
-        z-index: 2;
-    }
-
-    .modal {
-        position: absolute;
-        top: 35%;
-        left: 25%;
-        right: 25%;
-        width: 50%;
-        height: 400px;
-        background-color: white;
-        z-index: 3;
-    }
-</style>
-
 <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
@@ -182,7 +159,7 @@ switch (get_post_action('solicitar')) {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($id_usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
         echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
