@@ -41,7 +41,7 @@ include('../../includes/header.php');
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="ml-auto" align="right">
+            <div class="ml-auto" align="left">
                 <div>
                     <button class="btn btn-danger mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
 
