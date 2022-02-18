@@ -47,7 +47,7 @@ include('../../includes/header.php');
 
                     <button class="btn btn-success mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
                 </div>
-            </div>
+            </div><br><br>
             <h4 class="m-0 font-weight-bold text-primary">MEU INVESTIMENTO</h4>
             <p class="mb-4">Abaixo serão listadas todas movimentações realizadas em sua conta.</p>
         </div>
