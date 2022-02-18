@@ -57,7 +57,7 @@ include('../../includes/header.php');
                 <div>
                     <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
 
-                    <button class="btn btn-default mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
+                    <button class="btn btn-secondary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">MEU INVESTIMENTO</h4>
