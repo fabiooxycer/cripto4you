@@ -97,32 +97,32 @@ include('../../includes/header.php');
                             if ($row['dt_cadastro']) {
                                 $data_cadastro = '' . $row['dt_cadastro'] . '';
                                 $timestamp = strtotime($data_cadastro);
-                                $dt_cadastro = '<font size="2">' . date('d/m/Y', $timestamp) . ' </font>';
+                                $dt_cadastro = date('d/m/Y', $timestamp);
                             }
                             if ($row['status'] == 1) {
-                                $status = '<font size="3" color="green" ><strong> ATIVO </strong></font>';
+                                $status = '<font color="green"> ATIVO </font>';
                             }
                             if ($row['status'] == 2) {
-                                $status = '<font size="3" color="red" ><strong> INATIVO </strong></font>';
+                                $status = '<font color="red"> INATIVO </font>';
                             }
                             if ($row['nivel'] == 1) {
-                                $nivel = '<font size="3" color="blue" ><strong> CLIENTE </strong></font>';
+                                $nivel = '<font color="blue"> CLIENTE </font>';
                             }
                             if ($row['nivel'] == 99) {
-                                $nivel = '<font size="3" color="orange" ><strong> OPERADOR </strong></font>';
+                                $nivel = '<font color="orange"> OPERADOR </font>';
                             }
                             if ($row['nivel'] == 100) {
-                                $nivel = '<font size="3" color="#666666" ><strong> ADMINISTRADOR </strong></font>';
+                                $nivel = '<font color="#666666"> ADMINISTRADOR </font>';
                             }
 
                             echo "<tr>";
-                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='3'><strong>" . $nome . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $cpf . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $telefone . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $email . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $dt_cadastro . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $status . "</strong></font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='3'><strong>" . $nivel . "</strong></font></td>";
+                            echo "<td style='text-align: left; vertical-align:middle !important'><font size='2'>" . $nome . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $cpf . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $telefone . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $email . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_cadastro . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $status . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $nivel . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             // echo '<a type="button" class="liberacaoInterna btn btn-sm btn-success" onclick="modalLiberar2(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO INTERNA"><i  class="fa fa-file-signature"></i></a>';
                             // echo ' <a type="button" class="liberacaoComprovante btn btn-sm btn-warning" onclick="modalComprovante(\'' . $row["id"] . '\', \'' . $_SESSION["UsuarioNome"] . '\', \'' . date("d/m/Y") . '\')" title="LIBERAÇÃO COM COMPROVANTE DE PGTO."><i  class="fa fa-vote-yea"></i></a>';
