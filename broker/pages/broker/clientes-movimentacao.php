@@ -232,9 +232,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         if (!empty($_POST)) {
 
             $usuario     = $id;
+            $nome_user   = $data['nome'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor       = $_POST['valor'];
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
@@ -250,7 +251,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome\nValor: $valor\nData: $dt_criacao as $hr_criacao\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -275,9 +276,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         if (!empty($_POST)) {
 
             $usuario     = $id;
+            $nome_user   = $data['nome'];
             $descricao   = 'Depósito aporte';
             $tipo        = '1';
-            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor       = $_POST['valor'];
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
@@ -293,7 +295,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome\nValor: $valor\nData: $dt_criacao as $hr_criacao\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
