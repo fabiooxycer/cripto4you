@@ -14,8 +14,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 include('../../includes/header.php');
 ?>
 <style>
-    .modal:before {
-        content: '';
+    .try-modal-overlay {
         position: fixed;
         top: 0;
         right: 0;
@@ -23,6 +22,17 @@ include('../../includes/header.php');
         left: 0;
         background: rgba(#000, .4);
         z-index: 2;
+    }
+
+    .try-modal {
+        position: absolute;
+        top: 35%;
+        left: 25%;
+        right: 25%;
+        width: 50%;
+        height: 400px;
+        background-color: white;
+        z-index: 3;
     }
 </style>
 
@@ -163,7 +173,7 @@ switch (get_post_action('solicitar')) {
             $usuario     = $_SESSION['UsuarioID'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor       = str_replace(',','.',str_replace('.','',$_POST['valor']));
+            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
