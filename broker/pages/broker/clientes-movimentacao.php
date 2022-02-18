@@ -251,7 +251,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
             'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
-            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -288,27 +287,30 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
-        echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Parabéns!",
-                  text: "Solicitação de aporte realizada com sucesso!",
-                  type: "success",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "clientes";
-                  }
-                }); }, 1000);</script>';
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data = [
+        $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
             'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
-            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+        echo '<script>setTimeout(function () { 
+            swal({
+              title: "Parabéns!",
+              text: "Solicitação de aporte realizada com sucesso!",
+              type: "success",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "clientes";
+              }
+            }); }, 1000);</script>';
+
         break;
 
     case 'liberar':
