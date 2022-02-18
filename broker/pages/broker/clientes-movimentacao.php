@@ -254,6 +254,17 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                 window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data = [
+            "chat_id" => "-1001322495863",
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
+            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data));
         break;
 
     case 'deposito':
@@ -285,6 +296,15 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                     window.location.href = "meu-investimento";
                   }
                 }); }, 1000);</script>';
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data = [
+            "chat_id" => "-1001322495863",
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: " . $data['nome'] . "\nValor: " . $valor . "\nData: " . $dt_criacao . " as " . $hr_criacao . "\n ",
+            //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
+        ];
         break;
 
     case 'liberar':
