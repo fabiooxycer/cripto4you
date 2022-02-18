@@ -121,13 +121,52 @@ include('../../includes/header.php');
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="basicInput">Preencha o valor que deseja sacar:</label>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="3.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <p align="justify">
+                            <font size="2" color="red"><strong>Observação:</strong></font>
+                            <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis.</font>
+                        </p>
                         <div class="form-actions">
-                            <button type="submit" name="solicitar" class="btn btn-primary"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="submit" name="saque" class="btn btn-primary"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exibe o Modal para solicitação de depósito -->
+    <div class="modal" id="modalDeposito" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">DEPÓSITO DE APORTE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <form action="meu-investimento" method="post" enctype="multipart/form-data">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="basicInput">Preencha o valor que deseja realizar o aporte:</label>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="20.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p align="justify">
+                            <font size="2" color="red"><strong>Observação:</strong></font>
+                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font>
+                        </p>
+                        <div class="form-actions">
+                            <button type="submit" name="deposito" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR APORTE</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
@@ -152,9 +191,9 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('solicitar')) {
+switch (get_post_action('saque', 'deposito')) {
 
-    case 'solicitar':
+    case 'saque':
 
         if (!empty($_POST)) {
 
@@ -183,6 +222,37 @@ switch (get_post_action('solicitar')) {
                 window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
+        break;
+
+    case 'deposito':
+
+        if (!empty($_POST)) {
+
+            $usuario     = $_SESSION['UsuarioID'];
+            $descricao   = 'Depósito aporte';
+            $tipo        = '1';
+            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $comprovante = '-';
+            $dt_criacao  = date("Y-m-d");
+            $hr_criacao  = date("H:i:s");
+            $confirmado  = '2';
+        }
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Solicitação de aporte realizada com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "meu-investimento";
+                  }
+                }); }, 1000);</script>';
         break;
 
     default:
