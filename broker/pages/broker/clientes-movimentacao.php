@@ -13,6 +13,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 
 include('../../includes/header.php');
 require_once("../../includes/database.php");
+require_once("../../includes/PHPMailer/class.phpmailer.php");
 $pdo = BancoCadastros::conectar();
 
 $id = null;
@@ -115,6 +116,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                                 echo "<form action='clientes-movimentacao' method='POST'>";
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
+                                echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
+                                echo '<input type="hidden" name="valor" id="valor" value="' . number_format($row['valor'], 2, ',', '.') . '" >';
                                 if ($row['confirmado'] == 2) {
                                     echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button>';
                                 } else {
@@ -311,8 +314,17 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $id_transacao = $_POST['id'];
+            $id_transacao    = $_POST['id'];
+            $tipo_transacao  = $_POST['tipo'];
+            $valor_transacao = $_POST['valor'];
             $confirmado   = '1';
+
+            if ($tipo_transacao == 1) {
+                echo 'DEPÓSITO';
+            }
+            if ($tipo_transacao == 2) {
+                echo 'SAQUE';
+            }
 
             //Validaçao dos campos:
             $validacao = true;
@@ -322,6 +334,68 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $sql = 'UPDATE tbl_usuarios SET confirmado = ? WHERE id = ?';
         $q = $pdo->prepare($sql);
         $q->execute(array($confirmado, $id_transacao));
+
+        $msg =  '
+
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 18px;
+}
+-->
+</style>
+<p align="center">&nbsp;</p>
+<p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
+<p align="center" class="style1">&nbsp;</p>
+<p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
+<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_transacao . ' foi realizada com sucesso.</p>
+<p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
+<p align="center" class="style1">&nbsp;</p>
+<p align="center" class="style1">Obrigado,</p>
+<p align="center" class="style1">&nbsp;</p>
+<p align="center"><img src="https://cripto4you.net/assets/images/email/footer_email.png" width="350" height="130"></p>
+
+';
+
+        $smtp    = 'mail.cripto4you.net';
+        $logine  = 'broker@cripto4you.net';
+        $passwd  = 'Zxcvbnm@2022';
+        $aut     = 'TRUE';
+        $retorn  = 'broker@cripto4you.net';
+        $porta   = '587';
+        $nome    = 'Broker | Cripto4You';
+        $cct     = 'fabio.vieira@redemassa.com.br';
+        $assunto = 'LIBERAÇÃO DE APORTE';
+        //$cct2	 = '';
+
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        //$mail->SMTPDebug = true;
+        $mail->Host = $smtp;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = '';
+        $mail->Port = $porta;
+        $mail->Username = $logine;
+        $mail->Password = $passwd;
+        $mail->From = $logine;
+        $mail->Sender = $logine;
+        $mail->FromName = $nome;
+        $mail->AddAddress($cct, $ass);
+        $mail->IsHTML(true);
+        $mail->CharSet = 'utf-8';
+        $mail->Subject  = $assunto; // Assunto da mensagem
+        $mail->Body = utf8_decode($msg);
+
+        // Envia o e-mail
+        $enviado = $mail->Send();
+
+        // Limpa os destinat�rios e os anexos
+        $mail->ClearAllRecipients();
+        $mail->ClearAttachments();
+
+        echo "<script>alert('OCORRÊNCIAS FINALIZADAS COM SUCESSO E ENVIADAS POR E-MAIL!');location.href='../ocorrenciasMaster.php';</script>";
         echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
@@ -334,6 +408,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                         window.location.href = "clientes-movimentacao?id=' . $id . '";
                       }
                     }); }, 1000);</script>';
+
+
+
         break;
 
     default:
