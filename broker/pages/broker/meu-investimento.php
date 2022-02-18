@@ -61,13 +61,13 @@ include('../../includes/header.php');
                                     $descricao = '' . $row['descricao'] . '';
                                 }
                                 if ($row['tipo'] == 1) {
-                                    $tipo = '<font color="green" > Debito </font>';
+                                    $tipo = '<font color="blue"> Crédito </font>';
                                 }
                                 if ($row['tipo'] == 2) {
-                                    $tipo = '<font color="red" > Crédito </font>';
+                                    $tipo = '<font color="red"> Débito </font>';
                                 }
                                 if ($row['tipo'] == 3) {
-                                    $tipo = '<font color="blue" > Lucro</font>';
+                                    $tipo = '<font color="green"> Lucro </font>';
                                 }
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
@@ -90,11 +90,11 @@ include('../../includes/header.php');
                                 }
 
                                 echo "<tr>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $descricao . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>>" . $tipo . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $dt_criacao . " às " . $hr_criacao . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'>R$ " . number_format($valor, 2, ',', '.') . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
