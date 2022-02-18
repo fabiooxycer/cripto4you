@@ -27,20 +27,6 @@ include('../../includes/header.php');
 </style>
 
 <script>
-    function mask($val, $mask) {
-        $maskared = '';
-        $k = 0;
-        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
-            if ($mask[$i] == '#') {
-                if (isset($val[$k])) $maskared. = $val[$k++];
-            } else {
-                if (isset($mask[$i])) $maskared. = $mask[$i];
-            }
-        }
-        return $maskared;
-    }
-</script>
-<script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
@@ -177,7 +163,7 @@ switch (get_post_action('solicitar')) {
             $usuario     = $_SESSION['UsuarioID'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor       = $_POST['valor'];
+            $valor       = str_replace(',','.',str_replace('.','',$_POST['valor']));
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
