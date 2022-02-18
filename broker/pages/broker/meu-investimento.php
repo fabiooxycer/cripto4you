@@ -60,10 +60,13 @@ include('../../includes/header.php');
                                     $descricao = '' . $row['descricao'] . '';
                                 }
                                 if ($row['tipo'] == 1) {
-                                    $tipo = '<font size="3" color="green" ><strong> CRÉDITO </strong></font>';
+                                    $tipo = '<font size="3" color="green" ><strong> DEPÓSITO APORTE </strong></font>';
                                 }
                                 if ($row['tipo'] == 2) {
-                                    $tipo = '<font size="3" color="red" ><strong> DÉBITO </strong></font>';
+                                    $tipo = '<font size="3" color="red" ><strong> SAQUE APORTE/LUCRO </strong></font>';
+                                }
+                                if ($row['tipo'] == 3) {
+                                    $tipo = '<font size="3" color="blue" ><strong> LUCRO OPERAÇÕES </strong></font>';
                                 }
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
