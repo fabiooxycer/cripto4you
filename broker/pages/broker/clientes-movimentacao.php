@@ -254,9 +254,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario));
-        $data = $q->fetch(PDO::FETCH_ASSOC);
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-        $nome_user = $$data['nome'];
+        $nome_user = $$data_users['nome'];
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
