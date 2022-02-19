@@ -113,7 +113,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao?id='.$id.'" method="POST">';
+                                echo '<form action="clientes-movimentacao?id=' . $id . '" method="POST">';
+                                echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
@@ -151,7 +152,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
-                                        <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -187,6 +187,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
+                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
+                                        <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do aporte" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -233,8 +235,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $usuario     = $_POST['id'];
-            $nome_user   = $$_POST['nome'];
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT * FROM tbl_usuarios where id = ?";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($_POST['id']));
+            $data = $q->fetch(PDO::FETCH_ASSOC);
+
+            $usuario     = $data['id'];
+            $nome_user   = $$data['nome'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
             $valor_saque = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
@@ -259,7 +267,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome\nValor: $valor\nData: $dt_criacao as $hr_criacao\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_criacao as $hr_criacao\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
