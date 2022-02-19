@@ -113,7 +113,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao?id=' . $id . '" method="POST">';
+                                echo '<form action="clientes-movimentacao" method="POST">';
                                 echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
@@ -235,18 +235,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM tbl_usuarios where id = ?";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($_POST['id']));
-            $data = $q->fetch(PDO::FETCH_ASSOC);
-
-            $usuario        = $data['id'];
-            $nome_user      = $$data['nome'];
+            $usuario        = $_POST['id'];
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
             $valor_saque    = $_POST['valor'];
-            $valor_ajustado = number_format($valor_saque, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -259,6 +251,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $hr_criacao     = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario));
+        $data = $q->fetch(PDO::FETCH_ASSOC);
+
+        $nome_user = $$data['nome'];
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
@@ -268,7 +268,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_ajustado\nData: $dt_criacao as $hr_criacao\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_criacao as $hr_criacao\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
