@@ -107,7 +107,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de saque -->
-    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
+    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,7 +142,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de depósito -->
-    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
+    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true" >
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,7 +165,7 @@ include('../../includes/header.php');
                             <font size="2" color="red"><strong>Observação:</strong></font>
                             <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
-                        <p align="left">
+                        <p align="left">    
                             <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
                             <font size="2"><strong>Rede:</strong> BEP20</font><br><br>
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
@@ -205,7 +205,7 @@ switch (get_post_action('saque', 'deposito')) {
             $usuario     = $_SESSION['UsuarioID'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor       = $_POST['valor'];
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
@@ -236,7 +236,7 @@ switch (get_post_action('saque', 'deposito')) {
             $usuario     = $_SESSION['UsuarioID'];
             $descricao   = 'Depósito aporte';
             $tipo        = '1';
-            $valor       = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor       = $_POST['valor'];
             $comprovante = '-';
             $dt_criacao  = date("Y-m-d");
             $hr_criacao  = date("H:i:s");
