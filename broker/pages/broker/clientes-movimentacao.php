@@ -238,7 +238,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $usuario        = $_POST['id'];
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
-            $valor_saque    = $_POST['valor'];
+            $valor_saque    = number_format($_POST['valor'], 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -261,7 +261,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q->execute(array($usuario));
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-        $nome_user = $$data_users['nome'];
+        $nome_user = $data_users['nome'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
