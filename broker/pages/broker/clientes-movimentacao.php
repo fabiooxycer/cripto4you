@@ -113,7 +113,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo "<form action='clientes-movimentacao' method='POST'>";
+                                echo '<form action="clientes-movimentacao?id='.$id.'" method="POST">';
                                 echo '<input type="hidden" name="id" id="id" value="' . $id_movimentacao . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
@@ -144,7 +144,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
-                    <form action="meu-investimento" method="post" enctype="multipart/form-data">
+                    <form action="clientes-movimentacao?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-4">
@@ -179,7 +179,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
-                    <form action="meu-investimento" method="post" enctype="multipart/form-data">
+                    <form action="clientes-movimentacao?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-4">
