@@ -250,6 +250,12 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $timestamp2     = strtotime($hora_criacao);
             $hr_criacao     = date('H:i:s', $timestamp2);
         }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
@@ -257,11 +263,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $$data_users['nome'];
-
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
