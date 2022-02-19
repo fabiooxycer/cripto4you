@@ -113,8 +113,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao?id='.$id.'" method="POST">';
-                                echo '<input type="hidden" name="id" id="id" value="' . $id_movimentacao . '" >';
+                                echo '<form action="clientes-movimentacao" method="POST">';
+                                echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                 if ($row['confirmado'] == 2) {
@@ -150,6 +150,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
+                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
+                                        <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -231,20 +233,26 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $usuario     = $id;
-            $nome_user   = $data['nome'];
+            $usuario     = $_POST['id'];
+            $nome_user   = $$_POST['nome'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor       = $_POST['valor'];
+            $valor_saque = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $comprovante = '-';
-            $dt_criacao  = date("Y-m-d");
-            $hr_criacao  = date("H:i:s");
             $confirmado  = '2';
+
+            $data_criacao = '' . $row['dt_criacao'] . '';
+            $timestamp = strtotime($data_criacao);
+            $dt_criacao = date('d/m/Y', $timestamp);
+
+            $hora_criacao = '' . $row['hr_criacao'] . '';
+            $timestamp2 = strtotime($hora_criacao);
+            $hr_criacao = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
@@ -275,20 +283,26 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $usuario     = $id;
-            $nome_user   = $data['nome'];
-            $descricao   = 'Depósito aporte';
-            $tipo        = '1';
-            $valor       = $_POST['valor'];
-            $comprovante = '-';
-            $dt_criacao  = date("Y-m-d");
-            $hr_criacao  = date("H:i:s");
-            $confirmado  = '2';
+            $usuario        = $_POST['id'];
+            $nome_user      = $$_POST['nome'];
+            $descricao      = 'Depósito aporte';
+            $tipo           = '1';
+            $valor_deposito = $_POST['valor'];
+            $comprovante    = '-';
+            $confirmado     = '2';
+
+            $data_criacao   = '' . $row['dt_criacao'] . '';
+            $timestamp      = strtotime($data_criacao);
+            $dt_criacao     = date('d/m/Y', $timestamp);
+
+            $hora_criacao   = '' . $row['hr_criacao'] . '';
+            $timestamp2     = strtotime($hora_criacao);
+            $hr_criacao     = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
