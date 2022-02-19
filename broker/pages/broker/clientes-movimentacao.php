@@ -293,10 +293,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         if (!empty($_POST)) {
 
             $usuario        = $_POST['id'];
-            $nome_user      = $$_POST['nome'];
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
-            $valor_deposito = $_POST['valor'];
+            $valor_deposito = number_format($_POST['valor'], 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -313,12 +312,19 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+        $nome_user = $data_users['nome'];
+
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome\nValor: $valor\nData: $dt_criacao as $hr_criacao\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome_user\nValor: $valor_deposito\nData: $dt_criacao as $hr_criacao\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -332,7 +338,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "clientes";
+                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
 
