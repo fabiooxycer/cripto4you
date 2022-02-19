@@ -38,8 +38,6 @@ if (count($users) != 1) {
     $_SESSION['UsuarioNivel']    = $resultado['nivel'];
     $_SESSION['UsuarioCadastro'] = $resultado['dt_cadastro'];
 
-    $UsuarioLogadoNome = $_SESSION['UsuarioNome'];
-
     header("Location: dashboard");
     exit;
 }

@@ -253,9 +253,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
 
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
@@ -263,13 +263,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
+        $operador  = $data_users['operador'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -309,9 +310,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
 
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
@@ -319,13 +320,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
+        $operador  = $data_users['operador'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -347,118 +349,113 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
     case 'liberar':
 
-        if (!empty($_POST)) {
+//         if (!empty($_POST)) {
 
-            $id_transacao    = $_POST['id'];
-            $id_usuario      = $_POST['id_user'];
-            $nome_usuario    = $_POST['nome'];
-            $tipo_transacao  = $_POST['tipo'];
-            $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
-            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
-            $confirmado   = '1';
+//             $id_transacao    = $_POST['id'];
+//             $id_usuario      = $_POST['id_user'];
+//             $nome_usuario    = $_POST['nome'];
+//             $tipo_transacao  = $_POST['tipo'];
+//             $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+//             $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+//             $confirmado   = '1';
 
-            if ($tipo_transacao == 1) {
-                $tipo_transacao = 'DEPÓSITO';
-            }
-            if ($tipo_transacao == 2) {
-                $tipo_transacao = 'SAQUE';
-            }
+//             if ($tipo_transacao == 1) {
+//                 $tipo_transacao = 'DEPÓSITO';
+//             }
+//             if ($tipo_transacao == 2) {
+//                 $tipo_transacao = 'SAQUE';
+//             }
 
-            //Validaçao dos campos:
-            $validacao = true;
-        }
+//             $validacao = true;
+//         }
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'UPDATE tbl_investimentos SET confirmado = ? WHERE id = ?';
-        $q = $pdo->prepare($sql);
-        $q->execute(array($confirmado, $id_transacao));
+//         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//         $sql = 'UPDATE tbl_investimentos SET confirmado = ? WHERE id = ?';
+//         $q = $pdo->prepare($sql);
+//         $q->execute(array($confirmado, $id_transacao));
 
-        $sql = "SELECT * FROM tbl_usuarios where id = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario));
-        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+//         $sql = "SELECT * FROM tbl_usuarios where id = ?";
+//         $q = $pdo->prepare($sql);
+//         $q->execute(array($usuario));
+//         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-        $nome_user = $data_users['nome'];
+//         $nome_user = $data_users['nome'];
 
-        $timestamp = strtotime($data_users['dt_criacao']);
-        $timestamp2 = strtotime($data_users['hr_criacao']);
-        $dt_transacao = date('d/m/Y', $timestamp);
-        $hr_transacao = date('H:i:s', $timestamp2);
+//         $timestamp = strtotime($data_users['dt_criacao']);
+//         $timestamp2 = strtotime($data_users['hr_criacao']);
+//         $dt_transacao = date('d/m/Y', $timestamp);
+//         $hr_transacao = date('H:i:s', $timestamp2);
 
-        include("../../includes/PHPMailer/class.phpmailer.php");
+//         include("../../includes/PHPMailer/class.phpmailer.php");
 
-        $msg =  '
+//         $msg =  '
 
-<style type="text/css">
-<!--
-.style1 {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	color: #333333;
-	font-size: 18px;
-}
--->
-</style>
-<p align="center">&nbsp;</p>
-<p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
-<p align="center" class="style1">&nbsp;</p>
-<p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
-<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de R$ ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
-<p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
-<p align="center" class="style1">&nbsp;</p>
-<p align="center" class="style1">Obrigado,</p>
-<p align="center" class="style1">&nbsp;</p>
-<p align="center"><img src="https://cripto4you.net/assets/images/email/footer_email.png" width="350" height="130"></p>
+// <style type="text/css">
+// <!--
+// .style1 {
+// 	font-family: Geneva, Arial, Helvetica, sans-serif;
+// 	color: #333333;
+// 	font-size: 18px;
+// }
+// -->
+// </style>
+// <p align="center">&nbsp;</p>
+// <p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
+// <p align="center" class="style1">&nbsp;</p>
+// <p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
+// <p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de R$ ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
+// <p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
+// <p align="center" class="style1">&nbsp;</p>
+// <p align="center" class="style1">Obrigado,</p>
+// <p align="center" class="style1">&nbsp;</p>
+// <p align="center"><img src="https://cripto4you.net/assets/images/email/footer_email.png" width="350" height="130"></p>
 
-';
+// ';
 
-        $smtp    = 'mail.cripto4you.net';
-        $logine  = 'broker@cripto4you.net';
-        $passwd  = 'Zxcvbnm@2022';
-        $aut     = 'TRUE';
-        $retorn  = 'broker@cripto4you.net';
-        $porta   = '587';
-        $nome    = 'Broker | Cripto4You';
-        $cct     = $data['email'];
-        $assunto = 'LIBERAÇÃO DE APORTE';
-        //$cct2	 = '';
+//         $smtp    = 'mail.cripto4you.net';
+//         $logine  = 'broker@cripto4you.net';
+//         $passwd  = 'Zxcvbnm@2022';
+//         $aut     = 'TRUE';
+//         $retorn  = 'broker@cripto4you.net';
+//         $porta   = '587';
+//         $nome    = 'Broker | Cripto4You';
+//         $cct     = $data['email'];
+//         $assunto = 'LIBERAÇÃO DE APORTE';
 
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        //$mail->SMTPDebug = true;
-        $mail->Host = $smtp;
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = '';
-        $mail->Port = $porta;
-        $mail->Username = $logine;
-        $mail->Password = $passwd;
-        $mail->From = $logine;
-        $mail->Sender = $logine;
-        $mail->FromName = $nome;
-        $mail->AddAddress($cct, $ass);
-        $mail->IsHTML(true);
-        $mail->CharSet = 'utf-8';
-        $mail->Subject  = $assunto;
-        $mail->Body = utf8_decode($msg);
+//         $mail = new PHPMailer();
+//         $mail->IsSMTP();
+//         $mail->Host = $smtp;
+//         $mail->SMTPAuth = true;
+//         $mail->SMTPSecure = '';
+//         $mail->Port = $porta;
+//         $mail->Username = $logine;
+//         $mail->Password = $passwd;
+//         $mail->From = $logine;
+//         $mail->Sender = $logine;
+//         $mail->FromName = $nome;
+//         $mail->AddAddress($cct, $ass);
+//         $mail->IsHTML(true);
+//         $mail->CharSet = 'utf-8';
+//         $mail->Subject  = $assunto;
+//         $mail->Body = utf8_decode($msg);
 
-        $enviado = $mail->Send();
+//         $enviado = $mail->Send();
 
-        $mail->ClearAllRecipients();
-        $mail->ClearAttachments();
+//         $mail->ClearAllRecipients();
+//         $mail->ClearAttachments();
 
-        echo '<script>setTimeout(function () { 
-                    swal({
-                      title: "Parabéns!",
-                      text: "Transação liberada com sucesso!",
-                      type: "success",
-                      confirmButtonText: "OK" 
-                    },
-                    function(isConfirm){
-                      if (isConfirm) {
-                        window.location.href = "clientes";
-                      }
-                    }); }, 1000);</script>';
-
-
+//         echo '<script>setTimeout(function () { 
+//                     swal({
+//                       title: "Parabéns!",
+//                       text: "Transação liberada com sucesso!",
+//                       type: "success",
+//                       confirmButtonText: "OK" 
+//                     },
+//                     function(isConfirm){
+//                       if (isConfirm) {
+//                         window.location.href = "clientes";
+//                       }
+//                     }); }, 1000);</script>';
 
         break;
 
