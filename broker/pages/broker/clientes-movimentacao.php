@@ -95,9 +95,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $timestamp2 = strtotime($hora_criacao);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
-                                // if ($row['valor']) {
-                                //     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
-                                // }
+                                if ($row['valor']) {
+                                    $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
+                                }
                                 if ($row['confirmado'] == 1) {
                                     $confirmado = 'Autorizado';
                                 }
@@ -151,7 +151,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
-                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
+                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
