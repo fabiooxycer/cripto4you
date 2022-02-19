@@ -238,7 +238,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $usuario        = $_POST['id'];
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
-            $valor_saque    = number_format($_POST['valor'], 2, ',', '.');
+            $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -290,7 +290,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $usuario        = $_POST['id'];
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
-            // $valor_deposito = number_format($_POST['valor'], 2, ',', '.');
             $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $comprovante    = '-';
             $confirmado     = '2';
