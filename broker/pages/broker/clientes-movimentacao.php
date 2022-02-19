@@ -242,13 +242,8 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $comprovante    = '-';
             $confirmado     = '2';
 
-            $data_criacao   = '' . $row['dt_criacao'] . '';
-            $timestamp      = strtotime($data_criacao);
-            $dt_criacao     = date('d/m/Y', $timestamp);
-
-            $hora_criacao   = '' . $row['hr_criacao'] . '';
-            $timestamp2     = strtotime($hora_criacao);
-            $hr_criacao     = date('H:i:s', $timestamp2);
+            $dt_criacao = date("Y-m-d");
+            $hr_criacao = date("H:i:s");
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -300,13 +295,8 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $comprovante    = '-';
             $confirmado     = '2';
 
-            $data_criacao   = '' . $row['dt_criacao'] . '';
-            $timestamp      = strtotime($data_criacao);
-            $dt_criacao     = date('d/m/Y', $timestamp);
-
-            $hora_criacao   = '' . $row['hr_criacao'] . '';
-            $timestamp2     = strtotime($hora_criacao);
-            $hr_criacao     = date('H:i:s', $timestamp2);
+            $dt_criacao = date("Y-m-d");
+            $hr_criacao = date("H:i:s");
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
