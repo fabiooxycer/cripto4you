@@ -268,7 +268,8 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
-            "chat_id" => "-1001322495863",
+            //"chat_id" => "-1001322495863",
+            "chat_id" => "184418484",
             'parse_mode' => 'HTML',
             'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
         ];
