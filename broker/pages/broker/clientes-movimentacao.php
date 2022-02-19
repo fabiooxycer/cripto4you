@@ -282,7 +282,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "clientes";
+                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
 
