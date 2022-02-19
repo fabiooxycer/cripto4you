@@ -269,7 +269,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -325,7 +325,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $UsuarioLogadoNome\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -402,7 +402,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 <p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
-<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
+<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de R$ ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
 <p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Obrigado,</p>
