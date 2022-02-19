@@ -245,7 +245,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $nome_user   = $$data['nome'];
             $descricao   = 'Saque aporte/lucro';
             $tipo        = '2';
-            $valor_saque = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_saque = str_replace('.', '', $_POST['valor']);
             $comprovante = '-';
             $confirmado  = '2';
 
