@@ -113,7 +113,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao" method="POST">';
+                                echo '<form action="clientes-movimentacao?id='.$id.'" method="POST">';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
