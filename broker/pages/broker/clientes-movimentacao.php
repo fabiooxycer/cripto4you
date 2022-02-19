@@ -241,21 +241,22 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $q->execute(array($_POST['id']));
             $data = $q->fetch(PDO::FETCH_ASSOC);
 
-            $usuario     = $data['id'];
-            $nome_user   = $$data['nome'];
-            $descricao   = 'Saque aporte/lucro';
-            $tipo        = '2';
-            $valor_saque = $_POST['valor'];
-            $comprovante = '-';
-            $confirmado  = '2';
+            $usuario        = $data['id'];
+            $nome_user      = $$data['nome'];
+            $descricao      = 'Saque aporte/lucro';
+            $tipo           = '2';
+            $valor_saque    = $_POST['valor'];
+            $valor_ajustado = number_format($valor_saque, 2, ',', '.');
+            $comprovante    = '-';
+            $confirmado     = '2';
 
-            $data_criacao = '' . $row['dt_criacao'] . '';
-            $timestamp = strtotime($data_criacao);
-            $dt_criacao = date('d/m/Y', $timestamp);
+            $data_criacao   = '' . $row['dt_criacao'] . '';
+            $timestamp      = strtotime($data_criacao);
+            $dt_criacao     = date('d/m/Y', $timestamp);
 
-            $hora_criacao = '' . $row['hr_criacao'] . '';
-            $timestamp2 = strtotime($hora_criacao);
-            $hr_criacao = date('H:i:s', $timestamp2);
+            $hora_criacao   = '' . $row['hr_criacao'] . '';
+            $timestamp2     = strtotime($hora_criacao);
+            $hr_criacao     = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
@@ -267,7 +268,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_criacao as $hr_criacao\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_ajustado\nData: $dt_criacao as $hr_criacao\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
