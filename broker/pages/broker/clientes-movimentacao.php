@@ -339,10 +339,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $confirmado   = '1';
 
             if ($tipo_transacao == 1) {
-                echo 'DEPÓSITO';
+                $tipo_transacao = 'DEPÓSITO';
             }
             if ($tipo_transacao == 2) {
-                echo 'SAQUE';
+                $tipo_transacao = 'SAQUE';
             }
 
             //Validaçao dos campos:
