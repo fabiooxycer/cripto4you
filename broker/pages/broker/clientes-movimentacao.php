@@ -95,9 +95,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $timestamp2 = strtotime($hora_criacao);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
-                                if ($row['valor']) {
-                                    $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
-                                }
+                                // if ($row['valor']) {
+                                //     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
+                                // }
                                 if ($row['confirmado'] == 1) {
                                     $confirmado = 'Autorizado';
                                 }
