@@ -256,7 +256,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($usuario));
