@@ -113,7 +113,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao" method="POST">';
+                                echo '<form action="clientes-movimentacao?id=' . $id . '" method="POST">';
                                 echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
                                 echo '<input type="hidden" name="nome" id="nome" value="' . $data['nome'] . '" >';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
@@ -240,6 +240,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
             $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_saque, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -262,13 +263,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
+        $operador = $_SESSION['UsusarioNome'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_saque às $hr_saque\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: $valor_solicitado\nData: $dt_saque às $hr_saque\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -296,6 +298,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
             $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_deposito, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -317,13 +320,14 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
+        $operador = $_SESSION['UsusarioNome'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome_user\nValor: $valor_deposito\nData: $dt_deposito as $hr_deposito\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -352,6 +356,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             $nome_usuario    = $_POST['nome'];
             $tipo_transacao  = $_POST['tipo'];
             $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
             $confirmado   = '1';
 
             if ($tipo_transacao == 1) {
@@ -382,7 +387,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $dt_transacao = date('d/m/Y', $timestamp);
         $hr_transacao = date('H:i:s', $timestamp2);
 
-        require_once("../../includes/PHPMailer/class.phpmailer.php");
+        include("../../includes/PHPMailer/class.phpmailer.php");
 
         $msg =  '
 
@@ -399,7 +404,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 <p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
-<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_transacao . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
+<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
 <p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Obrigado,</p>
