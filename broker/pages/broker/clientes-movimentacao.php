@@ -115,6 +115,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                                 echo '<form action="clientes-movimentacao" method="POST">';
                                 echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
+                                echo '<input type="hidden" name="nome" id="nome" value="' . $data['nome'] . '" >';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
@@ -244,6 +245,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
             $dt_criacao = date("Y-m-d");
             $hr_criacao = date("H:i:s");
+            $timestamp = strtotime($dt_criacao);
+            $timestamp2 = strtotime($hr_criacao);
+            $dt_saque = date('d/m/Y', $timestamp);
+            $hr_saque = date('H:i:s', $timestamp2);
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -263,7 +268,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_criacao as $hr_criacao\n",
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nUsuário: $nome_user\nValor: $valor_saque\nData: $dt_saque às $hr_saque\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -296,6 +301,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
             $dt_criacao = date("Y-m-d");
             $hr_criacao = date("H:i:s");
+            $timestamp = strtotime($dt_criacao);
+            $timestamp2 = strtotime($hr_criacao);
+            $dt_deposito = date('d/m/Y', $timestamp);
+            $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
@@ -314,7 +323,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome_user\nValor: $valor_deposito\nData: $dt_criacao as $hr_criacao\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome_user\nValor: $valor_deposito\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -339,8 +348,10 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         if (!empty($_POST)) {
 
             $id_transacao    = $_POST['id'];
+            $id_usuario      = $_POST['id_user'];
+            $nome_usuario    = $_POST['nome'];
             $tipo_transacao  = $_POST['tipo'];
-            $valor_transacao = $_POST['valor'];
+            $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $confirmado   = '1';
 
             if ($tipo_transacao == 1) {
@@ -359,6 +370,18 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q = $pdo->prepare($sql);
         $q->execute(array($confirmado, $id_transacao));
 
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+        $nome_user = $data_users['nome'];
+
+        $timestamp = strtotime($data_users['dt_criacao']);
+        $timestamp2 = strtotime($data_users['hr_criacao']);
+        $dt_transacao = date('d/m/Y', $timestamp);
+        $hr_transacao = date('H:i:s', $timestamp2);
+
         require_once("../../includes/PHPMailer/class.phpmailer.php");
 
         $msg =  '
@@ -376,7 +399,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 <p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
-<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_transacao . ' foi realizada com sucesso.</p>
+<p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de ' . $valor_transacao . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
 <p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
 <p align="center" class="style1">&nbsp;</p>
 <p align="center" class="style1">Obrigado,</p>

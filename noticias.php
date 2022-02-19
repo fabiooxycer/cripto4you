@@ -36,7 +36,7 @@ $pdo = BancoCadastros::conectar();
       foreach ($pdo->query($sql) as $noticias) {
         $dt_postagem = $noticias['dt_postagem'];
         $hr_postagem = $noticias['hr_postagem'];
-        $timestamp = strtotime($hr_postagem);
+        $timestamp = strtotime($dt_postagem);
         $timestamp2 = strtotime($hr_postagem);
       ?>
         <div class="col-xs-6 col-sm-6 col-md-6">
