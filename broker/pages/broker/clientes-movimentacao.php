@@ -113,7 +113,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
-                                echo '<form action="clientes-movimentacao?id=' . $id . '" method="POST">';
+                                echo '<form action="clientes-movimentacao" method="POST">';
                                 echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
                                 echo '<input type="hidden" name="nome" id="nome" value="' . $data['nome'] . '" >';
                                 echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
@@ -352,9 +352,9 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
         if (!empty($_POST)) {
 
-            $id_transacao    = $_POST['id'];
             $id_usuario      = $_POST['id_user'];
             $nome_usuario    = $_POST['nome'];
+            $id_transacao    = $_POST['id'];
             $tipo_transacao  = $_POST['tipo'];
             $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
@@ -366,8 +366,6 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             if ($tipo_transacao == 2) {
                 $tipo_transacao = 'SAQUE';
             }
-
-            $validacao = true;
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
