@@ -152,7 +152,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $email . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_cadastro . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
-                            if ($row['tipo_contrato'] == 2) {
+                            if ($row['dt_saque'] != '0000-00-00') {
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $data_saque . "</font></td>";
                             } else {
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
