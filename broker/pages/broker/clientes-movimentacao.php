@@ -53,6 +53,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.
 
                 <?php
+                $usuario = '2';
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '3' AND confirmado = '1'";
                 $q = $pdo->prepare($sql1);
