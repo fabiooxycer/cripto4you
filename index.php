@@ -452,7 +452,7 @@ switch (get_post_action('contato', 'planostarter', 'planoadvanced', 'planopremiu
         $data2 = [
             "chat_id" => "-1001709220235", // ID Canal Contato Site
             'parse_mode' => 'HTML',
-            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: $valor\n",
+            'text' => "\n<b>SOLICITAÇÃO DE INVESTIMENTO</b> \n\nPlano: $plano\n\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: R$ $valor\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -478,7 +478,7 @@ switch (get_post_action('contato', 'planostarter', 'planoadvanced', 'planopremiu
         $data2 = [
             "chat_id" => "-1001709220235", // ID Canal Contato Site
             'parse_mode' => 'HTML',
-            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: $valor\n",
+            'text' => "\n<b>SOLICITAÇÃO DE INVESTIMENTO</b> \n\nPlano: $plano\n\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: R$ $valor\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -504,7 +504,7 @@ switch (get_post_action('contato', 'planostarter', 'planoadvanced', 'planopremiu
         $data2 = [
             "chat_id" => "-1001709220235", // ID Canal Contato Site
             'parse_mode' => 'HTML',
-            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: $valor\n",
+            'text' => "\n<b>SOLICITAÇÃO DE INVESTIMENTO</b> \n\nPlano: $plano\n\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nValor Investimento: R$ $valor\n",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
