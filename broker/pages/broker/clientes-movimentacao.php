@@ -311,7 +311,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
         $saldo_cliente = $saldo;
 
-        if ($_POST['valor'] <= number_format($saldo_cliente, 2, ',', '.')) {
+        if ($_POST['valor'] <= $saldo) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -332,7 +332,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 "chat_id" => "-1001322495863",
                 // "chat_id" => "184418484", // id_telegram: fabio
                 'parse_mode' => 'HTML',
-                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
             ];
 
             $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -403,7 +403,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
