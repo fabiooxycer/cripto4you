@@ -226,17 +226,39 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="basicInput">Tipo de Contrato</label>
+                                    <select type="text" class="form-control" id="tipo_contrato" name="tipo_contrato" autocomplete="off" required>
+                                        <option value="<?php echo $data['tipo_contrato']; ?>"><?php if ($data['tipo_contrato'] == '1') {
+                                                                                                    echo 'DIÁRIO';
+                                                                                                }
+                                                                                                if ($data['tipo_contrato'] == '2') {
+                                                                                                    echo 'MENSAL';
+                                                                                                } ?></option>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">Diário</option>
+                                        <option value="2">Mensal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="t_contrato_lbl" for="t_contrato_tipo" style="display: none" class="col-md-3">
+                                <div class="form-group">
+                                    <label for="basicInput">Data para Saque:</label>
+                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
                                     <label for="basicInput">Nível Acesso</label>
                                     <select type="text" class="form-control" id="nivel" name="nivel" <?php echo $data['nivel']; ?> autocomplete="off" required>
                                         <option value="<?php echo $data['nivel']; ?>">Selecionado como <?php if ($data['nivel'] == '1') {
-                                                                                            echo 'Cliente';
-                                                                                        }
-                                                                                        if ($data['nivel'] == '99') {
-                                                                                            echo 'Operador';
-                                                                                        }
-                                                                                        if ($data['nivel'] == '100') {
-                                                                                            echo 'Administrador';
-                                                                                        } ?></option>
+                                                                                                            echo 'Cliente';
+                                                                                                        }
+                                                                                                        if ($data['nivel'] == '99') {
+                                                                                                            echo 'Operador';
+                                                                                                        }
+                                                                                                        if ($data['nivel'] == '100') {
+                                                                                                            echo 'Administrador';
+                                                                                                        } ?></option>
                                         <option value="1">Cliente</option>
                                         <option value="99">Operador</option>
                                         <option value="100">Administrador</option>
