@@ -350,113 +350,127 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 
     case 'liberar':
 
-//         if (!empty($_POST)) {
+        if (!empty($_POST)) {
 
-//             $id_transacao    = $_POST['id'];
-//             $id_usuario      = $_POST['id_user'];
-//             $nome_usuario    = $_POST['nome'];
-//             $tipo_transacao  = $_POST['tipo'];
-//             $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
-//             $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
-//             $confirmado   = '1';
+            $id_transacao    = $_POST['id'];
+            $id_usuario      = $_POST['id_user'];
+            $nome_usuario    = $_POST['nome'];
+            $tipo_transacao  = $_POST['tipo'];
+            $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+            $confirmado   = '1';
 
-//             if ($tipo_transacao == 1) {
-//                 $tipo_transacao = 'DEPÓSITO';
-//             }
-//             if ($tipo_transacao == 2) {
-//                 $tipo_transacao = 'SAQUE';
-//             }
+            if ($tipo_transacao == 1) {
+                $tipo_transacao = 'DEPÓSITO';
+            }
+            if ($tipo_transacao == 2) {
+                $tipo_transacao = 'SAQUE';
+            }
 
-//             $validacao = true;
-//         }
+            $validacao = true;
+        }
 
-//         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//         $sql = 'UPDATE tbl_investimentos SET confirmado = ? WHERE id = ?';
-//         $q = $pdo->prepare($sql);
-//         $q->execute(array($confirmado, $id_transacao));
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET confirmado = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($confirmado, $id_transacao));
 
-//         $sql = "SELECT * FROM tbl_usuarios where id = ?";
-//         $q = $pdo->prepare($sql);
-//         $q->execute(array($usuario));
-//         $data_users = $q->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id_usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-//         $nome_user = $data_users['nome'];
+        $nome_user = $data_users['nome'];
 
-//         $timestamp = strtotime($data_users['dt_criacao']);
-//         $timestamp2 = strtotime($data_users['hr_criacao']);
-//         $dt_transacao = date('d/m/Y', $timestamp);
-//         $hr_transacao = date('H:i:s', $timestamp2);
+        $timestamp = strtotime($data_users['dt_criacao']);
+        $timestamp2 = strtotime($data_users['hr_criacao']);
+        $dt_transacao = date('d/m/Y', $timestamp);
+        $hr_transacao = date('H:i:s', $timestamp2);
 
-//         include("../../includes/PHPMailer/class.phpmailer.php");
+        require('phpmailer/hdw-phpmailer.php');
 
-//         $msg =  '
 
-// <style type="text/css">
-// <!--
-// .style1 {
-// 	font-family: Geneva, Arial, Helvetica, sans-serif;
-// 	color: #333333;
-// 	font-size: 18px;
-// }
-// -->
-// </style>
-// <p align="center">&nbsp;</p>
-// <p align="center"><img src="https://cripto4you.net/assets/images/email/header_email.png" width="980" height="150"></p>
-// <p align="center" class="style1">&nbsp;</p>
-// <p align="center" class="style1">Ol&aacute; ' . $data['nome'] . ',</p>
-// <p align="center" class="style1">Sua solicita&ccedil;&atilde;o de ' . $tipo_transacao . ' no valor de R$ ' . $valor_solicitado . ' realizada em ' . $dt_transacao . ' às ' . $hr_transacao . ' foi realizada com sucesso.</p>
-// <p align="center" class="style1">Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
-// <p align="center" class="style1">&nbsp;</p>
-// <p align="center" class="style1">Obrigado,</p>
-// <p align="center" class="style1">&nbsp;</p>
-// <p align="center"><img src="https://cripto4you.net/assets/images/email/footer_email.png" width="350" height="130"></p>
+        $emailAssunto  = 'Liberação de Movimentação | Cripto4You';
+        $emailMensagem = "
+<style type='text/css'>
+<!--
+.style1 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 18px;
+}
+-->
+</style>
+<p align='center'>&nbsp;</p>
+<p align='center'><img src='https://cripto4you.net/assets/images/email/header_email.png' width='980' height='150'></p>
+<p align='center' class='style1'>&nbsp;</p>
+<p align='center' class='style1'>Ol&aacute; {$nome_user},</p>
+<p align='center' class='style1'>Sua solicita&ccedil;&atilde;o de {$tipo_transacao} no valor de R$ {$valor_solicitado} realizada em {$dt_transacao} às {$hr_transacao} foi realizada com sucesso.</p>
+<p align='center' class='style1'>Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
+<p align='center' class='style1'>&nbsp;</p>
+<p align='center' class='style1'>Obrigado,</p>
+<p align='center' class='style1'>&nbsp;</p>
+<p align='center'><img src='https://cripto4you.net/assets/images/email/footer_email.png' width='350' height='130'></p>
+<br />
+";
 
-// ';
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM tbl_smtp';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id));
+        $contato = $q->fetch(PDO::FETCH_ASSOC);
 
-//         $smtp    = 'mail.cripto4you.net';
-//         $logine  = 'broker@cripto4you.net';
-//         $passwd  = 'Zxcvbnm@2022';
-//         $aut     = 'TRUE';
-//         $retorn  = 'broker@cripto4you.net';
-//         $porta   = '587';
-//         $nome    = 'Broker | Cripto4You';
-//         $cct     = $data['email'];
-//         $assunto = 'LIBERAÇÃO DE APORTE';
+        $email_de        = $contato['email_de'];
+        $email_para      = $data_users['email'];
+        $email_para_nome = $data_users['nome'];
+        $host_smtp       = $contato['host_smtp'];
+        $porta_smtp      = $contato['porta_smtp'];
+        $encrypt_smtp    = $contato['encrypt_smtp'];
+        $email_login     = $contato['email_login'];
+        $email_senha     = $contato['email_senha'];
+        $emailDe          = array();
 
-//         $mail = new PHPMailer();
-//         $mail->IsSMTP();
-//         $mail->Host = $smtp;
-//         $mail->SMTPAuth = true;
-//         $mail->SMTPSecure = '';
-//         $mail->Port = $porta;
-//         $mail->Username = $logine;
-//         $mail->Password = $passwd;
-//         $mail->From = $logine;
-//         $mail->Sender = $logine;
-//         $mail->FromName = $nome;
-//         $mail->AddAddress($cct, $ass);
-//         $mail->IsHTML(true);
-//         $mail->CharSet = 'utf-8';
-//         $mail->Subject  = $assunto;
-//         $mail->Body = utf8_decode($msg);
+        $emailDe['from']        = $email_de;
+        $emailDe['fromName']    = $nome;
+        $emailDe['replyTo']     = $email;
+        $emailDe['returnPath']  = $email_de;
+        $emailDe['confirmTo']   = '';
+        $emailPara              = array();
+        $emailPara[1]['to']     = $email_para;
+        $emailPara[1]['toName'] = $email_para_nome;
+        // #2
+        //$emailPara[2]['to']		= 'seuemail2@seudominio.com.br';
+        //$emailPara[2]['toName']	= 'Seu Nome2';
 
-//         $enviado = $mail->Send();
+        $SMTP             = array();
+        $SMTP['host']     = $host_smtp;
+        $SMTP['port']     = $porta_smtp;
+        $SMTP['encrypt']  = $encrypt_smtp;
+        $SMTP['username'] = $email_login;
+        $SMTP['password'] = $email_senha;
+        $SMTP['charset']  = 'utf-8';
+        $SMTP['priority'] = 1;
+        $SMTP['debug']    = FALSE;
 
-//         $mail->ClearAllRecipients();
-//         $mail->ClearAttachments();
+        $mail = sendEmail($emailDe, $emailPara, $emailAssunto, $emailMensagem, $SMTP);
 
-//         echo '<script>setTimeout(function () { 
-//                     swal({
-//                       title: "Parabéns!",
-//                       text: "Transação liberada com sucesso!",
-//                       type: "success",
-//                       confirmButtonText: "OK" 
-//                     },
-//                     function(isConfirm){
-//                       if (isConfirm) {
-//                         window.location.href = "clientes";
-//                       }
-//                     }); }, 1000);</script>';
+        if ($mail !== TRUE) {
+            echo ('Nao foi possivel enviar a mensagem.<br />Erro: ' . $mail);
+            exit;
+        }
+
+        echo '<script>setTimeout(function () { 
+            swal({
+              title: "Parabéns!",
+              text: "Liberação realizada com sucesso!",
+              type: "success",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+              }
+            }); }, 1000);</script>';
 
         break;
 
