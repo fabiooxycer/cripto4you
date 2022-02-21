@@ -321,7 +321,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
-        $operador  = $data_users['operador'];
+        $operador  = $_SESSION['UsuarioNome'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
