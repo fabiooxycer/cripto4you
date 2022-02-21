@@ -373,15 +373,21 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $q = $pdo->prepare($sql);
         $q->execute(array($confirmado, $id_transacao));
 
+        $sql = "SELECT * FROM tbl_investimentos where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id_transacao));
+        $data_operacao = $q->fetch(PDO::FETCH_ASSOC);
+
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id_usuario));
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
+        $user_id   = $data_users['id'];
         $nome_user = $data_users['nome'];
 
-        $timestamp = strtotime($data_users['dt_criacao']);
-        $timestamp2 = strtotime($data_users['hr_criacao']);
+        $timestamp = strtotime($data_operacao['dt_criacao']);
+        $timestamp2 = strtotime($data_operacao['hr_criacao']);
         $dt_transacao = date('d/m/Y', $timestamp);
         $hr_transacao = date('H:i:s', $timestamp2);
 
@@ -466,7 +472,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                window.location.href = "clientes-movimentacao?id=' . $user_id . '";
               }
             }); }, 1000);</script>';
 
