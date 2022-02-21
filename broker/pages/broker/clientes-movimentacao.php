@@ -291,21 +291,23 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql1 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1');
-        $result = $sql1->fetchAll();
-        foreach ($result as $row) {
-            $lucro = $row['sum(valor)'];
-        }
+        $sql1 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = 3 AND confirmado = 1');
+        $q = $pdo->prepare($sql1);
+        $q->execute(array($usuario));
+        $data_lucro = $q->fetch(PDO::FETCH_ASSOC);
+        $lucro = $data_lucro['sum(valor)'];
+
         $sql2 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 2 AND confirmado = 1');
-        $result = $sql2->fetchAll();
-        foreach ($result as $row) {
-            $retiradas = $row['sum(valor)'];
-        }
+        $q = $pdo->prepare($sql2);
+        $q->execute(array($usuario));
+        $data_retiradas = $q->fetch(PDO::FETCH_ASSOC);
+        $retiradas = $data_retiradas['sum(valor)'];
+
         $sql3 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 1 AND confirmado = 1');
-        $result = $sql3->fetchAll();
-        foreach ($result as $row) {
-            $saldo = $row['sum(valor)'] + $lucro - $retiradas;
-        }
+        $q = $pdo->prepare($sql3);
+        $q->execute(array($usuario));
+        $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
+        $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
 
         if ($valor_saque <= $saldo) {
 
@@ -349,7 +351,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Atenção!",
-                  text: "Valor solicitador para saque é maior que seu saldo atual!",
+                  text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
                   type: "danger",
                   confirmButtonText: "OK" 
                 },
