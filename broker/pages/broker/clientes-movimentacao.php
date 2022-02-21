@@ -49,7 +49,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-coins mr-1 mt-1"></i> LUCRO</button>
                 </div>
             </div><br>
-            <h4 class="m-0 font-weight-bold text-primary"> teste Movimentação de <?php echo $data['nome']; ?></h4>
+            <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
             <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.</p>
         </div>
         <div class="card-body">
@@ -308,9 +308,10 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $q->execute(array($usuario));
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
         $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
-        $saldo_cliente = str_replace(',', '.', str_replace('.', '', $saldo));
 
-        if ($valor_saque <= $saldo_cliente) {
+        $saldo_cliente = $saldo;
+
+        if ($_POST['valor'] <= $saldo_cliente) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
