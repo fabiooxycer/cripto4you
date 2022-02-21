@@ -527,7 +527,7 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
             $emailDe          = array();
 
             $emailDe['from']        = $email_de;
-            $emailDe['fromName']    = $nome;
+            $emailDe['fromName']    = $contato['email_para_nome'];
             $emailDe['replyTo']     = $email;
             $emailDe['returnPath']  = $email_de;
             $emailDe['confirmTo']   = '';
