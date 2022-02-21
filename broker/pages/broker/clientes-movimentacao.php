@@ -308,8 +308,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $q->execute(array($usuario));
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
         $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
+        $saldo_cliente = str_replace(',', '.', str_replace('.', '', $saldo));
 
-        if ($valor_saque <= $saldo) {
+        if ($valor_saque <= $saldo_cliente) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
