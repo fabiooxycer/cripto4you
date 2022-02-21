@@ -311,7 +311,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
         $saldo_cliente = $saldo;
 
-        if ($_POST['valor'] <= $saldo_cliente) {
+        if ($_POST['valor'] <= number_format($saldo_cliente, 2, ',', '.')) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
