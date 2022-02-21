@@ -273,7 +273,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
-                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                    <input type="text" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Valor:</label>
@@ -321,7 +321,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
-                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                    <input type="text" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Valor:</label>
@@ -369,7 +369,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
-                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                    <input type="text" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Valor:</label>
