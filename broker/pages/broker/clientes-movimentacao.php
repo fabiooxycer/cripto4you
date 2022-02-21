@@ -76,7 +76,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 $saldo_cliente = $saldo;
                 ?>
             </p>
-            <?php echo $saldo_cliente; ?>
+            <?php echo number_format($saldo_cliente, 2, ',', '.'); ?>
         </div>
         <div class="card-body">
             <div class="row">
