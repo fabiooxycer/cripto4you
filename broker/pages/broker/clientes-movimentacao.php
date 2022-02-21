@@ -50,7 +50,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
-            <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.
+            <p class="mb-4">1Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.
 
                 <?php
                 $usuario = '2';
