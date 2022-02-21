@@ -29,23 +29,25 @@
             </div>
         </div>
     </li>
-    <hr class="sidebar-divider">
+    <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
+        <hr class="sidebar-divider">
 
-    <div class="sidebar-heading">
-        Atendimento
-    </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuporte" aria-expanded="true" aria-controls="collapseSuporte">
-            <i class="fas fa-fw fa-life-ring"></i>
-            <span>Suporte</span>
-        </a>
-        <div id="collapseSuporte" class="collapse" aria-labelledby="headingSuporte" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="fila-atendimento">Fila de Atendimento</a>
-            </div>
+        <div class="sidebar-heading">
+            Atendimento
         </div>
-    </li>
-    <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuporte" aria-expanded="true" aria-controls="collapseSuporte">
+                <i class="fas fa-fw fa-life-ring"></i>
+                <span>Suporte</span>
+            </a>
+            <div id="collapseSuporte" class="collapse" aria-labelledby="headingSuporte" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="fila-atendimento">Fila de Atendimento</a>
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider d-none d-md-block">
+    <?php } ?>
 <?php } ?>
 
 
