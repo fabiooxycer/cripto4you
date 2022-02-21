@@ -45,6 +45,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
 
                     <button class="btn btn-secondary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
+
+                    <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-money mr-1 mt-1"></i> LUCRO</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
@@ -214,6 +216,42 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
+
+    <!-- Exibe o Modal para inseção de Lucro -->
+    <div class="modal fade" id="modalLucro" tabindex="-1" role="dialog" aria-labelledby="modalLucro" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">INSERIR LUCRO</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <form action="clientes-movimentacao?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="basicInput">Valor:</label>
+                                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do lucro" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p align="justify">
+                            <font size="2" color="red"><strong>Observação:</strong></font>
+                            <font size="2"> Todo lucro obtido com o investimento do usuário/cliente, deve ser inserido um a um para manter a ordem das operações.</font><br><br>
+                        </p>
+                        <div class="form-actions">
+                            <button type="submit" name="lucro" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR LUCRO</button>
+                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php
@@ -230,7 +268,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito', 'liberar')) {
+switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
     case 'saque':
 
@@ -345,6 +383,44 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
+
+        break;
+
+    case 'lucro':
+
+        if (!empty($_POST)) {
+
+            $usuario        = $_POST['id'];
+            $descricao      = 'Lucro de operações';
+            $tipo           = '3';
+            $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $lucro          = number_format($valor_lucro, 2, ',', '.');
+            $comprovante    = '-';
+            $confirmado     = '1';
+
+            $dt_criacao = date("Y-m-d");
+            $hr_criacao = date("H:i:s");
+            $timestamp = strtotime($dt_criacao);
+            $timestamp2 = strtotime($hr_criacao);
+            $dt_deposito = date('d/m/Y', $timestamp);
+            $hr_deposito = date('H:i:s', $timestamp2);
+        }
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario, $descricao, $tipo, $valor_lucro, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Solicitação de aporte realizada com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                  }
+                }); }, 1000);</script>';
 
         break;
 
