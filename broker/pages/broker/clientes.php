@@ -517,8 +517,8 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
             $contato = $q->fetch(PDO::FETCH_ASSOC);
 
             $email_de        = $contato['email_de'];
-            $email_para      = $data_users['email'];
-            $email_para_nome = $data_users['nome'];
+            $email_para      = $usuario['email'];
+            $email_para_nome = $usuario['nome'];
             $host_smtp       = $contato['host_smtp'];
             $porta_smtp      = $contato['porta_smtp'];
             $encrypt_smtp    = $contato['encrypt_smtp'];
