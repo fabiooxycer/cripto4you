@@ -24,6 +24,23 @@ include('../../includes/header.php');
     });
 </script>
 
+<!-- MÁSCARA PARA OCULTAR DIV-->
+<script>
+	function contrato() {
+    var tipo_contrato = document.getElementById("tipo_contrato").value;
+
+    if (tipo_contrato === '2') {
+        document.getElementById("dt_saque").style.display = "block";
+    }else{
+	if (tipo_contrato === '1') {
+    	document.getElementById("dt_saque").style.display = "none";
+    }else{
+    	document.getElementById("dt_saque").style.display = "none";
+    }
+   }
+}
+</script>
+
 <script>
     function verifica(value) {
         var input = document.getElementById("chave");
@@ -69,6 +86,8 @@ include('../../includes/header.php');
                             <th style='text-align: center; vertical-align:middle !important'>TELEFONE</th>
                             <th style='text-align: center; vertical-align:middle !important'>E-MAIL</th>
                             <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
+                            <th style='text-align: center; vertical-align:middle !important'>CONTRATO</th>
+                            <th style='text-align: center; vertical-align:middle !important'>DATA SAQUE</th>
                             <th style='text-align: center; vertical-align:middle !important'>STATUS</th>
                             <th style='text-align: center; vertical-align:middle !important'>NÍVEL</th>
                             <th style='text-align: center; vertical-align:middle !important' width="11%">AÇÃO</th>
@@ -99,6 +118,17 @@ include('../../includes/header.php');
                                 $timestamp = strtotime($data_cadastro);
                                 $dt_cadastro = date('d/m/Y', $timestamp);
                             }
+                            if ($row['tipo_contrato'] == 1) {
+                                $contrato = 'DIÁRIO';
+                            }
+                            if ($row['tipo_contrato'] == 2) {
+                                $contrato = 'MENSAL';
+                            }
+                            if ($row['dt_saque']) {
+                                $saque = '' . $row['dt_saque'] . '';
+                                $timestamp = strtotime($saque);
+                                $data_saque = date('d/m/Y', $timestamp);
+                            }
                             if ($row['status'] == 1) {
                                 $status = '<font color="green"> ATIVO </font>';
                             }
@@ -121,6 +151,12 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $telefone . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $email . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_cadastro . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
+                            if ($contrato == 2) {
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $data_saque . "</font></td>";
+                            } else {
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
+                            }
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $status . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $nivel . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
@@ -253,6 +289,22 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label for="basicInput">Tipo de Contrato</label>
+                                    <select type="text" class="form-control" id="tipo_contrato" name="tipo_contrato" onchange="contrato()" autocomplete="off" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="1">Diário</option>
+                                        <option value="2">Mensal</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="t_contrato_lbl" for="t_contrato" style="display: none" class="col-md-3">
+                                <div class="form-group">
+                                    <label for="basicInput">Data para Saque:</label>
+                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
                                     <label for="basicInput">Nível Acesso</label>
                                     <select type="text" class="form-control" id="nivel" name="nivel" autocomplete="off" required>
                                         <option value="">Selecione...</option>
@@ -355,23 +407,25 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
 
         if (!empty($_POST)) {
 
-            $nome        = $_POST['nome'];
-            $rg          = $_POST['rg'];
-            $cpf         = $_POST['cpf'];
-            $telefone    = $_POST['telefone'];
-            $email       = $_POST['email'];
-            $cep         = $_POST['cep'];
-            $endereco    = $_POST['endereco'];
-            $numero      = $_POST['numero'];
-            $complemento = $_POST['complemento'];
-            $bairro      = $_POST['bairro'];
-            $cidade      = $_POST['cidade'];
-            $estado      = $_POST['estado'];
-            $tipo_pix    = $_POST['tipo_pix'];
-            $chave       = $_POST['chave'];
-            $status      = '1';
-            $nivel       = $_POST['nivel'];
-            $dt_cadastro = date("Y-m-d");
+            $nome          = $_POST['nome'];
+            $rg            = $_POST['rg'];
+            $cpf           = $_POST['cpf'];
+            $telefone      = $_POST['telefone'];
+            $email         = $_POST['email'];
+            $cep           = $_POST['cep'];
+            $endereco      = $_POST['endereco'];
+            $numero        = $_POST['numero'];
+            $complemento   = $_POST['complemento'];
+            $bairro        = $_POST['bairro'];
+            $cidade        = $_POST['cidade'];
+            $estado        = $_POST['estado'];
+            $tipo_pix      = $_POST['tipo_pix'];
+            $chave         = $_POST['chave'];
+            $tipo_contrato = $_POST['tipo_contrato'];
+            $dt_saque      = $_POST['dt_saque'];
+            $status        = '1';
+            $nivel         = $_POST['nivel'];
+            $dt_cadastro   = date("Y-m-d");
 
             if ($complemento == '') {
                 $complemento = '-';
@@ -389,15 +443,21 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
         if ($data['cpf'] != $_POST['cpf']) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, tipo_contrato, dt_saque, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
-            $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $status, $nivel, $dt_cadastro));
+            $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $dt_saque, $status, $nivel, $dt_cadastro));
 
 
             $sql2 = 'SELECT * FROM tbl_usuarios ORDER BY id DESC limit 1';
             foreach ($pdo->query($sql2) as $usuario) {
 
                 $usuario_nome = $usuario['nome'];
+                if ($usuario['tipo_contrato'] == 1) {
+                    $tipo_contrato = 'DIÁRIO';
+                }
+                if ($usuario['tipo_contrato'] == 2) {
+                    $tipo_contrato = 'MENSAL';
+                }
             }
 
             require('../../includes/phpmailer/hdw-phpmailer.php');
