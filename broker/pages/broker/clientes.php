@@ -148,7 +148,7 @@ include('../../includes/header.php');
 </div>
 
 <!-- Exibe o Modal para inserção dos Cliente -->
-<div class="modal fade" id="modalNovoUsuario" tabindex="-1" role="dialog" aria-labelledby="modalNovoUsuario" aria-hidden="true" >
+<div class="modal fade" id="modalNovoUsuario" tabindex="-1" role="dialog" aria-labelledby="modalNovoUsuario" aria-hidden="true">
     <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -392,6 +392,106 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
             $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
             $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $status, $nivel, $dt_cadastro));
+
+
+            $sql2 = 'SELECT * FROM tbl_usuarios ORDER BY id DESC limit 1';
+            foreach ($pdo->query($sql2) as $usuario) {
+
+                $usuario_nome = $usuario['nome'];
+            }
+
+            require('../../includes/phpmailer/hdw-phpmailer.php');
+
+
+            $emailAssunto  = 'Cadastro | Cripto4You';
+            $emailMensagem = "
+            <style type='text/css'>
+            <!--
+            .style1 {
+                font-family: Geneva, Arial, Helvetica, sans-serif;
+                color: #333333;
+                font-size: 18px;
+            }
+            a:link {
+                color: #CC9900;
+                text-decoration: none;
+            }
+            a:visited {
+                text-decoration: none;
+                color: #333333;
+            }
+            a:hover {
+                text-decoration: none;
+                color: #333333;
+            }
+            a:active {
+                text-decoration: none;
+                color: #333333;
+            }
+            -->
+            </style>
+            <p align='center'>&nbsp;</p>
+            <p align='center'><img src='https://cripto4you.net/assets/images/email/header_email.png' width='980' height='150'></p>
+            <p align='center' class='style1'>&nbsp;</p>
+            <p align='center' class='style1'>Ol&aacute; {$usuario_nome},</p>
+            <p align='center' class='style1'>Seu cadastro foi realizado com sucesso em nossa plataforma.</p>
+            <p align='center' class='style1'>Para acesso, clique no link abaixo, entre com seu e-mail e CPF, ap&oacute;s ser&aacute; solicitado o cadastro da sua senha de acesso. N&atilde;o utilize uma senha f&aacute;cil, tente mesclar em letras (mai&uacute;sculas e min&uacute;sculas), n&uacute;meros e caracteres especiais.</p>
+            <p align='center' class='style1'>&nbsp;</p>
+            <p align='center' class='style1'><a href='htttps://broker.cripto4you.net' target='_blank'>https://broker.cripto4you.net </a></p>
+            <p align='center' class='style1'>&nbsp;</p>
+            <p align='center' class='style1'>Obrigado,</p>
+            <p align='center' class='style1'>&nbsp;</p>
+            <p align='center'><img src='https://cripto4you.net/assets/images/email/footer_email.png' width='350' height='130'></p>
+            <br />
+<br />
+";
+
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = 'SELECT * FROM tbl_smtp';
+            $q = $pdo->prepare($sql);
+            $q->execute(array($id));
+            $contato = $q->fetch(PDO::FETCH_ASSOC);
+
+            $email_de        = $contato['email_de'];
+            $email_para      = $data_users['email'];
+            $email_para_nome = $data_users['nome'];
+            $host_smtp       = $contato['host_smtp'];
+            $porta_smtp      = $contato['porta_smtp'];
+            $encrypt_smtp    = $contato['encrypt_smtp'];
+            $email_login     = $contato['email_login'];
+            $email_senha     = $contato['email_senha'];
+            $emailDe          = array();
+
+            $emailDe['from']        = $email_de;
+            $emailDe['fromName']    = $nome;
+            $emailDe['replyTo']     = $email;
+            $emailDe['returnPath']  = $email_de;
+            $emailDe['confirmTo']   = '';
+            $emailPara              = array();
+            $emailPara[1]['to']     = $email_para;
+            $emailPara[1]['toName'] = $email_para_nome;
+            // #2
+            //$emailPara[2]['to']		= 'seuemail2@seudominio.com.br';
+            //$emailPara[2]['toName']	= 'Seu Nome2';
+
+            $SMTP             = array();
+            $SMTP['host']     = $host_smtp;
+            $SMTP['port']     = $porta_smtp;
+            $SMTP['encrypt']  = $encrypt_smtp;
+            $SMTP['username'] = $email_login;
+            $SMTP['password'] = $email_senha;
+            $SMTP['charset']  = 'utf-8';
+            $SMTP['priority'] = 1;
+            $SMTP['debug']    = FALSE;
+
+            $mail = sendEmail($emailDe, $emailPara, $emailAssunto, $emailMensagem, $SMTP);
+
+            if ($mail !== TRUE) {
+                echo ('Nao foi possivel enviar a mensagem.<br />Erro: ' . $mail);
+                exit;
+            }
+
+
             echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
