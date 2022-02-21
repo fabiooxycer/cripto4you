@@ -107,7 +107,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de saque -->
-    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true" >
+    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -142,7 +142,7 @@ include('../../includes/header.php');
     </div>
 
     <!-- Exibe o Modal para solicitação de depósito -->
-    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true" >
+    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,7 +165,7 @@ include('../../includes/header.php');
                             <font size="2" color="red"><strong>Observação:</strong></font>
                             <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
-                        <p align="left">    
+                        <p align="left">
                             <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
                             <font size="2"><strong>Rede:</strong> BEP20</font><br><br>
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
@@ -196,25 +196,52 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito')) {
+switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
     case 'saque':
 
         if (!empty($_POST)) {
 
-            $usuario     = $_SESSION['UsuarioID'];
-            $descricao   = 'Saque aporte/lucro';
-            $tipo        = '2';
-            $valor       = $_POST['valor'];
-            $comprovante = '-';
-            $dt_criacao  = date("Y-m-d");
-            $hr_criacao  = date("H:i:s");
-            $confirmado  = '2';
+            $usuario        = $_POST['id'];
+            $descricao      = 'Saque aporte/lucro';
+            $tipo           = '2';
+            $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_saque, 2, ',', '.');
+            $comprovante    = '-';
+            $confirmado     = '2';
+
+            $dt_criacao = date("Y-m-d");
+            $hr_criacao = date("H:i:s");
+            $timestamp = strtotime($dt_criacao);
+            $timestamp2 = strtotime($hr_criacao);
+            $dt_saque = date('d/m/Y', $timestamp);
+            $hr_saque = date('H:i:s', $timestamp2);
         }
+
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+        $nome_user = $data_users['nome'];
+        $operador  = $_SESSION['UsuarioNome'];
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data2 = [
+            "chat_id" => "-1001322495863",
+            // "chat_id" => "184418484", // id_telegram: fabio
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
         echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
@@ -224,44 +251,72 @@ switch (get_post_action('saque', 'deposito')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "meu-investimento";
+                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
+
         break;
 
     case 'deposito':
 
         if (!empty($_POST)) {
 
-            $usuario     = $_SESSION['UsuarioID'];
-            $descricao   = 'Depósito aporte';
-            $tipo        = '1';
-            $valor       = $_POST['valor'];
-            $comprovante = '-';
-            $dt_criacao  = date("Y-m-d");
-            $hr_criacao  = date("H:i:s");
-            $confirmado  = '2';
+            $usuario        = $_POST['id'];
+            $descricao      = 'Depósito aporte';
+            $tipo           = '1';
+            $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_deposito, 2, ',', '.');
+            $comprovante    = '-';
+            $confirmado     = '2';
+
+            $dt_criacao = date("Y-m-d");
+            $hr_criacao = date("H:i:s");
+            $timestamp = strtotime($dt_criacao);
+            $timestamp2 = strtotime($hr_criacao);
+            $dt_deposito = date('d/m/Y', $timestamp);
+            $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+        $nome_user = $data_users['nome'];
+        $operador  = $_SESSION['UsuarioNome'];
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data2 = [
+            "chat_id" => "-1001322495863",
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
         echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Parabéns!",
-                  text: "Solicitação de aporte realizada com sucesso!",
-                  type: "success",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "meu-investimento";
-                  }
-                }); }, 1000);</script>';
+            swal({
+              title: "Parabéns!",
+              text: "Solicitação de aporte realizada com sucesso!",
+              type: "success",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+              }
+            }); }, 1000);</script>';
+
         break;
 
     default:
 }
 ?>
+
 
 <?php include('../../includes/footer.php'); ?>
