@@ -46,7 +46,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                     <button class="btn btn-secondary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
 
-                    <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-money mr-1 mt-1"></i> LUCRO</button>
+                    <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-coins mr-1 mt-1"></i> LUCRO</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
