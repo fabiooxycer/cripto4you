@@ -269,7 +269,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">E-mail:</label>
-                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
@@ -317,7 +317,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">E-mail:</label>
-                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
@@ -365,7 +365,7 @@ include('includes/slideshow.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">E-mail:</label>
-                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="basicInput">Telefone:</label>
