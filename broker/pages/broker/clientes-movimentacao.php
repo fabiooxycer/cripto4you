@@ -49,7 +49,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-coins mr-1 mt-1"></i> LUCRO</button>
                 </div>
             </div><br>
-            <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
+            <h4 class="m-0 font-weight-bold text-primary"> teste Movimentação de <?php echo $data['nome']; ?></h4>
             <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.</p>
         </div>
         <div class="card-body">
@@ -291,19 +291,19 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = 3 AND confirmado = 1";
+        $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '3' AND confirmado = '1'";
         $q = $pdo->prepare($sql1);
         $q->execute(array($usuario));
         $data_lucro = $q->fetch(PDO::FETCH_ASSOC);
         $lucro = $data_lucro['sum(valor)'];
 
-        $sql2 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = 2 AND confirmado = 1";
+        $sql2 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '2' AND confirmado = '1'";
         $q = $pdo->prepare($sql2);
         $q->execute(array($usuario));
         $data_retiradas = $q->fetch(PDO::FETCH_ASSOC);
         $retiradas = $data_retiradas['sum(valor)'];
 
-        $sql3 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = 1 AND confirmado = 1";
+        $sql3 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '1' AND confirmado = '1'";
         $q = $pdo->prepare($sql3);
         $q->execute(array($usuario));
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
