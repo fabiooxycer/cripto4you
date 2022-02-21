@@ -38,23 +38,24 @@ switch (get_post_action('atualizar')) {
 
         if (!empty($_POST)) {
 
-            $nome        = $_POST['nome'];
-            $rg          = $_POST['rg'];
-            $cpf         = $_POST['cpf'];
-            $telefone    = $_POST['telefone'];
-            $email       = $_POST['email'];
-            $cep         = $_POST['cep'];
-            $endereco    = $_POST['endereco'];
-            $numero      = $_POST['numero'];
-            $complemento = $_POST['complemento'];
-            $bairro      = $_POST['bairro'];
-            $cidade      = $_POST['cidade'];
-            $estado      = $_POST['estado'];
-            $tipo_pix    = $_POST['tipo_pix'];
-            $chave       = $_POST['chave'];
-            $status      = '1';
-            $nivel       = $_POST['nivel'];
-            $dt_cadastro = date("Y-m-d");
+            $nome          = $_POST['nome'];
+            $rg            = $_POST['rg'];
+            $cpf           = $_POST['cpf'];
+            $telefone      = $_POST['telefone'];
+            $email         = $_POST['email'];
+            $cep           = $_POST['cep'];
+            $endereco      = $_POST['endereco'];
+            $numero        = $_POST['numero'];
+            $complemento   = $_POST['complemento'];
+            $bairro        = $_POST['bairro'];
+            $cidade        = $_POST['cidade'];
+            $estado        = $_POST['estado'];
+            $tipo_pix      = $_POST['tipo_pix'];
+            $chave         = $_POST['chave'];
+            $tipo_contrato = $_POST['tipo_contrato'];
+            $dt_saque      = $_POST['dt_saque'];
+            $status        = '1';
+            $nivel         = $_POST['nivel'];
 
             if ($complemento == '') {
                 $complemento = '-';
@@ -62,12 +63,15 @@ switch (get_post_action('atualizar')) {
             if ($chave == '') {
                 $chave = '-';
             }
+            if ($dt_saque == '') {
+                $dt_saque = '0000-00-00';
+            }
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE tbl_usuarios set nome = ?, rg = ?, cpf = ?, telefone = ?, email = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, tipo_pix = ?, chave = ?, nivel = ? WHERE id = ?";
+        $sql = "UPDATE tbl_usuarios set nome = ?, rg = ?, cpf = ?, telefone = ?, email = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, tipo_pix = ?, chave = ?, tipo_contrato = ?, dt_saque = ?, nivel = ? WHERE id = ?";
         $q = $pdo->prepare($sql);
-        $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $nivel, $id));
+        $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $dt_saque, $nivel, $id));
         echo '<script>setTimeout(function () { 
             swal({
             title: "Parabéns!",
@@ -240,10 +244,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     </select>
                                 </div>
                             </div>
-                            <div id="t_contrato_lbl" for="t_contrato_tipo" style="display: none" class="col-md-3">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Data para Saque:</label>
-                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off" required>
+                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-3">

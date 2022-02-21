@@ -300,7 +300,7 @@ include('../../includes/header.php');
                             <div id="t_contrato_lbl" for="t_contrato_tipo" style="display: none" class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Data para Saque:</label>
-                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off" required>
+                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -432,6 +432,9 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
             }
             if ($chave == '') {
                 $chave = '-';
+            }
+            if ($dt_saque == '') {
+                $dt_saque = '0000-00-00';
             }
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
