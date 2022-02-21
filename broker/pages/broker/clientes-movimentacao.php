@@ -511,7 +511,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $emailDe          = array();
 
         $emailDe['from']        = $email_de;
-        $emailDe['fromName']    = $nome;
+        $emailDe['fromName']    = $contato['email_para_nome'];
         $emailDe['replyTo']     = $email;
         $emailDe['returnPath']  = $email_de;
         $emailDe['confirmTo']   = '';
