@@ -3,7 +3,7 @@
 if ($_SERVER['HTTP_HOST'] != 'localhost') {
     if (!isset($_SESSION)) session_start();
 
-    $nivel = 98;
+    $nivel = 1;
 
     if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
         echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
