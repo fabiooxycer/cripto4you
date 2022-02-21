@@ -73,10 +73,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
                 $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
 
-                $saldo_cliente = $saldo;
+                $saldo_cliente = number_format($saldo, 2, ',', '.');
                 ?>
             </p>
-            <?php echo number_format($saldo_cliente, 2, ',', '.'); ?>
+            <?php echo $saldo_cliente; ?>
         </div>
         <div class="card-body">
             <div class="row">
