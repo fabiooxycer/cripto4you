@@ -385,7 +385,7 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
         $dt_transacao = date('d/m/Y', $timestamp);
         $hr_transacao = date('H:i:s', $timestamp2);
 
-        require('phpmailer/hdw-phpmailer.php');
+        require('../../includes/phpmailer/hdw-phpmailer.php');
 
 
         $emailAssunto  = 'Liberação de Movimentação | Cripto4You';
