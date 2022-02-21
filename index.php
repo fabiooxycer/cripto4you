@@ -80,7 +80,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 8% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%205.000,00%20a%20R$%2050.000,00." target="_blank">INVESTIR</a>
+                        <button type="button" class="btn btn--secondary btn--bordered btn--rounded" data-toggle="modal" data-target="#modalStarter">QUERO INVESTIR</button>
                     </div>
 
                     <div class="pricing--footer">
@@ -103,7 +103,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 12% ao mês.
                         </div>
-                        <a class="btn btn--white btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20entre%20R$%2050.000,00%20a%20R$%20200.000,00." target="_blank">INVESTIR</a>
+                        <button type="button" class="btn btn--white btn--bordered btn--rounded" data-toggle="modal" data-target="#modalAdvanced">QUERO INVESTIR</button>
                     </div>
 
                     <div class="pricing--footer">
@@ -126,7 +126,7 @@ include('includes/slideshow.php');
                         <div class="pricing--desc">
                             Obtenha uma lucratividade de 15% ao mês.
                         </div>
-                        <a class="btn btn--secondary btn--bordered btn--rounded" href="https://api.whatsapp.com/send?phone=<?php echo $contato['whatsapp']; ?>?text=Ol%c3%a1,%20eu%20gostaria%20de%20investir%20acima%20de%20R$%20200.000,00." target="_blank">INVESTIR</a>
+                        <button type="button" class="btn btn--secondary btn--bordered btn--rounded" data-toggle="modal" data-target="#modalPremium">QUERO INVESTIR</button>
                     </div>
 
                     <div class="pricing--footer">
@@ -249,6 +249,150 @@ include('includes/slideshow.php');
     </div>
 </section>
 
+<!-- Plano 1 -->
+<div class="modal fade" id="modalStarter" tabindex="-1" role="dialog" aria-labelledby="modalStarter" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-white">Starter Crypto Plan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <form action="inicio" method="post">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Nome:</label>
+                                    <input type="hidden" class="form-control" id="plano" name="plano" value="Starter Crypton Plan" autocomplete="off" readonly>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">E-mail:</label>
+                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Telefone:</label>
+                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Valor:</label>
+                                    <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe entre R$ 5.000,00 a R$ 50.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p align="justify">
+                        <font size="2" color="red"><strong>Observação:</strong></font>
+                        <font size="2"> Após enviar sua solicitação de investimento, um especialista entrará em contato para dar sequência.</font><br><br>
+                    </p>
+                    <div class="form-actions">
+                        <button type="submit" name="planostarter" class="btn btn-primary"><i class="fa fa-money"></i> QUERO INVESTIR</button>
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Plano 2 -->
+<div class="modal fade" id="modalAdvanced" tabindex="-1" role="dialog" aria-labelledby="modalAdvanced" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-white">Advanced Crypto Plan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <form action="inicio" method="post">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Nome:</label>
+                                    <input type="hidden" class="form-control" id="plano" name="plano" value="Advanced Crypto Plan" autocomplete="off" readonly>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">E-mail:</label>
+                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Telefone:</label>
+                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Valor:</label>
+                                    <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe entre R$ 50.000,00 a R$ 200.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p align="justify">
+                        <font size="2" color="red"><strong>Observação:</strong></font>
+                        <font size="2"> Após enviar sua solicitação de investimento, um especialista entrará em contato para dar sequência.</font><br><br>
+                    </p>
+                    <div class="form-actions">
+                        <button type="submit" name="planoadvanced" class="btn btn-primary"><i class="fa fa-money"></i> QUERO INVESTIR</button>
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Plano 3 -->
+<div class="modal fade" id="modalPremium" tabindex="-1" role="dialog" aria-labelledby="modalPremium" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-white">Premium Crypto Plan</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <form action="inicio" method="post">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="basicInput">Nome:</label>
+                                    <input type="hidden" class="form-control" id="plano" name="plano" value="Premium Crypto Plan" autocomplete="off" readonly>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">E-mail:</label>
+                                    <input type="email" class="form-control phone" id="email" name="email" placeholder="Seu email" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Telefone:</label>
+                                    <input type="email" class="form-control phone" id="telefone" name="telefone" placeholder="Seu telefone" autocomplete="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="basicInput">Valor:</label>
+                                    <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe acima de R$ 200.000,00" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p align="justify">
+                        <font size="2" color="red"><strong>Observação:</strong></font>
+                        <font size="2"> Após enviar sua solicitação de investimento, um especialista entrará em contato para dar sequência.</font><br><br>
+                    </p>
+                    <div class="form-actions">
+                        <button type="submit" name="planopremium" class="btn btn-primary"><i class="fa fa-money"></i> QUERO INVESTIR</button>
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
 <?php include('includes/footer.php'); ?>
 
 <?php
@@ -265,7 +409,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('contato')) {
+switch (get_post_action('contato', 'planostarter', 'planoadvanced', 'planopremium')) {
 
     case 'contato':
 
@@ -288,6 +432,84 @@ switch (get_post_action('contato')) {
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
 
         echo "<script>alert('SUA MENSAGEM FOI ENVIADA COM SUCESSO!');location.href='inicio';</script>";
+
+        break;
+
+    case 'planostarter':
+
+        if (!empty($_POST)) {
+
+            $plano    = $_POST['plano'];
+            $nome     = $_POST['nome'];
+            $email    = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            $valor    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor = number_format($valor, 2, ',', '.');
+        }
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data2 = [
+            "chat_id" => "-1001709220235", // ID Canal Contato Site
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\Valor Investimento: $valor\n",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+        echo "<script>alert('SOLICITAÇÃO DE INVESTIMENTO ENVIADA COM SUCCESSO!');location.href='inicio';</script>";
+
+        break;
+
+    case 'planoadvanced':
+
+        if (!empty($_POST)) {
+
+            $plano    = $_POST['plano'];
+            $nome     = $_POST['nome'];
+            $email    = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            $valor    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor = number_format($valor, 2, ',', '.');
+        }
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data2 = [
+            "chat_id" => "-1001709220235", // ID Canal Contato Site
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\Valor Investimento: $valor\n",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+        echo "<script>alert('SOLICITAÇÃO DE INVESTIMENTO ENVIADA COM SUCCESSO!');location.href='inicio';</script>";
+
+        break;
+
+    case 'planopremium':
+
+        if (!empty($_POST)) {
+
+            $plano    = $_POST['plano'];
+            $nome     = $_POST['nome'];
+            $email    = $_POST['email'];
+            $telefone = $_POST['telefone'];
+            $valor    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor = number_format($valor, 2, ',', '.');
+        }
+
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $data2 = [
+            "chat_id" => "-1001709220235", // ID Canal Contato Site
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>CONTATO PELO SITE</b> \n\nPlano: $plano\nNome: $nome\nE-mail: $email\nTelefone: $telefone\Valor Investimento: $valor\n",
+        ];
+
+        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+        echo "<script>alert('SOLICITAÇÃO DE INVESTIMENTO ENVIADA COM SUCCESSO!');location.href='inicio';</script>";
 
         break;
 
