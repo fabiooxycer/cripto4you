@@ -30,12 +30,12 @@ include('../../includes/header.php');
     var tipo_contrato = document.getElementById("tipo_contrato").value;
 
     if (tipo_contrato === '2') {
-        document.getElementById("dt_saque").style.display = "block";
+        document.getElementById("t_contrato_lbl").style.display = "block";
     }else{
 	if (tipo_contrato === '1') {
-    	document.getElementById("dt_saque").style.display = "none";
+    	document.getElementById("t_contrato_lbl").style.display = "none";
     }else{
-    	document.getElementById("dt_saque").style.display = "none";
+    	document.getElementById("t_contrato_lbl").style.display = "none";
     }
    }
 }
@@ -297,7 +297,7 @@ include('../../includes/header.php');
                                     </select>
                                 </div>
                             </div>
-                            <div id="t_contrato_lbl" for="t_contrato" style="display: none" class="col-md-3">
+                            <div id="t_contrato_lbl" for="t_contrato_tipo" style="display: none" class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Data para Saque:</label>
                                     <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off" required>
