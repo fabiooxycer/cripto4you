@@ -60,7 +60,7 @@
         </a>
         <div id="collapseCadastroClientes" class="collapse" aria-labelledby="headingCadastroClientes" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="clientes">Cadastros</a>
+                <a class="collapse-item" href="clientes">Listar</a>
             </div>
         </div>
     </li>
