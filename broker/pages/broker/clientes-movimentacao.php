@@ -291,30 +291,49 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+        $sql1 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1');
+        $result = $sql1->fetchAll();
+        foreach ($result as $row) {
+            $lucro = $row['sum(valor)'];
+        }
+        $sql2 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 2 AND confirmado = 1');
+        $result = $sql2->fetchAll();
+        foreach ($result as $row) {
+            $retiradas = $row['sum(valor)'];
+        }
+        $sql3 = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 1 AND confirmado = 1');
+        $result = $sql3->fetchAll();
+        foreach ($result as $row) {
+            $saldo = $row['sum(valor)'] + $lucro - $retiradas;
+        }
 
-        $sql = "SELECT * FROM tbl_usuarios where id = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario));
-        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+        if ($valor_saque <= $saldo) {
 
-        $nome_user = $data_users['nome'];
-        $operador  = $_SESSION['UsuarioNome'];
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
 
-        // ENVIA TELEGRAM    
-        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data2 = [
-            "chat_id" => "-1001322495863",
-            // "chat_id" => "184418484", // id_telegram: fabio
-            'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
-        ];
+            $sql = "SELECT * FROM tbl_usuarios where id = ?";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($usuario));
+            $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+            $nome_user = $data_users['nome'];
+            $operador  = $_SESSION['UsuarioNome'];
 
-        echo '<script>setTimeout(function () { 
+            // ENVIA TELEGRAM    
+            $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+            $data2 = [
+                "chat_id" => "-1001322495863",
+                // "chat_id" => "184418484", // id_telegram: fabio
+                'parse_mode' => 'HTML',
+                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+            ];
+
+            $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+            echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Solicitação de saque realizada com sucesso!",
@@ -326,6 +345,20 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
+        } else {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Atenção!",
+                  text: "Valor solicitador para saque é maior que seu saldo atual!",
+                  type: "danger",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                  }
+                }); }, 1000);</script>';
+        }
 
         break;
 
