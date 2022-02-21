@@ -50,33 +50,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
-            <p class="mb-4">1Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.
-
-                <?php
-                $usuario = '2';
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '3' AND confirmado = '1'";
-                $q = $pdo->prepare($sql1);
-                $q->execute(array($usuario));
-                $data_lucro = $q->fetch(PDO::FETCH_ASSOC);
-                $lucro = $data_lucro['sum(valor)'];
-
-                $sql2 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '2' AND confirmado = '1'";
-                $q = $pdo->prepare($sql2);
-                $q->execute(array($usuario));
-                $data_retiradas = $q->fetch(PDO::FETCH_ASSOC);
-                $retiradas = $data_retiradas['sum(valor)'];
-
-                $sql3 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '1' AND confirmado = '1'";
-                $q = $pdo->prepare($sql3);
-                $q->execute(array($usuario));
-                $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
-                $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
-
-                $saldo_cliente = number_format($saldo, 2, ',', '.');
-                ?>
-            </p>
-            <?php echo $saldo_cliente; ?>
+            <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.</p>
         </div>
         <div class="card-body">
             <div class="row">
@@ -336,7 +310,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
         $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
 
-        $saldo_cliente = $saldo;
+        $saldo_cliente = number_format($saldo, 2, ',', '.');
 
         if ($valor <= $saldo) {
 
