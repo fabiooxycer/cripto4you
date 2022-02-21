@@ -247,7 +247,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Data para Saque:</label>
-                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" autocomplete="off">
+                                    <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-3">
