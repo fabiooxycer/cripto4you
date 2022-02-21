@@ -26,19 +26,19 @@ include('../../includes/header.php');
 
 <!-- MÁSCARA PARA OCULTAR DIV-->
 <script>
-	function contrato() {
-    var tipo_contrato = document.getElementById("tipo_contrato").value;
+    function contrato() {
+        var tipo_contrato = document.getElementById("tipo_contrato").value;
 
-    if (tipo_contrato === '2') {
-        document.getElementById("t_contrato_lbl").style.display = "block";
-    }else{
-	if (tipo_contrato === '1') {
-    	document.getElementById("t_contrato_lbl").style.display = "none";
-    }else{
-    	document.getElementById("t_contrato_lbl").style.display = "none";
+        if (tipo_contrato === '2') {
+            document.getElementById("t_contrato_lbl").style.display = "block";
+        } else {
+            if (tipo_contrato === '1') {
+                document.getElementById("t_contrato_lbl").style.display = "none";
+            } else {
+                document.getElementById("t_contrato_lbl").style.display = "none";
+            }
+        }
     }
-   }
-}
 </script>
 
 <script>
@@ -509,10 +509,11 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
 <br />
 ";
 
+            $id_smtp =  '1';
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = 'SELECT * FROM tbl_smtp';
             $q = $pdo->prepare($sql);
-            $q->execute(array($id));
+            $q->execute(array($id_smtp));
             $contato = $q->fetch(PDO::FETCH_ASSOC);
 
             $email_de        = $contato['email_de'];

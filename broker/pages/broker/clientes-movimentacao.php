@@ -417,11 +417,11 @@ switch (get_post_action('saque', 'deposito', 'liberar')) {
 <p align='center'><img src='https://cripto4you.net/assets/images/email/footer_email.png' width='350' height='130'></p>
 <br />
 ";
-
+        $id_smtp =  '1';
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = 'SELECT * FROM tbl_smtp';
         $q = $pdo->prepare($sql);
-        $q->execute(array($id));
+        $q->execute(array($id_smtp));
         $contato = $q->fetch(PDO::FETCH_ASSOC);
 
         $email_de        = $contato['email_de'];
