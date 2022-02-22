@@ -373,7 +373,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
               }
             }); }, 1000);</script>';
         } 
-        if ($saldo_cliente <= $valor2) {
+        if ($valor2 <= $saldo_cliente) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Atenção!",
