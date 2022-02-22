@@ -54,7 +54,7 @@
 
 <!--Summernote js-->
 <script src="assets/summernote/summernote-bs4.js"></script>
-<script src="assets/summernote2.js"></script>
+<script src="assets/summernote/summernote2.js"></script>
 
 <script>
   $(document).ready(function() {
