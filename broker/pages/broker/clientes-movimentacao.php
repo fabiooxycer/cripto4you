@@ -280,7 +280,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $valor         = $_POST['valor'];
             $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
-            $valor1 = str_replace('.', '', $valor );
+            $valor1 = str_replace('.', '', $valor);
             $valor2 = str_replace(',', '', $valor1);
             $comprovante    = '-';
             $confirmado     = '2';
@@ -312,9 +312,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
         $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
 
-        $saldo_cliente = number_format($saldo, 2, ',', '.');
+        $saldo_cliente = $saldo;
 
-        if ($_POST['valor'] <= $saldo_cliente) {
+        if ($valor2 <= $saldo_cliente) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
