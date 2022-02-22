@@ -281,7 +281,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
             $valor1 = str_replace('.', '', $valor_solicitado);
-            $valor2 = str_replace(',', '', $valor1);
+            $valor2 = str_replace(',00', '', $valor1);
             $comprovante    = '-';
             $confirmado     = '2';
 
