@@ -72,7 +72,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
             $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
             $novo1 = str_replace('.', '', $saldo);
-            $novo2 = str_replace(',', '', $novo2);
+            $novo2 = str_replace(',', '', $novo1);
             ?>
             <?php echo $novo1; ?>
 teste            <?php echo $novo2; ?>
