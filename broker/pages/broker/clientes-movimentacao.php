@@ -51,31 +51,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
             <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.</p>
-            <?php
-            $usuario = '2';
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '3' AND confirmado = '1'";
-            $q = $pdo->prepare($sql1);
-            $q->execute(array($usuario));
-            $data_lucro = $q->fetch(PDO::FETCH_ASSOC);
-            $lucro = $data_lucro['sum(valor)'];
-
-            $sql2 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '2' AND confirmado = '1'";
-            $q = $pdo->prepare($sql2);
-            $q->execute(array($usuario));
-            $data_retiradas = $q->fetch(PDO::FETCH_ASSOC);
-            $retiradas = $data_retiradas['sum(valor)'];
-
-            $sql3 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '1' AND confirmado = '1'";
-            $q = $pdo->prepare($sql3);
-            $q->execute(array($usuario));
-            $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
-            $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
-            $novo1 = str_replace('.', '', $saldo);
-            $novo2 = str_replace(',', '', $novo1);
-            ?>
-            <?php echo $novo1; ?>
-teste            <?php echo $novo2; ?>
         </div>
         <div class="card-body">
             <div class="row">
@@ -305,6 +280,8 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $valor         = $_POST['valor'];
             $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
+            $valor1 = str_replace('.', '', $valor );
+            $valor2 = str_replace(',', '', $valor1);
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -358,7 +335,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 "chat_id" => "-1001322495863",
                 // "chat_id" => "184418484", // id_telegram: fabio
                 'parse_mode' => 'HTML',
-                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\n\nCliente: $nome_user\nValor: R$ $valor_solicitado\n$valor2\nData: $dt_saque às $hr_saque\n",
             ];
 
             $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
