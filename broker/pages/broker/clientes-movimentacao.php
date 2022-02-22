@@ -294,23 +294,21 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql1 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '3' AND confirmado = '1'";
-        $q = $pdo->prepare($sql1);
-        $q->execute(array($usuario));
-        $data_lucro = $q->fetch(PDO::FETCH_ASSOC);
-        $lucro = $data_lucro['sum(valor)'];
+        $sql1 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1';
+        foreach ($pdo->query($sql1) as $data_lucro) {
+            $lucro = $data_lucro['sum(valor)'];
+        }
 
-        $sql2 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '2' AND confirmado = '1'";
-        $q = $pdo->prepare($sql2);
-        $q->execute(array($usuario));
-        $data_retiradas = $q->fetch(PDO::FETCH_ASSOC);
-        $retiradas = $data_retiradas['sum(valor)'];
 
-        $sql3 = "SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = ? AND tipo = '1' AND confirmado = '1'";
-        $q = $pdo->prepare($sql3);
-        $q->execute(array($usuario));
-        $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
-        $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
+        $sql2 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 2 AND confirmado = 1';
+        foreach ($pdo->query($sql2) as $data_retiradas) {
+            $retiradas = $data_retiradas['sum(valor)'];
+        }
+
+        $sql3 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 1 AND confirmado = 1';
+        foreach ($pdo->query($sql3) as $data_saldo) {
+            $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
+        }
 
         $saldo_cliente = $saldo;
 
