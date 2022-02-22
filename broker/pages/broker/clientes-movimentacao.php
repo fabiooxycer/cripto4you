@@ -312,7 +312,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
         $saldo_cliente = $saldo;
 
-        if ($_POST['valor'] >= $saldo_cliente) {
+        //if ($_POST['valor'] >= $saldo_cliente) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -350,20 +350,20 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
-        } else {
-            echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Atenção!",
-                  text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
-                  type: "danger",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "clientes-movimentacao?id=' . $usuario . '";
-                  }
-                }); }, 1000);</script>';
-        }
+        //} else {
+        //     echo '<script>setTimeout(function () { 
+        //         swal({
+        //           title: "Atenção!",
+        //           text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
+        //           type: "danger",
+        //           confirmButtonText: "OK" 
+        //         },
+        //         function(isConfirm){
+        //           if (isConfirm) {
+        //             window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+        //           }
+        //         }); }, 1000);</script>';
+        // }
 
         break;
 
