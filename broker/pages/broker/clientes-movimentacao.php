@@ -75,6 +75,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             $novo2 = str_replace(',', '', $novo2);
             ?>
             <?php echo $novo1; ?>
+            <hr>
             <?php echo $novo2; ?>
         </div>
         <div class="card-body">
