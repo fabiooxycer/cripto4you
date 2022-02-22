@@ -372,7 +372,8 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
-        } else {
+        } 
+        if ($saldo_cliente <= $valor2) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Atenção!",
