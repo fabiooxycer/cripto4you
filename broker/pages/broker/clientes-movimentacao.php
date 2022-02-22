@@ -310,7 +310,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $data_saldo = $q->fetch(PDO::FETCH_ASSOC);
         $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
 
-        $saldo_cliente = number_format($saldo, 2, ',', '.');
+        $saldo_cliente = $saldo;
 
         if ($_POST['valor'] >= $saldo_cliente) {
 
