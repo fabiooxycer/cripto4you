@@ -33,7 +33,7 @@
 </div>
 <!-- /EXIBE MODAL DE LOGOFF -->
 
-<a href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20preciso%20de%20ajuda!" style="position:fixed;width:60px;height:60px;bottom:40px;left:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888; z-index:1000;" target="_blank">
+<a href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20preciso%20de%20ajuda!" alt="Precisa de ajuda? Envie uma WhatsApp!" style="position:fixed;width:60px;height:60px;bottom:40px;left:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888; z-index:1000;" target="_blank">
 	<i style="margin-top:16px" class="fab fa-whatsapp"></i>
 </a>
 
