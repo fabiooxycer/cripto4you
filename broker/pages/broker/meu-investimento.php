@@ -47,6 +47,7 @@ include('../../includes/header.php');
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>VALOR</th>
+                                <th style='text-align: center; vertical-align:middle !important'>AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,6 +69,9 @@ include('../../includes/header.php');
                                 }
                                 if ($row['tipo'] == 3) {
                                     $tipo = '<font color="green"> Lucro </font>';
+                                }
+                                if ($row['tipo'] == 3 and $row['reinvestir'] == 1) {
+                                    $tipo = '<font color="orange"> Lucro reinvestido </font>';
                                 }
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
@@ -98,6 +102,19 @@ include('../../includes/header.php');
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
+
+                                if ($row['tipo'] == 3 and $row['reinvestir'] != 1) {
+                                    echo '<form action="meu-investimento" method="POST">';
+                                    echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
+                                    echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
+                                    echo '<br><button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
+                                    echo "</form>";
+                                } else {
+                                    echo '-';
+                                }
+
+                                echo "</td>";
                             }
                             echo "</tr>";
                             // BancoCadastros::desconectar()
@@ -352,6 +369,35 @@ switch (get_post_action('saque', 'deposito')) {
                 window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
+
+        break;
+
+    case 'reinvestir':
+
+        if (!empty($_POST)) {
+
+            $id_usuario       = $_POST['id_user'];
+            $id_transacao     = $_POST['id'];
+            $reinvestir       = '1';
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET reinvestir = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($reinvestir, $id_transacao));
+
+        echo '<script>setTimeout(function () { 
+                    swal({
+                      title: "Parabéns!",
+                      text: "Lucro reinvestido com sucesso!",
+                      type: "success",
+                      confirmButtonText: "OK" 
+                    },
+                    function(isConfirm){
+                      if (isConfirm) {
+                        window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
+                      }
+                    }); }, 1000);</script>';
 
         break;
 

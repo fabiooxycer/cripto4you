@@ -88,7 +88,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $tipo = '<font color="green"> Lucro </font>';
                                 }
                                 if ($row['tipo'] == 3 and $row['reinvestir'] == 1) {
-                                    $tipo = '<font color="blue"> Lucro reinvestido </font>';
+                                    $tipo = '<font color="orange"> Lucro reinvestido </font>';
                                 }
 
                                 if ($row['dt_criacao']) {
