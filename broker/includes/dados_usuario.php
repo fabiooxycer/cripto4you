@@ -21,7 +21,7 @@
                                 <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span>
                             </div>
                             <p>
-                                <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'], 2); ?></font>
+                                <font size="1">Valor movimentado desde <?php echo converte($_SESSION['UsuarioCadastro'], 2); ?> não reinvestido</font>
                             </p>
                         <?php } ?>
                     </div>
@@ -73,7 +73,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                            Saldo Atual
+                            Saldo Atual Investimento
                         </div>
                         <?php
                         $sql_reinvestir = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 1');
