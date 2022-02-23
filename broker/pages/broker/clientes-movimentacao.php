@@ -764,7 +764,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
                 },
                 function(isConfirm){
                   if (isConfirm) {
-                    window.location.href = "clientes-movimentacao?id=' . $user_id . '";
+                    window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
                   }
                 }); }, 1000);</script>';
 
