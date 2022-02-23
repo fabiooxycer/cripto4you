@@ -104,7 +104,7 @@ include('../../includes/header.php');
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
 
-                                if ($row['tipo'] == 3 and $row['reinvestir'] != 1) {
+                                if ($row['tipo'] == 3 and $row['reinvestir'] ==2) {
                                     echo '<form action="meu-investimento" method="POST">';
                                     echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
