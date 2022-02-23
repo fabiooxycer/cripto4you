@@ -132,7 +132,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button><br>';
                                     echo '<button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-danger" name="cancelar">CANCELAR</button>';
                                 }
-                                if ($row['tipo'] == 3) {
+                                if ($row['tipo'] == 3 AND $row['reinvestir'] != 1) {
                                     echo '<br><button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
                                 } else {
                                     echo '-';
