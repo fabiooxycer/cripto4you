@@ -85,7 +85,7 @@
                             $valor_reinvestir = $reinvestir['sum(valor)'];
                         }
                         
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 1 AND confirmado = 1 AND id_usuario != 1');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 1 AND confirmado = 1');
                         $result = $sql->fetchAll();
                         foreach ($result as $row) {
                             $saldo = $row['sum(valor)'] + $lucro + $valor_reinvestir - $retiradas;
