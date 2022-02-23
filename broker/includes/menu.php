@@ -18,6 +18,7 @@
     <div class="sidebar-heading">
         Broker
     </div>
+    <?php if ($_SESSION['UsuarioNivel'] != '100') { ?>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
             <i class="fas fa-fw fa-coins"></i>
@@ -29,7 +30,7 @@
             </div>
         </div>
     </li>
-    <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
+    <?php } if ($_SESSION['UsuarioNivel'] >= '98') { ?>
         <hr class="sidebar-divider">
 
         <div class="sidebar-heading">
