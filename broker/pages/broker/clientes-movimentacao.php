@@ -337,9 +337,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         if ($valor2 > $saldo_cliente) {
             echo '<script>setTimeout(function () { 
                 swal({
-                  title: "Atenção!",
-                  text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
-                  type: "danger",
+                  title: "Parabéns!",
+                  text: "Solicitação de saque realizada com sucesso!",
+                  type: "success",
                   confirmButtonText: "OK" 
                 },
                 function(isConfirm){
