@@ -8,7 +8,7 @@
                             Lucro Total
                         </div>
                         <?php
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 3 AND confirmado = 1');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 3 AND confirmado = 1 AND id_usuario != 1');
 
                         $result = $sql->fetchAll();
 
@@ -42,7 +42,7 @@
                             Total de Retiradas
                         </div>
                         <?php
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 2 AND confirmado = 1');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 2 AND confirmado = 1 AND id_usuario != 1');
 
                         $result = $sql->fetchAll();
 
@@ -76,7 +76,7 @@
                             Saldo Atual
                         </div>
                         <?php
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 1 AND confirmado = 1');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE tipo = 1 AND confirmado = 1 AND id_usuario != 1');
 
                         $result = $sql->fetchAll();
 
