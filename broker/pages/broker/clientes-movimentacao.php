@@ -334,7 +334,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
         $saldo_cliente = $saldo;
 
-        if ($valor2 < $saldo_cliente) {
+        if ($valor2 > $saldo_cliente) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Atenção!",
