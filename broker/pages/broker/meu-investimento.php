@@ -110,10 +110,7 @@ include('../../includes/header.php');
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                     echo '<br><button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
                                     echo "</form>";
-                                } else {
-                                    echo '-';
-                                }
-
+                                } 
                                 echo "</td>";
                             }
                             echo "</tr>";
