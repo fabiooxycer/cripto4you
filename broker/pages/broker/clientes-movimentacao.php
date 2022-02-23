@@ -334,6 +334,21 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
 
         $saldo_cliente = $saldo;
 
+        if ($valor2 < $saldo_cliente) {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Atenção!",
+                  text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
+                  type: "danger",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                  }
+                }); }, 1000);</script>';
+        }
+
         if ($saldo_cliente >= $valor2) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -372,20 +387,6 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $usuario . '";
               }
             }); }, 1000);</script>';
-        } 
-        if ($valor2 <= $saldo_cliente) {
-            echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Atenção!",
-                  text: "Valor solicitador para saque é maior que o saldo do usuário/cliente!",
-                  type: "danger",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "clientes-movimentacao?id=' . $usuario . '";
-                  }
-                }); }, 1000);</script>';
         }
 
         break;
