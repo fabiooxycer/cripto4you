@@ -216,7 +216,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito')) {
+switch (get_post_action('saque', 'deposito', 'reinvestir')) {
 
     case 'saque':
 
