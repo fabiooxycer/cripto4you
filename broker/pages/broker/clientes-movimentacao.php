@@ -87,6 +87,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['tipo'] == 3) {
                                     $tipo = '<font color="green"> Lucro </font>';
                                 }
+                                if ($row['tipo'] == 3 AND $row['reinvestir'] == 1) {
+                                    $tipo = '<font color="blue"> Lucro reinvestido </font>';
+                                }
+                                
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
                                     $timestamp = strtotime($data_criacao);
@@ -106,6 +110,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['confirmado'] == 2) {
                                     $confirmado = 'Aguardando Liberação';
                                 }
+                                if ($row['confirmado'] == 3) {
+                                    $confirmado = 'Cancelado';
+                                }
 
                                 echo "<tr>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
@@ -122,9 +129,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                 if ($row['confirmado'] == 2) {
-                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button>';
+                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button><br>';
+                                    echo '<button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-danger" name="cancelar">CANCELAR</button>';
                                 } else {
                                     echo '-';
+                                }
+                                if ($row['tipo'] == 3) {
+                                    echo '<br><button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
                                 }
                                 echo "</form>";
                                 echo "</td>";
@@ -268,7 +279,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
+switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 'reinvestir')) {
 
     case 'saque':
 
@@ -437,6 +448,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $lucro          = number_format($valor_lucro, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '1';
+            $reinvestir     = '2';
 
             $dt_criacao = date("Y-m-d");
             $hr_criacao = date("H:i:s");
@@ -446,9 +458,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador, reinvestir) VALUES(?,?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_lucro, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_lucro, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome'], $reinvestir));
         echo '<script>setTimeout(function () { 
                 swal({
                   title: "Parabéns!",
@@ -591,6 +603,169 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 window.location.href = "clientes-movimentacao?id=' . $user_id . '";
               }
             }); }, 1000);</script>';
+
+        break;
+
+    case 'cancelar':
+
+        if (!empty($_POST)) {
+
+            $id_usuario      = $_POST['id_user'];
+            $nome_usuario    = $_POST['nome'];
+            $id_transacao    = $_POST['id'];
+            $tipo_transacao  = $_POST['tipo'];
+            $valor_transacao = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+            $confirmado   = '3';
+
+            if ($tipo_transacao == 1) {
+                $tipo_transacao = 'DEPÓSITO';
+            }
+            if ($tipo_transacao == 2) {
+                $tipo_transacao = 'SAQUE';
+            }
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET confirmado = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($confirmado, $id_transacao));
+
+        $sql = "SELECT * FROM tbl_investimentos where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id_transacao));
+        $data_operacao = $q->fetch(PDO::FETCH_ASSOC);
+
+        $sql = "SELECT * FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id_usuario));
+        $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+        $user_id   = $data_users['id'];
+        $nome_user = $data_users['nome'];
+
+        $timestamp = strtotime($data_operacao['dt_criacao']);
+        $timestamp2 = strtotime($data_operacao['hr_criacao']);
+        $dt_transacao = date('d/m/Y', $timestamp);
+        $hr_transacao = date('H:i:s', $timestamp2);
+
+        require('../../includes/phpmailer/hdw-phpmailer.php');
+
+
+        $emailAssunto  = 'Liberação de Movimentação | Cripto4You';
+        $emailMensagem = "
+    <style type='text/css'>
+    <!--
+    .style1 {
+        font-family: Geneva, Arial, Helvetica, sans-serif;
+        color: #333333;
+        font-size: 18px;
+    }
+    -->
+    </style>
+    <p align='center'>&nbsp;</p>
+    <p align='center'><img src='https://cripto4you.net/assets/images/email/header_email.png' width='980' height='150'></p>
+    <p align='center' class='style1'>&nbsp;</p>
+    <p align='center' class='style1'>Ol&aacute; {$nome_user},</p>
+    <p align='center' class='style1'>Sua solicita&ccedil;&atilde;o de {$tipo_transacao} no valor de R$ {$valor_solicitado} realizada em {$dt_transacao} às {$hr_transacao} foi cancelada com sucesso.</p>
+    <p align='center' class='style1'>Voc&ecirc; pode conferir a transa&ccedil;&atilde;o acessando nosso painel de gest&atilde;o no menu INVESTIMENTO \ EXTRATO.</p>
+    <p align='center' class='style1'>&nbsp;</p>
+    <p align='center' class='style1'>Obrigado,</p>
+    <p align='center' class='style1'>&nbsp;</p>
+    <p align='center'><img src='https://cripto4you.net/assets/images/email/footer_email.png' width='350' height='130'></p>
+    <br />
+    ";
+        $id_smtp =  '1';
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM tbl_smtp';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id_smtp));
+        $contato = $q->fetch(PDO::FETCH_ASSOC);
+
+        $email_de        = $contato['email_de'];
+        $email_para      = $data_users['email'];
+        $email_para_nome = $data_users['nome'];
+        $host_smtp       = $contato['host_smtp'];
+        $porta_smtp      = $contato['porta_smtp'];
+        $encrypt_smtp    = $contato['encrypt_smtp'];
+        $email_login     = $contato['email_login'];
+        $email_senha     = $contato['email_senha'];
+        $emailDe          = array();
+
+        $emailDe['from']        = $email_de;
+        $emailDe['fromName']    = $contato['email_para_nome'];
+        $emailDe['replyTo']     = $email;
+        $emailDe['returnPath']  = $email_de;
+        $emailDe['confirmTo']   = '';
+        $emailPara              = array();
+        $emailPara[1]['to']     = $email_para;
+        $emailPara[1]['toName'] = $email_para_nome;
+        // #2
+        //$emailPara[2]['to']		= 'seuemail2@seudominio.com.br';
+        //$emailPara[2]['toName']	= 'Seu Nome2';
+
+        $SMTP             = array();
+        $SMTP['host']     = $host_smtp;
+        $SMTP['port']     = $porta_smtp;
+        $SMTP['encrypt']  = $encrypt_smtp;
+        $SMTP['username'] = $email_login;
+        $SMTP['password'] = $email_senha;
+        $SMTP['charset']  = 'utf-8';
+        $SMTP['priority'] = 1;
+        $SMTP['debug']    = FALSE;
+
+        $mail = sendEmail($emailDe, $emailPara, $emailAssunto, $emailMensagem, $SMTP);
+
+        if ($mail !== TRUE) {
+            echo ('Nao foi possivel enviar a mensagem.<br />Erro: ' . $mail);
+            exit;
+        }
+
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Cancelamento realizado com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes-movimentacao?id=' . $user_id . '";
+                  }
+                }); }, 1000);</script>';
+
+        break;
+
+    case 'reinvestir':
+
+        if (!empty($_POST)) {
+
+            $id_usuario       = $_POST['id_user'];
+            $nome_usuario     = $_POST['nome'];
+            $id_transacao     = $_POST['id'];
+            $tipo_transacao   = $_POST['tipo'];
+            $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+            $reinvestir       = '1';
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET reinvestir = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($reinvestir, $id_transacao));
+
+        echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Parabéns!",
+                  text: "Lucro reinvestido com sucesso!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "clientes-movimentacao?id=' . $user_id . '";
+                  }
+                }); }, 1000);</script>';
 
         break;
 

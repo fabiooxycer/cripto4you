@@ -88,6 +88,9 @@ include('../../includes/header.php');
                                 if ($row['confirmado'] == 2) {
                                     $confirmado = 'Aguardando Liberação';
                                 }
+                                if ($row['confirmado'] == 3) {
+                                    $confirmado = 'Cancelado';
+                                }
 
                                 echo "<tr>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
@@ -202,7 +205,7 @@ switch (get_post_action('saque', 'deposito')) {
 
         if (!empty($_POST)) {
 
-            $usuario        = $_POST['id'];
+            $usuario        = $_SESSION['UsuarioID'];
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
             $valor         = $_POST['valor'];
