@@ -76,7 +76,7 @@
                             Saldo Atual
                         </div>
                         <?php
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1 AND confirmado = 1');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1 AND confirmado = 1 AND reinvestir = 1');
 
                         $result = $sql->fetchAll();
 
