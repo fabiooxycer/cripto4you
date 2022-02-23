@@ -317,7 +317,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
                 swal({
                   title: "Opsss!",
                   text: "Valor solicitado superior ao saldo do usuário/cliente!",
-                  type: "success",
+                  type: "warning",
                   confirmButtonText: "OK" 
                 },
                 function(isConfirm){
