@@ -392,7 +392,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir')) {
                     },
                     function(isConfirm){
                       if (isConfirm) {
-                        window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
+                        window.location.href = "meu-investimento?id=' . $id_usuario . '";
                       }
                     }); }, 1000);</script>';
 
