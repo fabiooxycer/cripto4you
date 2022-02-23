@@ -300,7 +300,7 @@ switch (get_post_action('saque', 'deposito')) {
 
         if (!empty($_POST)) {
 
-            $usuario        = $_POST['id'];
+            $usuario        = $_SESSION['UsuarioID'];
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
             $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
