@@ -452,7 +452,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         echo '<script>setTimeout(function () { 
                 swal({
                   title: "Parabéns!",
-                  text: "Solicitação de aporte realizada com sucesso!",
+                  text: "Lucro inserido com sucesso!",
                   type: "success",
                   confirmButtonText: "OK" 
                 },

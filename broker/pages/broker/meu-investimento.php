@@ -196,7 +196,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
+switch (get_post_action('saque', 'deposito')) {
 
     case 'saque':
 
@@ -205,8 +205,11 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $usuario        = $_POST['id'];
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
+            $valor         = $_POST['valor'];
             $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
+            $valor1 = str_replace('.', '', $valor_solicitado);
+            $valor2 = str_replace(',00', '', $valor1);
             $comprovante    = '-';
             $confirmado     = '2';
 
@@ -219,30 +222,65 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+        $sql1 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1';
+        foreach ($pdo->query($sql1) as $data_lucro) {
+            $lucro = $data_lucro['sum(valor)'];
+        }
 
-        $sql = "SELECT * FROM tbl_usuarios where id = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($usuario));
-        $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-        $nome_user = $data_users['nome'];
-        $operador  = $_SESSION['UsuarioNome'];
+        $sql2 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 2 AND confirmado = 1';
+        foreach ($pdo->query($sql2) as $data_retiradas) {
+            $retiradas = $data_retiradas['sum(valor)'];
+        }
 
-        // ENVIA TELEGRAM    
-        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data2 = [
-            "chat_id" => "-1001322495863",
-            // "chat_id" => "184418484", // id_telegram: fabio
-            'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
-        ];
+        $sql3 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 1 AND confirmado = 1';
+        foreach ($pdo->query($sql3) as $data_saldo) {
+            $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
+        }
 
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+        $saldo_cliente = $saldo;
 
-        echo '<script>setTimeout(function () { 
+        if ($valor2 > $saldo_cliente) {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Opsss!",
+                  text: "Valor solicitado superior ao saldo do usuário/cliente!",
+                  type: "warning",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "meu-investimento";
+                  }
+                }); }, 1000);</script>';
+        }
+
+        if ($saldo_cliente >= $valor2) {
+
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+
+            $sql = "SELECT * FROM tbl_usuarios where id = ?";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($usuario));
+            $data_users = $q->fetch(PDO::FETCH_ASSOC);
+
+            $nome_user = $data_users['nome'];
+
+            // ENVIA TELEGRAM    
+            $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+            $data2 = [
+                "chat_id" => "-1001322495863",
+                // "chat_id" => "184418484", // id_telegram: fabio
+                'parse_mode' => 'HTML',
+                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+            ];
+
+            $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+
+            echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Solicitação de saque realizada com sucesso!",
@@ -251,9 +289,10 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
+        }
 
         break;
 
@@ -277,9 +316,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador) VALUES(?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome']));
+        $q->execute(array($usuario, $descricao, $tipo, $valor_deposito, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
         $sql = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql);
@@ -287,14 +326,13 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
         $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
         $nome_user = $data_users['nome'];
-        $operador  = $_SESSION['UsuarioNome'];
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $data2 = [
             "chat_id" => "-1001322495863",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nSolicitado por: $operador\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
+            'text' => "\n<b>SOLICITAÇÃO DE DEPÓSITO</b> \n\nUsuário: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_deposito as $hr_deposito\n ",
         ];
 
         $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
@@ -308,7 +346,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar')) {
             },
             function(isConfirm){
               if (isConfirm) {
-                window.location.href = "clientes-movimentacao?id=' . $usuario . '";
+                window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
 
