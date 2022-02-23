@@ -87,10 +87,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['tipo'] == 3) {
                                     $tipo = '<font color="green"> Lucro </font>';
                                 }
-                                if ($row['tipo'] == 3 AND $row['reinvestir'] == 1) {
+                                if ($row['tipo'] == 3 and $row['reinvestir'] == 1) {
                                     $tipo = '<font color="blue"> Lucro reinvestido </font>';
                                 }
-                                
+
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
                                     $timestamp = strtotime($data_criacao);
@@ -131,12 +131,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['confirmado'] == 2) {
                                     echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button><br>';
                                     echo '<button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-danger" name="cancelar">CANCELAR</button>';
-                                } else {
-                                    echo '-';
                                 }
                                 if ($row['tipo'] == 3) {
                                     echo '<br><button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
+                                } else {
+                                    echo '-';
                                 }
+
                                 echo "</form>";
                                 echo "</td>";
                             }
