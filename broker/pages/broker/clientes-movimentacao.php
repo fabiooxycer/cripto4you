@@ -51,28 +51,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
             <p class="mb-4">Abaixo serão listadas todas as movimentações concluídas e pendentes do usuário/cliente.</p>
-            <?php
-            $usuario = '2';
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql1 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1';
-            foreach ($pdo->query($sql1) as $data_lucro) {
-                $lucro = $data_lucro['sum(valor)'];
-            }
-
-
-            $sql2 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 2 AND confirmado = 1';
-            foreach ($pdo->query($sql2) as $data_retiradas) {
-                $retiradas = $data_retiradas['sum(valor)'];
-            }
-
-            $sql3 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 1 AND confirmado = 1';
-            foreach ($pdo->query($sql3) as $data_saldo) {
-                $saldo = $data_saldo['sum(valor)'] + $lucro - $retiradas;
-            }
-
-            $saldo_cliente = $saldo;
-            ?>
-            <?php echo $saldo_cliente; ?>
         </div>
         <div class="card-body">
             <div class="row">
