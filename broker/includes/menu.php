@@ -14,24 +14,22 @@
 </li>
 
 <?php if ($_SESSION['UsuarioNivel'] >= '1') { ?>
-    <?php if ($_SESSION['UsuarioNivel'] != '100') { ?>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">
-            Broker
-        </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
-                <i class="fas fa-fw fa-coins"></i>
-                <span>Investimento</span>
-            </a>
-            <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="meu-investimento">Extrato</a>
-                </div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Broker
+    </div>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeuInvestimento" aria-expanded="true" aria-controls="collapseMeuInvestimento">
+            <i class="fas fa-fw fa-coins"></i>
+            <span>Investimento</span>
+        </a>
+        <div id="collapseMeuInvestimento" class="collapse" aria-labelledby="headingMeuInvestimento" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="meu-investimento">Extrato</a>
             </div>
-        </li>
-    <?php }
-    if ($_SESSION['UsuarioNivel'] >= '98') { ?>
+        </div>
+    </li>
+    <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
         <hr class="sidebar-divider">
 
         <div class="sidebar-heading">
