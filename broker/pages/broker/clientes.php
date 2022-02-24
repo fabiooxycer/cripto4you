@@ -18,7 +18,7 @@ include('../../includes/header.php');
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
-                [0, "ASC"]
+                [0, "asc"]
             ]
         });
     });

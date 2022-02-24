@@ -135,8 +135,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     echo '<br><button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-danger" name="cancelar">CANCELAR</button>';
                                 }
                                 if ($row['tipo'] == 3 and $row['reinvestir'] != 1) {
-                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
-                                    echo '<br><br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-danger" name="sacarLucro">SACAR</button>';
+                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button><br>';
+                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-danger" name="sacarLucro">SACAR</button>';
                                 }
 
                                 echo "</form>";
