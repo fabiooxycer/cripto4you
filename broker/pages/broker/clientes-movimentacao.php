@@ -42,6 +42,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
+                    <button type="button" class="btn btn-dark mr-1" onClick="history.go(-1)"><i class="icon-action-undo"></i> VOLTAR</button>
+
                     <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
 
                     <button class="btn btn-secondary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
@@ -769,24 +771,24 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
 
         break;
 
-        case 'sacarLucro':
+    case 'sacarLucro':
 
-            if (!empty($_POST)) {
-    
-                $id_usuario       = $_POST['id_user'];
-                $id_transacao     = $_POST['id'];
-                $tipo_transacao   = '2';
-                $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
-                $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
-                $confirmado       = '2';
-            }
-    
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'UPDATE tbl_investimentos SET valor = ?, tipo = ?, confirmado = ? WHERE id = ?';
-            $q = $pdo->prepare($sql);
-            $q->execute(array($valor_transacao, $tipo_transacao, $confirmado, $id_transacao));
-    
-            echo '<script>setTimeout(function () { 
+        if (!empty($_POST)) {
+
+            $id_usuario       = $_POST['id_user'];
+            $id_transacao     = $_POST['id'];
+            $tipo_transacao   = '2';
+            $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+            $confirmado       = '2';
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET valor = ?, tipo = ?, confirmado = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($valor_transacao, $tipo_transacao, $confirmado, $id_transacao));
+
+        echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
                       text: "Solicitação de saque do lucro realizada com sucesso!",
@@ -798,8 +800,8 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
                         window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
                       }
                     }); }, 1000);</script>';
-    
-            break;
+
+        break;
 
     default:
 }
