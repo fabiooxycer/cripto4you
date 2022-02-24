@@ -96,7 +96,7 @@ $seo = $q->fetch(PDO::FETCH_ASSOC);
             <form action="contato-seo?id=<?php echo $id ?>" method="post">
                 <div class="px-3">
                     <div class="form-body">
-                        <h6 class="m-0 font-weight-bold text-primary">DADOS DE CONTATO DO SITE</h6><br>
+                        <li><h6 class="m-0 font-weight-bold text-primary">DADOS DE CONTATO DO SITE</h6></li><br>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -118,7 +118,7 @@ $seo = $q->fetch(PDO::FETCH_ASSOC);
                             </div>
                         </div>
                         <hr><br>
-                        <h6 class="m-0 font-weight-bold text-primary">DADOS DE SEO DO SITE</h6><br>
+                        <li><h6 class="m-0 font-weight-bold text-primary">DADOS DE SEO DO SITE</h6></li><br>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
