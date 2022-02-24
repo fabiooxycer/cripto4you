@@ -108,7 +108,9 @@ include('../../includes/header.php');
                                     echo '<form action="meu-investimento" method="POST">';
                                     echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
+                                    echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                     echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
+                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-info" name="sacarLucro">SACAR</button>';
                                     echo "</form>";
                                 } 
                                 echo "</td>";
@@ -213,7 +215,7 @@ function get_post_action($name)
 }
 
 // Verifica qual botao foi clicado
-switch (get_post_action('saque', 'deposito', 'reinvestir')) {
+switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
     case 'saque':
 
@@ -397,6 +399,38 @@ switch (get_post_action('saque', 'deposito', 'reinvestir')) {
                     }); }, 1000);</script>';
 
         break;
+
+        case 'sacarLucro':
+
+            if (!empty($_POST)) {
+    
+                $id_usuario       = $_POST['id_user'];
+                $id_transacao     = $_POST['id'];
+                $tipo_transacao   = '2';
+                $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+                $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+                $confirmado       = '2';
+            }
+    
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = 'UPDATE tbl_investimentos SET valor = ?, tipo = ?, confirmado = ? WHERE id = ?';
+            $q = $pdo->prepare($sql);
+            $q->execute(array($valor_transacao, $tipo_transacao, $confirmado, $id_transacao));
+    
+            echo '<script>setTimeout(function () { 
+                    swal({
+                      title: "Parabéns!",
+                      text: "Solicitação de saque do lucro realizada com sucesso!",
+                      type: "success",
+                      confirmButtonText: "OK" 
+                    },
+                    function(isConfirm){
+                      if (isConfirm) {
+                        window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
+                      }
+                    }); }, 1000);</script>';
+    
+            break;
 
     default:
 }
