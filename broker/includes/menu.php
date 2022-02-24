@@ -29,25 +29,7 @@
             </div>
         </div>
     </li>
-    <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
-        <hr class="sidebar-divider">
-
-        <div class="sidebar-heading">
-            Atendimento
-        </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuporte" aria-expanded="true" aria-controls="collapseSuporte">
-                <i class="fas fa-fw fa-life-ring"></i>
-                <span>Suporte</span>
-            </a>
-            <div id="collapseSuporte" class="collapse" aria-labelledby="headingSuporte" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="fila-atendimento">Fila de Atendimento</a>
-                </div>
-            </div>
-        </li>
-        <hr class="sidebar-divider d-none d-md-block">
-    <?php } ?>
+    <hr class="sidebar-divider">
 <?php } ?>
 
 
@@ -78,16 +60,10 @@
         <div id="collapseConfigSite" class="collapse" aria-labelledby="headingConfigSite" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
-                    <a class="collapse-item" href="contato">Contato</a>
+                    <a class="collapse-item" href="contato-seo">Contato / SEO</a>
                 <?php }
                 if ($_SESSION['UsuarioNivel'] >= '98') { ?>
                     <a class="collapse-item" href="noticias">Notícias</a>
-                <?php }
-                if ($_SESSION['UsuarioNivel'] >= '100') { ?>
-                    <a class="collapse-item" href="notificacoes">Notificações</a>
-                <?php }
-                if ($_SESSION['UsuarioNivel'] >= '100') { ?>
-                    <a class="collapse-item" href="seo">SEO</a>
                 <?php } ?>
             </div>
         </div>
