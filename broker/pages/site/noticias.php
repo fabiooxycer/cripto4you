@@ -115,7 +115,7 @@ include('../../includes/header.php');
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="imagem" name="imagem[]" multiple="multiple" required>
+                                    <input type="file" class="form-control-file" id="imagem" name="imagem[]" multiple="multiple" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
