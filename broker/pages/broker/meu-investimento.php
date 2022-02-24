@@ -150,7 +150,7 @@ include('../../includes/header.php');
                             <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="saque" class="btn btn-primary"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="submit" name="saque" class="btn btn-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
@@ -190,7 +190,7 @@ include('../../includes/header.php');
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="deposito" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR APORTE</button>
+                            <button type="submit" name="deposito" class="btn btn-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>

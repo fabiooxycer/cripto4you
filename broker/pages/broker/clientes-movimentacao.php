@@ -178,7 +178,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="saque" class="btn btn-primary"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="submit" name="saque" class="btn btn-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
@@ -220,7 +220,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="deposito" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR APORTE</button>
+                            <button type="submit" name="deposito" class="btn btn-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
@@ -235,7 +235,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">INSERIR LUCRO</h4>
+                    <h4 class="modal-title">CREDITAR LUCRO</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
@@ -256,7 +256,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"> Todo lucro obtido com o investimento do usuário/cliente, deve ser inserido um a um para manter a ordem das operações.</font><br><br>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="lucro" class="btn btn-primary"><i class="fa fa-check"></i> ENVIAR LUCRO</button>
+                            <button type="submit" name="lucro" class="btn btn-info"><i class="fa fa-check"></i> CREDITAR LUCRO</button>
                             <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
