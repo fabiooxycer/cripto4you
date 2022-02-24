@@ -48,7 +48,6 @@
             </div>
         </div>
     </li>
-    <hr class="sidebar-divider d-none d-md-block">
 <?php } ?>
 
 <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
