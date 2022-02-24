@@ -97,7 +97,7 @@ include('../../includes/header.php');
                         <?php
                         $pdo = BancoCadastros::conectar();
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $sql = "SELECT * FROM tbl_usuarios WHERE id != '1' ORDER BY nome ASC, status ASC";
+                        $sql = "SELECT * FROM tbl_usuarios WHERE id != '1' ORDER BY nome ASC";
 
                         foreach ($pdo->query($sql) as $row) {
 
