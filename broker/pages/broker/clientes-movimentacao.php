@@ -34,6 +34,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 [2, "desc"]
             ]
         });
+    });
+</script>
+<script>
+    $(document).ready(function() {
         $('#dataTable').DataTable({
             "pageLength": 100
         });
