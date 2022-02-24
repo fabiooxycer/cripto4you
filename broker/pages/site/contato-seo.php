@@ -33,50 +33,37 @@ switch (get_post_action('atualizar')) {
 
         if (!empty($_POST)) {
 
-            $nome          = $_POST['nome'];
-            $rg            = $_POST['rg'];
-            $cpf           = $_POST['cpf'];
-            $telefone      = $_POST['telefone'];
-            $email         = $_POST['email'];
-            $cep           = $_POST['cep'];
-            $endereco      = $_POST['endereco'];
-            $numero        = $_POST['numero'];
-            $complemento   = $_POST['complemento'];
-            $bairro        = $_POST['bairro'];
-            $cidade        = $_POST['cidade'];
-            $estado        = $_POST['estado'];
-            $tipo_pix      = $_POST['tipo_pix'];
-            $chave         = $_POST['chave'];
-            $tipo_contrato = $_POST['tipo_contrato'];
-            $dt_saque      = $_POST['dt_saque'];
-            $status        = '1';
-            $nivel         = $_POST['nivel'];
-
-            if ($complemento == '') {
-                $complemento = '-';
-            }
-            if ($chave == '') {
-                $chave = '-';
-            }
-            if ($dt_saque == '') {
-                $dt_saque = '0000-00-00';
-            }
+            $whatsapp    = $_POST['whatsapp'];
+            $telefone    = $_POST['telefone'];
+            $email       = $_POST['email'];
+            $titulo      = $_POST['titulo'];
+            $dominio     = $_POST['dominio'];
+            $keywords    = $_POST['keywords'];
+            $descricao   = $_POST['descricao'];
+            $analytics   = $_POST['analytics'];
+            $tag_manager = $_POST['tag_manager'];
+            $facebook    = $_POST['facebook'];
+            $instagram   = $_POST['instagram'];
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE tbl_usuarios set nome = ?, rg = ?, cpf = ?, telefone = ?, email = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, tipo_pix = ?, chave = ?, tipo_contrato = ?, dt_saque = ?, nivel = ? WHERE id = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $dt_saque, $nivel, $id));
+        $sql1 = "UPDATE tbl_contato set whatsapp = ?, telefone = ?, email = ? WHERE id = ?";
+        $q = $pdo->prepare($sql1);
+        $q->execute(array($whatsapp, $telefone, $email, $id));
+
+        $sql2 = "UPDATE tbl_seo set titulo = ?, dominio = ?, keywords = ?, descricao = ?, analytics = ?, tag_manager = ?, facebook = ?, instagram = ? WHERE id = ?";
+        $q = $pdo->prepare($sql2);
+        $q->execute(array($titulo, $dominio, $keywords, $descricao, $analytics, $tag_manager, $facebook, $instagram, $id));
         echo '<script>setTimeout(function () { 
             swal({
             title: "Parabéns!",
-            text: "Cliente/Usuário atualizado com sucesso!",
+            text: "Contato & SEO atualizados com sucesso!",
             type: "success",
             confirmButtonText: "OK"
             },
             function(isConfirm){
             if (isConfirm) {
-                window.location.href = "clientes";
+                window.location.href = "contato-seo";
             }
             }); }, 1000);</script>';
         break;
