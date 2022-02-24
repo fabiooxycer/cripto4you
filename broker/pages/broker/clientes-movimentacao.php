@@ -34,6 +34,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 [2, "desc"]
             ]
         });
+        $('#dataTable').dataTable({
+            "iDisplayLength": 100
+        });
     });
 </script>
 
