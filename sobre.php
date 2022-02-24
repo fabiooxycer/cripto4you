@@ -202,9 +202,10 @@ include('includes/header.php');
           <div class="consultation--desc">
             Solicite nossa Consultoria
           </div>
-          <form class="mb-0" action="sobre" method="post">
+          <form class="mb-0" action="inicio" method="post">
             <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-4">
+                <input type="hidden" class="form-control" name="valida" id="valida" readonly>
                 <input type="text" class="form-control" name="nome" id="nome" placeholder="Seu Nome" required>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-4">
@@ -273,42 +274,48 @@ include('includes/header.php');
 // Chama função para pegar o POST de cada FORM
 function get_post_action($name)
 {
-    $params = func_get_args();
+  $params = func_get_args();
 
-    foreach ($params as $name) {
-        if (isset($_POST[$name])) {
-            return $name;
-        }
+  foreach ($params as $name) {
+    if (isset($_POST[$name])) {
+      return $name;
     }
+  }
 }
 
 // Verifica qual botao foi clicado
 switch (get_post_action('contato')) {
 
-    case 'contato':
+  case 'contato':
 
-        if (!empty($_POST)) {
+    if (!empty($_POST)) {
 
-            $nome     = $_POST['nome'];
-            $email    = $_POST['email'];
-            $telefone = $_POST['telefone'];
-            $mensagem = $_POST['mensagem'];
-        }
+      $valida   = $_POST['valida'];
+      $nome     = $_POST['nome'];
+      $email    = $_POST['email'];
+      $telefone = $_POST['telefone'];
+      $mensagem = $_POST['mensagem'];
+    }
 
-        // ENVIA TELEGRAM    
-        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $data2 = [
-            "chat_id" => "-1001709220235", // ID Canal Contato Site
-            'parse_mode' => 'HTML',
-            'text' => "\n<b>CONTATO PELO SITE</b> \n\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nMensagem: $Mensagem\n",
-        ];
+    if ($valida == '') {
+      // ENVIA TELEGRAM    
+      $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+      $data2 = [
+        "chat_id" => "-1001709220235", // ID Canal Contato Site
+        'parse_mode' => 'HTML',
+        'text' => "\n<b>CONTATO PELO SITE</b> \n\nNome: $nome\nE-mail: $email\nTelefone: $telefone\nMensagem: $mensagem\n",
+      ];
 
-        $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+      $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
 
-        echo "<script>alert('SUA MENSAGEM FOI ENVIADA COM SUCESSO!');location.href='inicio';</script>";
+      echo "<script>alert('SUA MENSAGEM FOI ENVIADA COM SUCESSO!');location.href='inicio';</script>";
+    }
+    if ($valida != '') {
+      echo "<script>alert('Opss! Não foi possível enviar sua solicitação');location.href='inicio';</script>";
+    }
 
-        break;
+    break;
 
-    default:
+  default:
 }
 ?>
