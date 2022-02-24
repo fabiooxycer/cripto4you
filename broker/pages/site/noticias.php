@@ -247,7 +247,7 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $sql_imagem = 'SELECT * FROM tbl_noticias ORDER BY id DESC limit 1';
                         foreach ($pdo->query($sqlsql_imagem2) as $noticia) {
                             $img_noticia = $noticia['imagem'];
-                            $link_img = 'https://broker.cripto4you.net/assets/img/noticias/'. $img_noticia .'';
+                            $link_img = 'https://broker.cripto4you.net/assets/img/noticias/'. $img_noticia;
                         }
                         echo '<script>setTimeout(function () { 
                             swal({
