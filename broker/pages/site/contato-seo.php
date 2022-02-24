@@ -13,6 +13,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 include('../../includes/header.php');
 require_once("../../includes/database.php");
 $pdo = BancoCadastros::conectar();
+$id = '1';
 
 // Chama função para pegar o POST de cada FORM
 function get_post_action($name)
@@ -71,8 +72,6 @@ switch (get_post_action('atualizar')) {
     default:
 }
 
-$id = '1';
-$pdo = BancoCadastros::conectar();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "SELECT * FROM tbl_contato where id = ?";
 $q = $pdo->prepare($sql);
