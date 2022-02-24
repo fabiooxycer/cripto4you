@@ -109,9 +109,9 @@ $seo = $q->fetch(PDO::FETCH_ASSOC);
             <form action="contato-seo?id=<?php echo $id ?>" method="post">
                 <div class="px-3">
                     <div class="form-body">
-                        <p>Dados de Contato</p>
+                        <h6 class="m-0 font-weight-bold text-primary">DADOS DE CONTATO DO SITE</h6>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="basicInput">WhatsApp</label>
                                     <input type="text" class="form-control" id="whatsapp" name="whatsapp" value="<?php echo $contato['whatsapp']; ?>" autocomplete="off" required>
@@ -129,64 +129,53 @@ $seo = $q->fetch(PDO::FETCH_ASSOC);
                                     <input type="email" class="form-control" id="email" name="email" value="<?php echo $contato['email']; ?>" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="basicInput">Telefone</label>
-                                    <input type="text" class="form-control phone" id="telefone" name="telefone" value="<?php echo $data['telefone']; ?>" autocomplete="off" required>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <label for="basicInput">E-mail</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $data['email']; ?>" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
-                                </div>
-                            </div>
                         </div>
-                        <p>Dados SEO</p>
+                        <hr><br>
+                        <h6 class="m-0 font-weight-bold text-primary">DADOS DE SEO DO SITE</h6>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="basicInput">Título do Site</label>
                                     <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $seo['titulo']; ?>" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="basicInput">Domínio</label>
                                     <input type="text" class="form-control" id="dominio" name="dominio" value="<?php echo $seo['dominio']; ?>" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">Keywords</label>
                                     <textarea type="text" class="form-control" id="keywords" name="keywords" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required><?php echo $seo['keywords']; ?></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="basicInput">Descrição</label>
                                     <textarea type="text" class="form-control" id="descricao" name="descricao" autocomplete="off" required><?php echo $seo['descricao']; ?></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Google Analytics</label>
                                     <input type="text" class="form-control" id="analytics" name="analytics" value="<?php echo $seo['analytics']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Google Tag Manager</label>
                                     <input type="text" class="form-control" id="tag_manager" name="tag_manager" value="<?php echo $seo['tag_manager']; ?>" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Facebook</label>
                                     <input type="text" class="form-control" id="facebook" name="facebook" value="<?php echo $seo['facebook']; ?>" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="basicInput">Instagram</label>
                                     <input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo $seo['instagram']; ?>" onChange="this.value=this.value.toLowerCase()" autocomplete="off" required>
