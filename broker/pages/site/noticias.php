@@ -243,12 +243,6 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
                         $q = $pdo->prepare($sql3);
                         $q->execute(array($tmpname, $_SESSION['id']));
-
-                        $sql_imagem = 'SELECT * FROM tbl_noticias ORDER BY id DESC limit 1';
-                        foreach ($pdo->query($sqlsql_imagem2) as $noticia) {
-                            $img_noticia = $noticia['imagem'];
-                            $link_img = 'https://broker.cripto4you.net/assets/img/noticias/'. $img_noticia;
-                        }
                         echo '<script>setTimeout(function () { 
                             swal({
                               title: "Parabéns!",
@@ -270,7 +264,7 @@ switch (get_post_action('excluir', 'adicionar')) {
         $data = [
             "chat_id" => "-1001662279487",
             'parse_mode' => 'HTML',
-            'text' => "\n<b>$titulo</b>\n\n$link_img\n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . " \n ",
+            'text' => "\n<b>$titulo</b>\n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . " ",
             //'text' => "\nABERTURA CHAMADO URGENTE \n\nChamado: <b>$chamadoID</b> \n\nDepartamento: $SolicitanteDepartamento\nSolicitante: $SolicitanteName\n\n<b>Equipamento:</b> $equipamentoReclamado \n<b>Obs:</b> $observacaoManutencao \n ",
         ];
 
