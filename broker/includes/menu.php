@@ -35,7 +35,7 @@
 
 <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
     <div class="sidebar-heading">
-        Administração
+        Gestão
     </div>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastroClientes" aria-expanded="true" aria-controls="collapseCadastroClientes">
