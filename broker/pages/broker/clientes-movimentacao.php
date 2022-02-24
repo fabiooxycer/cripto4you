@@ -35,7 +35,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             ]
         });
         $('#dataTable').dataTable({
-            "iDisplayLength": 100
+            "pageLength": 100
         });
     });
 </script>
