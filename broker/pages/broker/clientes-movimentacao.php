@@ -36,13 +36,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         });
     });
 </script>
-<script>
-    $(document).ready(function() {
-        $('#dataTable').DataTable({
-            "pageLength": 100
-        });
-    });
-</script>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
