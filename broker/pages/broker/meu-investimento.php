@@ -109,8 +109,8 @@ include('../../includes/header.php');
                                     echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                     echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
-                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
-                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-info" name="sacarLucro">SACAR</button>';
+                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-outline-info" name="reinvestir">REINVESTIR</button>';
+                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-outline-danger" name="sacarLucro">SACAR</button>';
                                     echo "</form>";
                                 }
                                 echo "</td>";
@@ -150,8 +150,8 @@ include('../../includes/header.php');
                             <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="saque" class="btn btn-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
-                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
@@ -190,8 +190,8 @@ include('../../includes/header.php');
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="deposito" class="btn btn-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
-                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
+                            <button type="button" class="btn btn-sm outline btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>

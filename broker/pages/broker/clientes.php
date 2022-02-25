@@ -161,15 +161,15 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $nivel . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             echo '<form action="clientes" method="POST">';
-                            echo '<a class="btn btn-sm btn-info" title="MOVIMENTAÇÕES" href="clientes-movimentacao?id=' . $row['id'] . '"><i class="fa fa-eye"></i></a>';
-                            echo '&nbsp;<a class="btn btn-sm btn-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
+                            echo '<a class="btn btn-sm btn-outline-info" title="MOVIMENTAÇÕES" href="clientes-movimentacao?id=' . $row['id'] . '"><i class="fa fa-eye"></i></a>';
+                            echo '&nbsp;<a class="btn btn-sm btn-outline-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                             if ($row['status'] == 1) {
-                                echo '&nbsp;<button type="submit" title="DESATIVAR" class="btn btn-sm btn-danger" name="desativar"><i  class="fa fa-thumbs-down"></i></button>';
+                                echo '&nbsp;<button type="submit" title="DESATIVAR" class="btn btn-sm btn-outline-danger" name="desativar"><i  class="fa fa-thumbs-down"></i></button>';
                             } else {
-                                echo '&nbsp;<button type="submit" title="ATIVAR" class="btn btn-sm btn-success" name="ativar"><i  class="fa fa-thumbs-up"></i></button>';
+                                echo '&nbsp;<button type="submit" title="ATIVAR" class="btn btn-sm btn-outline-success" name="ativar"><i  class="fa fa-thumbs-up"></i></button>';
                             }
-                            echo '&nbsp;<button type="submit" title="REDEFINIR SENHA" class="btn btn-sm btn-secondary" name="redefinir"><i  class="fa fa-key"></i></button>';
+                            echo '&nbsp;<button type="submit" title="REDEFINIR SENHA" class="btn btn-sm btn-outline-secondary" name="redefinir"><i  class="fa fa-key"></i></button>';
                             echo "</form>";
                             echo "</td>";
                         }
@@ -317,8 +317,8 @@ include('../../includes/header.php');
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" name="adicionar" class="btn btn-primary"><i class="fa fa-check"></i> CADASTRAR</button>
-                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                        <button type="submit" name="adicionar" class="btn btn-sm btn-outline-primary"><i class="fa fa-check"></i> CADASTRAR</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                     </div>
                 </form>
             </div>

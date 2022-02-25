@@ -274,10 +274,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <br /><br />
                 <div class="form-actions" align="center">
-                    <button type="button" class="btn btn-dark mr-1" onClick="history.go(-1)">
+                    <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)">
                         <i class="icon-action-undo"></i> VOLTAR
                     </button>
-                    <button type="submit" class="btn btn-primary" name="atualizar">
+                    <button type="submit" class="btn btn-sm btn-outline-primary" name="atualizar">
                         <i class="icon-note"></i> ATUALIZAR
                     </button>
                 </div>

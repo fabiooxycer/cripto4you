@@ -131,12 +131,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo '<input type="hidden" name="tipo" id="tipo" value="' . $row['tipo'] . '" >';
                                 echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
                                 if ($row['confirmado'] == 2) {
-                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-success" name="liberar">LIBERAR</button><br>';
-                                    echo '<br><button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-danger" name="cancelar">CANCELAR</button>';
+                                    echo '<button type="submit" title="LIBERAR MOVIMENTAÇÃO" class="btn btn-sm btn-outline-success" name="liberar">LIBERAR</button><br>';
+                                    echo '<br><button type="submit" title="CANCELAR MOVIMENTAÇÃO" class="btn btn-sm btn-outline-danger" name="cancelar">CANCELAR</button>';
                                 }
                                 if ($row['tipo'] == 3 and $row['reinvestir'] != 1) {
-                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button><br>';
-                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-danger" name="sacarLucro">SACAR</button>';
+                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-outline-info" name="reinvestir">REINVESTIR</button><br>';
+                                    echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-outline-danger" name="sacarLucro">SACAR</button>';
                                 }
 
                                 echo "</form>";
@@ -178,8 +178,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="saque" class="btn btn-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
-                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
@@ -220,8 +220,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="deposito" class="btn btn-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
-                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
@@ -256,8 +256,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"> Todo lucro obtido com o investimento do usuário/cliente, deve ser inserido um a um para manter a ordem das operações.</font><br><br>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="lucro" class="btn btn-info"><i class="fa fa-check"></i> CREDITAR LUCRO</button>
-                            <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="lucro" class="btn btn-sm btn-outline-info"><i class="fa fa-check"></i> CREDITAR LUCRO</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
