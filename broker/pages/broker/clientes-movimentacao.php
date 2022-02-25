@@ -42,13 +42,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button type="button" class="btn btn-dark mr-1" onClick="history.go(-1)"><i class="icon-action-undo"></i> VOLTAR</button>
+                    <button type="button" class="btn btn-sm btn-outline-dark mr-1" onClick="history.go(-1)"><i class="icon-action-undo"></i> VOLTAR</button>
 
-                    <button class="btn btn-danger mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
+                    <button class="btn btn-outline-danger btn-sm mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
 
-                    <button class="btn btn-success mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
+                    <button class="btn btn-outline-success btn-sm mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
 
-                    <button class="btn btn-info mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-coins mr-1 mt-1"></i> LUCRO</button>
+                    <button class="btn btn-outline-info btn-sm mt-4 mt-sm-0" data-toggle="modal" data-target="#modalLucro"><i class="fa fa-coins mr-1 mt-1"></i> LUCRO</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
