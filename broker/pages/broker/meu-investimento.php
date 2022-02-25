@@ -28,9 +28,9 @@ include('../../includes/header.php');
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button class="btn btn-danger mt-4 mt-sm-0" data-toggle="modal" data-target="#modalSaque"><i class="fa fa-minus mr-1 mt-1"></i> SAQUE</button>
+                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque"> SAQUE</button>
 
-                    <button class="btn btn-success mt-4 mt-sm-0" data-toggle="modal" data-target="#modalDeposito"><i class="fa fa-plus mr-1 mt-1"></i> DEPÓSITO</button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito"> DEPÓSITO</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">EXTRATO - MEU INVESTIMENTO</h4>
@@ -104,7 +104,7 @@ include('../../includes/header.php');
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
 
-                                if ($row['tipo'] == 3 and $row['reinvestir'] ==2) {
+                                if ($row['tipo'] == 3 and $row['reinvestir'] == 2) {
                                     echo '<form action="meu-investimento" method="POST">';
                                     echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
@@ -112,7 +112,7 @@ include('../../includes/header.php');
                                     echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-info" name="reinvestir">REINVESTIR</button>';
                                     echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-info" name="sacarLucro">SACAR</button>';
                                     echo "</form>";
-                                } 
+                                }
                                 echo "</td>";
                             }
                             echo "</tr>";
@@ -400,24 +400,24 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         break;
 
-        case 'sacarLucro':
+    case 'sacarLucro':
 
-            if (!empty($_POST)) {
-    
-                $id_usuario       = $_POST['id_user'];
-                $id_transacao     = $_POST['id'];
-                $tipo_transacao   = '2';
-                $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
-                $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
-                $confirmado       = '2';
-            }
-    
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = 'UPDATE tbl_investimentos SET valor = ?, tipo = ?, confirmado = ? WHERE id = ?';
-            $q = $pdo->prepare($sql);
-            $q->execute(array($valor_transacao, $tipo_transacao, $confirmado, $id_transacao));
-    
-            echo '<script>setTimeout(function () { 
+        if (!empty($_POST)) {
+
+            $id_usuario       = $_POST['id_user'];
+            $id_transacao     = $_POST['id'];
+            $tipo_transacao   = '2';
+            $valor_transacao  = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_solicitado = number_format($valor_transacao, 2, ',', '.');
+            $confirmado       = '2';
+        }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE tbl_investimentos SET valor = ?, tipo = ?, confirmado = ? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($valor_transacao, $tipo_transacao, $confirmado, $id_transacao));
+
+        echo '<script>setTimeout(function () { 
                     swal({
                       title: "Parabéns!",
                       text: "Solicitação de saque do lucro realizada com sucesso!",
@@ -429,8 +429,8 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                         window.location.href = "clientes-movimentacao?id=' . $id_usuario . '";
                       }
                     }); }, 1000);</script>';
-    
-            break;
+
+        break;
 
     default:
 }
