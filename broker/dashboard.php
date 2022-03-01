@@ -50,7 +50,7 @@ include('includes/header.php');
 
         <br><br>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h4 mb-0 text-gray-800">TOP 10 CRIPTOMOEDAS MAIS NEGOCIADAS</h1>
+            <h1 class="h4 mb-0 text-gray-800">TOP 10 CRIPTOS</h1>
         </div>
         <div class="row">
             <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=light&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="655" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
