@@ -31,7 +31,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
-                [2, "desc"]
+                [2, "asc"]
             ]
         });
     });
@@ -71,7 +71,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <tbody>
                             <?php
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $id . '" ORDER BY dt_criacao DESC, hr_criacao DESC';
+                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $id . '" ORDER BY dt_criacao ASC, hr_criacao ASC';
 
                             foreach ($pdo->query($sql) as $row) {
 
