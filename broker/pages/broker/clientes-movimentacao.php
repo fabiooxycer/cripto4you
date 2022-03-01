@@ -71,7 +71,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <tbody>
                             <?php
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $id . '" ORDER BY dt_criacao DESC, hr_criacao DESC';
+                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $id . '" ORDER BY hr_criacao DESC,dt_criacao DESC';
 
                             foreach ($pdo->query($sql) as $row) {
 
