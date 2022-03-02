@@ -37,29 +37,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     });
 </script>
 
-<script type="text/javascript">
-    function calculaDataFin() {
-        var datainicial = document.getElementById("dt_saque").value;
-        var dias = parseInt(document.getElementById("dias").value);
-        var partes = datainicial.split("-");
-        var ano = partes[0];
-        var mes = partes[1] - 1;
-        var dia = partes[2];
-
-        datainicial = new Date(ano, mes, dia);
-        datafinal = new Date(datainicial);
-        datafinal.setDate(datafinal.getDate() + dias);
-
-        var dd = ("0" + datafinal.getDate()).slice(-2);
-        var mm = ("0" + (datafinal.getMonth() + 1)).slice(-2);
-        var y = datafinal.getFullYear();
-
-        var dataformatada = y + '-' + mm + '-' + dd;
-        document.getElementById('prox_saque').value = dataformatada;
-
-    }
-</script>
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -844,3 +821,26 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
 ?>
 
 <?php include('../../includes/footer.php'); ?>
+
+<script type="text/javascript">
+    function calculaDataFin() {
+        var datainicial = document.getElementById("dt_saque").value;
+        var dias = parseInt(document.getElementById("dias").value);
+        var partes = datainicial.split("-");
+        var ano = partes[0];
+        var mes = partes[1] - 1;
+        var dia = partes[2];
+
+        datainicial = new Date(ano, mes, dia);
+        datafinal = new Date(datainicial);
+        datafinal.setDate(datafinal.getDate() + dias);
+
+        var dd = ("0" + datafinal.getDate()).slice(-2);
+        var mm = ("0" + (datafinal.getMonth() + 1)).slice(-2);
+        var y = datafinal.getFullYear();
+
+        var dataformatada = y + '-' + mm + '-' + dd;
+        document.getElementById('prox_saque').value = dataformatada;
+
+    }
+</script>
