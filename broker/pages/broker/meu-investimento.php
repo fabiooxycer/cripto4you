@@ -278,8 +278,9 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
-        if (($data['dt_saque'] != date('Y-m-d')) && ($valor2 > $saldo_cliente)) {
-            echo '<script>setTimeout(function () { 
+        if ($data['dt_saque'] != date('Y-m-d')) {
+            if ($valor2 > $saldo_cliente) {
+                echo '<script>setTimeout(function () { 
                 swal({
                   title: "Opsss!",
                   text: "Valor solicitado superior ao saldo do usuário/cliente!",
@@ -291,38 +292,40 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                     window.location.href = "meu-investimento";
                   }
                 }); }, 1000);</script>';
+            }
         }
 
-        if (($data['dt_saque'] == date('Y-m-d')) && ($saldo_cliente >= $valor2)) {
+        if ($data['dt_saque'] == date('Y-m-d')) {
+            if ($saldo_cliente >= $valor2) {
 
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql_saque = "UPDATE tbl_usuarios set dt_saque = ? WHERE id = ?";
-            $q = $pdo->prepare($sql_saque);
-            $q->execute(array($prox_saque, $usuario));
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql_saque = "UPDATE tbl_usuarios set dt_saque = ? WHERE id = ?";
+                $q = $pdo->prepare($sql_saque);
+                $q->execute(array($prox_saque, $usuario));
 
-            $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
+                $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
+                $q = $pdo->prepare($sql);
+                $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));
 
-            $sql = "SELECT * FROM tbl_usuarios where id = ?";
-            $q = $pdo->prepare($sql);
-            $q->execute(array($usuario));
-            $data_users = $q->fetch(PDO::FETCH_ASSOC);
+                $sql = "SELECT * FROM tbl_usuarios where id = ?";
+                $q = $pdo->prepare($sql);
+                $q->execute(array($usuario));
+                $data_users = $q->fetch(PDO::FETCH_ASSOC);
 
-            $nome_user = $data_users['nome'];
+                $nome_user = $data_users['nome'];
 
-            // ENVIA TELEGRAM    
-            $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-            $data2 = [
-                "chat_id" => "-1001322495863",
-                // "chat_id" => "184418484", // id_telegram: fabio
-                'parse_mode' => 'HTML',
-                'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
-            ];
+                // ENVIA TELEGRAM    
+                $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+                $data2 = [
+                    "chat_id" => "-1001322495863",
+                    // "chat_id" => "184418484", // id_telegram: fabio
+                    'parse_mode' => 'HTML',
+                    'text' => "\n<b>SOLICITAÇÃO DE SAQUE</b> \n\nCliente: $nome_user\nValor: R$ $valor_solicitado\nData: $dt_saque às $hr_saque\n",
+                ];
 
-            $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
+                $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
 
-            echo '<script>setTimeout(function () { 
+                echo '<script>setTimeout(function () { 
             swal({
               title: "Parabéns!",
               text: "Solicitação de saque realizada com sucesso!",
@@ -334,6 +337,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                 window.location.href = "meu-investimento";
               }
             }); }, 1000);</script>';
+            }
         }
 
         break;
