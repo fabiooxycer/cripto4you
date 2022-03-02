@@ -278,7 +278,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
-        if ($data['dt_saque'] != date('Y-m-d') AND $valor2 > $saldo_cliente) {
+        if (($data['dt_saque'] != date('Y-m-d')) && ($valor2 > $saldo_cliente)) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Opsss!",
@@ -293,7 +293,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                 }); }, 1000);</script>';
         }
 
-        if ($data['dt_saque'] == date('Y-m-d') AND $saldo_cliente >= $valor2) {
+        if (($data['dt_saque'] == date('Y-m-d')) && ($saldo_cliente >= $valor2)) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql_saque = "UPDATE tbl_usuarios set dt_saque = ? WHERE id = ?";
