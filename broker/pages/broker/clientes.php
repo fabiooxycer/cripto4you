@@ -126,8 +126,6 @@ include('../../includes/header.php');
                             }
                             if ($row['dt_saque']) {
                                 $saque = '' . $row['dt_saque'] . '';
-                                $timestamp = strtotime($saque);
-                                $data_saque = date('d/m/Y', $timestamp);
                             }
                             if ($row['status'] == 1) {
                                 $status = '<font color="green"> ATIVO </font>';
@@ -153,7 +151,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_cadastro . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
                             if ($row['dt_saque'] != '0000-00-00') {
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $data_saque . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($saque, 2) . "</font></td>";
                             } else {
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
                             }
@@ -294,6 +292,7 @@ include('../../includes/header.php');
                                         <option value="">Selecione...</option>
                                         <option value="1">Diário</option>
                                         <option value="2">Mensal</option>
+                                        <option value="3">Quinzenal</option>
                                     </select>
                                 </div>
                             </div>

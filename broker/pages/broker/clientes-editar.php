@@ -237,10 +237,14 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                 }
                                                                                                 if ($data['tipo_contrato'] == '2') {
                                                                                                     echo 'MENSAL';
+                                                                                                }
+                                                                                                if ($data['tipo_contrato'] == '3') {
+                                                                                                    echo 'QUINZENAL';
                                                                                                 } ?></option>
                                         <option value="">Selecione...</option>
                                         <option value="1">Diário</option>
                                         <option value="2">Mensal</option>
+                                        <option value="3">Quinzenal</option>
                                     </select>
                                 </div>
                             </div>
