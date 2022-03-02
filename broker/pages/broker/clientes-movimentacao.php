@@ -45,11 +45,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <!-- <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)"> VOLTAR</button> -->
                     <a type="button" class="btn btn-sm btn-outline-dark" href="clientes" title="VOLTAR"><i class="fas fa-undo"></i></a>
 
-                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-layer-minus"></i></button>
+                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
 
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR DEPÓSITO"><i class="fas fa-layer-plus"></i></button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR DEPÓSITO"><i class="fas fa-plus-circle"></i></button>
 
-                    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modalLucro" title="ADICIONAR LUCRO"><i class="far fa-hand-holding-usd"></i></button>
+                    <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modalLucro" title="ADICIONAR LUCRO"><i class="fas fa-money-bill"></i></button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">Movimentação de <?php echo $data['nome']; ?></h4>
