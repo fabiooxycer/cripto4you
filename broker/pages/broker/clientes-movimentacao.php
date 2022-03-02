@@ -27,7 +27,7 @@ $q = $pdo->prepare($sql);
 $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
@@ -35,7 +35,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             ]
         });
     });
-</script>
+</script> -->
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
