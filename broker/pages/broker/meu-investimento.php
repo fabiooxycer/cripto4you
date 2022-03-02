@@ -260,7 +260,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql_contrato = "SELECT contrato_aceito FROM tbl_usuarios where id = ?";
+        $sql_contrato = "SELECT * FROM tbl_usuarios where id = ?";
         $q = $pdo->prepare($sql_contrato);
         $q->execute(array($usuario));
         $data_contrato = $q->fetch(PDO::FETCH_ASSOC);
