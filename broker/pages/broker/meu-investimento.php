@@ -12,6 +12,14 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 }
 
 include('../../includes/header.php');
+
+$id = $_SESSION['UsuarioID'];
+$pdo = BancoCadastros::conectar();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM tbl_usuarios where id = ?";
+$q = $pdo->prepare($sql);
+$q->execute(array($id));
+$data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
 <script>
     $(document).ready(function() {
@@ -53,7 +61,6 @@ include('../../includes/header.php');
                         </thead>
                         <tbody>
                             <?php
-                            $pdo = BancoCadastros::conectar();
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                             // $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" ORDER BY dt_criacao DESC, hr_criacao DESC';
                             $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" ORDER BY id DESC';
@@ -147,6 +154,10 @@ include('../../includes/header.php');
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
+                                        <input type="number" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
+                                                                                                                                                        if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
+                                        <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
+                                        <input type="date" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
@@ -158,7 +169,7 @@ include('../../includes/header.php');
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
@@ -238,6 +249,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
             $valor2 = str_replace(',00', '', $valor1);
             $comprovante    = '-';
             $confirmado     = '2';
+            $prox_saque       = $_POST['prox_saque'];
 
             $dt_criacao = date("Y-m-d");
             $hr_criacao = date("H:i:s");
@@ -266,7 +278,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
-        if ($valor2 > $saldo_cliente) {
+        if ($data['dt_saque'] != date('Y-m-d') AND $valor2 > $saldo_cliente) {
             echo '<script>setTimeout(function () { 
                 swal({
                   title: "Opsss!",
@@ -281,9 +293,13 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                 }); }, 1000);</script>';
         }
 
-        if ($saldo_cliente >= $valor2) {
+        if ($data['dt_saque'] == date('Y-m-d') AND $saldo_cliente >= $valor2) {
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql_saque = "UPDATE tbl_usuarios set dt_saque = ? WHERE id = ?";
+            $q = $pdo->prepare($sql_saque);
+            $q->execute(array($prox_saque, $usuario));
+
             $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado) VALUES(?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
             $q->execute(array($usuario, $descricao, $tipo, $valor_saque, $comprovante, $dt_criacao, $hr_criacao, $confirmado));

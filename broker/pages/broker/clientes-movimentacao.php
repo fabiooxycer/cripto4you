@@ -45,7 +45,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <!-- <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)"> VOLTAR</button> -->
                     <a type="button" class="btn btn-sm btn-outline-dark" href="clientes"> VOLTAR</a>
 
-                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" onblur="calculaDataFin();"> SAQUE</button>
+                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque"> SAQUE</button>
 
                     <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito"> DEPÓSITO</button>
 
@@ -171,10 +171,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>" autocomplete="off" readonly>
 
-                                        <input type="number" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
+                                        <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
-                                        <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
-                                        <input type="date" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
+                                        <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
+                                        <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
