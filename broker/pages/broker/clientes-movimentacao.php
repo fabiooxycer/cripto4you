@@ -42,7 +42,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)"> VOLTAR</button>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)"> VOLTAR</button> -->
+                    <a type="button" class="btn btn-sm btn-outline-dark" href="clientes"> VOLTAR</a>
 
                     <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque"> SAQUE</button>
 
