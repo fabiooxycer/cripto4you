@@ -82,8 +82,8 @@ include('includes/header.php');
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
-                        <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> CONCORDO</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> DEIXAR PARA DEPOIS</button>
+                        <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ACEITO E CONCORDO</button>
                     </div>
                 </form>
             </div>
