@@ -34,8 +34,90 @@
 <!-- /EXIBE MODAL DE LOGOFF -->
 
 <a href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20preciso%20de%20ajuda!" title="Precisa de ajuda? Envie uma WhatsApp!" style="position:fixed;width:60px;height:60px;bottom:40px;left:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888; z-index:1000;" target="_blank">
-	<i style="margin-top:16px" class="fab fa-whatsapp"></i>
+  <i style="margin-top:16px" class="fab fa-whatsapp"></i>
 </a>
+
+<?php if ($_SESSION['UsuarioContrato'] == 1) { ?>
+  <script type="text/javascript">
+    $(window).on('load', function() {
+      $('#modalContrato').modal('show');
+    });
+  </script>
+
+  <!-- Modal Contrato -->
+  <div class="modal fade" id="modalContrato" tabindex="-1" role="dialog" aria-labelledby="modalContrato" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" ole="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">ACEITE DE CONTRATO</h5>
+        </div>
+        <form action="footer.php" method="post">
+          <div class="modal-body">
+            <div align='justify'>
+              <br>
+              <?php include('includes/contrato.php'); ?>
+              <br>
+              <br>
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+            <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> CONCORDO</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<?php
+  // Chama função para pegar o POST de cada FORM
+  function get_post_action($name)
+  {
+    $params = func_get_args();
+
+    foreach ($params as $name) {
+      if (isset($_POST[$name])) {
+        return $name;
+      }
+    }
+  }
+
+  // Verifica qual botao foi clicado
+  switch (get_post_action('contrato')) {
+
+    case 'contrato':
+
+      if (!empty($_POST)) {
+
+        $id_usuario       = $_SESSION['UsuarioID'];
+        $contrato_aceito  = 2;
+      }
+
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $sql = 'UPDATE tbl_usuarios SET contrato_aceito = ? WHERE id = ?';
+      $q = $pdo->prepare($sql);
+      $q->execute(array($contrato_aceito, $id_transacao));
+
+      echo '<script>setTimeout(function () { 
+                    swal({
+                      title: "Parabéns!",
+                      text: "Contrato aceito com sucesso!",
+                      type: "success",
+                      confirmButtonText: "OK" 
+                    },
+                    function(isConfirm){
+                      if (isConfirm) {
+                        window.location.href = "dashboard";
+                      }
+                    }); }, 1000);</script>';
+
+      break;
+
+    default:
+  }
+}
+?>
+
 
 <script src="assets/vendor/jquery/jquery.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

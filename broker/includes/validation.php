@@ -37,6 +37,7 @@ if (count($users) != 1) {
     $_SESSION['UsuarioStatus']   = $resultado['status'];
     $_SESSION['UsuarioNivel']    = $resultado['nivel'];
     $_SESSION['UsuarioCadastro'] = $resultado['dt_cadastro'];
+    $_SESSION['UsuarioContrato'] = $resultado['contrato_aceito'];
 
     header("Location: dashboard");
     exit;
