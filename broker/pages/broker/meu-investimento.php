@@ -480,13 +480,13 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 <?php include('../../includes/footer.php');
 
 // SOMA DIAS PARA SAQUE
-if ($data['tipo_contrato'] == '3') { ?>
+if ($data['tipo_contrato'] == '1') { ?>
     <script type="text/javascript">
         $('#dt_saque')[0].valueAsDate = new Date();
 
         $('#dt_saque').change(function() {
             var date = this.valueAsDate;
-            date.setDate(date.getDate() + 15);
+            date.setDate(date.getDate() + 1);
             $('#prox_saque')[0].valueAsDate = date;
         });
 
@@ -500,6 +500,19 @@ if ($data['tipo_contrato'] == '2') { ?>
         $('#dt_saque').change(function() {
             var date = this.valueAsDate;
             date.setDate(date.getDate() + 30);
+            $('#prox_saque')[0].valueAsDate = date;
+        });
+
+        $('#dt_saque').change();
+    </script>
+<?php }
+if ($data['tipo_contrato'] == '3') { ?>
+    <script type="text/javascript">
+        $('#dt_saque')[0].valueAsDate = new Date();
+
+        $('#dt_saque').change(function() {
+            var date = this.valueAsDate;
+            date.setDate(date.getDate() + 15);
             $('#prox_saque')[0].valueAsDate = date;
         });
 
