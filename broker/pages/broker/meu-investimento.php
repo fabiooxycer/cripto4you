@@ -17,7 +17,7 @@ include('../../includes/header.php');
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
-                [2, "desc"]
+                [0, "DESC"]
             ]
         });
     });
@@ -42,6 +42,7 @@ include('../../includes/header.php');
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th style='text-align: center; vertical-align:middle !important'>CÓD.</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DESCRIÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
@@ -54,9 +55,14 @@ include('../../includes/header.php');
                             <?php
                             $pdo = BancoCadastros::conectar();
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" ORDER BY dt_criacao DESC, hr_criacao DESC';
+                            // $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" ORDER BY dt_criacao DESC, hr_criacao DESC';
+                            $sql = 'SELECT * FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" ORDER BY id DESC';
 
                             foreach ($pdo->query($sql) as $row) {
+
+                                if ($row['id']) {
+                                    $id_movimentacao = '' . $row['id'] . '';
+                                }
 
                                 if ($row['descricao']) {
                                     $descricao = '' . $row['descricao'] . '';
@@ -97,6 +103,7 @@ include('../../includes/header.php');
                                 }
 
                                 echo "<tr>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $id_movimentacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
