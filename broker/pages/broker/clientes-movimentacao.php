@@ -27,15 +27,15 @@ $q = $pdo->prepare($sql);
 $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 ?>
-<!-- <script>
+<script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
-                [2, "DESC"]
+                [0, "DESC"]
             ]
         });
     });
-</script> -->
+</script>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -60,6 +60,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th style='text-align: center; vertical-align:middle !important'>CÓD.</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DESCRIÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
@@ -118,6 +119,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 }
 
                                 echo "<tr>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $id_movimentacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
