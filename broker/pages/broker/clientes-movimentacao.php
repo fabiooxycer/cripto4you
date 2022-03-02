@@ -37,6 +37,29 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     });
 </script>
 
+<script type="text/javascript">
+    function calculaDataFin() {
+        var datainicial = document.getElementById("dt_saque").value;
+        var dias = parseInt(document.getElementById("dias").value);
+        var partes = datainicial.split("-");
+        var ano = partes[0];
+        var mes = partes[1] - 1;
+        var dia = partes[2];
+
+        datainicial = new Date(ano, mes, dia);
+        datafinal = new Date(datainicial);
+        datafinal.setDate(datafinal.getDate() + dias);
+
+        var dd = ("0" + datafinal.getDate()).slice(-2);
+        var mm = ("0" + (datafinal.getMonth() + 1)).slice(-2);
+        var y = datafinal.getFullYear();
+
+        var dataformatada = y + '-' + mm + '-' + dd;
+        document.getElementById('prox_saque').value = dataformatada;
+
+    }
+</script>
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -170,7 +193,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+
+                                        <input type="number" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
+                                                                                                                                                        if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
+                                        <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo $date['dt_saque']; ?>" autocomplete="off" readonly>
+                                        <input type="date" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" onblur="calculaDataFin();" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +276,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do lucro" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do lucro" onChange="this.value=this.value.toUpperCase()"  autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +336,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $hr_saque = date('H:i:s', $timestamp2);
         }
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if ($data['tipo_contrato'] == 3)
+
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql1 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1';
         foreach ($pdo->query($sql1) as $data_lucro) {
             $lucro = $data_lucro['sum(valor)'];
