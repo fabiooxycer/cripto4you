@@ -173,7 +173,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                                         <input type="number" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
-                                        <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'],2); ?>" autocomplete="off" readonly>
+                                        <input type="date" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="date" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
@@ -820,27 +820,32 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
 }
 ?>
 
-<?php include('../../includes/footer.php'); ?>
+<?php include('../../includes/footer.php');
 
-<script type="text/javascript">
-    function calculaDataFin() {
-        var datainicial = document.getElementById("dt_saque").value;
-        var dias = parseInt(document.getElementById("dias").value);
-        var partes = datainicial.split("-");
-        var ano = partes[0];
-        var mes = partes[1] - 1;
-        var dia = partes[2];
+// SOMA DIAS PARA SAQUE
+if ($data['tipo_contrato'] == '3') { ?>
+    <script type="text/javascript">
+        $('#dt_saque')[0].valueAsDate = new Date();
 
-        datainicial = new Date(ano, mes, dia);
-        datafinal = new Date(datainicial);
-        datafinal.setDate(datafinal.getDate() + dias);
+        $('#dt_saque').change(function() {
+            var date = this.valueAsDate;
+            date.setDate(date.getDate() + 15);
+            $('#prox_saque')[0].valueAsDate = date;
+        });
 
-        var dd = ("0" + datafinal.getDate()).slice(-2);
-        var mm = ("0" + (datafinal.getMonth() + 1)).slice(-2);
-        var y = datafinal.getFullYear();
+        $('#dt_saque').change();
+    </script>
+<?php }
+if ($data['tipo_contrato'] == '2') { ?>
+    <script type="text/javascript">
+        $('#dt_saque')[0].valueAsDate = new Date();
 
-        var dataformatada = y + '-' + mm + '-' + dd;
-        document.getElementById('prox_saque').value = dataformatada;
+        $('#dt_saque').change(function() {
+            var date = this.valueAsDate;
+            date.setDate(date.getDate() + 30);
+            $('#prox_saque')[0].valueAsDate = date;
+        });
 
-    }
-</script>
+        $('#dt_saque').change();
+    </script>
+<?php } ?>
