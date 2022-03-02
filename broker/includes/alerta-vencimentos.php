@@ -15,7 +15,7 @@ if ($total_saques > 0) {
     $data2 = [
         "chat_id" => "-1001322495863",
         'parse_mode' => 'HTML',
-        'text' => "\n<b>ATENÇÃO</b> \n\nExistem $total_saques pendentes no sistema para o dia de hoje.\n",
+        'text' => "\n<b>ATENÇÃO</b> \n\nExistem <b>$total_saques</b> pendente(s) de pagamento no sistema para o dia de hoje.\n",
     ];
 
     $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data2));
