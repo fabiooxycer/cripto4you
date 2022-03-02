@@ -123,11 +123,7 @@ include('../../includes/header.php');
                                 $contrato = 'MENSAL';
                             }
                             if ($row['dt_saque']) {
-                                if ($row['dt_saque'] == date('Y-m-d')) {
-                                    $saque = '<font color="red"><strong>' . $row['dt_saque'] . '</strong></font>';
-                                } else {
-                                    $saque = '' . $row['dt_saque'] . '';
-                                }
+                                $saque = '' . $row['dt_saque'] . '';
                             }
                             if ($row['status'] == 1) {
                                 $status = '<font color="green"> ATIVO </font>';
@@ -153,7 +149,11 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_cadastro, 2) . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
                             if ($row['dt_saque'] != '0000-00-00') {
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($saque, 2) . "</font></td>";
+                                if ($row['dt_saque'] == date('Y-m-d')) {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'><strong>" . converte($saque, 2) . "</strong></font></td>";
+                                } else {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($saque, 2) . "</font></td>";
+                                }
                             } else {
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
                             }
