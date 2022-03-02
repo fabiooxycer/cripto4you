@@ -8,40 +8,40 @@ $q->execute(array($_SESSION['UsuarioID']));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 
 $mesReferencia = date('m');
-if ($mesReferencia == 1) {
+if ($mesReferencia == '01') {
   $mes = 'janeiro';
 }
-if ($mesReferencia == 2) {
+if ($mesReferencia == '02') {
   $mes = 'fevereiro';
 }
-if ($mesReferencia == 3) {
+if ($mesReferencia == '03') {
   $mes = 'março';
 }
-if ($mesReferencia == 4) {
+if ($mesReferencia == '04') {
   $mes = 'abril';
 }
-if ($memesReferencias == 5) {
+if ($mesReferencias == '05') {
   $mes = 'maio';
 }
-if ($mesReferencia == 6) {
+if ($mesReferencia == '06') {
   $mes = 'junho';
 }
-if ($mesReferencia == 7) {
+if ($mesReferencia == '07') {
   $mes = 'julho';
 }
-if ($mesReferencia == 8) {
+if ($mesReferencia == '08') {
   $mes = 'agosto';
 }
-if ($mesReferencia == 9) {
+if ($mesReferencia == '09') {
   $mes = 'setembro';
 }
-if ($mesReferencia == 10) {
+if ($mesReferencia == '10') {
   $mes = 'outubro';
 }
-if ($mesReferencia == 11) {
+if ($mesReferencia == '11') {
   $mes = 'novembro';
 }
-if ($mesReferencia == 12) {
+if ($mesReferencia == '12') {
   $mes = 'dezembro';
 }
 ?>
