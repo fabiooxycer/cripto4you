@@ -53,7 +53,7 @@
         </div>
         <form action="footer.php" method="post">
           <div class="modal-body">
-            <div align='justify'>
+            <div style="width: 100%; height:400px; overflow-y:scroll;">
               <br>
               <?php include('includes/contrato.php'); ?>
               <br>
