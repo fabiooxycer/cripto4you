@@ -278,12 +278,12 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
+
         if ($data['dt_saque'] != date('Y-m-d')) {
-            if ($valor2 > $saldo_cliente) {
-                echo '<script>setTimeout(function () { 
+            echo '<script>setTimeout(function () { 
                 swal({
                   title: "Opsss!",
-                  text: "Valor solicitado superior ao saldo do usuário/cliente!",
+                  text: "Saque fora da data programada. Entre em contato conosco!",
                   type: "warning",
                   confirmButtonText: "OK" 
                 },
@@ -292,7 +292,20 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                     window.location.href = "meu-investimento";
                   }
                 }); }, 1000);</script>';
-            }
+        }
+        if ($valor2 > $saldo_cliente) {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Opsss!",
+                  text: "Valor solicitado superior ao saldo disponível!",
+                  type: "warning",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "meu-investimento";
+                  }
+                }); }, 1000);</script>';
         }
 
         if ($data['dt_saque'] == date('Y-m-d')) {
