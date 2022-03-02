@@ -70,7 +70,7 @@ include('../../includes/header.php');
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovoUsuario"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
+                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modalNovoUsuario"><i class="fas fa-user-plus"></i> CADASTRAR</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">CLIENTES/USUÁRIOS</h4>
