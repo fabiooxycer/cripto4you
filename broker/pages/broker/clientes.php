@@ -123,7 +123,7 @@ include('../../includes/header.php');
                                 $contrato = 'MENSAL';
                             }
                             if ($row['dt_saque']) {
-                                if ($row['dt_saque'] == date("Y-m-d")) {
+                                if ($row['dt_saque'] == date('Y-m-d')) {
                                     $saque = '<font color="red"><strong>' . $row['dt_saque'] . '</strong></font>';
                                 } else {
                                     $saque = '' . $row['dt_saque'] . '';
