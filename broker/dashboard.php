@@ -72,7 +72,7 @@ include('includes/header.php');
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">ACEITE DE CONTRATO</h5>
                 </div>
-                <form action="includes/footer.php" method="post">
+                <form action="dashboard" method="post">
                     <div class="modal-body">
                         <div style="width: 100%; height:550px; overflow-y:scroll;">
                             <br>
