@@ -260,6 +260,12 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
         }
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql_contrato = "SELECT contrato_aceito FROM tbl_usuarios where id = ?";
+        $q = $pdo->prepare($sql_contrato);
+        $q->execute(array($usuario));
+        $data_contrato = $q->fetch(PDO::FETCH_ASSOC);
+
+
         $sql1 = 'SELECT sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $usuario . '" AND tipo = 3 AND confirmado = 1';
         foreach ($pdo->query($sql1) as $data_lucro) {
             $lucro = $data_lucro['sum(valor)'];
@@ -278,6 +284,20 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
+        if ($data_contrato['contrato_aceito'] == '1') {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Opsss!",
+                  text: "Usuário/Cliente não aceito o contrato de investimento!",
+                  type: "warning",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "dashboard";
+                  }
+                }); }, 1000);</script>';
+        }
 
         if ($data['dt_saque'] != date('Y-m-d')) {
             echo '<script>setTimeout(function () { 
