@@ -7,42 +7,42 @@ $q = $pdo->prepare($sql);
 $q->execute(array($_SESSION['UsuarioID']));
 $data = $q->fetch(PDO::FETCH_ASSOC);
 
-$mes = date('Y');
-if ($mes == 1) {
-  echo 'janeiro';
+$mesReferencia = date('m');
+if ($mesReferencia == 1) {
+  $mes = 'janeiro';
 }
-if ($mes == 2) {
-  echo 'fevereiro';
+if ($mesReferencia == 2) {
+  $mes = 'fevereiro';
 }
-if ($mes == 3) {
-  echo 'março';
+if ($mesReferencia == 3) {
+  $mes = 'março';
 }
-if ($mes == 4) {
-  echo 'abril';
+if ($mesReferencia == 4) {
+  $mes = 'abril';
 }
-if ($mes == 5) {
-  echo 'maio';
+if ($memesReferencias == 5) {
+  $mes = 'maio';
 }
-if ($mes == 6) {
-  echo 'junho';
+if ($mesReferencia == 6) {
+  $mes = 'junho';
 }
-if ($mes == 7) {
-  echo 'julho';
+if ($mesReferencia == 7) {
+  $mes = 'julho';
 }
-if ($mes == 8) {
-  echo 'agosto';
+if ($mesReferencia == 8) {
+  $mes = 'agosto';
 }
-if ($mes == 9) {
-  echo 'setembro';
+if ($mesReferencia == 9) {
+  $mes = 'setembro';
 }
-if ($mes == 10) {
-  echo 'outubro';
+if ($mesReferencia == 10) {
+  $mes = 'outubro';
 }
-if ($mes == 11) {
-  echo 'novembro';
+if ($mesReferencia == 11) {
+  $mes = 'novembro';
 }
-if ($mes == 12) {
-  echo 'dezembro';
+if ($mesReferencia == 12) {
+  $mes = 'dezembro';
 }
 ?>
 
