@@ -284,21 +284,6 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         $saldo_cliente = $saldo;
 
-        if ($data_contrato['contrato_aceito'] == '1') {
-            echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Opsss!",
-                  text: "Usuário/Cliente não aceito o contrato de investimento!",
-                  type: "warning",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "dashboard";
-                  }
-                }); }, 1000);</script>';
-        }
-
         if ($data['dt_saque'] != date('Y-m-d')) {
             echo '<script>setTimeout(function () { 
                 swal({
@@ -328,7 +313,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                 }); }, 1000);</script>';
         }
 
-        if ($data['dt_saque'] == date('Y-m-d')) {
+        if ($data['dt_saque'] == date('Y-m-d') and $data_contrato['contrato_aceito'] != 1) {
             if ($saldo_cliente >= $valor2) {
 
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -372,7 +357,20 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
             }); }, 1000);</script>';
             }
         }
-
+        if ($data_contrato['contrato_aceito'] == '1') {
+            echo '<script>setTimeout(function () { 
+                swal({
+                  title: "Opsss!",
+                  text: "Você não aceito o contrato de investimento ainda!",
+                  type: "success",
+                  confirmButtonText: "OK" 
+                },
+                function(isConfirm){
+                  if (isConfirm) {
+                    window.location.href = "meu-investimento";
+                  }
+                }); }, 1000);</script>';
+        }
         break;
 
     case 'deposito':
