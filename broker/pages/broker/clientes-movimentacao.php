@@ -98,8 +98,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                                 if ($row['dt_criacao']) {
                                     $data_criacao = '' . $row['dt_criacao'] . '';
-                                    $timestamp = strtotime($data_criacao);
-                                    $dt_criacao = date('d/m/Y', $timestamp);
                                 }
                                 if ($row['hr_criacao']) {
                                     $hora_criacao = '' . $row['hr_criacao'] . '';
@@ -123,7 +121,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $id_movimentacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($dt_criacao, 2) . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 

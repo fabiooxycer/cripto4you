@@ -115,8 +115,6 @@ include('../../includes/header.php');
                             }
                             if ($row['dt_cadastro']) {
                                 $data_cadastro = '' . $row['dt_cadastro'] . '';
-                                $timestamp = strtotime($data_cadastro);
-                                $dt_cadastro = date('d/m/Y', $timestamp);
                             }
                             if ($row['tipo_contrato'] == 1) {
                                 $contrato = 'DIÁRIO';
@@ -148,7 +146,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $cpf . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $telefone . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $email . "</font></td>";
-                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_cadastro . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_cadastro, 2) . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
                             if ($row['dt_saque'] != '0000-00-00') {
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($saque, 2) . "</font></td>";
