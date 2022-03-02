@@ -58,7 +58,15 @@ include('includes/header.php');
     </div>
 </div>
 
-<?php if ($_SESSION['UsuarioContrato'] == 1) { ?>
+<?php
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM tbl_usuarios where id = ?";
+$q = $pdo->prepare($sql);
+$q->execute(array($_SESSION['UsuarioID']));
+$data = $q->fetch(PDO::FETCH_ASSOC);
+
+if ($data['contrato_aceito'] == '1') {
+?>
     <script type="text/javascript">
         $(window).on('load', function() {
             $('#modalContrato').modal('show');
