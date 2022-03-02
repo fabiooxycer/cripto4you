@@ -41,7 +41,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     function calculaDataFin() {
         var datainicial = document.getElementById("dt_saque").value;
         var dias = parseInt(document.getElementById("dias").value);
-        var partes = datainicial.split("<?php echo converte($data['dt_saque']); ?>");
+        var partes = datainicial.split($data['dt_saque']);
         var ano = partes[0];
         var mes = partes[1] - 1;
         var dia = partes[2];
