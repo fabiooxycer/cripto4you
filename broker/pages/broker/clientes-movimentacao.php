@@ -47,7 +47,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                     <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
 
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR DEPÓSITO"><i class="fas fa-plus-circle"></i></button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i></button>
 
                     <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modalLucro" title="ADICIONAR LUCRO"><i class="fas fa-money-bill"></i></button>
                 </div>

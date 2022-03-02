@@ -36,9 +36,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque"> SAQUE</button>
+                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
 
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito"> DEPÓSITO</button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i></button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">EXTRATO - MEU INVESTIMENTO</h4>
