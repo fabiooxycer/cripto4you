@@ -74,7 +74,7 @@ if ($data['contrato_aceito'] == '1') {
     </script>
 
     <!-- Modal Contrato -->
-    <div class="modal fade" id="modalContrato" tabindex="-1" role="dialog" aria-labelledby="modalContrato" aria-hidden="true">
+    <div class="modal fade" id="modalContrato" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" ole="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,7 +90,7 @@ if ($data['contrato_aceito'] == '1') {
                         </div>
                     </div>
                     <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> DEIXAR PARA DEPOIS</button>
+                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> DEIXAR PARA DEPOIS</button> -->
                         <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ACEITO E CONCORDO</button>
                     </div>
                 </form>
