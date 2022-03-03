@@ -69,6 +69,38 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         }
     }
 </script>
+<script>
+    function mascara2(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function mreais(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
+        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
+
+        if (v.length >= 5) {
+            var maximo = v.replace(/\./g, '').replace(',', '.') > 500000;
+            var minimo = v.replace(/\./g, '').replace(',', '.') < 1000;
+
+            if (maximo) {
+                return '500.000,00';
+            } else if (minimo) {
+                return '1.000,00';
+            } else {
+                return v;
+            }
+        } else {
+            return v;
+        }
+    }
+</script>
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -245,14 +277,14 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do aporte" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p align="justify">
-                            <font size="2" color="red"><strong>Observação:</strong></font>
-                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+                            <font size="2" color="red"><strong>Observação:</strong></font><br>
+                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
                         <p align="left">
                             <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
