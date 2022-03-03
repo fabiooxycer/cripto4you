@@ -53,7 +53,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
         v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
 
-        if (v.length >= 5) {
+        if (v.length >= 6 {
             var maximo = v.replace(/\./g, '').replace(',', '.') > 5000;
             var minimo = v.replace(/\./g, '').replace(',', '.') < 100;
 
@@ -85,7 +85,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
         v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
 
-        if (v.length >= 5) {
+        if (v.length >= 6) {
             var maximo = v.replace(/\./g, '').replace(',', '.') > 500000;
             var minimo = v.replace(/\./g, '').replace(',', '.') < 1000;
 
