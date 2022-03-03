@@ -87,6 +87,7 @@ include('../../includes/header.php');
                             <th style='text-align: center; vertical-align:middle !important'>E-MAIL</th>
                             <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
                             <th style='text-align: center; vertical-align:middle !important'>CONTRATO</th>
+                            <th style='text-align: center; vertical-align:middle !important'>ACEITO?</th>
                             <th style='text-align: center; vertical-align:middle !important'>DATA SAQUE</th>
                             <th style='text-align: center; vertical-align:middle !important'>STATUS</th>
                             <th style='text-align: center; vertical-align:middle !important'>NÍVEL</th>
