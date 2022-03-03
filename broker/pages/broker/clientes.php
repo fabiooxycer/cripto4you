@@ -129,7 +129,7 @@ include('../../includes/header.php');
                             if ($row['contrato_aceito'] == 2) {
                                 $aceite_contrato = '<font color="green"> SIM </font>';
                             }
-                            if ($row['contrato_aceito'] == 2) {
+                            if ($row['contrato_aceito'] == 1) {
                                 $aceite_contrato = '<font color="red"> NÃO </font>';
                             }
                             if ($row['dt_saque']) {
