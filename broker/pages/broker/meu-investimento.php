@@ -240,7 +240,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="modal-footer text-center">
                     <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> DEIXAR PARA DEPOIS</button> -->
-                    <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ACEITO E CONCORDO</button>
+                    <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> Li e aceito os termos deste contrato</button>
                 </div>
             </form>
         </div>
