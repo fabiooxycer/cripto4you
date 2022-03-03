@@ -36,8 +36,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
-
+                    <?php if ($data['contrato_aceito'] == 2) { ?>
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
+                    <?php }
+                    if ($data['contrato_aceito'] == 1) { ?>
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalContrato" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
+                    <?php } ?>
                     <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i></button>
                 </div>
             </div><br>
@@ -219,6 +223,30 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     </div>
 </div>
 
+<div class="modal fade" id="modalContrato" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" ole="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">ACEITE DE CONTRATO</h5>
+            </div>
+            <form action="dashboard" method="post">
+                <div class="modal-body">
+                    <div style="width: 100%; height:400px; overflow-y:scroll;">
+                        <br>
+                        <?php include('../../includes/contrato.php'); ?>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> DEIXAR PARA DEPOIS</button> -->
+                    <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ACEITO E CONCORDO</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <?php
 // Chama função para pegar o POST de cada FORM
 function get_post_action($name)
@@ -355,7 +383,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
               }
             }); }, 1000);</script>';
             }
-        }else{
+        } else {
             echo '<script>setTimeout(function () { 
             swal({
               title: "Opsss!",
