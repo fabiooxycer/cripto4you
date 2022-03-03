@@ -81,17 +81,17 @@ include('../../includes/header.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style='text-align: center; vertical-align:middle !important'>NOME</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Nome</th>
                             <th style='text-align: center; vertical-align:middle !important'>CPF</th>
-                            <th style='text-align: center; vertical-align:middle !important'>TELEFONE</th>
-                            <th style='text-align: center; vertical-align:middle !important'>E-MAIL</th>
-                            <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
-                            <th style='text-align: center; vertical-align:middle !important'>CONT. ACEITO?</th>
-                            <th style='text-align: center; vertical-align:middle !important'>RETIRADA?</th>
-                            <th style='text-align: center; vertical-align:middle !important'>DT. RETIRADA</th>
-                            <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
-                            <th style='text-align: center; vertical-align:middle !important'>ACESSO</th>
-                            <th style='text-align: center; vertical-align:middle !important' width="11%">AÇÃO</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Telefone</th>
+                            <th style='text-align: center; vertical-align:middle !important'>E-mail</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Dt. Cadastro</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Cont. Aceito?</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Retirada?</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Dt. Retirada</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Situação</th>
+                            <th style='text-align: center; vertical-align:middle !important'>Acesso</th>
+                            <th style='text-align: center; vertical-align:middle !important' width="11%">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
