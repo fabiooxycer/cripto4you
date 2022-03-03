@@ -274,7 +274,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Valor:</label>
+                                        <label for="basicInput">Informar o Valor do Aporte:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
