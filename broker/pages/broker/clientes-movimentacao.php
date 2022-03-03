@@ -232,7 +232,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Informa o Valor da Retirada:</label>
+                                        <label for="basicInput">Informe o Valor da Retirada:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>" autocomplete="off" readonly>
 
                                         <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
@@ -247,7 +247,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font><br>
-                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br><font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br>
+                            <font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
@@ -284,7 +285,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font><br>
-                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br><font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br>
+                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
                         <p align="left">
                             <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>

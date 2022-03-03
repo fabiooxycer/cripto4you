@@ -31,6 +31,72 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     });
 </script>
 
+
+<script>
+    function mascara(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function mreais(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
+        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
+
+        if (v.length >= 5) {
+            var maximo = v.replace(/\./g, '').replace(',', '.') > 5000;
+            var minimo = v.replace(/\./g, '').replace(',', '.') < 100;
+
+            if (maximo) {
+                return '5.000,00';
+            } else if (minimo) {
+                return '100,00';
+            } else {
+                return v;
+            }
+        } else {
+            return v;
+        }
+    }
+</script>
+<script>
+    function mascara2(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function mreais(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
+        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
+
+        if (v.length >= 5) {
+            var maximo = v.replace(/\./g, '').replace(',', '.') > 500000;
+            var minimo = v.replace(/\./g, '').replace(',', '.') < 1000;
+
+            if (maximo) {
+                return '500.000,00';
+            } else if (minimo) {
+                return '1.000,00';
+            } else {
+                return v;
+            }
+        } else {
+            return v;
+        }
+    }
+</script>
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -157,19 +223,20 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Valor:</label>
+                                        <label for="basicInput">Informe o Valor da Retirada:</label>
                                         <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor da retirada" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p align="justify">
-                            <font size="2" color="red"><strong>Observação:</strong></font>
-                            <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                            <font size="2" color="red"><strong>Observação:</strong></font><br>
+                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br>
+                            <font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
@@ -196,14 +263,15 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="basicInput">Valor:</label>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do aporte" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <label for="basicInput">Informar o Valor do Aporte:</label>
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p align="justify">
-                            <font size="2" color="red"><strong>Observação:</strong></font>
+                            <font size="2" color="red"><strong>Observação:</strong></font><br>
+                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br>
                             <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
                         <p align="left">
