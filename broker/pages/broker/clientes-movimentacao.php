@@ -37,6 +37,39 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     });
 </script>
 
+<script>
+    function mascara(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function mreais(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
+        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
+
+        if (v.length >= 5) {
+            var maximo = v.replace(/\./g, '').replace(',', '.') > 1064;
+            var minimo = v.replace(/\./g, '').replace(',', '.') < 10;
+
+            if (maximo) {
+                return '5.000,00';
+            } else if (minimo) {
+                return '100,00';
+            } else {
+                return v;
+            }
+        } else {
+            return v;
+        }
+    }
+</script>
+
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -168,21 +201,22 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Valor:</label>
+                                        <label for="basicInput">Informa o Valor da Retirada:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id; ?>" autocomplete="off" readonly>
 
                                         <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor da retirada" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <!-- <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor da retirada" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required> -->
+                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font>
-                            <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                            <font size="2"> Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00<br>Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
