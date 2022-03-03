@@ -286,20 +286,21 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
 
         if ($data['dt_saque'] != date('Y-m-d')) {
             echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Opsss!",
-                  text: "Saque fora da data programada. Entre em contato conosco!",
-                  type: "warning",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "meu-investimento";
-                  }
-                }); }, 1000);</script>';
+            swal({
+              title: "Opsss!",
+              text: "Saque fora da data programada. Entre em contato conosco!",
+              type: "warning",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "meu-investimento";
+              }
+            }); }, 1000);</script>';
         }
-        if ($valor2 > $saldo_cliente) {
-            echo '<script>setTimeout(function () { 
+        if ($data['dt_saque'] >= date('Y-m-d') and $data_contrato['contrato_aceito'] != 1) {
+            if ($valor2 > $saldo_cliente) {
+                echo '<script>setTimeout(function () { 
                 swal({
                   title: "Opsss!",
                   text: "Valor solicitado superior ao saldo disponível!",
@@ -311,9 +312,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
                     window.location.href = "meu-investimento";
                   }
                 }); }, 1000);</script>';
-        }
-
-        if ($data['dt_saque'] == date('Y-m-d') and $data_contrato['contrato_aceito'] != 1) {
+            }
             if ($saldo_cliente >= $valor2) {
 
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -356,20 +355,19 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
               }
             }); }, 1000);</script>';
             }
-        }
-        if ($data_contrato['contrato_aceito'] == '1') {
+        }else{
             echo '<script>setTimeout(function () { 
-                swal({
-                  title: "Opsss!",
-                  text: "Você não aceito o contrato de investimento ainda!",
-                  type: "success",
-                  confirmButtonText: "OK" 
-                },
-                function(isConfirm){
-                  if (isConfirm) {
-                    window.location.href = "meu-investimento";
-                  }
-                }); }, 1000);</script>';
+            swal({
+              title: "Opsss!",
+              text: "Contrato não aceito ou data de saque indisponível!",
+              type: "success",
+              confirmButtonText: "OK" 
+            },
+            function(isConfirm){
+              if (isConfirm) {
+                window.location.href = "meu-investimento";
+              }
+            }); }, 1000);</script>';
         }
         break;
 
