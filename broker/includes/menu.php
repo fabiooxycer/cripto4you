@@ -77,7 +77,7 @@
 
 <div class="sidebar-card d-none d-lg-flex">
     <p class="text-center mb-2"><strong>Dúvidas ou Sugestões?</strong></p>
-    <a type="button" class="btn btn-primary btn-sm" href="mailto:suporte@cripto4yout.net" target="_blank">CONTATO</a>
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDuvidasSugestoes" title="Enviar Dúvidas & Sugestões"><i class="fas fa-comment"></i> Contato</button>
 </div>
 
 <div class="sidebar-card d-none d-lg-flex">
@@ -88,4 +88,41 @@
 <div class="sidebar-card d-none d-lg-flex">
     <p class="text-center mb-2"><strong>Siga-nos</strong></p>
     <a type="button" class="btn btn-primary btn-sm" href="https://www.instagram.com/_cripto4you" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
+
+<div class="modal fade" id="modalDuvidasSugestoes" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" ole="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">ACEITE DE CONTRATO</h5>
+            </div>
+            <form action="includes/duvidas-sugestoes.php" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="basicInput">Qual assunto seria?</label>
+                                <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $_SESSION['UsuarioNome']; ?>" readonly>
+                                <select type="text" class="form-control" id="assunto" name="assunto" required>
+                                    <option>Selecione...</option>
+                                    <option value="Dúvida">Dúvida</option>
+                                    <option value="Sugestão">Sugestão</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="basicInput">Mensagem:</label>
+                                <textarea type="text" class="form-control" id="mensagem" name="mensagem" required></textara>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                    <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
