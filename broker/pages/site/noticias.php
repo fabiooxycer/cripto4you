@@ -28,7 +28,7 @@ include('../../includes/header.php');
         <div class="card-header py-3">
             <div class="ml-auto" align="left">
                 <div>
-                    <button class="btn btn-primary mt-4 mt-sm-0" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> CADASTRAR</button>
+                    <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modalNovaNoticia"><i class="fa fa-plus mr-1 mt-1"></i> Cadastrar</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">NOTÍCIAS</h4>
@@ -80,8 +80,8 @@ include('../../includes/header.php');
                             //echo ' <a type="button" class="reprocessar btn btn-sm btn-primary" data-id="' . $row['id'] . '" title="REPROCESSAR"><i  class="fa fa-share"></i></a>';
                             echo '<form action="noticias" method="POST">';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
-                            echo '<a class="btn btn-sm btn-warning" title="EDITAR" href="noticia-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
-                            echo '&nbsp;<button type="submit" title="EXCLUIR" class="btn btn-sm btn-danger" name="excluir"><i  class="fa fa-trash"></i></button>';
+                            echo '<a class="btn btn-sm btn-outline-warning" title="EDITAR" href="noticia-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
+                            echo '&nbsp;<button type="submit" title="EXCLUIR" class="btn btn-sm btn-outline-danger" name="excluir"><i  class="fa fa-trash"></i></button>';
                             echo "</form>";
                             echo "</td>";
                         }
@@ -131,8 +131,8 @@ include('../../includes/header.php');
                         <br><br>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" name="adicionar" class="btn btn-primary"><i class="fa fa-check"></i> CADASTRAR</button>
-                        <button type="button" class="btn btn-secondary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                        <button type="submit" name="adicionar" class="btn btn-sm btn-outline-primary"><i class="fa fa-check"></i> CADASTRAR</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                     </div>
                 </form>
             </div>
