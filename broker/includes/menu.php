@@ -77,7 +77,7 @@
 
 <div class="sidebar-card d-none d-lg-flex">
     <p class="text-center mb-2"><strong>Dúvidas ou Sugestões?</strong></p>
-    <a type="button" class="btn btn-primary btn-sm" href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20tenho%20uma%20dúvida%20ou%20sugestão!" target="_blank"><i class="fas fa-comment"></i> Contato</button>
+    <a type="button" class="btn btn-primary btn-sm" href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20tenho%20uma%20dúvida%20ou%20sugestão!" target="_blank"><i class="fas fa-comment"></i> Contato</a>
 </div>
 
 <div class="sidebar-card d-none d-lg-flex">
