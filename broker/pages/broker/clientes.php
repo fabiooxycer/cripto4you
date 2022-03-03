@@ -88,9 +88,9 @@ include('../../includes/header.php');
                             <th style='text-align: center; vertical-align:middle !important'>CLIENTE DESDE</th>
                             <th style='text-align: center; vertical-align:middle !important'>CONT. ACEITO?</th>
                             <th style='text-align: center; vertical-align:middle !important'>RETIRADA?</th>
-                            <th style='text-align: center; vertical-align:middle !important'>DATA SAQUE</th>
-                            <th style='text-align: center; vertical-align:middle !important'>STATUS</th>
-                            <th style='text-align: center; vertical-align:middle !important'>NÍVEL</th>
+                            <th style='text-align: center; vertical-align:middle !important'>DT. RETIRADA</th>
+                            <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
+                            <th style='text-align: center; vertical-align:middle !important'>ACESSO</th>
                             <th style='text-align: center; vertical-align:middle !important' width="11%">AÇÃO</th>
                         </tr>
                     </thead>
