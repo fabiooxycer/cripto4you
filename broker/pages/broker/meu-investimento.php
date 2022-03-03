@@ -211,7 +211,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
     <!-- Exibe o Modal para solicitação de saque -->
     <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">SOLICITAR RETIRADA</h4>
@@ -251,7 +251,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
     <!-- Exibe o Modal para solicitação de depósito -->
     <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">ENVIO DE APORTE</h4>
