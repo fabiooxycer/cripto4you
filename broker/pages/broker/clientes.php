@@ -172,7 +172,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $nivel . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                             echo '<form action="clientes" method="POST">';
-                            echo '<a class="btn btn-sm btn-outline-info" title="MOVIMENTAÇÕES" href="clientes-movimentacao?id=' . $row['id'] . '"><i class="fa fa-eye"></i></a>';
+                            echo '<a class="btn btn-sm btn-outline-info" title="MOVIMENTAÇÕES" href="clientes-movimentacao?id=' . $row['id'] . '"><i class="fa fa-list"></i></a>';
                             echo '&nbsp;<a class="btn btn-sm btn-outline-warning" title="EDITAR" href="clientes-editar?id=' . $row['id'] . '"><i class="fa fa-edit"></i></a>';
                             echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                             if ($row['status'] == 1) {
