@@ -122,6 +122,15 @@ include('../../includes/header.php');
                             if ($row['tipo_contrato'] == 2) {
                                 $contrato = 'MENSAL';
                             }
+                            if ($row['tipo_contrato'] == 3) {
+                                $contrato = 'QUINZENAL';
+                            }
+                            if ($row['contrato_aceito'] == 2) {
+                                $aceite_contrato = '<font color="green"> ASSINADO </font>';
+                            }
+                            if ($row['contrato_aceito'] == 2) {
+                                $aceite_contrato = '<font color="red"> NÃO ASSINADO </font>';
+                            }
                             if ($row['dt_saque']) {
                                 $saque = '' . $row['dt_saque'] . '';
                             }
@@ -148,6 +157,7 @@ include('../../includes/header.php');
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $email . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_cadastro, 2) . "</font></td>";
                             echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $contrato . "</font></td>";
+                            echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $aceite_contrato . "</font></td>";
                             if ($row['dt_saque'] != '0000-00-00') {
                                 if ($row['dt_saque'] == date('Y-m-d')) {
                                     echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'><strong>" . converte($saque, 2) . "</strong></font></td>";
