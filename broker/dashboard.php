@@ -125,7 +125,7 @@ if ($data['contrato_aceito'] == '1') {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = 'UPDATE tbl_usuarios SET contrato_aceito = ? WHERE id = ?';
             $q = $pdo->prepare($sql);
-            $q->execute(array($contrato_aceito, $id_transacao));
+            $q->execute(array($contrato_aceito, $id_usuario));
 
             echo '<script>setTimeout(function () { 
                     swal({
