@@ -155,7 +155,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <form action="meu-investimento" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
                                         <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
@@ -194,7 +194,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <form action="meu-investimento" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Valor:</label>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do aporte" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
