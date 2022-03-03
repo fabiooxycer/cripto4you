@@ -42,7 +42,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     if ($data['contrato_aceito'] == 1) { ?>
                         <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalContrato" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
                     <?php } ?>
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"> Aporte</i></button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i> Aporte</button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">EXTRATO - MEU INVESTIMENTO</h4>
