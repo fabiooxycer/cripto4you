@@ -53,7 +53,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
         v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
 
-        if (v.length >= 6 {
+        if (v.length >= 6) {
             var maximo = v.replace(/\./g, '').replace(',', '.') > 5000;
             var minimo = v.replace(/\./g, '').replace(',', '.') < 100;
 
@@ -239,8 +239,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <!-- <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor da retirada" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required> -->
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +276,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                         <label for="basicInput">Informar o Valor do Aporte:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="nome" name="nome" value="<?php echo $data['nome']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +317,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <div class="form-group">
                                         <label for="basicInput">Informe o Valor do Lucro:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="lucro" name="lucro" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -363,7 +362,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $descricao        = 'Saque aporte/lucro';
             $tipo             = '2';
             $valor            = $_POST['valor'];
-            $valor_saque      = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_saque      = str_replace(',', '.', str_replace('.', '', $_POST['retirada']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
             $valor1           = str_replace('.', '', $valor_solicitado);
             $valor2           = str_replace(',00', '', $valor1);
@@ -487,7 +486,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $usuario        = $_POST['id'];
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
-            $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['aporte']));
             $valor_solicitado = number_format($valor_deposito, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
@@ -544,7 +543,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $usuario        = $_POST['id'];
             $descricao      = 'Lucro de operações';
             $tipo           = '3';
-            $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['lucro']));
             $lucro          = number_format($valor_lucro, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '1';

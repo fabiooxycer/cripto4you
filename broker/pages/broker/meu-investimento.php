@@ -228,7 +228,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +264,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Informar o Valor do Aporte:</label>
-                                        <input type="text" class="form-control" id="valor" name="valor" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +339,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
             $descricao      = 'Saque aporte/lucro';
             $tipo           = '2';
             $valor         = $_POST['valor'];
-            $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_saque    = str_replace(',', '.', str_replace('.', '', $_POST['retirada']));
             $valor_solicitado = number_format($valor_saque, 2, ',', '.');
             $valor1 = str_replace('.', '', $valor_solicitado);
             $valor2 = str_replace(',00', '', $valor1);
@@ -474,7 +474,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
             $usuario        = $_SESSION['UsuarioID'];
             $descricao      = 'Depósito aporte';
             $tipo           = '1';
-            $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
+            $valor_deposito = str_replace(',', '.', str_replace('.', '', $_POST['aporte']));
             $valor_solicitado = number_format($valor_deposito, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '2';
