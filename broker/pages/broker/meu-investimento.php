@@ -360,7 +360,7 @@ switch (get_post_action('saque', 'deposito', 'reinvestir', 'sacarLucro')) {
             swal({
               title: "Opsss!",
               text: "Contrato não aceito ou data de saque indisponível!",
-              type: "success",
+              type: "warning",
               confirmButtonText: "OK" 
             },
             function(isConfirm){
