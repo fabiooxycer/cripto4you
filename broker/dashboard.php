@@ -82,7 +82,7 @@ if ($data['contrato_aceito'] == '1') {
                 </div>
                 <form action="dashboard" method="post">
                     <div class="modal-body">
-                        <div style="width: 100%; height:550px; overflow-y:scroll;">
+                        <div style="width: 100%; height:400px; overflow-y:scroll;">
                             <br>
                             <?php include('includes/contrato.php'); ?>
                             <br>
