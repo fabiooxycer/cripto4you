@@ -79,3 +79,13 @@
     <p class="text-center mb-2"><strong>Dúvidas ou Sugestões?</strong></p>
     <a type="button" class="btn btn-primary btn-sm" href="mailto:suporte@cripto4yout.net" target="_blank">CONTATO</a>
 </div>
+
+<div class="sidebar-card d-none d-lg-flex">
+    <p class="text-center mb-2"><strong>Notícias Cripto</strong></p>
+    <a type="button" class="btn btn-primary btn-sm" href="https://t.me/+fNUWrs95VuUxNGUx" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+</div>
+
+<div class="sidebar-card d-none d-lg-flex">
+    <p class="text-center mb-2"><strong>Siga-nos</strong></p>
+    <a type="button" class="btn btn-primary btn-sm" href="https://www.instagram.com/_cripto4you" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+</div>
