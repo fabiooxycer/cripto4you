@@ -120,7 +120,7 @@
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
-                    <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR</button>
+                    <button type="submit" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR</button>
                 </div>
             </form>
         </div>
