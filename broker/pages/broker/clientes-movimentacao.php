@@ -121,7 +121,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $id_movimentacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $descricao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($dt_criacao, 2) . " às " . $hr_criacao . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_criacao, 2) . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
