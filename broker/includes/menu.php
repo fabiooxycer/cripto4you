@@ -90,11 +90,11 @@
     <a type="button" class="btn btn-primary btn-sm" href="https://www.instagram.com/_cripto4you" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 </div>
 
-<div class="modal fade" id="modalDuvidasSugestoes" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalDuvidasSugestoes" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" ole="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">ACEITE DE CONTRATO</h5>
+                <h5 class="modal-title">ACEITE DE CONTRATO</h5>
             </div>
             <form action="includes/duvidas-sugestoes.php" method="post">
                 <div class="modal-body">
