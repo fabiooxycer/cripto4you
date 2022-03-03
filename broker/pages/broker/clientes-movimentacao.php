@@ -316,9 +316,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="basicInput">Valor:</label>
+                                        <label for="basicInput">Informe o Valor do Lucro:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do lucro" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
