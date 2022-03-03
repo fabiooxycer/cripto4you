@@ -37,12 +37,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <div class="ml-auto" align="left">
                 <div>
                     <?php if ($data['contrato_aceito'] == 2) { ?>
-                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
                     <?php }
                     if ($data['contrato_aceito'] == 1) { ?>
-                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalContrato" title="SOLICITAR SAQUE"><i class="fas fa-minus-circle"></i></button>
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalContrato" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
                     <?php } ?>
-                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i></button>
+                    <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"> Aporte</i></button>
                 </div>
             </div><br>
             <h4 class="m-0 font-weight-bold text-primary">EXTRATO - MEU INVESTIMENTO</h4>
@@ -148,7 +148,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">SOLICITAR SAQUE</h4>
+                    <h4 class="modal-title">SOLICITAR RETIRADA</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
@@ -162,7 +162,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor do saque" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Informe o valor da retirada" onChange="this.value=this.value.toUpperCase()" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -172,8 +172,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"> Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR SAQUE</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
@@ -187,7 +187,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">DEPÓSITO DE APORTE</h4>
+                    <h4 class="modal-title">ENVIO DE APORTE</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
                 </div>
                 <div class="modal-body">
@@ -212,8 +212,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                             <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
                         </p>
                         <div class="form-actions">
-                            <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR DEPÓSITO</button>
-                            <button type="button" class="btn btn-sm outline btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                            <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> ENVIAR APORTE</button>
+                            <button type="button" class="btn btn-sm outline btn-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                         </div>
                     </form>
                 </div>
