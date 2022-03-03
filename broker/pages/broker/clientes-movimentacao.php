@@ -215,7 +215,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font><br>
-                            <font size="2" color="black"><strong>Valor mínimo para retirada:</strong> R$ 100,00<br><strong>Valor máximo para retirada:</strong> R$ 5.000,00</font><br><font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
