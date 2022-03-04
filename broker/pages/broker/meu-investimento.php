@@ -120,7 +120,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style='text-align: center; vertical-align:middle !important' width="10%">CÓD.</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="5%">CÓD.</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">DESCRIÇÃO</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">DATA/HORÁRIO</th>
