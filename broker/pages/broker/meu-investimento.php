@@ -120,13 +120,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style='text-align: center; vertical-align:middle !important'>CÓD.</th>
-                                <th style='text-align: center; vertical-align:middle !important'>DESCRIÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
-                                <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
-                                <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important'>VALOR</th>
-                                <th style='text-align: center; vertical-align:middle !important'>AÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="10%">CÓD.</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="40%">DESCRIÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="40%">TIPO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="40%">DATA/HORÁRIO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="30%">SITUAÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="30%">VALOR</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="30%">AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
