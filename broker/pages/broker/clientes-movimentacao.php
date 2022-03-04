@@ -317,7 +317,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     <div class="form-group">
                                         <label for="basicInput">Informe o Valor do Lucro:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="lucro" name="lucro" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -543,7 +543,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $usuario        = $_POST['id'];
             $descricao      = 'Lucro de operações';
             $tipo           = '3';
-            $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['lucro']));
+            $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $lucro          = number_format($valor_lucro, 2, ',', '.');
             $comprovante    = '-';
             $confirmado     = '1';
