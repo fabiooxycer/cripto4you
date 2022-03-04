@@ -121,12 +121,12 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <thead>
                             <tr>
                                 <th style='text-align: center; vertical-align:middle !important' width="10%">CÓD.</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="40%">DESCRIÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="40%">TIPO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="40%">DATA/HORÁRIO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="30%">SITUAÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="30%">VALOR</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="30%">AÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">DESCRIÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">TIPO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">DATA/HORÁRIO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">SITUAÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">VALOR</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
