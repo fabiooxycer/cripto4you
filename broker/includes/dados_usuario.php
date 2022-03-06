@@ -79,7 +79,7 @@
                             Saldo Atual Investimento
                         </div>
                         <?php
-                        $sql_reinvestir = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 1');
+                        $sql_reinvestir = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 1 AND reinvestir = 2');
                         $result = $sql_reinvestir->fetchAll();
                         foreach ($result as $reinvestir) {
                             $valor_reinvestir = $reinvestir['sum(valor)'];
