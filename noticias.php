@@ -46,7 +46,7 @@ $pdo = BancoCadastros::conectar();
                 <?php if ($_SERVER['HTTP_HOST'] == 'localhost') { ?>
                   <img src="broker/assets/img/noticias/padrao_noticia.png" alt="<?php echo $noticias['titulo']; ?>" />
                 <?php } else { ?>
-                  <img src="broker/assets/img/noticias/<?php echo $noticias['imagem']; ?>" alt="<?php echo $noticias['titulo']; ?>" />
+                  <img src="https://broker.cripto4you.net/assets/img/noticias/<?php echo $noticias['imagem']; ?>" alt="<?php echo $noticias['titulo']; ?>" />
                 <?php } ?>
                 <div class="entry--overlay"></div>
               </a>
