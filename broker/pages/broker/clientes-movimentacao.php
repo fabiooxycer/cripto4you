@@ -106,9 +106,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
 
-                                $valor_trade = $row['taxa'] + $row['valor'];
-                                $valor_liquido = number_format($valor_trade, 2, ',', '.');
-
+                                // VALOR LUCRO - TAXA -------------------------------------------------
                                 if ($row['taxa'] != null) {
                                     $taxa = '-R$' . number_format($row['taxa'], 2, ',', '.') . '';
                                 }
@@ -118,6 +116,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
                                 }
+                                $valor_trade = $row['valor'] - $row['taxa'];
+                                $valor_liquido = number_format($valor_trade, 2, ',', '.');
+                                // -------------------------------------------------------------------
+                                
                                 if ($row['confirmado'] == 1) {
                                     $confirmado = 'Autorizado';
                                 }
@@ -134,9 +136,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_criacao, 2) . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . $valor_liquido .  "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . $valor .  "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor_liquido, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
                                 echo '<form action="clientes-movimentacao" method="POST">';
                                 echo '<input type="hidden" name="id_user" id="id_user" value="' . $id . '" >';
