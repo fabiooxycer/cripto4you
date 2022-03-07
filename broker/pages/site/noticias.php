@@ -246,10 +246,11 @@ switch (get_post_action('excluir', 'adicionar')) {
                     }
                 }
             }
-        }
-        $sqlImagem = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
-        foreach ($pdo->query($sqlImagem) as $rowImagem) {
-            $_SESSION['imagem'] = $rowImagem['imagem'];
+        }   
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql3 = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
+        foreach ($pdo->query($sql3) as $row) {
+            $_SESSION['imagem'] = $row['imagem'];
         }
 
         // ENVIA TELEGRAM    
