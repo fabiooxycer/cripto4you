@@ -31,72 +31,6 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
     });
 </script>
 
-
-<script>
-    function mascara(o, f) {
-        v_obj = o
-        v_fun = f
-        setTimeout("execmascara()", 1)
-    }
-
-    function execmascara() {
-        v_obj.value = v_fun(v_obj.value)
-    }
-
-    function mreais(v) {
-        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
-        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
-        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
-
-        if (v.length >= 6) {
-            var maximo = v.replace(/\./g, '').replace(',', '.') > 5000;
-            var minimo = v.replace(/\./g, '').replace(',', '.') < 100;
-
-            if (maximo) {
-                return '5.000,00';
-            } else if (minimo) {
-                return '100,00';
-            } else {
-                return v;
-            }
-        } else {
-            return v;
-        }
-    }
-</script>
-<script>
-    function mascara2(o, f) {
-        v_obj = o
-        v_fun = f
-        setTimeout("execmascara()", 1)
-    }
-
-    function execmascara() {
-        v_obj.value = v_fun(v_obj.value)
-    }
-
-    function mreais(v) {
-        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
-        v = v.replace(/(\d{2})$/, ",$1") //Coloca a virgula
-        v = v.replace(/(\d+)(\d{3},\d{2})$/g, "$1.$2") //Coloca o primeiro ponto
-
-        if (v.length >= 6) {
-            var maximo = v.replace(/\./g, '').replace(',', '.') > 500000;
-            var minimo = v.replace(/\./g, '').replace(',', '.') < 1000;
-
-            if (maximo) {
-                return '500.000,00';
-            } else if (minimo) {
-                return '1.000,00';
-            } else {
-                return v;
-            }
-        } else {
-            return v;
-        }
-    }
-</script>
-
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -228,7 +162,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                                                                         if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
                                         <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
                                         <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                                        <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onkeypress="mascara(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +198,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Informar o Valor do Aporte:</label>
-                                        <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onkeypress="mascara2(this,mreais)" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
