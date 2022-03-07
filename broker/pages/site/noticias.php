@@ -13,7 +13,7 @@ if ($_SERVER['HTTP_HOST'] != 'localhost') {
 include('../../includes/header.php');
 ?>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('#dataTable').DataTable({
             "order": [
@@ -21,7 +21,7 @@ include('../../includes/header.php');
             ]
         });
     });
-</script>
+</script> -->
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -49,7 +49,7 @@ include('../../includes/header.php');
                         <?php
                         $pdo = BancoCadastros::conectar();
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $sql = "SELECT * FROM tbl_noticias ORDER BY dt_postagem DESC, hr_postagem DESC";
+                        $sql = "SELECT * FROM tbl_noticias ORDER BY id DESC";
 
                         foreach ($pdo->query($sql) as $row) {
                             if ($row['imagem']) {
