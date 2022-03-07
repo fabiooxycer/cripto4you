@@ -62,7 +62,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <th style='text-align: center; vertical-align:middle !important' >VALOR</th>
                                 <th style='text-align: center; vertical-align:middle !important' >TAXA</th>
                                 <th style='text-align: center; vertical-align:middle !important' >V. LIQ.</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="25%">AÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' >AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
