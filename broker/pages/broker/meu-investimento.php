@@ -110,7 +110,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $taxa = '-R$' . number_format($row['taxa'], 2, ',', '.') . '';
                                 }
                                 if ($row['taxa'] == null) {
-                                    $taxa = '-';
+                                    $taxa = '<font color="black">-</font>';
                                 }
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
