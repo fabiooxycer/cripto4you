@@ -105,13 +105,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                                 // VALOR LUCRO - TAXA -------------------------------------------------
                                 if ($row['taxa'] != null) {
-                                    $taxa = '-R$' . number_format($row['taxa'], 2, ',', '.') . '';
+                                    $taxa = '-R$ ' . number_format($row['taxa'], 2, ',', '.') . '';
                                 }
                                 if ($row['taxa'] == null) {
                                     $taxa = '<font color="black">-</font>';
                                 }
                                 if ($row['valor']) {
-                                    $valor = '' . $row['valor'] . '';
+                                    $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
                                 $valor_trade = $row['valor'] - $row['taxa'];
                                 $valor_liquido = number_format($valor_trade, 2, ',', '.');
