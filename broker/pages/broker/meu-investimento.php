@@ -55,13 +55,13 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         <thead>
                             <tr>
                                 <th style='text-align: center; vertical-align:middle !important' width="5%">CÓD.</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">DESCRIÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">TIPO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">DATA/HORÁRIO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="10%">SITUAÇÃO</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">VALOR</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">TAXA</th>
-                                <th style='text-align: center; vertical-align:middle !important' width="20%">V. LIQ.</th>
+                                <th style='text-align: center; vertical-align:middle !important' >DESCRIÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' >TIPO</th>
+                                <th style='text-align: center; vertical-align:middle !important' >DATA/HORÁRIO</th>
+                                <th style='text-align: center; vertical-align:middle !important' >SITUAÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' >VALOR</th>
+                                <th style='text-align: center; vertical-align:middle !important' >TAXA</th>
+                                <th style='text-align: center; vertical-align:middle !important' >V. LIQ.</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="25%">AÇÃO</th>
                             </tr>
                         </thead>
