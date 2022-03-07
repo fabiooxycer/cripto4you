@@ -122,7 +122,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 $valor_trade_l = $row['valor'] - $row['taxa'];
 
 
-                                $valor_bruto   = $valor_trade_b;
+                                $valor_bruto   = $valor_trade_b + $row['taxa'];
                                 $valor_liquido = $valor_trade_l;
                                 // -------------------------------------------------------------------
                                 
