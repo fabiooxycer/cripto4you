@@ -277,11 +277,11 @@ switch (get_post_action('excluir', 'adicionar')) {
                             window.location.href = "noticias";
                         }
                         }); }, 1000);</script>';
-                        break;
                     }
                 }
             }
         }
+        break;
 
     default:
 }
