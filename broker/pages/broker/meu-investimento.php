@@ -123,7 +123,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                if ($taxa != null) {
+                                if ($taxa >= '0,00') {
                                     echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>- R$ "  . number_format($taxa, 2, ',', '.') .  "</font></td>";
                                 } else {
                                     echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
