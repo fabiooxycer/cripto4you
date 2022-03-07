@@ -131,9 +131,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor_liquido .  "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $taxa .  "</font></td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . $valor_liquido .  "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
 
                                 if ($row['tipo'] == 3 and $row['reinvestir'] == 2) {
