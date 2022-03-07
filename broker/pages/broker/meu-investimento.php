@@ -127,8 +127,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 $valor_trade_l = $valor_2_l - $taxa_2_l;
 
 
-                                $valor_bruto   = str_replace('00', '', $valor_trade_b);
-                                $valor_liquido = str_replace('00', '', $valor_trade_l);
+                                $valor_bruto   = $valor_trade_b;
+                                $valor_liquido = $valor_trade_l;
                                 // -------------------------------------------------------------------
 
                                 if ($row['confirmado'] == 1) {
