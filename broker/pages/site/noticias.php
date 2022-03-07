@@ -247,13 +247,13 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $sql = "SELECT * FROM tbl_noticias WHERE id = ?";
                         $q = $pdo->prepare($sql);
                         $q->execute(array($_SESSION['id']));
-                        $data = $q->fetch(PDO::FETCH_ASSOC);
+                        $img_news = $q->fetch(PDO::FETCH_ASSOC);
 
                         // ENVIA TELEGRAM    
                         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
                         $dataPhoto = [
                             "chat_id" => "-1001662279487", // ID Canal Notícias
-                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $data['imagem'] . '"',
+                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $img_news['imagem'] . '"',
                             'parse_mode' => 'HTML',
                         ];
 
