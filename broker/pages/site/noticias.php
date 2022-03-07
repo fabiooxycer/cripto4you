@@ -131,8 +131,8 @@ include('../../includes/header.php');
                         <br><br>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" name="adicionar" class="btn btn-sm btn-outline-primary"><i class="fa fa-check"></i> CADASTRAR</button>
-                        <button type="button" class="btn btn-sm btn-outline-primary text-white" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
+                        <button type="submit" name="adicionar" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> CADASTRAR</button>
+                        <button type="button" class="btn btn-sm btn-outline-black" data-dismiss="modal"><i class="fa fa-times-circle"></i> FECHAR</button>
                     </div>
                 </form>
             </div>
