@@ -243,29 +243,32 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
                         $q = $pdo->prepare($sql3);
                         $q->execute(array($tmpname, $_SESSION['id']));
+                    }
+                }
+            }
+        }
+        $sqlImagem = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
+        foreach ($pdo->query($sqlImagem) as $rowImagem) {
+            $_SESSION['imagem'] = $rowImagem['imagem'];
+        }
 
-                        $sqlImagem = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
-                        foreach ($pdo->query($sqlImagem) as $rowImagem) {
-                            $_SESSION['imagem'] = $rowImagem['imagem'];
-                        }
+        // ENVIA TELEGRAM    
+        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+        $dataPhoto = [
+            "chat_id" => "-1001662279487", // ID Canal Notícias
+            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $_SESSION['imagem'] . '"',
+        ];
 
-                        // ENVIA TELEGRAM    
-                        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-                        $dataPhoto = [
-                            "chat_id" => "-1001662279487", // ID Canal Notícias
-                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $_SESSION['imagem'] . '"',
-                        ];
+        $dataMessage = [
+            "chat_id" => "-1001662279487",
+            'parse_mode' => 'HTML',
+            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n",
+        ];
 
-                        $dataMessage = [
-                            "chat_id" => "-1001662279487",
-                            'parse_mode' => 'HTML',
-                            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n",
-                        ];
+        $response  = file_get_contents("https://api.telegram.org/bot$apiToken/sendPhoto?" . http_build_query($dataPhoto));
+        $response1 = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($dataMessage));
 
-                        $response  = file_get_contents("https://api.telegram.org/bot$apiToken/sendPhoto?" . http_build_query($dataPhoto));
-                        $response1 = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($dataMessage));
-
-                        echo '<script>setTimeout(function () { 
+        echo '<script>setTimeout(function () { 
                         swal({
                         title: "Parabéns!",
                         text: "Notícia cadastrada com sucesso!",
@@ -277,10 +280,6 @@ switch (get_post_action('excluir', 'adicionar')) {
                             window.location.href = "noticias";
                         }
                         }); }, 1000);</script>';
-                    }
-                }
-            }
-        }
         break;
 
     default:
