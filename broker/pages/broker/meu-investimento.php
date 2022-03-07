@@ -117,6 +117,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
 
                                 $valor1 = str_replace(',', '.', str_replace('.', '', $valor_trade));
                                 $valor2   = str_replace('.00', '', $valor1);
+                                $valorb = $valor1 + $valor2; 
+                                $valor_bruto = number_format($valorb, 2, ',', '.');
                                 $valor_liquido = number_format($valor2, 2, ',', '.');
                                 // -------------------------------------------------------------------
 
@@ -136,7 +138,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . $valor .  "</font></td>";
+                                echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . $valor_bruto .  "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor_liquido, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
