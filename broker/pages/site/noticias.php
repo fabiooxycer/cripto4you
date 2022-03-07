@@ -246,14 +246,14 @@ switch (get_post_action('excluir', 'adicionar')) {
 
                         $sqlImagem = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
                         foreach ($pdo->query($sqlImagem) as $rowImagem) {
-                            $_SESSION['noticiaImagem'] = $rowImagem['imagem'];
+                            $_SESSION['imagem'] = $rowImagem['imagem'];
                         }
 
                         // ENVIA TELEGRAM    
                         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
                         $dataPhoto = [
                             "chat_id" => "-1001662279487", // ID Canal Notícias
-                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $_SESSION['noticiaImagem'] . '"',
+                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $_SESSION['imagem'] . '"',
                         ];
 
                         $dataMessage = [
