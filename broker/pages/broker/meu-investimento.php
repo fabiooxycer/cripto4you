@@ -113,13 +113,22 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['valor']) {
                                     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
-                                $valor_trade = $row['valor'] - $row['taxa'];
+ 
+                                $taxa_1_b      = str_replace(',', '.', str_replace('.', '', $taxa));
+                                $taxa_2_b      = str_replace('.00', '', $taxa_1_b);
+                                $valo_1_b      = str_replace(',', '.', str_replace('.', '', $valor));
+                                $valor_2_b     = str_replace('.00', '', $valo_1_b);
+                                $valor_trade_b = $valor_2_b + $taxa_2_b;
 
-                                $valor1 = str_replace(',', '.', str_replace('.', '', $valor_trade));
-                                $valor2   = str_replace('.00', '', $valor1);
-                                $valorb = $valor1 + $valor2; 
-                                $valor_bruto = number_format($valorb, 2, ',', '.');
-                                $valor_liquido = number_format($valor2, 2, ',', '.');
+                                $taxa_1_l      = str_replace(',', '.', str_replace('.', '', $taxa));
+                                $taxa_2_l      = str_replace('.00', '', $taxa_1_l);
+                                $valo_1_l      = str_replace(',', '.', str_replace('.', '', $valor));
+                                $valor_2_l     = str_replace('.00', '', $valo_1_l);
+                                $valor_trade_l = $valor_2_l - $taxa_2_l;
+
+
+                                $valor_bruto   = number_format($valor_trade_b, 2, ',', '.');
+                                $valor_liquido = number_format($valor_trade_l, 2, ',', '.');
                                 // -------------------------------------------------------------------
 
                                 if ($row['confirmado'] == 1) {
