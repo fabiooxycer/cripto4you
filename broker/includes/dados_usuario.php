@@ -11,7 +11,7 @@
                             Lucro Total
                         </div>
                         <?php
-                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 2');
+                        $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1');
 
                         $result = $sql->fetchAll();
 
@@ -88,7 +88,7 @@
                         $sql = $pdo->query('SELECT  sum(valor) FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1 AND confirmado = 1');
                         $result = $sql->fetchAll();
                         foreach ($result as $row) {
-                            $saldo = $row['sum(valor)'] + $valor_reinvestir - $retiradas;
+                            $saldo = $row['sum(valor)'] + $valor_reinvestir;
 
                         ?>
                             <!-- Total com exibir/esconder valor -->
