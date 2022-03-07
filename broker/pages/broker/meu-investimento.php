@@ -101,8 +101,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $timestamp2 = strtotime($hora_criacao);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
-                                if ($row['taxa']) {
+                                if ($row['taxa'] != null) {
                                     $taxa = '' . $row['taxa'] . '';
+                                }
+                                if ($row['taxa'] == null) {
+                                    $taxa = '-';
                                 }
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
@@ -123,7 +126,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
-                                if ($taxa >= '0,00') {
+                                if ($taxa is not null) {
                                     echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>- R$ "  . number_format($taxa, 2, ',', '.') .  "</font></td>";
                                 } else {
                                     echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
