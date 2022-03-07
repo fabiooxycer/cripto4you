@@ -114,15 +114,15 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
  
-                                $taxa_1_b      = str_replace(',', '.', str_replace('.', '', $taxa));
+                                $taxa_1_b      = str_replace(',', '.', str_replace('.', '', $row['taxa']));
                                 $taxa_2_b      = str_replace('.00', '', $taxa_1_b);
-                                $valo_1_b      = str_replace(',', '.', str_replace('.', '', $valor));
-                                $valor_2_b     = str_replace('.00', '', $valo_1_b);
+                                $valor_1_b     = str_replace(',', '.', str_replace('.', '', $row['valor']));
+                                $valor_2_b     = str_replace('.00', '', $valor_1_b);
                                 $valor_trade_b = $valor_2_b + $taxa_2_b;
 
-                                $taxa_1_l      = str_replace(',', '.', str_replace('.', '', $taxa));
+                                $taxa_1_l      = str_replace(',', '.', str_replace('.', '', $row['taxa']));
                                 $taxa_2_l      = str_replace('.00', '', $taxa_1_l);
-                                $valo_1_l      = str_replace(',', '.', str_replace('.', '', $valor));
+                                $valo_1_l      = str_replace(',', '.', str_replace('.', '', $row['valor']));
                                 $valor_2_l     = str_replace('.00', '', $valo_1_l);
                                 $valor_trade_l = $valor_2_l - $taxa_2_l;
 
