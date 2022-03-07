@@ -243,34 +243,30 @@ switch (get_post_action('excluir', 'adicionar')) {
                         $sql3 = "UPDATE tbl_noticias set imagem = ? WHERE id = ?";
                         $q = $pdo->prepare($sql3);
                         $q->execute(array($tmpname, $_SESSION['id']));
-                    }
-                }
-            }
-        }
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM tbl_noticias WHERE imagem = ?";
-        $q = $pdo->prepare($sql);
-        $q->execute(array($tmpname));
-        $data = $q->fetch(PDO::FETCH_ASSOC);
+                        $sql = "SELECT * FROM tbl_noticias WHERE id = ?";
+                        $q = $pdo->prepare($sql);
+                        $q->execute(array($_SESSION['id']));
+                        $data = $q->fetch(PDO::FETCH_ASSOC);
 
-        // ENVIA TELEGRAM    
-        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
-        $dataPhoto = [
-            "chat_id" => "-1001662279487", // ID Canal Notícias
-            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $data['imagem'] . '"',
-        ];
+                        // ENVIA TELEGRAM    
+                        $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
+                        $dataPhoto = [
+                            "chat_id" => "-1001662279487", // ID Canal Notícias
+                            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $data['imagem'] . '"',
+                            'parse_mode' => 'HTML',
+                        ];
 
-        $dataMessage = [
-            "chat_id" => "-1001662279487",
-            'parse_mode' => 'HTML',
-            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n",
-        ];
+                        $dataMessage = [
+                            "chat_id" => "-1001662279487",
+                            'parse_mode' => 'HTML',
+                            'text' => "\n<b>$titulo</b> \n\nConfira em: https://cripto4you.net/ver-noticia?id=" . $_SESSION['id'] . "\n",
+                        ];
 
-        $response  = file_get_contents("https://api.telegram.org/bot$apiToken/sendPhoto?" . http_build_query($dataPhoto));
-        $response1 = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($dataMessage));
+                        $response  = file_get_contents("https://api.telegram.org/bot$apiToken/sendPhoto?" . http_build_query($dataPhoto));
+                        $response1 = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($dataMessage));
 
-        echo '<script>setTimeout(function () { 
+                        echo '<script>setTimeout(function () { 
                         swal({
                         title: "Parabéns!",
                         text: "Notícia cadastrada com sucesso!",
@@ -282,6 +278,11 @@ switch (get_post_action('excluir', 'adicionar')) {
                             window.location.href = "noticias";
                         }
                         }); }, 1000);</script>';
+                    }
+                }
+            }
+        }
+
         break;
 
     default:
