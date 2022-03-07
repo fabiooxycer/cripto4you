@@ -114,7 +114,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
                                 $valor_trade = $row['valor'] - $row['taxa'];
-                                $valor_liquido = number_format($valor_trade, 2, ',', '.');
+
+                                $valor1 = str_replace(',', '.', str_replace('.', '', $valor_trade));
+                                $valor2   = str_replace('.00', '', $valor1);
+                                $valor_liquido = number_format($valor2, 2, ',', '.');
                                 // -------------------------------------------------------------------
 
                                 if ($row['confirmado'] == 1) {
