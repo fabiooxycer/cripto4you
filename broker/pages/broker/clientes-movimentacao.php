@@ -118,7 +118,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 }
  
                                 $valor_bruto   = $row['valor'] + $row['taxa'];
-                                $valor_liquido = $row['valor'] - $row['taxa'];
+                                $valor_liquido = $valor_bruto - $row['taxa'];
                                 // -------------------------------------------------------------------
                                 
                                 if ($row['confirmado'] == 1) {
