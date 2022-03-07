@@ -136,7 +136,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     echo '<input type="hidden" name="id_user" id="id_user" value="' . $_SESSION['UsuarioID'] . '" >';
                                     echo '<input type="hidden" name="id" id="id" value="' . $row['id'] . '" >';
                                     echo '<input type="hidden" name="valor" id="valor" value="' . $valor . '" >';
-                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-outline-info" name="reinvestir">REINVESTIR</button>';
+                                    echo '<button type="submit" title="REINVESTIR LUCRO" class="btn btn-sm btn-outline-info" name="reinvestir">REINVESTIR</button><br>';
                                     echo '<br><button type="submit" title="SACAR LUCRO" class="btn btn-sm btn-outline-danger" name="sacarLucro">SACAR</button>';
                                     echo "</form>";
                                 }
