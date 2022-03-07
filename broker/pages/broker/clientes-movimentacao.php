@@ -65,6 +65,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <th style='text-align: center; vertical-align:middle !important'>TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>DATA/HORÁRIO</th>
                                 <th style='text-align: center; vertical-align:middle !important'>SITUAÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important'>TAXA</th>
                                 <th style='text-align: center; vertical-align:middle !important'>VALOR</th>
                                 <th style='text-align: center; vertical-align:middle !important'>AÇÃO</th>
                             </tr>
@@ -106,6 +107,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 if ($row['valor']) {
                                     $valor = '' . number_format($row['valor'], 2, ',', '.') . '';
                                 }
+                                if ($row['taxa']) {
+                                    $taxa = '' . number_format($row['taxa'], 2, ',', '.') . '';
+                                }
                                 if ($row['confirmado'] == 1) {
                                     $confirmado = 'Autorizado';
                                 }
@@ -122,6 +126,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . converte($data_criacao, 2) . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
+                                if ($taxa != null) {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>- R$ " . $taxa . "</font></td>";
+                                } else {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
+                                }
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . $valor . "</font></td>";
 
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
@@ -181,7 +190,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font><br>
-                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br><font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                            <font size="2" color="black">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br>
+                            <font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
                         </p>
                         <div class="form-actions">
                             <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> SOLICITAR RETIRADA</button>
@@ -218,7 +228,8 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <p align="justify">
                             <font size="2" color="red"><strong>Observação:</strong></font><br>
-                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br><font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+                            <font size="2" color="black">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br>
+                            <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
                         </p>
                         <p align="left">
                             <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
@@ -248,11 +259,17 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                     <form action="clientes-movimentacao?id=<?php echo $id ?>" method="post" enctype="multipart/form-data">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="basicInput">Informe o Valor do Lucro:</label>
                                         <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $data['id']; ?>" autocomplete="off" readonly>
                                         <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="basicInput">Informe o Valor da Taxa:</label>
+                                        <input type="text" class="form-control" id="taxa" name="taxa" onKeyPress="return(moeda(this,'.',',',event))" placeholder="500,00" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
@@ -478,6 +495,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $usuario        = $_POST['id'];
             $descricao      = 'Lucro de operações';
             $tipo           = '3';
+            $taxa_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['taxa']));
             $valor_lucro    = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
             $lucro          = number_format($valor_lucro, 2, ',', '.');
             $comprovante    = '-';
@@ -492,9 +510,9 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
             $hr_deposito = date('H:i:s', $timestamp2);
         }
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador, reinvestir) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tbl_investimentos (id_usuario, descricao, tipo, taxa, valor, comprovante, dt_criacao, hr_criacao, confirmado, operador, reinvestir) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         $q = $pdo->prepare($sql);
-        $q->execute(array($usuario, $descricao, $tipo, $valor_lucro, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome'], $reinvestir));
+        $q->execute(array($usuario, $descricao, $tipo, $taxa_lucro, $valor_lucro, $comprovante, $dt_criacao, $hr_criacao, $confirmado, $_SESSION['UsuarioNome'], $reinvestir));
         echo '<script>setTimeout(function () { 
                 swal({
                   title: "Parabéns!",

@@ -59,6 +59,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">TIPO</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">DATA/HORÁRIO</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="10%">SITUAÇÃO</th>
+                                <th style='text-align: center; vertical-align:middle !important' width="20%">TAXA</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="20%">VALOR</th>
                                 <th style='text-align: center; vertical-align:middle !important' width="25%">AÇÃO</th>
                             </tr>
@@ -100,6 +101,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $timestamp2 = strtotime($hora_criacao);
                                     $hr_criacao = date('H:i:s', $timestamp2);
                                 }
+                                if ($row['taxa']) {
+                                    $taxa = '' . $row['taxa'] . '';
+                                }
                                 if ($row['valor']) {
                                     $valor = '' . $row['valor'] . '';
                                 }
@@ -119,6 +123,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $tipo . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $dt_criacao . " às " . $hr_criacao . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>" . $confirmado . "</td>";
+                                if ($taxa != null) {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>- R$ "  . number_format($taxa, 2, ',', '.') .  "</font></td>";
+                                } else {
+                                    echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>-</font></td>";
+                                }
                                 echo "<td style='text-align: center; vertical-align:middle !important'><font size='2'>R$ " . number_format($valor, 2, ',', '.') . "</font></td>";
                                 echo "<td style='text-align: center; vertical-align:middle !important' width=80>";
 
