@@ -81,10 +81,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                     $descricao = '' . $row['descricao'] . '';
                                 }
                                 if ($row['tipo'] == 1) {
-                                    $tipo = '<font color="blue"> Crédito </font>';
+                                    $tipo = '<font color="blue"> Crédito/Aporte </font>';
                                 }
                                 if ($row['tipo'] == 2) {
-                                    $tipo = '<font color="red"> Débito </font>';
+                                    $tipo = '<font color="red"> Débito/Retirada </font>';
                                 }
                                 if ($row['tipo'] == 3) {
                                     $tipo = '<font color="green"> Lucro </font>';
