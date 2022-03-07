@@ -62,7 +62,7 @@ $pdo = BancoCadastros::conectar();
               </div>
             </div>
           </div>
-        </div>
+        </div><br>
       <?php } ?>
 
     </div>
