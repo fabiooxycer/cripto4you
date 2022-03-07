@@ -246,18 +246,19 @@ switch (get_post_action('excluir', 'adicionar')) {
                     }
                 }
             }
-        }   
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql3 = 'SELECT imagem FROM tbl_noticias ORDER BY id DESC limit 1';
-        foreach ($pdo->query($sql3) as $row) {
-            $_SESSION['imagem'] = $row['imagem'];
         }
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM tbl_noticias WHERE imagem = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($tmpname));
+        $data = $q->fetch(PDO::FETCH_ASSOC);
 
         // ENVIA TELEGRAM    
         $apiToken = "5155649072:AAF466dIaOiGvEb9qCGavLXNHVXE06ZRPwo";
         $dataPhoto = [
             "chat_id" => "-1001662279487", // ID Canal Notícias
-            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $_SESSION['imagem'] . '"',
+            'photo' => 'https://broker.cripto4you.net/assets/img/noticias/"' . $data['imagem'] . '"',
         ];
 
         $dataMessage = [
