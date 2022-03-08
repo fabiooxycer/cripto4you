@@ -37,18 +37,20 @@
     <div class="sidebar-heading">
         Gestão
     </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastroClientes" aria-expanded="true" aria-controls="collapseCadastroClientes">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Clientes</span>
-        </a>
-        <div id="collapseCadastroClientes" class="collapse" aria-labelledby="headingCadastroClientes" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="clientes">Listar</a>
+    <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastroClientes" aria-expanded="true" aria-controls="collapseCadastroClientes">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Clientes</span>
+            </a>
+            <div id="collapseCadastroClientes" class="collapse" aria-labelledby="headingCadastroClientes" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="clientes">Listar</a>
+                </div>
             </div>
-        </div>
-    </li>
-<?php } ?>
+        </li>
+<?php }
+} ?>
 
 <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
     <li class="nav-item">
