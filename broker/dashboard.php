@@ -233,7 +233,7 @@ include('includes/scripts.php');
                             <font size="4"><strong>R$ <i id="anual"></i><i>,00</strong></font> &nbsp;anual</i>
                         </li><br>
                         <p>
-                            <strong>Obs.:</strong> <br><i>Taxa de transação.<br><strong>Cálculo:</strong> R$ 200,00 (Lucro Bruto) - 10% (Taxa) = R$ 180,00 (Lucro Líquido)</i>
+                            <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> R$ 200,00 <font size="1">(Lucro Bruto)</font> - 10% <font size="1">(Taxa)</font> = R$ 180,00 <font size="1">(Lucro Líquido)</font></i>
                         </p>
                     </div>
                 </div>
