@@ -27,15 +27,15 @@ include("includes/scripts.php");
     <meta name="robots" content="index, follow" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="assets/images/favicon.png" rel="icon">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Typography CSS -->
-    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="assets/css/typography.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
@@ -57,7 +57,7 @@ include("includes/scripts.php");
                     <div class="row m-0">
                         <div class="col-md-12 bg-white sign-in-page-data">
                             <div class="sign-in-from">
-                                <h1 class="mb-0 text-center"><img src="images/logo.png" alt="Cripto4You"></h1><br>
+                                <h1 class="mb-0 text-center"><img src="assets/images/logo.png" alt="Cripto4You"></h1><br>
                                 <p class="text-center text-dark">Seja bem vindo(a)!</p>
                                 <form class="mt-4" action="senha" method="POST">
                                     <div class="form-group">
@@ -123,38 +123,38 @@ include("includes/scripts.php");
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <!-- Appear JavaScript -->
-    <script src="js/jquery.appear.js"></script>
+    <script src="assets/js/jquery.appear.js"></script>
     <!-- Countdown JavaScript -->
-    <script src="js/countdown.min.js"></script>
+    <script src="assets/js/countdown.min.js"></script>
     <!-- Counterup JavaScript -->
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
     <!-- Wow JavaScript -->
-    <script src="js/wow.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
     <!-- Apexcharts JavaScript -->
-    <script src="js/apexcharts.js"></script>
+    <script src="assets/js/apexcharts.js"></script>
     <!-- lottie JavaScript -->
-    <script src="js/lottie.js"></script>
+    <script src="assets/js/lottie.js"></script>
     <!-- Slick JavaScript -->
-    <script src="js/slick.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
     <!-- Select2 JavaScript -->
-    <script src="js/select2.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
     <!-- Owl Carousel JavaScript -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
     <!-- Magnific Popup JavaScript -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Smooth Scrollbar JavaScript -->
-    <script src="js/smooth-scrollbar.js"></script>
+    <script src="assets/js/smooth-scrollbar.js"></script>
     <!-- Style Customizer -->
-    <script src="js/style-customizer.js"></script>
+    <script src="assets/js/style-customizer.js"></script>
     <!-- Chart Custom JavaScript -->
-    <script src="js/chart-custom.js"></script>
+    <script src="assets/js/chart-custom.js"></script>
     <!-- Custom JavaScript -->
-    <script src="js/custom.js"></script>
+    <script src="assets/js/custom.js"></script>
 
 
 </body>
