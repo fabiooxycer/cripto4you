@@ -30,6 +30,23 @@ include('includes/topnavbar.php');
 include('includes/scripts.php');
 ?>
 
+<!-- <style>
+    .faturamento {
+        line-height: 100%;
+    }
+
+    .faturamento.hide {
+        display: inline-block;
+        background: #FFFFFF;
+        line-height: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .botao-faturamento {
+        cursor: pointer;
+    }
+</style> -->
 <script>
     function removeMaskMoney(x) {
         x = "" + x;
@@ -92,8 +109,11 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total de Clientes</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b><?php echo $totalUsuarios; ?></b></h3>
+                                <!-- <span class="faturamento hide"> -->
+                                    <h3><b><?php echo $totalUsuarios; ?></b></h3>
+                                <!-- </span> -->
                                 <h6>ativo(s)</h6>
+                                <!-- <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
@@ -107,7 +127,10 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Lucro Gerado</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                                <!-- <span class="faturamento hide"> -->
+                                    <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                                <!-- </span>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
@@ -120,7 +143,10 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Retiradas</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                                <!-- <span class="faturamento hide"> -->
+                                    <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                                <!-- </span>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
@@ -133,7 +159,10 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Investido</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($saldoAtualInvestido, 2, ',', '.'); ?></b></h3>
+                                <!-- <span class="faturamento hide"> -->
+                                    <h3><b>R$ <?php echo number_format($saldoAtualInvestido, 2, ',', '.'); ?></b></h3>
+                                <!-- </span>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
