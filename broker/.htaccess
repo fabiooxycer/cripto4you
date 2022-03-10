@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^cripto4you.net [NC]
+  RewriteRule ^(.*)$ https://cripto4you.net/$1 [L,R=301]
+
+# PÁGINAS
+  RewriteRule ^entrar/?$ index.php [NC,L]
+  RewriteRule ^senha/?$ senha.php [NC,L]
+  RewriteRule ^meu-perfil/?$ meu-perfil.php [NC,L]
+  RewriteRule ^dashboard/?$ dashboard.php [NC,L]
+
+# SITE
+  RewriteRule ^noticias/?$ site-noticias.php [NC,L]
+  RewriteRule ^noticia-editar/?$ site-noticia-editar.php [NC,L]
+  RewriteRule ^seo/?$ site-seo.php [NC,L]
+
+# BROKER
+  RewriteRule ^clientes/?$ clientes.php [NC,L]
+  RewriteRule ^clientes-editar/?$ clientes-editar.php [NC,L]
+  RewriteRule ^clientes-movimentacao/?$ clientes-movimentacao.php [NC,L]
+  RewriteRule ^meu-investimento/?$ meu-investimento.php [NC,L]
+
+# INCLUDES
+  RewriteRule ^sair/?$ includes/logout.php [NC,L]
+  RewriteRule ^valida/?$ includes/validation.php [NC,L]
+
+</IfModule>
