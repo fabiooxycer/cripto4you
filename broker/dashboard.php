@@ -233,7 +233,7 @@ include('includes/scripts.php');
                             <font size="4"><strong>R$ <i id="anual"></i><i>,00</strong></font> &nbsp;anual</i>
                         </li><br>
                         <p>
-                            <strong>Obs.:</strong> <i>Levar em consideração o cálculo de 10% de traxa de transação. Ex.: Lucro - 10%</i>
+                            <strong>Obs.:</strong> <i>Levar em consideração o cálculo de 10% de traxa de transação. Cálculo: R$ 200,00 (Lucro Bruto) - 10% (Taxa) = R$ 180,00 (Lucro Líquido)</i>
                         </p>
                     </div>
                 </div>
