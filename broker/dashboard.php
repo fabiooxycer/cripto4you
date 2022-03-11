@@ -47,6 +47,7 @@ include('includes/scripts.php');
         cursor: pointer;
     }
 </style> -->
+
 <script>
     function removeMaskMoney(x) {
         x = "" + x;
@@ -91,6 +92,7 @@ include('includes/scripts.php');
         document.getElementById('anual').innerHTML = n1 / 100 * n2 * 30 * 12;
     }
 </script>
+
 
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
@@ -211,6 +213,17 @@ include('includes/scripts.php');
                     </div>
                 </div>
             <?php } ?>
+
+            <div class="col-lg-6">
+                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Top 10</h4>
+                        </div>
+                    </div>
+                    <iframe id="tvc_frame_40cefa9bdd4d8727d43d6bd622e371cc" seamless="seamless" src="https://broker.cripto4you.net/init.php?family_prefix=tvc4&amp;carrier=1d323e09469caa62c5025568c7d84696&amp;time=1647005107&amp;domain_ID=30&amp;lang_ID=12&amp;timezone_ID=12&amp;pair_ID=1057391&amp;interval=86400&amp;refresh=8&amp;session=session&amp;client=&amp;user=guest&amp;width=100%&amp;height=800&amp;init_page=live-charts&amp;m_pids=&amp;watchlist=1057391,1175058,1170319,1070908,1058142,1024807,1173182,1172743,1155577,1061443,1178905,1062537,1178235,1183115,1163457,1158892,1163454,1178582,1057392,1177183,1186007,1060628,1156338&amp;site=https://broker.cripto4you.net" width="100%" height="800" style="width: 100%; height: 750px; display: inline;"></iframe>
+                </div>
+            </div>
 
             <div class="col-lg-6">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
