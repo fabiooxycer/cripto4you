@@ -218,7 +218,7 @@ include('includes/scripts.php');
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Gráfico em Tempo Real</h4>
+                            <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp;Gráfico em Tempo Real</h4>
                         </div>
                     </div>
                     <!-- TradingView Widget BEGIN -->
@@ -250,7 +250,7 @@ include('includes/scripts.php');
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Top 10</h4>
+                            <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Top 10</h4>
                         </div>
                     </div>
                     <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="380" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
@@ -261,7 +261,7 @@ include('includes/scripts.php');
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
                             <h4 class="card-title">
-                                <li>CALCULADORA DE GANHOS</li>
+                                <i class="fa fa-calculator"></i> &nbsp;Calculadora de Lucro
                             </h4>
                         </div>
                     </div>
