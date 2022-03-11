@@ -231,7 +231,7 @@ include('includes/scripts.php');
                                 "autosize": true,
                                 "symbol": "BINANCE:BTCUSDT",
                                 "interval": "D",
-                                "timezone": "Etc/UTC",
+                                "timezone": "America/Sao_Paulo",
                                 "theme": "dark",
                                 "style": "1",
                                 "locale": "br",
