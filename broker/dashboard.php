@@ -112,7 +112,7 @@ include('includes/scripts.php');
                             <p class="text-secondary">Total de Clientes</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <!-- <span class="faturamento hide"> -->
-                                    <h3><b><?php echo $totalUsuarios; ?></b></h3>
+                                <h3><b><?php echo $totalUsuarios; ?></b></h3>
                                 <!-- </span> -->
                                 <h6>ativo(s)</h6>
                                 <!-- <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
@@ -130,7 +130,7 @@ include('includes/scripts.php');
                             <p class="text-secondary">Lucro Gerado</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <!-- <span class="faturamento hide"> -->
-                                    <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
                                 <!-- </span>
                                 <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
@@ -146,7 +146,7 @@ include('includes/scripts.php');
                             <p class="text-secondary">Total Retiradas</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <!-- <span class="faturamento hide"> -->
-                                    <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                                <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
                                 <!-- </span>
                                 <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
@@ -162,7 +162,7 @@ include('includes/scripts.php');
                             <p class="text-secondary">Total Investido</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <!-- <span class="faturamento hide"> -->
-                                    <h3><b>R$ <?php echo number_format($saldoAtualInvestido, 2, ',', '.'); ?></b></h3>
+                                <h3><b>R$ <?php echo number_format($saldoAtualInvestido, 2, ',', '.'); ?></b></h3>
                                 <!-- </span>
                                 <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
@@ -214,14 +214,35 @@ include('includes/scripts.php');
                 </div>
             <?php } ?>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Top 10</h4>
+                            <h4 class="card-title">Gráfico em Tempo Real</h4>
                         </div>
                     </div>
-                    <iframe id="tvc_frame_40cefa9bdd4d8727d43d6bd622e371cc" seamless="seamless" src="https://broker.cripto4you.net/init.php?family_prefix=tvc4&amp;carrier=1d323e09469caa62c5025568c7d84696&amp;time=1647005107&amp;domain_ID=30&amp;lang_ID=12&amp;timezone_ID=12&amp;pair_ID=1057391&amp;interval=86400&amp;refresh=8&amp;session=session&amp;client=&amp;user=guest&amp;width=100%&amp;height=800&amp;init_page=live-charts&amp;m_pids=&amp;watchlist=1057391,1175058,1170319,1070908,1058142,1024807,1173182,1172743,1155577,1061443,1178905,1062537,1178235,1183115,1163457,1158892,1163454,1178582,1057392,1177183,1186007,1060628,1156338&amp;site=https://broker.cripto4you.net" width="100%" height="800" style="width: 100%; height: 750px; display: inline;"></iframe>
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div style="width: 100%;height: 410px;background: transparent;padding: 0 !important;" id="tradingview_69159"></div>
+                        <!-- <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">Gráfico BTCUSDT</span></a> por TradingView</div> -->
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget({
+                                "autosize": true,
+                                "symbol": "BINANCE:BTCUSDT",
+                                "interval": "D",
+                                "timezone": "Etc/UTC",
+                                "theme": "dark",
+                                "style": "1",
+                                "locale": "br",
+                                "toolbar_bg": "#f1f3f6",
+                                "enable_publishing": false,
+                                "allow_symbol_change": true,
+                                "container_id": "tradingview_69159"
+                            });
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
                 </div>
             </div>
 
