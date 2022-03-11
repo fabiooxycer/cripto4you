@@ -223,22 +223,24 @@ include('includes/scripts.php');
                     </div>
                     <!-- TradingView Widget BEGIN -->
                     <div class="tradingview-widget-container">
-                        <div style="width: 100%;height: 410px;background: transparent;padding: 0 !important;" id="tradingview_69159"></div>
-                        <!-- <div class="tradingview-widget-copyright"><a href="https://br.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">Gráfico BTCUSDT</span></a> por TradingView</div> -->
+                        <div style="width: 100%;height: 410px;background: transparent;padding: 0 !important;" id="tradingview_9840e"></div>
                         <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                         <script type="text/javascript">
                             new TradingView.widget({
                                 "autosize": true,
                                 "symbol": "BINANCE:BTCUSDT",
-                                "interval": "D",
+                                "interval": "15",
                                 "timezone": "America/Sao_Paulo",
                                 "theme": "dark",
                                 "style": "1",
                                 "locale": "br",
                                 "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": false,
+                                "enable_publishing": true,
+                                "withdateranges": true,
+                                "hide_side_toolbar": false,
                                 "allow_symbol_change": true,
-                                "container_id": "tradingview_69159"
+                                "hotlist": true,
+                                "container_id": "tradingview_9840e"
                             });
                         </script>
                     </div>
