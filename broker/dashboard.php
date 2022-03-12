@@ -319,7 +319,7 @@ include('includes/scripts.php');
                             <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Top 10</h4>
                         </div>
                     </div>
-                    <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="380" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
+                    <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="430" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
                 </div>
             </div>
             <div class="col-lg-6">
