@@ -131,7 +131,7 @@ if (empty($email) || empty($cpf)) {
                         <div class="row m-0">
                             <div class="col-md-12 bg-white sign-in-page-data">
                                 <div class="sign-in-from">
-                                    <h1 class="mb-0 text-center"><img src="images/logo.png" alt="Cripto4You"></h1><br>
+                                    <h1 class="mb-0 text-center"><img src="assets/images/logo.png" alt="Cripto4You"></h1><br>
                                     <p class="text-center text-dark">Atenção!</p>
                                     <p>
                                         <font size="3">Olá <strong><?php echo $data['nome']; ?></strong>, você não possui uma senha de acesso. Vamos definir?</font>
