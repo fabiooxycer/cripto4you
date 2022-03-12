@@ -597,7 +597,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
       $dt_transacao = date('d/m/Y', $timestamp);
       $hr_transacao = date('H:i:s', $timestamp2);
 
-      require('../../includes/phpmailer/hdw-phpmailer.php');
+      require('includes/phpmailer/hdw-phpmailer.php');
 
 
       $emailAssunto  = 'Liberação de Movimentação | Cripto4You';
@@ -727,7 +727,7 @@ switch (get_post_action('saque', 'deposito', 'lucro', 'liberar', 'cancelar', 're
       $dt_transacao = date('d/m/Y', $timestamp);
       $hr_transacao = date('H:i:s', $timestamp2);
 
-      require('../../includes/phpmailer/hdw-phpmailer.php');
+      require('includes/phpmailer/hdw-phpmailer.php');
 
 
       $emailAssunto  = 'Liberação de Movimentação | Cripto4You';

@@ -458,7 +458,7 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
             }
          }
 
-         require('../../includes/phpmailer/hdw-phpmailer.php');
+         require('includes/phpmailer/hdw-phpmailer.php');
 
 
          $emailAssunto  = 'Cadastro | Cripto4You';
