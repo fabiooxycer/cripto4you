@@ -50,7 +50,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                      <h4 class="card-title">
-                        <li>MOVIMENTAÇÃO DE <?php echo $data['nome']; ?></li>
+                     <li>MOVIMENTAÇÃO DE <font color="#DD7F12"><?php echo $data['nome']; ?></font></li>
                      </h4>
                   </div>
                </div>
