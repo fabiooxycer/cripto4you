@@ -1,16 +1,13 @@
 <?php
-if ($_SERVER['HTTP_HOST'] != 'localhost') {
-   if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-   $nivel = 1;
+$nivel = 1;
 
-   if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-      echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-
-      exit;
-   }
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
+    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+    exit;
 } else {
-   if (!isset($_SESSION)) session_start();
+    if (!isset($_SESSION)) session_start();
 }
 
 include('includes/header.php');
