@@ -1,13 +1,11 @@
 <?php
-if ($_SERVER['HTTP_HOST'] != 'localhost') {
-    if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION)) session_start();
 
-    $nivel = 1;
+$nivel = 1;
 
-    if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-        echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-        exit;
-    }
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
+    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+    exit;
 } else {
     if (!isset($_SESSION)) session_start();
 }
@@ -17,24 +15,6 @@ include('includes/menu.php');
 include('includes/topnavbar.php');
 include('includes/scripts.php');
 ?>
-
-<!-- <style>
-    .faturamento {
-        line-height: 100%;
-    }
-
-    .faturamento.hide {
-        display: inline-block;
-        background: #FFFFFF;
-        line-height: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .botao-faturamento {
-        cursor: pointer;
-    }
-</style> -->
 
 <script>
     function removeMaskMoney(x) {
@@ -75,10 +55,18 @@ include('includes/scripts.php');
     function calcular() {
         var n1 = parseInt(document.getElementById('n1').value);
         var n2 = parseInt(document.getElementById('n2').value);
-        document.getElementById('diario').innerHTML = n1 / 100 * n2;
-        document.getElementById('mensal').innerHTML = n1 / 100 * n2 * 30;
-        document.getElementById('anual').innerHTML = n1 / 100 * n2 * 30 * 12;
-    }
+        <?php if ($_SESSION['UsuarioTipoContrato'] == '1') { ?>
+            document.getElementById('diario').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '2') { ?>
+            document.getElementById('mensal_d').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '3') { ?>
+            document.getElementById('quinzenal').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '4') { ?>
+            document.getElementById('mensal').innerHTML = n1 / 100 * n2;
+        <?php } ?>    }
 </script>
 
 <!-- Page Content  -->
@@ -155,7 +143,7 @@ include('includes/scripts.php');
             //Informações para Administradores
             if ($_SESSION['UsuarioNivel'] == 100) {
             ?>
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
@@ -163,33 +151,41 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total de Clientes</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <!-- <span class="faturamento hide"> -->
                                 <h3><b><?php echo $totalUsuarios; ?></b></h3>
-                                <!-- </span> -->
                                 <h6>ativo(s)</h6>
-                                <!-- <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
-                                <i class="fa fa-money"></i>
+                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-secondary">
+                                <i class="fa fa-exchange"></i>
                             </div>
-                            <p class="text-secondary">Lucro Gerado</p>
+                            <p class="text-secondary">Total de Transações</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <!-- <span class="faturamento hide"> -->
-                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
-                                <!-- </span>
-                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
+                                <h3><b><?php echo $totalTransacoes; ?></b></h3>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
+
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-body iq-box-relative">
+                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <p class="text-secondary">Lucro Gerado</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
@@ -197,26 +193,33 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Retiradas</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <!-- <span class="faturamento hide"> -->
                                 <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
-                                <!-- </span>
-                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-3">
+                <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
                                 <i class="fa fa-money"></i>
                             </div>
-                            <p class="text-secondary">Total Investido</p>
+                            <p class="text-secondary">Total Aporte</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <!-- <span class="faturamento hide"> -->
-                                <h3><b>R$ <?php echo number_format($saldoAtualInvestido, 2, ',', '.'); ?></b></h3>
-                                <!-- </span>
-                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 12px;"></i></span> -->
+                                <h3><b>R$ <?php echo number_format($totalAporteInvestido, 2, ',', '.'); ?></b></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-body iq-box-relative">
+                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <p class="text-secondary">Total Aporte + Lucro Reinvestido</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3><b>R$ <?php echo number_format($totalAporteLucro, 2, ',', '.'); ?></b></h3>
                             </div>
                         </div>
                     </div>
@@ -224,10 +227,10 @@ include('includes/scripts.php');
             <?php } else {
                 // Informações para Usuários
             ?>
-                <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
+                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
                                 <i class="fa fa-money"></i>
                             </div>
                             <p class="text-secondary">Lucro Gerado</p>
@@ -238,7 +241,7 @@ include('includes/scripts.php');
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
@@ -251,15 +254,34 @@ include('includes/scripts.php');
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-body iq-box-relative">
                             <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
                                 <i class="fa fa-money"></i>
                             </div>
+                            <p class="text-secondary">Saldo Aporte</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <?php
+
+                                ?> 
+                                <h3><b>R$ <?php echo number_format($totalAporteUsuarios, 2, ',', '.'); ?></b></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-body iq-box-relative">
+                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
+                                <i class="fa fa-money"></i>
+                            </div>
                             <p class="text-secondary">Saldo Atual Investido</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalAporteUsuarios, 2, ',', '.'); ?></b></h3>
+                                <?php
+
+                                ?> 
+                                <h3><b>R$ <?php echo number_format($totalInvestido, 2, ',', '.'); ?></b></h3>
                             </div>
                         </div>
                     </div>
@@ -310,7 +332,7 @@ include('includes/scripts.php');
                     <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="430" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
                 </div>
             </div>
-            <!-- <div class="col-lg-6">
+            <div class="col-lg-6">
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -320,7 +342,7 @@ include('includes/scripts.php');
                         </div>
                     </div>
                     <div class="iq-card-body">
-                        <p>Abaixo você pode calcular o lucro diário, mensal e anual de acordo com o valor de aporte pretendido</p>
+                        <p>Abaixo você pode calcular o lucro de acordo com o valor de aporte pretendido</p>
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-5">
@@ -328,7 +350,7 @@ include('includes/scripts.php');
                                         <input type="text" class="form-control" id="valor" name="valor" placeholder="Informe o Valor do Aporte. Ex.: 50.000,00" onblur="tiraMascara(this)" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
                                         <input type="hidden" class="form-control" id="valor2" name="valor2" readonly>
                                         <input type="hidden" class="form-control" id="n1" name="n1" readonly>
-                                        <input type="hidden" class="form-control" id="n2" name="n2" value="1" readonly>
+                                        <input type="hidden" class="form-control" id="n2" name="n2" value="<?php echo $_SESSION['UsuarioPercentual']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -341,20 +363,32 @@ include('includes/scripts.php');
                         <p>
                             <font size="4"><strong>Com o valor de aporte informado acima, seu lucro será de:</strong></font>
                         </p><br>
-                        <li>
-                            <font size="4"><strong>R$ <i id="diario"></i><i>,00</strong></font> &nbsp;diário</i>
-                        <li>
-                            <font size="4"><strong>R$ <i id="mensal"></i><i>,00</strong></font> &nbsp;mensal</i>
-                        </li>
-                        <li>
-                            <font size="4"><strong>R$ <i id="anual"></i><i>,00</strong></font> &nbsp;anual</i>
-                        </li><br>
+                        <?php if ($_SESSION['UsuarioTipoContrato'] == '1') { ?>
+                            <li>
+                                <font size="4"><strong>R$ <i id="diario"></i><i>,00</strong></font> &nbsp;diário</i>
+                            </li>
+                        <?php }
+                        if ($_SESSION['UsuarioTipoContrato'] == '2') { ?>
+                            <li>
+                                <font size="4"><strong>R$ <i id="mensal_d"></i><i>,00</strong></font> &nbsp;diário</i>
+                            </li>
+                        <?php }
+                        if ($_SESSION['UsuarioTipoContrato'] == '3') { ?>
+                            <li>
+                                <font size="4"><strong>R$ <i id="quinzenal"></i><i>,00</strong></font> &nbsp;a cada 15 dias</i>
+                            </li>
+                        <?php }
+                        if ($_SESSION['UsuarioTipoContrato'] == '4') { ?>
+                            <li>
+                                <font size="4"><strong>R$ <i id="mensal"></i><i>,00</strong></font> &nbsp;mesal</i>
+                            </li>
+                        <?php } ?><br>
                         <p>
-                            <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> R$ 200,00 <font size="1">(Lucro Bruto)</font> - 10% <font size="1">(Taxa)</font> = R$ 180,00 <font size="1">(Lucro Líquido)</font></i>
+                            <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 10% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
                         </p>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 </div>

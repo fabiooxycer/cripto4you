@@ -41,51 +41,56 @@ $sql = $pdo->query($sql);
 $sql = $sql->fetch();
 $totalUsuarios = $sql['t'];
 
+// TOTAL DE TRANSAÇÕES
+$sql = "SELECT count(*) as t FROM tbl_investimentos";
+$sql = $pdo->query($sql);
+$sql = $sql->fetch();
+$totalTransacoes = $sql['t'];
+
 //LUCRO GERADO TOTAL
-$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE confirmado = 1 AND reinvestir = 1";
+$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE tipo = 3 AND confirmado = 1 AND reinvestir = 1";
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
 $lucroGerado = $sql['t'];
 
 // TOTAL DE RETIRADAS
-$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE tipo = 2 AND confirmado = 1 AND reinvestir = 2";
+$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE tipo = 2 AND confirmado = 1";
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
 $totalRetiradas = $sql['t'];
 
-// SALDO ATUAL INVESTIDO
-$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE tipo IN ('1,3') AND confirmado = 1";
+// SALDO APORTE
+$sql = "SELECT sum(valor) as t FROM tbl_investimentos WHERE tipo = 1 AND confirmado = 1";
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
-$totalInvestido = $sql['t'];
+$totalAporteInvestido = $sql['t'];
 
 // CÁLCULO ATUAL DO INVESTIMENTO TOTAL
-$saldoAtualInvestido = $totalInvestido + $lucroGerado - $totalRetiradas;
+$totalAporteLucro = $totalAporteInvestido + $lucroGerado - $totalRetiradas;
 
 // ------------------------------------------------------------------------
 // Cálculo Dashboard Usuários
 // ------------------------------------------------------------------------
 // SQL RETIRADAS
-$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 2 AND confirmado = 1 AND reinvestir = 2';
+$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 2 AND confirmado = 1';
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
 $totalRetiradasUsuarios = $sql['t'];
 
 // SQL LUCRO
-$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND confirmado = 1 AND reinvestir = 1';
+$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 1';
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
 $lucroGeradoUsuarios = $sql['t'];
 
-// SQL INVESTIMENTO
+// APORTE
 $sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $_SESSION['UsuarioID'] . '" AND tipo = 1 AND confirmado = 1';
 $sql = $pdo->query($sql);
 $sql = $sql->fetch();
-$totalInvestidoUsuarios = $sql['t'];
+$totalAporteUsuarios = $sql['t'];
 
-// CÁLCULO DO INVESTIMENTO ATUAL
-$somaInvestimentoLucroUsuarios = $totalInvestidoUsuarios + $lucroGeradoUsuarios;
-$totalAporteUsuarios = $somaInvestimentoLucroUsuarios - $totalRetiradasUsuarios;
+// CÁLCULO APORTE + LUCRO REINVESTIDO
+$totalInvestido = $totalAporteUsuarios + $lucroGeradoUsuarios - $totalRetiradasUsuarios;
 
 // ------------------------------------------------------------------------
 // 

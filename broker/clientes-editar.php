@@ -69,12 +69,27 @@ switch (get_post_action('atualizar')) {
          if ($dt_saque == '') {
             $dt_saque = '0000-00-00';
          }
+         if ($dt_saque == '') {
+            $dt_saque = '0000-00-00';
+         }
+         if ($tipo_contrato == '1') {
+            $percentual = '1';
+         }
+         if ($tipo_contrato == '2') {
+            $percentual = '1';
+         }
+         if ($tipo_contrato == '3') {
+            $percentual = '7';
+         }
+         if ($tipo_contrato == '4') {
+            $percentual = '15';
+         }
       }
 
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "UPDATE tbl_usuarios set nome = ?, rg = ?, cpf = ?, telefone = ?, email = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, tipo_pix = ?, chave = ?, tipo_contrato = ?, dt_saque = ?, nivel = ? WHERE id = ?";
+      $sql = "UPDATE tbl_usuarios set nome = ?, rg = ?, cpf = ?, telefone = ?, email = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, tipo_pix = ?, chave = ?, tipo_contrato = ?, percentual = ?, dt_saque = ?, nivel = ? WHERE id = ?";
       $q = $pdo->prepare($sql);
-      $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $dt_saque, $nivel, $id));
+      $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $percentual, $dt_saque, $nivel, $id));
       echo '<script>setTimeout(function () { 
             swal({
             title: "Parabéns!",
@@ -222,15 +237,19 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                                                                                                 echo 'DIÁRIO';
                                                                                              }
                                                                                              if ($data['tipo_contrato'] == '2') {
-                                                                                                echo 'MENSAL';
+                                                                                                echo 'MENSAL DIÁRIO';
                                                                                              }
                                                                                              if ($data['tipo_contrato'] == '3') {
                                                                                                 echo 'QUINZENAL';
+                                                                                             }
+                                                                                             if ($data['tipo_contrato'] == '4') {
+                                                                                                echo 'MENSAL';
                                                                                              } ?></option>
                                        <option value="">Selecione...</option>
                                        <option value="1">Diário</option>
-                                       <option value="2">Mensal</option>
+                                       <option value="2">Mensal Diário</option>
                                        <option value="3">Quinzenal</option>
+                                       <option value="4">Mensal</option>
                                     </select>
                                  </div>
                               </div>
@@ -266,10 +285,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                      <br /><br />
                      <div class="form-actions" align="center">
                         <button type="button" class="btn btn-sm btn-outline-dark" onClick="history.go(-1)">
-                        <i class="fa fa-times-circle"></i> VOLTAR
+                           <i class="fa fa-times-circle"></i> VOLTAR
                         </button>
                         <button type="submit" class="btn btn-sm btn-outline-primary" name="atualizar">
-                        <i class="fa fa-check"></i> ATUALIZAR
+                           <i class="fa fa-check"></i> ATUALIZAR
                         </button>
                      </div>
                   </form>

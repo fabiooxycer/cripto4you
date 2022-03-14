@@ -35,11 +35,8 @@
                                     </div>
                                     <a href="#" class="iq-sub-card">
                                         <div class="media align-items-center">
-                                            <div class="">
-                                                <img class="avatar-40 rounded" src="images/user/01.jpg" alt="">
-                                            </div>
                                             <div class="media-body ml-3">
-                                                <h6 class="mb-0 ">Nenhuma notificação</h6>>
+                                                <h6 class="mb-0 ">Nenhuma notificação</h6>
                                             </div>
                                         </div>
                                     </a>

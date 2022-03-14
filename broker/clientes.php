@@ -82,10 +82,13 @@ include('includes/scripts.php');
                                  $contrato = 'DIÁRIO';
                               }
                               if ($row['tipo_contrato'] == 2) {
-                                 $contrato = 'MENSAL';
+                                 $contrato = 'MENSAL DIÁRIO';
                               }
                               if ($row['tipo_contrato'] == 3) {
                                  $contrato = 'QUINZENAL';
+                              }
+                              if ($row['tipo_contrato'] == 4) {
+                                 $contrato = 'MENSAL';
                               }
                               if ($row['contrato_aceito'] == 2) {
                                  $aceite_contrato = '<font color="green"> SIM </font>';
@@ -420,6 +423,18 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
          if ($dt_saque == '') {
             $dt_saque = '0000-00-00';
          }
+         if ($tipo_contrato == '1') {
+            $percentual = '1';
+         }
+         if ($tipo_contrato == '2') {
+            $percentual = '1';
+         }
+         if ($tipo_contrato == '3') {
+            $percentual = '7';
+         }
+         if ($tipo_contrato == '4') {
+            $percentual = '15';
+         }
       }
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $sql = 'SELECT * FROM tbl_usuarios WHERE cpf = "' . $_POST['cpf'] . '"';
@@ -430,9 +445,9 @@ switch (get_post_action('desativar', 'ativar', 'adicionar', 'redefinir')) {
       if ($data['cpf'] != $_POST['cpf']) {
 
          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, tipo_contrato, dt_saque, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         $sql = "INSERT INTO tbl_usuarios (nome, rg, cpf, telefone, email, cep, endereco, numero, complemento, bairro, cidade, estado, tipo_pix, chave, tipo_contrato, percentual, dt_saque, status, nivel, dt_cadastro) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          $q = $pdo->prepare($sql);
-         $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $dt_saque, $status, $nivel, $dt_cadastro));
+         $q->execute(array($nome, $rg, $cpf, $telefone, $email, $cep, $endereco, $numero, $complemento, $bairro, $cidade, $estado, $tipo_pix, $chave, $tipo_contrato, $percentual, $dt_saque, $status, $nivel, $dt_cadastro));
 
 
          $sql2 = 'SELECT * FROM tbl_usuarios ORDER BY id DESC limit 1';
