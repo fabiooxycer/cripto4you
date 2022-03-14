@@ -28,16 +28,17 @@ if (count($users) != 1) {
     $resultado = $users[0];
 
     if (!isset($_SESSION)) session_start();
-    $_SESSION['UsuarioID']       = $resultado['id'];
-    $_SESSION['UsuarioNome']     = $resultado['nome'];
-    $_SESSION['UsuarioEmail']    = $resultado['email'];
-    $_SESSION['UsuarioTelefone'] = $resultado['telefone'];
-    $_SESSION['UsuarioRG']       = $resultado['rg'];
-    $_SESSION['UsuarioCPF']      = $resultado['cpf'];
-    $_SESSION['UsuarioStatus']   = $resultado['status'];
-    $_SESSION['UsuarioNivel']    = $resultado['nivel'];
-    $_SESSION['UsuarioCadastro'] = $resultado['dt_cadastro'];
-    $_SESSION['UsuarioContrato'] = $resultado['contrato_aceito'];
+    $_SESSION['UsuarioID']         = $resultado['id'];
+    $_SESSION['UsuarioNome']       = $resultado['nome'];
+    $_SESSION['UsuarioEmail']      = $resultado['email'];
+    $_SESSION['UsuarioTelefone']   = $resultado['telefone'];
+    $_SESSION['UsuarioRG']         = $resultado['rg'];
+    $_SESSION['UsuarioCPF']        = $resultado['cpf'];
+    $_SESSION['UsuarioStatus']     = $resultado['status'];
+    $_SESSION['UsuarioNivel']      = $resultado['nivel'];
+    $_SESSION['UsuarioCadastro']   = $resultado['dt_cadastro'];
+    $_SESSION['UsuarioContrato']   = $resultado['contrato_aceito'];
+    $_SESSION['UsuarioPercentual'] = $resultado['percentual'];
 
     header("Location: dashboard");
     exit;
