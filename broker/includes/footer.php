@@ -3,21 +3,31 @@
 
 <!-- Footer -->
 <footer class="iq-footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#">Política e Privacidade</a></li>
-                    <li class="list-inline-item"><a href="#">Termos de Uso</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-6 text-right">
-                <?php echo date('Y'); ?> - Todos os direitos reservados.
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#">Política e Privacidade</a></li>
+          <li class="list-inline-item"><a href="#">Termos de Uso</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-6 text-right">
+        <?php echo date('Y'); ?> - Todos os direitos reservados.
+      </div>
     </div>
+  </div>
 </footer>
 <!-- Footer END -->
+
+<script>
+  $(document).ready(function() {
+    $('.botao-faturamento').on('click', function() {
+      $('.botao-faturamento .far').toggleClass('fa-eye-slash');
+      $('.botao-faturamento .far').toggleClass('fa-eye');
+      $('span.faturamento').toggleClass('hide');
+    });
+  });
+</script>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -83,17 +93,6 @@
 <!--Summernote js-->
 <script src="assets/summernote/summernote-bs4.js"></script>
 <script src="assets/summernote/summernote2.js"></script>
-
-<!-- <script>
-  $(document).ready(function() {
-    $('.botao-faturamento').on('click', function() {
-      $('.botao-faturamento .far').toggleClass('fa-eye-slash');
-      $('.botao-faturamento .far').toggleClass('fa-eye');
-      $('span.faturamento').toggleClass('hide');
-    });
-  });
-</script> -->
-
 
 </body>
 

@@ -91,6 +91,23 @@ include("selects-db.php");
     <!--Summernote css-->
     <link rel="stylesheet" href="assets/summernote/summernote-bs4.css">
 
+    <style>
+        .faturamento {
+            line-height: 35px;
+        }
+
+        .faturamento.hide {
+            display: inline-block;
+            background-color: #1C1C24;
+            line-height: 99999999px;
+            height: 27px;
+            overflow: hidden;
+        }
+
+        .botao-faturamento {
+            cursor: pointer;
+        }
+    </style>
 
 </head>
 

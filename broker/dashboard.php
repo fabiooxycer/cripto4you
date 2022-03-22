@@ -73,71 +73,7 @@ include('includes/scripts.php');
 <div id="content-page" class="content-page">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <!-- TradingView Widget BEGIN -->
-                        <div class="tradingview-widget-container">
-                            <div class="tradingview-widget-container__widget"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                                {
-                                    "symbols": [{
-                                            "description": "",
-                                            "proName": "BINANCE:BTCUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:ETHUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:LTCUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:BNBUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:ADAUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:NEARUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:MANAUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:SANDUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:GALAUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "XRPUSDT"
-                                        },
-                                        {
-                                            "description": "",
-                                            "proName": "BINANCE:BUSDUSDT"
-                                        }
-                                    ],
-                                    "showSymbolLogo": true,
-                                    "colorTheme": "dark",
-                                    "isTransparent": true,
-                                    "displayMode": "compact",
-                                    "locale": "br"
-                                }
-                            </script>
-                        </div>
-                        <!-- TradingView Widget END -->
-                    </div>
-                </div>
-            </div>
+            <?php include('include/slide_criptos.php'); ?>
 
             <?php
             //Informações para Administradores
@@ -151,8 +87,9 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total de Clientes</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b><?php echo $totalUsuarios; ?></b></h3>
-                                <h6>ativo(s)</h6>
+                                <h3 class="faturamento hide"><b><?php echo $totalUsuarios; ?></b></h3>
+                                <!-- <h6>ativo(s)</h6> -->
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -166,7 +103,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total de Transações</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b><?php echo $totalTransacoes; ?></b></h3>
+                                <h3 class="faturamento hide"><b><?php echo $totalTransacoes; ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -180,7 +118,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Lucro Gerado</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -193,7 +132,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Retiradas</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -206,7 +146,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Aporte</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalAporteInvestido, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalAporteInvestido, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -219,7 +160,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Aporte + Lucro Reinvestido</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalAporteLucro, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalAporteLucro, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -236,7 +178,8 @@ include('includes/scripts.php');
                             <p class="text-secondary">Lucro Gerado</p>
                             <div class="d-flex align-items-center justify-content-between">
 
-                                <h3><b>R$ <?php echo number_format($lucroGeradoUsuarios, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($lucroGeradoUsuarios, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -249,7 +192,8 @@ include('includes/scripts.php');
                             </div>
                             <p class="text-secondary">Total Retiradas</p>
                             <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalRetiradasUsuarios, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalRetiradasUsuarios, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -265,7 +209,8 @@ include('includes/scripts.php');
                                 <?php
 
                                 ?> 
-                                <h3><b>R$ <?php echo number_format($totalAporteUsuarios, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalAporteUsuarios, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
@@ -281,46 +226,16 @@ include('includes/scripts.php');
                                 <?php
 
                                 ?> 
-                                <h3><b>R$ <?php echo number_format($totalInvestido, 2, ',', '.'); ?></b></h3>
+                                <h3 class="faturamento hide"><b>R$ <?php echo number_format($totalInvestido, 2, ',', '.'); ?></b></h3>
+                                <span class="botao-faturamento"><i class="far fa-eye-slash" style="font-size: 15px;"></i></span>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-
-            <div class="col-lg-12">
-                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title"><i class="fas fa-chart-bar"></i> &nbsp;Gráfico em Tempo Real</h4>
-                        </div>
-                    </div>
-                    <!-- TradingView Widget BEGIN -->
-                    <div class="tradingview-widget-container">
-                        <div style="width: 100%;height: 410px;background: transparent;padding: 0 !important;" id="tradingview_9840e"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                        <script type="text/javascript">
-                            new TradingView.widget({
-                                "autosize": true,
-                                "symbol": "BINANCE:BTCUSDT",
-                                "interval": "15",
-                                "timezone": "America/Sao_Paulo",
-                                "theme": "dark",
-                                "style": "1",
-                                "locale": "br",
-                                "toolbar_bg": "#f1f3f6",
-                                "enable_publishing": true,
-                                "withdateranges": true,
-                                "hide_side_toolbar": false,
-                                "allow_symbol_change": true,
-                                "hotlist": true,
-                                "container_id": "tradingview_9840e"
-                            });
-                        </script>
-                    </div>
-                    <!-- TradingView Widget END -->
-                </div>
-            </div>
+            <?php } 
+            
+            include('includes/grafico.php');
+            ?>
 
             <div class="col-lg-6">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
