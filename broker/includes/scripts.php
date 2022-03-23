@@ -185,3 +185,57 @@
         }
     };
 </script>
+
+<script>
+    function removeMaskMoney(x) {
+        x = "" + x;
+        if ((x.replace(",", ".") != x)) {
+            if (x.replace(".", "") != x) {
+                aux = x;
+                x = x.replace(".", "");
+            } else {
+                aux = x;
+            }
+            if (x.replace(",", ".") != x) {
+                x = x.replace(",", ".")
+            } else {
+                x = aux;
+            }
+        }
+        if (isNaN(parseFloat(x))) {
+            x = 0;
+        } else {
+            x = parseFloat(x)
+        }
+        return x;
+    }
+
+    function tiraMascara(e) {
+        value = removeMaskMoney($(e).val());
+        $("[name=n1]").val(value)
+    }
+</script>
+
+<script>
+    $(document).on('keyup', '#valor', function() {
+        $('#valor2').val($(this).val());
+    });
+</script>
+<script>
+    function calcular() {
+        var n1 = parseInt(document.getElementById('n1').value);
+        var n2 = parseInt(document.getElementById('n2').value);
+        <?php if ($_SESSION['UsuarioTipoContrato'] == '1') { ?>
+            document.getElementById('diario').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '2') { ?>
+            document.getElementById('mensal_d').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '3') { ?>
+            document.getElementById('quinzenal').innerHTML = n1 / 100 * n2;
+        <?php }
+        if ($_SESSION['UsuarioTipoContrato'] == '4') { ?>
+            document.getElementById('mensal').innerHTML = n1 / 100 * n2;
+        <?php } ?>
+    }
+</script>
