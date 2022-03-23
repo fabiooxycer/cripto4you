@@ -120,7 +120,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                      <h4 class="card-title">
-                        <li>EDITAR DADOS DO(a) CLIENTE - <?php echo $_SESSION['UsuarioNome']; ?></li>
+                        <li>EDITAR DADOS DO(a) CLIENTE - <font color="#DD7F12"><?php echo $data['nome']; ?></li>
                      </h4>
                   </div>
                </div>
