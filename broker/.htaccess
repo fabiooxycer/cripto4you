@@ -8,6 +8,7 @@
   RewriteRule ^senha/?$ senha.php [NC,L]
   RewriteRule ^meu-perfil/?$ meu-perfil.php [NC,L]
   RewriteRule ^dashboard/?$ dashboard.php [NC,L]
+  RewriteRule ^pre-cadastro/?$ pre-cadastro.php [NC,L]
 
 # SITE
   RewriteRule ^noticias/?$ site-noticias.php [NC,L]
