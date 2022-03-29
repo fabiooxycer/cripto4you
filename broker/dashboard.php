@@ -238,7 +238,7 @@ include('includes/scripts.php');
                         <p>
                             <?php if ($_SESSION['UsuarioIndicacao'] != null) { ?>
                                 <strong>Obs.:</strong> <br><i>Taxa de transação 20%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 20% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
-                            <?php } else { ?>
+                            <?php } if ($_SESSION['UsuarioIndicacao'] == null) { ?>
                                 <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 10% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
                             <?php } ?>
                         </p>
