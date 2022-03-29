@@ -100,6 +100,9 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                               if ($row['taxa'] != null) {
                                  $taxa = '-R$ ' . number_format($row['taxa'], 2, ',', '.') . '';
                               }
+                              if ($row['taxa'] != null) {
+                                 $taxaComissao = 'R$ ' . number_format($row['taxa'], 2, ',', '.') . '';
+                              }
                               if ($row['taxa'] == null) {
                                  $taxa = '<font color="black">-</font>';
                               }
@@ -130,7 +133,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . number_format($valor_bruto, 2, ',', '.') .  "</font></td>";
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor_liquido, 2, ',', '.') . "</font></td>";
-                              echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
+                              echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='orange'>" . $taxaComissao .  "</font></td>";
                            }
                            echo "</tr>";
                            ?>
