@@ -52,7 +52,7 @@ include('includes/scripts.php');
                         <tbody>
                            <?php
                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                           $sql = 'SELECT * FROM tbl_usuarios WHERE id_indicacao == "' . $_SESSION['UsuarioID'] . '" ORDER BY nome ASC';
+                           $sql = 'SELECT * FROM tbl_usuarios WHERE id_indicacao = "' . $_SESSION['UsuarioID'] . '" ORDER BY nome ASC';
 
                            foreach ($pdo->query($sql) as $row) {
 
