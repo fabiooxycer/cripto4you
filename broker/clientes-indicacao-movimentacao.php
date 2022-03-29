@@ -59,6 +59,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                               <th style='text-align: center; vertical-align:middle !important'>V. Bruto</th>
                               <th style='text-align: center; vertical-align:middle !important'>Taxa Trader</th>
                               <th style='text-align: center; vertical-align:middle !important'>V. Liq.</th>
+                              <th style='text-align: center; vertical-align:middle !important'>Com. Indicação</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -129,6 +130,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='blue'>R$ " . number_format($valor_bruto, 2, ',', '.') .  "</font></td>";
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
                               echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='green'>R$ " . number_format($valor_liquido, 2, ',', '.') . "</font></td>";
+                              echo "<td style='text-align: center; vertical-align:middle !important'><font size='2' color='red'>" . $taxa .  "</font></td>";
                            }
                            echo "</tr>";
                            ?>
@@ -143,6 +145,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                               <th style='text-align: center; vertical-align:middle !important'>V. Bruto</th>
                               <th style='text-align: center; vertical-align:middle !important'>Taxa Trader</th>
                               <th style='text-align: center; vertical-align:middle !important'>V. Liq.</th>
+                              <th style='text-align: center; vertical-align:middle !important'>Com. Indicação</th>
                            </tr>
                         </tfoot>
                      </table>
