@@ -30,7 +30,7 @@ include('includes/scripts.php');
                   </div>
                </div>
                <div class="iq-card-body">
-                  <p>Abaixo será listado todos os clientes cadastrados na plataforma pela sua indicação</p>
+                  <p>Abaixo será listado todos os clientes indicados cadastrados na plataforma através do seu link de indicação</p>
                   <!-- <div class="ml-auto" align="left">
                      <div>
                         <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#modalNovoUsuario" title="ADICIONAR USUÁRIO/CLIENTE"><i class="fas fa-user-plus"></i> Adicionar</button>

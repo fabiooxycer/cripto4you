@@ -177,14 +177,17 @@ include('includes/scripts.php');
                         <div class="iq-header-title">
                             <h4 class="card-title"><i class="fas fa-user-plus"></i> &nbsp;Link de Indicação</h4>
                         </div>
-                    </div>
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h6><a href="https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?>" target="_blank">https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?></a></h6>
+                    </div><br>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="id_indicacao" value='https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?>' readonly><br>
+                            <i class="btn btn-outline-success fa fa-copy" id="link" title="COPIAR LINK DE INDICAÇÃO"></i>
+                            &nbsp;&nbsp;Faça indicações de novos clientes e lucre até 10% ao mês sobre o investimento da indicação.
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <?php include('includes/grafico.php'); ?>
 
@@ -353,3 +356,14 @@ if ($data['contrato_aceito'] == '1') {
 ?>
 
 <?php include('includes/footer.php'); ?>
+
+
+<script>
+    document.getElementById("link").addEventListener("click", function() {
+
+        document.getElementById("id_indicacao").select();
+
+        document.execCommand('copy');
+
+    });
+</script>

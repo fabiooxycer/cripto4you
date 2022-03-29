@@ -42,14 +42,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                </div>
                <div class="iq-card-body">
                   <p>Abaixo serão listadas, todas as movimentações do cliente indicado selecionado</p>
-                  <!-- <div class="ml-auto" align="left">
+                  <div class="ml-auto" align="left">
                      <div>
-                        <a type="button" class="btn btn-sm btn-outline-dark" href="clientes" title="VOLTAR"><i class="fas fa-undo"></i></a>
-                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
-                        <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i> Aporte</button>
-                        <button class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modalLucro" title="ADICIONAR LUCRO"><i class="fas fa-money-bill"></i> Lucro</button>
+                        <a type="button" class="btn btn-sm btn-outline-dark" href="clientes-indicacao" title="VOLTAR"><i class="fas fa-undo"></i> Voltar</a>
                      </div>
-                  </div><br> -->
+                  </div><br>
                   <div class="table-responsive">
                      <table id="datatable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                         <thead>
