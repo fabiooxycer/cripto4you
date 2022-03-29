@@ -169,6 +169,16 @@ include('includes/scripts.php');
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Meu Link de Indicação</h4>
+                            </div>
+                        </div>
+                        <p><a href="https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?>" target="_blank">https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?></a></p>
+                    </div>
+                </div>
             <?php }
 
             include('includes/grafico.php');
@@ -238,7 +248,8 @@ include('includes/scripts.php');
                         <p>
                             <?php if ($_SESSION['UsuarioIndicacao'] != null) { ?>
                                 <strong>Obs.:</strong> <br><i>Taxa de transação 20%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 20% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
-                            <?php } if ($_SESSION['UsuarioIndicacao'] == null) { ?>
+                            <?php }
+                            if ($_SESSION['UsuarioIndicacao'] == null) { ?>
                                 <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 10% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
                             <?php } ?>
                         </p>
