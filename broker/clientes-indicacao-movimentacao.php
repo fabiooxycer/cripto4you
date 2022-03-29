@@ -41,7 +41,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                   </div>
                </div>
                <div class="iq-card-body">
-                  <p>Abaixo serão listadas, todas as movimentações do cliente selecionado</p>
+                  <p>Abaixo serão listadas, todas as movimentações do cliente indicado selecionado</p>
                   <!-- <div class="ml-auto" align="left">
                      <div>
                         <a type="button" class="btn btn-sm btn-outline-dark" href="clientes" title="VOLTAR"><i class="fas fa-undo"></i></a>
