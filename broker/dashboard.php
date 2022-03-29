@@ -169,20 +169,24 @@ include('includes/scripts.php');
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Meu Link de Indicação</h4>
-                            </div>
+            <?php } ?>
+
+            <div class="col-lg-12">
+                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title"><i class="fas fa-user-plus"></i> &nbsp;Link de Indicação</h4>
                         </div>
-                        <p><a href="https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?>" target="_blank">https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?></a></p>
+                    </div>
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h6><a href="https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?>" target="_blank">https://broker.cripto4you.net/pre-cadastro?id=<?php echo $_SESSION['UsuarioID']; ?></a></h6>
+                        </div>
                     </div>
                 </div>
-            <?php }
+            </div>
 
-            include('includes/grafico.php');
-            ?>
+            <?php include('includes/grafico.php'); ?>
 
             <div class="col-lg-6">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
