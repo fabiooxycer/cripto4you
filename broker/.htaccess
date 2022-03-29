@@ -19,6 +19,8 @@
   RewriteRule ^clientes/?$ clientes.php [NC,L]
   RewriteRule ^clientes-editar/?$ clientes-editar.php [NC,L]
   RewriteRule ^clientes-movimentacao/?$ clientes-movimentacao.php [NC,L]
+  RewriteRule ^clientes-indicacao/?$ clientes-indicacao.php [NC,L]
+  RewriteRule ^clientes-indicacao-movimentacao/?$ clientes-indicacao-movimentacao.php [NC,L]
   RewriteRule ^meu-investimento/?$ meu-investimento.php [NC,L]
   RewriteRule ^calculadora/?$ calculadora.php [NC,L]
 

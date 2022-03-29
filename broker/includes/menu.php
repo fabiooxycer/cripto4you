@@ -27,6 +27,9 @@
                         <a href="#investimento" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-fw fa-coins iq-arrow-left"></i><span>Investimento</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                         <ul id="investimento" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li><a href="meu-investimento"><i class="fa fa-list"></i>Extrato</a></li>
+                            <?php if ($_SESSION['UsuarioNivel'] >= '98') { ?>
+                                <li><a href="clientes-indicacao"><i class="fa fa-user-plus"></i>Indicações</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
                     <hr class="sidebar-divider">
