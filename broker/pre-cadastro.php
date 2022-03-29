@@ -39,7 +39,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
 </head>
@@ -162,21 +162,10 @@ if (!empty($_GET['id'])) {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
                                             <div class="form-group">
                                                 <label for="basicInput">Chave PIX</label>
                                                 <input type="text" class="form-control" id="chave" name="chave" autocomplete="off">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="basicInput">Tipo de Contrato</label>
-                                                <select type="text" class="form-control" id="tipo_contrato" name="tipo_contrato" onchange="contrato()" autocomplete="off" required>
-                                                    <option value="">Selecione...</option>
-                                                    <option value="1">Diário</option>
-                                                    <option value="2">Mensal</option>
-                                                    <option value="3">Quinzenal</option>
-                                                </select>
                                             </div>
                                         </div>
                                         <div id="t_contrato_lbl" for="t_contrato_tipo" style="display: none" class="col-md-3">
@@ -282,7 +271,7 @@ switch (get_post_action('adicionar')) {
             $estado        = $_POST['estado'];
             $tipo_pix      = $_POST['tipo_pix'];
             $chave         = $_POST['chave'];
-            $tipo_contrato = $_POST['tipo_contrato'];
+            $tipo_contrato = '2';
             $dt_saque      = $_POST['dt_saque'];
             $status        = '1';
             $nivel         = '1';

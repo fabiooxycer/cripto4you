@@ -40,6 +40,7 @@ if (count($users) != 1) {
     $_SESSION['UsuarioTipoContrato']   = $resultado['tipo_contrato'];
     $_SESSION['UsuarioContrato']       = $resultado['contrato_aceito'];
     $_SESSION['UsuarioPercentual']     = $resultado['percentual'];
+    $_SESSION['UsuarioIndicacao']      = $resultado['id_indicacao'];
 
     header("Location: dashboard");
     exit;

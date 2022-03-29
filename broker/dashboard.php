@@ -147,7 +147,7 @@ include('includes/scripts.php');
                             <div class="d-flex align-items-center justify-content-between">
                                 <?php
 
-                                ?> 
+                                ?>
                                 <h3><b>R$ <?php echo number_format($totalAporteUsuarios, 2, ',', '.'); ?></b></h3>
                             </div>
                         </div>
@@ -163,14 +163,14 @@ include('includes/scripts.php');
                             <div class="d-flex align-items-center justify-content-between">
                                 <?php
 
-                                ?> 
+                                ?>
                                 <h3><b>R$ <?php echo number_format($totalInvestido, 2, ',', '.'); ?></b></h3>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php } 
-            
+            <?php }
+
             include('includes/grafico.php');
             ?>
 
@@ -236,7 +236,11 @@ include('includes/scripts.php');
                             </li>
                         <?php } ?><br>
                         <p>
-                            <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 10% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
+                            <?php if ($_SESSION['UsuarioIndicacao'] != null) { ?>
+                                <strong>Obs.:</strong> <br><i>Taxa de transação 20%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 20% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
+                            <?php } else { ?>
+                                <strong>Obs.:</strong> <br><i>Taxa de transação 10%.<br><strong>Cálculo:</strong> (Lucro Bruto) - 10% <font size="1">(Taxa)</font> = (Lucro Líquido)</i>
+                            <?php } ?>
                         </p>
                     </div>
                 </div>
