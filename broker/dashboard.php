@@ -192,7 +192,7 @@ include('includes/scripts.php');
 
             <?php include('includes/grafico.php'); ?>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -202,7 +202,7 @@ include('includes/scripts.php');
                     <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="430" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
@@ -263,7 +263,7 @@ include('includes/scripts.php');
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
