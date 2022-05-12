@@ -23,7 +23,7 @@ include('includes/scripts.php');
 
             <div class="col-lg-12" align="center">
                 <p>
-                    <font color="#FF0000" size="3"><strong>ATENÇÃO!</strong> <br>Fução saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.</font>
+                    <font color="#FF0000" size="3"><strong>ATENÇÃO!</strong> <br>Fução saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.<br>Pedimos um pouco de paciência para todos os investidores, e assim que o mercado se estabilizar e retornar a subir, vamos liberar todas as funções de nossa plataforma. Obrigado(a)! Equipe Cripto4You</font>
                 </p>
             </div>
 
