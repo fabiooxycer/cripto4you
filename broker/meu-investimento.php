@@ -184,11 +184,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <p class="text-justify">Prezados investidores,
                <br><br>
                Informamos que a função saque está desativa devido a queda repentina do mercado.
-               Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de 34%.
+               Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de -34%.
                <br><br>
-               Precisamos desta recuperação para retornar a inserção de lucros em nossa plataforma.
+               Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
                <br><br>
-               Vamos aguardar os próximos passos do mercado, focando sempre na recuperação do capital e lucro.
+               Vamos aguardar os próximos passos do mercado, focando principalmente na recuperação do capital investidos.
                <br><br>
                Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
             </p>
@@ -277,11 +277,11 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
          <p class="text-justify">Prezados investidores,
             <br><br>
             Informamos que a função saque está desativa devido a queda repentina do mercado.
-            Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de 34%.
+            Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de -34%.
             <br><br>
-            Precisamos desta recuperação para retornar a inserção de lucros em nossa plataforma.
+            Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
             <br><br>
-            Vamos aguardar os próximos passos do mercado, focando sempre na recuperação do capital e lucro.
+            Vamos aguardar os próximos passos do mercado, focando principalmente na recuperação do capital investidos.
             <br><br>
             Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
          </p>

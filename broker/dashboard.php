@@ -23,7 +23,7 @@ include('includes/scripts.php');
 
             <div class="col-lg-12">
                 <p>
-                    <font color="#FF0000" size="3"><strong>ATENÇÃO!:</strong> Fução saque desativada devida a queda no mercado. Estamos aguardando recuperação do mercado para finalizar as operações realizadas em 11/05/2022, onde fechamos com 34% negativo. Precisamos desta recuperação para retornar a inserção de lucros em nossa plataforma.</font>
+                    <font color="#FF0000" size="3"><strong>ATENÇÃO!</strong> Fução saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.</font>
                 </p>
             </div>
 
