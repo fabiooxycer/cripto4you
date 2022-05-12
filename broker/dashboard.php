@@ -21,10 +21,17 @@ include('includes/scripts.php');
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-12" align="center">
-                <p>
-                    <font color="#FF0000" size="3"><strong>ATENÇÃO!</strong> <br>Fução saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.<br><br>Pedimos um pouco de paciência para todos os investidores, e assim que o mercado se estabilizar e retornar a subir, vamos liberar todas as funções de nossa plataforma.<br><br>Obrigado(a)!<br><br>Equipe Cripto4You</font>
-                </p>
+            <div class="col-lg-12 text-center">
+                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;AVISOS</h4>
+                        </div>
+                    </div>
+                    <p>
+                        <font color="#FF0000" size="3"><br><strong>ATENÇÃO!</strong> <i><br>Fução saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.<br>Pedimos um pouco de paciência para todos os investidores, e assim que o mercado se estabilizar e retornar a subir, vamos liberar todas as funções de nossa plataforma.<br>Obrigado(a)!<br>Equipe Cripto4You</i></font><br>
+                    </p>
+                </div>
             </div>
 
             <?php include('includes/slide_criptos.php');
