@@ -20,9 +20,15 @@ include('includes/scripts.php');
 <div id="content-page" class="content-page">
     <div class="container-fluid">
         <div class="row">
-            <?php include('include/slide_criptos.php'); ?>
 
-            <?php
+            <div class="col-lg-12">
+                <p>
+                    <font color="#FF0000" size="3"><strong>ATENÇÃO!:</strong> Fução saque desativada devida a queda no mercado. Estamos aguardando recuperação do mercado para finalizar as operações realizadas em 11/05/2022, onde fechamos com 34% negativo.</font>
+                </p>
+            </div>
+
+            <?php include('includes/slide_criptos.php');
+
             //Informações para Administradores
             if ($_SESSION['UsuarioNivel'] == 100) {
             ?>
@@ -171,7 +177,7 @@ include('includes/scripts.php');
                 </div>
             <?php } ?>
 
-<!--             
+            <!--             
             <div class="col-lg-12">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">

@@ -4,10 +4,10 @@ if (!isset($_SESSION)) session_start();
 $nivel = 1;
 
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-    exit;
+   echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+   exit;
 } else {
-    if (!isset($_SESSION)) session_start();
+   if (!isset($_SESSION)) session_start();
 }
 
 include('includes/header.php');
@@ -181,7 +181,16 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
          </div>
          <div class="modal-body">
-            <form action="meu-investimento" method="post" enctype="multipart/form-data">
+            <p class="text-justify">Prezados investidores,
+               <br><br>
+               Informamos que a função saque está desativa devido a queda repentina do mercado.
+               Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de 34%.
+               <br><br>
+               Vamos aguardar os próximos passos do mercado, focando sempre na recuperação do capital e lucro.
+               <br><br>
+               Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
+            </p>
+            <!-- <form action="meu-investimento" method="post" enctype="multipart/form-data">
                <div class="form-body">
                   <div class="row">
                      <div class="col-md-6">
@@ -206,7 +215,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                   <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> Solicitar Retirada</button>
                   <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
                </div>
-            </form>
+            </form> -->
+            <div class="form-actions" align="right">
+               <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+            </div>
          </div>
       </div>
    </div>
@@ -260,7 +272,16 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
          <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Aceitar Contrato de Investimento</h5>
          </div>
-         <form action="dashboard" method="post">
+         <p class="text-justify">Prezados investidores,
+            <br><br>
+            Informamos que a função saque está desativa devido a queda repentina do mercado.
+            Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de 34%.
+            <br><br>
+            Vamos aguardar os próximos passos do mercado, focando sempre na recuperação do capital e lucro.
+            <br><br>
+            Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
+         </p>
+         <!-- <form action="dashboard" method="post">
             <div class="modal-body">
                <div style="width: 100%; height:400px; overflow-y:scroll;">
                   <br>
@@ -272,7 +293,10 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <div class="modal-footer text-center">
                <button type="submit" name="contrato" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> Li e aceito os termos deste contrato</button>
             </div>
-         </form>
+         </form> -->
+         <div class="form-actions" align="right">
+            <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+         </div>
       </div>
    </div>
 </div>
