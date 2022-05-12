@@ -52,21 +52,21 @@ include("includes/scripts.php");
             <div class="cube"></div>
         </div>
         <div class="container p-0">
-            <div class="row no-gutters height-self-center">
+            <div class="row height-self-center">
                 <div class="col-sm-12 align-self-center">
                     <div class="row m-0">
-                        <div class="col-md-12 bg-white sign-in-page-data">
+                        <div class="col-md-12 sign-in-page-data">
                             <div class="sign-in-from">
                                 <h1 class="mb-0 text-center"><img src="assets/images/logo.png" alt="Cripto4You"></h1><br>
                                 <p class="text-center text-dark">Seja bem vindo(a)!</p>
                                 <form class="mt-4" action="senha" method="POST">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Entre com seu e-mail</label>
-                                        <input type="email" class="form-control mb-0" id="email" name="email" placeholder="Ex.: jose.silva@gmail.com">
+                                        <label>Entre com seu e-mail</label>
+                                        <input type="email" class="form-control mb-0" id="email" name="email" placeholder="Ex.: jose.silva@gmail.com" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Entre com seu CPF</label>
-                                        <input type="text" class="form-control mb-0 cpfOuCnpj" id="cpf" name="cpf" placeholder="Ex.: 999.999.999-99">
+                                        <label>Entre com seu CPF</label>
+                                        <input type="text" class="form-control mb-0 cpfOuCnpj" id="cpf" name="cpf" placeholder="Ex.: 999.999.999-99" required>
                                     </div>
                                     <!-- <div class="d-inline-block w-100">
                                         <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
@@ -81,28 +81,6 @@ include("includes/scripts.php");
                                 </form>
                             </div>
                         </div>
-                        <!-- <div class="col-md-7 text-center sign-in-page-image">
-                            <div class="sign-in-detail text-white">
-                                <a class="sign-in-logo mb-5" href="#"><img src="images/logo-full.png" class="img-fluid" alt="logo"></a>
-                                <div class="owl-carousel" data-autoplay="true" data-loop="true" data-nav="false" data-dots="true" data-items="1" data-items-laptop="1" data-items-tab="1" data-items-mobile="1" data-items-mobile-sm="1" data-margin="0">
-                                    <div class="item">
-                                        <img src="images/login/1.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Find new friends</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
-                                    </div>
-                                    <div class="item">
-                                        <img src="images/login/1.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Connect with the world</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
-                                    </div>
-                                    <div class="item">
-                                        <img src="images/login/1.png" class="img-fluid mb-4" alt="logo">
-                                        <h4 class="mb-1 text-white">Create new events</h4>
-                                        <p>It is a long established fact that a reader will be distracted by the readable content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -158,4 +136,5 @@ include("includes/scripts.php");
 
 
 </body>
+
 </html>
