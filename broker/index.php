@@ -59,26 +59,28 @@ include("includes/scripts.php");
                             <div class="sign-in-from">
                                 <h1 class="mb-0 text-center"><img src="assets/images/logo.png" alt="Cripto4You"></h1><br>
                                 <p class="text-center text-dark">Seja bem vindo(a)!</p>
-                                <form class="mt-4" action="senha" method="POST">
-                                    <div class="form-group">
-                                        <label>Entre com seu e-mail</label>
-                                        <input type="email" class="form-control mb-0" id="email" name="email" placeholder="Ex.: jose.silva@gmail.com" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Entre com seu CPF</label>
-                                        <input type="text" class="form-control mb-0 cpfOuCnpj" id="cpf" name="cpf" placeholder="Ex.: 999.999.999-99" required>
-                                    </div>
-                                    <!-- <div class="d-inline-block w-100">
+                                <div align="center">
+                                    <form class="mt-4" action="senha" method="POST">
+                                        <div class="form-group">
+                                            <label>Entre com seu e-mail</label>
+                                            <input type="email" class="form-control mb-0" id="email" name="email" placeholder="Ex.: jose.silva@gmail.com" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Entre com seu CPF</label>
+                                            <input type="text" class="form-control mb-0 cpfOuCnpj" id="cpf" name="cpf" placeholder="Ex.: 999.999.999-99" required>
+                                        </div>
+                                        <!-- <div class="d-inline-block w-100">
                                         <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                                             <label class="custom-control-label" for="customCheck1">Remember Me</label>
                                         </div>
                                     </div> -->
-                                    <div class="sign-info text-center">
-                                        <button type="submit" class="btn btn-primary d-block w-100 mb-2">PROSSEGUIR</button>
-                                        <!-- <span class="text-dark dark-color d-inline-block line-height-2">Don't have an account? <a href="#">Sign up</a></span> -->
-                                    </div>
-                                </form>
+                                            <button type="submit" class="btn btn-primary w-100 mb-2">PROSSEGUIR</button>
+                                            <!-- <span class="text-dark dark-color d-inline-block line-height-2">Don't have an account? <a href="#">Sign up</a></span> -->
+
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
