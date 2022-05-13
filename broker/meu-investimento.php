@@ -184,7 +184,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <p class="text-justify">Prezados investidores,
                <br><br>
                Informamos que a função saque está desativa devido a queda repentina do mercado.
-               Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de -34%.
+               Operamos no dia (11/05/2022), onde tivemos uma baixa de -34%.
                <br><br>
                Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
                <br><br>
@@ -277,7 +277,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
          <p class="text-justify">Prezados investidores,
             <br><br>
             Informamos que a função saque está desativa devido a queda repentina do mercado.
-            Operamos na data de ontem (11/05/2022), onde tivemos uma baixa de -34%.
+            Operamos no dia (11/05/2022), onde tivemos uma baixa de -34%.
             <br><br>
             Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
             <br><br>
