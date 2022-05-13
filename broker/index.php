@@ -79,10 +79,12 @@ include("includes/scripts.php");
                                         <!-- <span class="text-dark dark-color d-inline-block line-height-2">Don't have an account? <a href="#">Sign up</a></span> -->
 
                                     </form>
-                                    <br>
-                                    <h4 class="mb-1 text-white">Top 10 Criptos</h4><br>
-                                    <p><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="650" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></p>
                                 </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <h4 class="mb-1 text-white">Top 10 Criptos</h4><br>
+                                <p><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="650" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></p>
                             </div>
                         </div>
                     </div>
