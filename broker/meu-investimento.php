@@ -188,7 +188,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                <br><br>
                Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
                <br><br>
-               Vamos aguardar os próximos passos do mercado, focando principalmente na recuperação do capital investidos.
+               Vamos manter nossa análise e operar somente com segurança e se tiver estabilidade, vendo que esse mercado é influenciado por notícias, comentários e tecnologia. Vamos manter a calma e aguardar mais um pouco para evitarmos possíveis percas.
                <br><br>
                Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
             </p>
@@ -281,7 +281,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
             <br><br>
             Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
             <br><br>
-            Vamos aguardar os próximos passos do mercado, focando principalmente na recuperação do capital investidos.
+            Vamos manter nossa análise e operar somente com segurança e se tiver estabilidade, vendo que esse mercado é influenciado por notícias, comentários e tecnologia. Vamos manter a calma e aguardar mais um pouco para evitarmos possíveis percas.
             <br><br>
             Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
          </p>
