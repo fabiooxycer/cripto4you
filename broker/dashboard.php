@@ -25,7 +25,7 @@ include('includes/scripts.php');
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;AVISOS</h4>
+                            <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;QUADRO DE AVISOS</h4>
                         </div>
                     </div>
                     <p style="margin-left: 20px; margin-right: 20px;">
