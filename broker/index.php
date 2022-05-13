@@ -61,11 +61,11 @@ include("includes/scripts.php");
                                 <p class="text-center text-dark">Seja bem vindo(a)!</p>
                                 <div align="center">
                                     <form class="mt-4" action="senha" method="POST">
-                                        <div class="form-group">
+                                        <div class="form-group text-left">
                                             <label>Entre com seu e-mail</label>
                                             <input type="email" class="form-control mb-0" id="email" name="email" placeholder="Ex.: jose.silva@gmail.com" required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group text-left">
                                             <label>Entre com seu CPF</label>
                                             <input type="text" class="form-control mb-0 cpfOuCnpj" id="cpf" name="cpf" placeholder="Ex.: 999.999.999-99" required>
                                         </div>
