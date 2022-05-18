@@ -21,24 +21,20 @@ include('includes/scripts.php');
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-12 text-center">
-                <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                    <div class="iq-card-header d-flex justify-content-between">
-                        <div class="iq-header-title">
-                            <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;QUADRO DE AVISOS</h4>
+            <?php if ($configuracoes['avisos'] == '1') { ?>
+                <div class="col-lg-12 text-center">
+                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;QUADRO DE AVISOS</h4>
+                            </div>
                         </div>
+                        <p style="margin-left: 20px; margin-right: 20px;">
+                            <?php echo $configuracoes['descricao_avisos']; ?>
+                        </p>
                     </div>
-                    <p style="margin-left: 20px; margin-right: 20px;">
-                        <!-- <font color="#FF0000" size="3"><br><strong>ATENÇÃO!</strong> <i><br>Função saque desativada devido a queda do mercado cripto. Estamos aguardando recuperação do mesmo para finalizar as operações realizadas em 11/05/2022, onde até o momento estamos com -36% negativo. Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.<br>Pedimos um pouco de paciência para todos os investidores, e assim que o mercado se estabilizar e retornar a subir, vamos liberar todas as funções de nossa plataforma.<br>Obrigado(a)!<br>Equipe Cripto4You</i></font><br> -->
-                        <font color="#DD7F12" size="3"><br><strong>ATENÇÃO!</strong> <i><br>
-                                Função saque desativada devido a queda do mercado cripto no dia (12/05). Mercado vem se recuperando desde ontem (12/05), onde ainda estamos recuperando os -36%. Vamos manter nossa análise e operar somente com segurança e se tiver estabilidade, vendo que esse mercado é influenciado por notícias, comentários e tecnologia. Vamos manter a calma e aguardar mais um pouco para evitarmos possíveis percas.<br>
-                                Pedimos um pouco de paciência para todos os investidores, e assim que o mercado se estabilizar, vamos liberar todas as funções de nossa plataforma.<br>
-                                Obrigado(a)!<br><br>
-                                Equipe Cripto4You
-                            </i></font><br>
-                    </p>
                 </div>
-            </div>
+            <?php } ?>
 
             <?php include('includes/slide_criptos.php');
 

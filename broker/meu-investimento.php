@@ -39,12 +39,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
                   <p>Abaixo será listado todo histório de movimentação da sua carteira.</p>
                   <div class="ml-auto" align="left">
                      <div>
-                        <?php if ($data['contrato_aceito'] == 2) { ?>
-                           <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
-                        <?php }
-                        if ($data['contrato_aceito'] == 1) { ?>
-                           <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalContrato" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
-                        <?php } ?>
+                        <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalSaque" title="SOLICITAR RETIRADA"><i class="fas fa-minus-circle"></i> Retirada</button>
                         <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modalDeposito" title="ADICIONAR APORTE"><i class="fas fa-plus-circle"></i> Aporte</button>
                      </div>
                   </div><br>
@@ -172,100 +167,133 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
    </div>
 </div>
 
-<!-- Exibe o Modal para solicitação de saque -->
-<div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
-   <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h4 class="modal-title"><i class="fas fa-minus-circle"></i> Solicitar Retirada de Valor</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-         </div>
-         <div class="modal-body">
-            <p class="text-justify">Prezados investidores,
-               <br><br>
-               Informamos que a função saque está desativa devido a queda repentina do mercado.
-               Operamos no dia (11/05/2022), onde tivemos uma baixa de -34%.
-               <br><br>
-               Precisamos desta recuperação para finalizarmos as operações e retomarmos a inserção de lucros em nossa plataforma.
-               <br><br>
-               Vamos manter nossa análise e operar somente com segurança e se tiver estabilidade, vendo que esse mercado é influenciado por notícias, comentários e tecnologia. Vamos manter a calma e aguardar mais um pouco para evitarmos possíveis percas.
-               <br><br>
-               Qualquer dúvida, estamos a disposição no WhatsApp +55 (41) 99282-3979.
-            </p>
-            <!-- <form action="meu-investimento" method="post" enctype="multipart/form-data">
-               <div class="form-body">
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label for="basicInput">Informe o Valor da Retirada:</label>
-                           <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
-                                                                                                                                             if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
-                           <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
-                           <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
-                           <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
+<?php if ($configuracoes['saque'] == '1') { ?>
+   <!-- Exibe o Modal para solicitação de saque -->
+   <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title"><i class="fas fa-minus-circle"></i> Solicitar Retirada de Valor</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+               <form action="meu-investimento" method="post" enctype="multipart/form-data">
+                  <div class="form-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="basicInput">Informe o Valor da Retirada:</label>
+                              <input type="hidden" class="form-control" id="dias" name="dias" value="<?php if ($data['tipo_contrato'] == 2) { ?>30<?php }
+                                                                                                                                                if ($data['tipo_contrato'] == 3) { ?>15<?php } ?>" readonly>
+                              <input type="hidden" class="form-control" id="dt_saque" name="dt_saque" value="<?php echo converte($data['dt_saque'], 2); ?>" autocomplete="off" readonly>
+                              <input type="hidden" class="form-control" id="prox_saque" name="prox_saque" autocomplete="off" readonly>
+                              <input type="text" class="form-control" id="retirada" name="retirada" placeholder="1.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
+                           </div>
                         </div>
                      </div>
                   </div>
-               </div>
-               <p align="justify">
-                  <font size="2" color="red"><strong>Observação:</strong></font><br>
-                  <font size="2" color="white">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br>
-                  <font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
-               </p>
-               <div class="modal-footer"></div>
-               <div class="form-actions" align="right">
-                  <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> Solicitar Retirada</button>
-                  <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
-               </div>
-            </form> -->
-            <div class="form-actions" align="right">
-               <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+                  <p align="justify">
+                     <font size="2" color="red"><strong>Observação:</strong></font><br>
+                     <font size="2" color="white">Valor mínimo para retirada: R$ 100,00<br>Valor máximo para retirada: R$ 5.000,00</font><br><br>
+                     <font size="2">Após aprovação do saque pela nossa equipe, o prazo de tranferência para sua conta bancária através de PIX é de até 7 dias úteis. Está transferência será realizada para sua conta PIX informada em sua conta em nossa plataforma.</font>
+                  </p>
+                  <div class="modal-footer"></div>
+                  <div class="form-actions" align="right">
+                     <button type="submit" name="saque" class="btn btn-sm btn-outline-danger"><i class="fa fa-check"></i> Solicitar Retirada</button>
+                     <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+                  </div>
+               </form>
             </div>
          </div>
       </div>
    </div>
-</div>
-
-<!-- Exibe o Modal para solicitação de depósito -->
-<div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
-   <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h4 class="modal-title"><i class="fas fa-plus-circle"></i> Envio de Aporte</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-         </div>
-         <div class="modal-body">
-            <form action="meu-investimento" method="post" enctype="multipart/form-data">
-               <div class="form-body">
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label for="basicInput">Informar o Valor do Aporte:</label>
-                           <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <p align="justify">
-                  <font size="2" color="red"><strong>Observação:</strong></font><br>
-                  <font size="2" color="white">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br>
-                  <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+<?php }
+if ($configuracoes['saque'] == '2') { ?>
+   <!-- Exibe o Modal para solicitação de saque -->
+   <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title"><i class="fas fa-minus-circle"></i> Solicitar Retirada de Valor</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+               <p class="text-justify">Prezados investidores,
+                  <br><br>
+                  Informamos que a função saque está desativa e/ou em manutenção.<br><br> Favor aguardar!
                </p>
-               <p align="left">
-                  <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
-                  <font size="2"><strong>Rede:</strong> BEP20</font><br><br>
-                  <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
-               </p>
-               <div class="modal-footer"></div>
                <div class="form-actions" align="right">
-                  <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> Enviar Aporte</button>
-                  <button type="button" class="btn btn-sm outline btn-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+                  <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
                </div>
-            </form>
+            </div>
          </div>
       </div>
    </div>
-</div>
+<?php } ?>
+
+<?php if ($configuracoes['deposito'] == '1') { ?>
+   <!-- Exibe o Modal para solicitação de depósito -->
+   <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title"><i class="fas fa-plus-circle"></i> Envio de Aporte</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+               <form action="meu-investimento" method="post" enctype="multipart/form-data">
+                  <div class="form-body">
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="basicInput">Informar o Valor do Aporte:</label>
+                              <input type="text" class="form-control" id="aporte" name="aporte" placeholder="100.000,00" onKeyPress="return(moeda(this,'.',',',event))" autocomplete="off" required>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <p align="justify">
+                     <font size="2" color="red"><strong>Observação:</strong></font><br>
+                     <font size="2" color="white">Valor mínimo para aporte: R$ 1.000,00<br>Valor máximo para aporte: R$ 500.000,00</font><br><br>
+                     <font size="2"> Todo depósito de aporte de capital deverá ser enviado por uma conta bancária ou carteira em sua titularidade. A transferência deverá ser realizada para as carteiras ou PIX listados abaixo no prazo de 2h. Após realizar a transferência, enviar comprovante da transação para <a href="mailto:financeiro@cripto4you.net" target="_blank">financeiro@cripto4you.net</a>, utilizando seu e-mail de cadastro em nossa plataforma. O prazo de confirmação e inclusão do valor em seu saldo é de até 24h.</font><br><br>
+                  </p>
+                  <p align="left">
+                     <font size="2"><strong>Carteira BUSD:</strong> 0x8d0c1fb55d15faa0aaa53e94ac5cf867ae532e63</font><br>
+                     <font size="2"><strong>Rede:</strong> BEP20</font><br><br>
+                     <font size="2"><strong>PIX CNPJ:</strong> 34.837.022/0001-22</font>
+                  </p>
+                  <div class="modal-footer"></div>
+                  <div class="form-actions" align="right">
+                     <button type="submit" name="deposito" class="btn btn-sm btn-outline-success"><i class="fa fa-check"></i> Enviar Aporte</button>
+                     <button type="button" class="btn btn-sm outline btn-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+<?php }
+if ($configuracoes['saque'] == '2') { ?>
+   <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title"><i class="fas fa-minus-circle"></i> Envio de Aporte</h4>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+               <p class="text-justify">Prezados investidores,
+                  <br><br>
+                  Informamos que a função depósito está desativa e/ou em manutenção.<br><br> Favor aguardar!
+               </p>
+               <div class="form-actions" align="right">
+                  <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal"><i class="fa fa-times-circle"></i> Fechar</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+<?php } ?>
 
 <!-- Exibe o Modal para aceite de contrato -->
 <div class="modal fade" id="modalContrato" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">

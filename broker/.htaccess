@@ -23,6 +23,7 @@
   RewriteRule ^clientes-indicacao-movimentacao/?$ clientes-indicacao-movimentacao.php [NC,L]
   RewriteRule ^meu-investimento/?$ meu-investimento.php [NC,L]
   RewriteRule ^calculadora/?$ calculadora.php [NC,L]
+  RewriteRule ^geral/?$ geral.php [NC,L]
 
 # INCLUDES
   RewriteRule ^sair/?$ includes/logout.php [NC,L]

@@ -65,6 +65,17 @@
                     <hr class="sidebar-divider d-none d-md-block">
                 <?php } ?>
 
+                <?php if ($_SESSION['UsuarioNivel'] >= '100') { ?>
+                    <li aria-expanded="true">
+                        <a href="#config" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false"><i class="fas fa-fw fa-cog iq-arrow-left"></i><span>Configurações</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                        <ul id="config" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+
+                            <li><a href="geral"><i class="fa fa-list"></i>Geral</a></li>
+                        </ul>
+                    </li>
+                    <hr class="sidebar-divider d-none d-md-block">
+                <?php } ?>
+
                 <br><br>
                 <li>
                     <a href="https://api.whatsapp.com/send?phone=+5541992823979?text=Ol%c3%a1,%20eu%20tenho%20uma%20dúvida%20ou%20sugestão!" target="_blank" class="iq-waves-effect"><i class="fa fa-whatsapp iq-arrow-left"></i><span>Dúvidas ou Sugestões?</span></a>

@@ -20,17 +20,32 @@ $id_selects = '1';
 
 // SEO
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = 'SELECT * FROM tbl_seo';
+$sql = 'SELECT * FROM tbl_seo WHERE id = "' . $id_selects . '"';
 $q = $pdo->prepare($sql);
 $q->execute(array($id_selects));
 $seo = $q->fetch(PDO::FETCH_ASSOC);
 
 // CONTATO
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = 'SELECT * FROM tbl_contato';
+$sql = 'SELECT * FROM tbl_contato WHERE id = "' . $id_selects . '"';
 $q = $pdo->prepare($sql);
 $q->execute(array($id_selects));
 $contato = $q->fetch(PDO::FETCH_ASSOC);
+
+// SMTP
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = 'SELECT * FROM tbl_smtp WHERE id = "' . $id_selects . '"';
+$q = $pdo->prepare($sql);
+$q->execute(array($id_selects));
+$smtp = $q->fetch(PDO::FETCH_ASSOC);
+
+// CONFIGURAÇÕES
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = 'SELECT * FROM tbl_configuracoes WHERE id = "' . $id_selects . '"';
+$q = $pdo->prepare($sql);
+$q->execute(array($id_selects));
+$configuracoes = $q->fetch(PDO::FETCH_ASSOC);
+
 
 // ------------------------------------------------------------------------
 // Cálculo Dashboard Administrador
