@@ -29,9 +29,11 @@ include('includes/scripts.php');
                                 <h4 class="card-title"><i class="fas fa-exclamation"></i> &nbsp;QUADRO DE AVISOS</h4>
                             </div>
                         </div>
-                        <p style="margin-left: 20px; margin-right: 20px;">
-                            <?php echo $configuracoes['descricao_avisos']; ?>
-                        </p>
+                        <div class="col-lg-12">
+                            <p>
+                                <?php echo $configuracoes['descricao_avisos']; ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
@@ -41,87 +43,7 @@ include('includes/scripts.php');
             //Informações para Administradores
             if ($_SESSION['UsuarioNivel'] == 100) {
             ?>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <p class="text-secondary">Total de Clientes</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b><?php echo $totalUsuarios; ?></b></h3>
-                                <!-- <h6>ativo(s)</h6> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-secondary">
-                                <i class="fa fa-exchange"></i>
-                            </div>
-                            <p class="text-secondary">Total de Transações</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b><?php echo $totalTransacoes; ?></b></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
-                                <i class="fa fa-money"></i>
-                            </div>
-                            <p class="text-secondary">Lucro Gerado</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
-                                <i class="fa fa-money"></i>
-                            </div>
-                            <p class="text-secondary">Total Retiradas</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
-                                <i class="fa fa-money"></i>
-                            </div>
-                            <p class="text-secondary">Total Aporte</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalAporteInvestido, 2, ',', '.'); ?></b></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-4">
-                    <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-                        <div class="iq-card-body iq-box-relative">
-                            <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
-                                <i class="fa fa-money"></i>
-                            </div>
-                            <p class="text-secondary">Total Aporte + Lucro Reinvestido</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h3><b>R$ <?php echo number_format($totalAporteLucro, 2, ',', '.'); ?></b></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             <?php } else {
                 // Informações para Usuários
             ?>
@@ -211,10 +133,10 @@ include('includes/scripts.php');
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Top 10</h4>
+                            <h4 class="card-title"><i class="fas fa-rocket"></i> &nbsp;Top Criptos</h4>
                         </div>
                     </div>
-                    <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=10&pref_coin_id=3315&graph=yes" width="100%" height="430" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe>
+                    <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=dark&cnt=100&pref_coin_id=3315&graph=yes" width="100%" height="430" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="1" style="border:1;margin:0;padding:0;"></iframe>
                 </div>
             </div>
             <!-- <div class="col-lg-6">

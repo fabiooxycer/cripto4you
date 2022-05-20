@@ -4,10 +4,10 @@ if (!isset($_SESSION)) session_start();
 $nivel = 1;
 
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-    exit;
+   echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+   exit;
 } else {
-    if (!isset($_SESSION)) session_start();
+   if (!isset($_SESSION)) session_start();
 }
 
 include('includes/header.php');
@@ -20,6 +20,92 @@ include('includes/scripts.php');
 <div id="content-page" class="content-page">
    <div class="container-fluid">
       <div class="row">
+
+         <!-- CALCULA VALORES DOS CLIENTE -->
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-primary">
+                     <i class="fa fa-users"></i>
+                  </div>
+                  <p class="text-secondary">Total de Clientes</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b><?php echo $totalUsuarios; ?></b></h3>
+                     <!-- <h6>ativo(s)</h6> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-secondary">
+                     <i class="fa fa-exchange"></i>
+                  </div>
+                  <p class="text-secondary">Total de Transações</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b><?php echo $totalTransacoes; ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Lucro Gerado</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b>R$ <?php echo number_format($lucroGerado, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Total Retiradas</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b>R$ <?php echo number_format($totalRetiradas, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Total Aporte</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b>R$ <?php echo number_format($totalAporteInvestido, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Total Aporte + Lucro Reinvestido</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b>R$ <?php echo number_format($totalAporteLucro, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- /FIM -->
+
+
          <div class="col-sm-12">
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">

@@ -4,39 +4,128 @@ if (!isset($_SESSION)) session_start();
 $nivel = 1;
 
 if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioNivel'] < $nivel)) {
-    echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
-    exit;
+   echo "<script>alert('VOCÊ NÃO POSSUI PERMISSÃO PARA EXIBIR ESTÁ TELA!');location.href='entrar';</script>";
+   exit;
 } else {
-    if (!isset($_SESSION)) session_start();
+   if (!isset($_SESSION)) session_start();
 }
 
 include('includes/header.php');
 include('includes/menu.php');
 include('includes/topnavbar.php');
-include('includes/scripts.php');
 
 $id = null;
 if (!empty($_GET['id'])) {
    $id = $_REQUEST['id'];
 }
 
+include('includes/scripts.php');
+
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "SELECT * FROM tbl_usuarios where id = ?";
 $q = $pdo->prepare($sql);
 $q->execute(array($id));
 $data = $q->fetch(PDO::FETCH_ASSOC);
+
+// ------------------------------------------------------------------------
+// Cálculo Dashboard Usuários - Página Admin > Movimentação Clientes
+// ------------------------------------------------------------------------
+// SQL RETIRADAS
+$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $id . '" AND tipo = 2 AND confirmado = 1';
+$sql = $pdo->query($sql);
+$sql = $sql->fetch();
+$totalRetiradasUsuariosMovimentacao = $sql['t'];
+
+// SQL LUCRO
+$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $id . '" AND tipo = 3 AND confirmado = 1 AND reinvestir = 1';
+$sql = $pdo->query($sql);
+$sql = $sql->fetch();
+$lucroGeradoUsuariosMovimentacao = $sql['t'];
+
+// APORTE
+$sql = 'SELECT sum(valor) as t FROM tbl_investimentos WHERE id_usuario = "' . $id . '" AND tipo = 1 AND confirmado = 1';
+$sql = $pdo->query($sql);
+$sql = $sql->fetch();
+$totalAporteUsuariosMovimentacao = $sql['t'];
+
+// CÁLCULO APORTE + LUCRO REINVESTIDO
+$totalInvestidoMovimentacao = $totalAporteUsuariosMovimentacao + $lucroGeradoUsuariosMovimentacao - $totalRetiradasUsuariosMovimentacao;
 ?>
 
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
    <div class="container-fluid">
       <div class="row">
+
+         <!-- Soma valores do cliente -->
+         <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-warning">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Lucro Gerado</p>
+                  <div class="d-flex align-items-center justify-content-between">
+
+                     <h3><b>R$ <?php echo number_format($lucroGeradoUsuariosMovimentacao, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-danger">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Total Retiradas</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <h3><b>R$ <?php echo number_format($totalRetiradasUsuariosMovimentacao, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-info">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Saldo Aporte</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <?php
+
+                     ?>
+                     <h3><b>R$ <?php echo number_format($totalAporteUsuariosMovimentacao, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+               <div class="iq-card-body iq-box-relative">
+                  <div class="iq-box-absolute icon iq-icon-box rounded-circle iq-bg-success">
+                     <i class="fa fa-money"></i>
+                  </div>
+                  <p class="text-secondary">Saldo Atual Investido</p>
+                  <div class="d-flex align-items-center justify-content-between">
+                     <?php
+
+                     ?>
+                     <h3><b>R$ <?php echo number_format($totalInvestidoMovimentacao, 2, ',', '.'); ?></b></h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- /FIM -->
+
          <div class="col-sm-12">
             <div class="iq-card">
                <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                      <h4 class="card-title">
-                     <li>MOVIMENTAÇÃO DE <font color="#DD7F12"><?php echo $data['nome']; ?></font></li>
+                        <li>MOVIMENTAÇÃO DE <font color="#DD7F12"><?php echo $data['nome']; ?></font>
+                        </li>
                      </h4>
                   </div>
                </div>
