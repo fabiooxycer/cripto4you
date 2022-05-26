@@ -167,7 +167,7 @@ $data = $q->fetch(PDO::FETCH_ASSOC);
    </div>
 </div>
 
-<?php if ($configuracoes['saque'] == '1' AND $_SESSION['UsuarioID'] != '22') { ?>
+<?php if ($configuracoes['saque'] == '1' AND $_SESSION['UsuarioID'] == '22') { ?>
    <!-- Exibe o Modal para solicitação de saque -->
    <div class="modal fade" id="modalSaque" tabindex="-1" role="dialog" aria-labelledby="modalSaque" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
