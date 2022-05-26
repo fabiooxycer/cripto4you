@@ -273,7 +273,7 @@ if ($configuracoes['saque'] == '2' AND $_SESSION['UsuarioID'] != '22') { ?>
       </div>
    </div>
 <?php }
-if ($configuracoes['saque'] == '2') { ?>
+if ($configuracoes['deposito'] == '2') { ?>
    <div class="modal fade" id="modalDeposito" tabindex="-1" role="dialog" aria-labelledby="modalDeposito" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
          <div class="modal-content">
