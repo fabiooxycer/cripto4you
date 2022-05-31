@@ -21,7 +21,7 @@ include('includes/scripts.php');
     <div class="container-fluid">
         <div class="row">
 
-            <?php if ($configuracoes['avisos'] == '1' AND $_SESSION['UsuarioID'] != '22') { ?>
+            <?php if ($configuracoes['avisos'] == '1' AND $_SESSION['UsuarioID'] != '22' AND $_SESSION['UsuarioID'] != '19') { ?>
                 <div class="col-lg-12 text-center">
                     <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                         <div class="iq-card-header d-flex justify-content-between">
